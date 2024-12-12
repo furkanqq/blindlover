@@ -4,12 +4,7 @@
  * @param value
  * @param days
  */
-export const setCookie = (
-  name: string,
-  value: string,
-  days?: number,
-  domain?: string
-): void => {
+export const setCookie = (name: string, value: string, days?: number, domain?: string): void => {
   let expires = '';
   if (days) {
     const date = new Date();

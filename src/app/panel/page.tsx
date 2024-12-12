@@ -49,13 +49,13 @@ export default function PanelPage() {
                   <span className="text-xs text-slate-600">Are You Ready to Learn How Strong Your Bond Is?</span>
                 </div>
                 <div className="text-center md:px-40">
-                  This test is designed to help you explore the compatibility between you and the person you're thinking
+                  {` This test is designed to help you explore the compatibility between you and the person you're thinking
                   about! With 5 categories—General Relationship Status, Emotional Connection, Loyalty and Trust,
                   Romantic Gestures, and Fun & Daily Habits—this fun quiz consists of 50 questions that will help you
                   understand the depth of your bond. While answering the questions, consider your relationship with the
                   person in mind. The results will show your compatibility level and highlight the strengths of your
                   relationship. If you're ready, take the test to uncover the dynamics between you and map out your
-                  relationship. Who knows, this journey might bring you even closer together!
+                  relationship. Who knows, this journey might bring you even closer together!`}
                 </div>
                 <div className="flex gap-12">
                   <Link href={'/panel/questions'}>

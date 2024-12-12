@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import { IconArrowRight } from '@/assets/IconArrowRight';
+import { AuthContext } from '@/provider/Auth';
 import Button from '../Button';
-import CircularProgressBar from '../CircularProgressBar';
 
 export default function Banner() {
+  const { token } = useContext(AuthContext);
+
   return (
     <div className="flex flex-col md:flex-row h-[100vh]">
       <div className="flex justify-center items-end pb-12 md:pb-0 md:items-center h-1/2 md:h-full w-full md:w-1/2">
@@ -20,7 +22,7 @@ export default function Banner() {
             İlişkinizin ne kadar güçlü olduğunu öğrenmek ya da hoşlandığın kişinin sana ilgisini ölçmek ister misin?
             Eğlenceli sorularla dolu testimizi hemen keşfet ve aşk yüzdesini öğren!
           </p>
-          <Link href={'/register'}>
+          <Link href={token ? '/panel' : '/register'}>
             <Button
               className="flex justify-center items-center gap-4 w-full"
               variant="primary"

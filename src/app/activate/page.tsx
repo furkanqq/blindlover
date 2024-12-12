@@ -1,3 +1,5 @@
+'use client';
+
 import AppLayout from '@/components/AppLayout';
 import ResultPageComponent from '@/components/ResultPageComponent';
 

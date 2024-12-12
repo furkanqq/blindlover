@@ -52,16 +52,16 @@ const Slider = ({ title }: { title: string }) => {
             >
               <div className="flex relative bg-white h-full w-full">
                 <div className="relative w-[40%] h-full">
-                  <Link href={'#'}>
+                  <Link href={'/'}>
                     <Image className="rounded-l-lg" src={slide.src} alt="Blog Image" fill objectFit="cover" />
                   </Link>
                 </div>
                 <div className="flex flex-col justify-center gap-2 w-[60%] h-full p-5">
-                  <a href="#">
+                  <Link href="/">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                       Artificial Intelligence: The Technology Shaping Our Future
                     </h5>
-                  </a>
+                  </Link>
                   <p className="pr-4 font-normal text-gray-700 dark:text-gray-400 text-[14px]">
                     Discover how artificial intelligence is revolutionizing our lives and shaping the future. Discover
                     how artificial intelligence is revolutionizing our lives and shaping the future. Dour lives and

@@ -1,8 +1,8 @@
-interface GResponse {
-  status: number;
-  timestamp: string;
-  message: string;
-}
+// interface GResponse {
+//   status: number;
+//   timestamp: string;
+//   message: string;
+// }
 
 export interface RegisterRequest {
   email: string;

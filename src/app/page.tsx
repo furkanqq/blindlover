@@ -2,12 +2,12 @@
 
 import AppLayout from '@/components/AppLayout';
 import Banner from '@/components/Banner';
-import { BlogPreview } from '@/components/BlogPreview';
 import { CardSection } from '@/components/CardSection';
 import { CTASection } from '@/components/CTASection';
 import { FAQ } from '@/components/FAQ';
 import { HeaderSection } from '@/components/HeaderSection';
 import { Slider } from '@/components/Slider';
+import { FAQConfig } from '@/config/FAQConfig';
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <CTASection />
       {/* <BlogPreview /> */}
       <Slider title={'AŞK’ına AŞK Katacak Öneriler ve Eğlenceli Fikirler'} />
-      <FAQ />
+      <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>
   );
 }

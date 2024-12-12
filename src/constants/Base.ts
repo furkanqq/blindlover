@@ -4,6 +4,6 @@ export const Base = {
     Name: 'Blind Lover',
   },
   Key: {
-    AuthToken: 'x-auth-token',
+    AuthToken: 'blind-auth-token',
   },
 } as const;

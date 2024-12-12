@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
@@ -18,7 +17,7 @@ const blogs = Array.from({ length: 50 }, (_, i) => ({
 
 const ITEMS_PER_PAGE = 12;
 
-const BlogPage: React.FC = () => {
+export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
@@ -32,7 +31,7 @@ const BlogPage: React.FC = () => {
     <AppLayout type="landing" className="">
       <div className="">
         {/* Banner */}
-        <div className="bg-[url(/heartPattern.png)] bg-contain flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
+        <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
           <h1 className="text-4xl font-bold">
             Welcome <span className="text-primaryColor">to</span> the <span className="text-primaryColor">Blog</span>
           </h1>
@@ -71,6 +70,4 @@ const BlogPage: React.FC = () => {
       </div>
     </AppLayout>
   );
-};
-
-export default BlogPage;
+}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
+import { BlindServices } from '@/services/manager';
 
 export default function ResultPageComponent({
   imgUrl,
@@ -25,6 +26,11 @@ export default function ResultPageComponent({
   tryB?: boolean;
   sendB?: boolean;
 }) {
+  function sendEmail() {
+    BlindServices.Activate();
+
+    //gonderildi toasti cikacak
+  }
   return (
     <Container className="h-[100vh] flex justify-center items-center">
       <div className=" flex flex-col gap-6 w-full p-4 text-center justify-center items-center rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -40,7 +46,14 @@ export default function ResultPageComponent({
         <p className="mb-5 md:w-96 text-base text-gray-500 sm:text-lg dark:text-gray-400">{desc}</p>
         <div className="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
           {sendB && (
-            <Button variant={'primary'} className="w-32" type={'button'} size="md" title={''}>
+            <Button
+              onClick={() => sendEmail()}
+              variant={'primary'}
+              className="w-32"
+              type={'button'}
+              size="md"
+              title={''}
+            >
               Send Email
             </Button>
           )}

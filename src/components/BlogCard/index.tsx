@@ -17,19 +17,20 @@ const BlogCard = ({
   image: string;
   link: string;
 }) => {
+  console.log(date, 'date');
   return (
     <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="relative h-40">
-        <Link href={link ? link : '#'}>
+        <Link href={link ? link : '/'}>
           <Image className="rounded-t-lg" src={image ? image : ''} alt="Blog Image" fill objectFit="cover" />
         </Link>
       </div>
       <div className="p-5">
-        <a href="#">
+        <Link href="/">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{title}</h5>
-        </a>
+        </Link>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{desc}</p>
-        <Link href={link ? link : '#'}>
+        <Link href={link ? link : '/'}>
           <Button type={'button'} title={'Read More'} variant={'primary'}>
             Read more
             <ArrowRightIcon width={16} height={16} />

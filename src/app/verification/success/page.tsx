@@ -1,8 +1,6 @@
-import Image from 'next/image';
+'use client';
 
 import AppLayout from '@/components/AppLayout';
-import Button from '@/components/Button';
-import { Container } from '@/components/Container';
 import ResultPageComponent from '@/components/ResultPageComponent';
 
 export default function VerificationSuccessPage() {
@@ -24,7 +22,12 @@ export default function VerificationSuccessPage() {
           </div>
         </div>
       </Container> */}
-      <ResultPageComponent imgUrl={'/verificationSuccess.png'} title={'Successfully Verified!'} desc={'Your account has been successfully verified. You can now access all features.'} homeB/>
+      <ResultPageComponent
+        imgUrl={'/verificationSuccess.png'}
+        title={'Successfully Verified!'}
+        desc={'Your account has been successfully verified. You can now access all features.'}
+        homeB
+      />
     </AppLayout>
   );
 }

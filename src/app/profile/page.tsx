@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 import { IconArrowRight } from '@/assets/IconArrowRight';
@@ -22,15 +23,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/Select';
+import { deleteAuthTokenToHeader } from '@/services/helper';
 
 export default function ProfilePage() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   // bg-backgroundColor border-2 border-solid
+
+  function handleLogOut() {
+    deleteAuthTokenToHeader();
+    router.push('/');
+  }
   return (
     <AppLayout>
       <Container className="pb-0 md:pb-28 pt-16 md:pt-24">
@@ -56,7 +64,13 @@ export default function ProfilePage() {
                 {isDisabled ? 'Update Info' : 'Save'}
                 {isDisabled ? <IconEdit width={16} height={16} /> : <IconCheck width={16} height={16} />}
               </Button>
-              <Button type={'button'} title={'Logout'} variant={'primary'} className="w-[100px] md:w-3/12">
+              <Button
+                type={'button'}
+                title={'Logout'}
+                variant={'primary'}
+                className="w-[100px] md:w-3/12"
+                onClick={handleLogOut}
+              >
                 <span>Logout</span>
                 <IconLogin width={16} height={16} />
               </Button>

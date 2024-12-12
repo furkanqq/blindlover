@@ -43,4 +43,7 @@ export const BlindApiUrl = {
   AuthLogin: (request: LoginRequest) => {
     return BlindHttp.post('/auth/login', request);
   },
+  Activate: () => {
+    return BlindHttp.post('/verification/send/EMAIL_VERIFY');
+  },
 };

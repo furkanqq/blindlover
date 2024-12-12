@@ -1,5 +1,6 @@
 'use client';
 
+import { DocumentTextIcon, UserCircleIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -8,7 +9,7 @@ import { IconLogin } from '@/assets/IconLogin';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
-export default function Header({ type = 'default' }: { type?: 'auth' | 'default' | 'landing' }) {
+export default function Header({ token, type = 'default' }: { type?: 'auth' | 'default' | 'landing'; token: boolean }) {
   const [scrollHeight, setScrollHeight] = useState(false);
 
   useEffect(() => {
@@ -39,20 +40,40 @@ export default function Header({ type = 'default' }: { type?: 'auth' | 'default'
           <Image src={'/blindlover_text.png'} alt="Blind Lover" width={200} height={120} />
         </Link>
         <div className="w-fit flex gap-5">
-          <Link href={'/login'}>
-            <Button className="w-32" variant={!scrollHeight ? 'login' : 'primary'} type={'reset'} title={''}>
-              <IconLogin width={16} height={16} />
-              <span>Login</span>
-            </Button>
-          </Link>
-          <Link href={'/register'}>
-            <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'reset'} title={''}>
-              <IconLogin width={16} height={16} />
-              <span>Register</span>
-            </Button>
-          </Link>
+          {token ? (
+            <>
+              <Link href={'/profile'}>
+                <Button className="w-32" variant={!scrollHeight ? 'login' : 'primary'} type={'reset'} title={''}>
+                  <UserCircleIcon width={16} height={16} />
+                  <span>Profil</span>
+                </Button>
+              </Link>
+              <Link href={'/panel'}>
+                <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'reset'} title={''}>
+                  <DocumentTextIcon width={16} height={16} />
+                  <span>Teste Başla</span>
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href={'/login'}>
+                <Button className="w-32" variant={!scrollHeight ? 'login' : 'primary'} type={'reset'} title={''}>
+                  <IconLogin width={16} height={16} />
+                  <span>Giriş Yap</span>
+                </Button>
+              </Link>
+              <Link href={'/register'}>
+                <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'reset'} title={''}>
+                  <IconLogin width={16} height={16} />
+                  <span>Kayıt Ol</span>
+                </Button>
+              </Link>
+            </>
+          )}
+
           <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'button'} title={''}>
-            Language
+            Dil Seçeneği
           </Button>
         </div>
       </div>

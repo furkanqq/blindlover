@@ -23,8 +23,8 @@ const SmallSection = () => {
             </div>
             <h3 className="text-3xl font-semibold">A growing company</h3>
             <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-              The extension comes with three pre-built pages to help you get started faster. You can change the text and
-              images and you're good to go.
+              {` The extension comes with three pre-built pages to help you get started faster. You can change the text and
+              images and you're good to go.`}
             </p>
             <ul className="list-none mt-6">
               <li className="py-2">

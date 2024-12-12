@@ -2,7 +2,7 @@ import { IconType } from '@/types/icon.types';
 
 export const IconGPlayBadge: React.FC<IconType> = (props) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="30px" viewBox="0 0 100 30">
+    <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="30px" viewBox="0 0 100 30" {...props}>
       <rect width="100" height="30" fill="#000" rx="5" />
       <g transform="translate(10, 6)">
         <path

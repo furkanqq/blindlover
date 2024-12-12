@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { IconAppleBadge } from '@/assets/IconAppleBadge';
 import { Container } from '../Container';
 
 const CTASection = () => {
@@ -27,23 +26,23 @@ const CTASection = () => {
                 </Link>
                 <div className="text-white mt-2 text-[12px]">Ya da mobil uygulamamızı indir!</div>
                 <div className="flex gap-2 relative">
-                  <Link href={'#'} className="relative">
-                    <Image src="/gplaybadge.png" alt="Google Play" width={100} height={50} />
+                  <Link href={'/'} className="relative">
+                    <Image src="/gplaybadge.png" alt="Google Play" width={120} height={50} />
                   </Link>
-                  <Link href={'#'}>
-                    <Image src="/appstore.png" alt="App Store" width={100} height={50} />
+                  <Link href={'/'}>
+                    <Image src="/appstore.png" alt="App Store" width={120} height={50} />
                   </Link>
                 </div>
               </div>
             </div>
             <div className="relative mt-16 h-80 lg:mt-8">
-              {/* <Image
+              <Image
                 className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
                 src="https://tailwindui.com/plus/img/component-images/dark-project-app-screenshot.png"
                 alt="App screenshot"
                 width="1824"
                 height="1080"
-              /> */}
+              />
               <div className="absolute w-[1824px] h-[1080px] left-0 top-0  max-w-none rounded-md bg-white ring-1 ring-white/10"></div>
             </div>
           </div>

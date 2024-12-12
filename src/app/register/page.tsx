@@ -8,7 +8,6 @@ import { IconGoogle } from '@/assets/IconGoogle';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Checkbox } from '@/components/Checkbox';
-import DatePicker from '@/components/DatePicker';
 import { Input } from '@/components/Input';
 import {
   Select,
@@ -43,6 +42,8 @@ export default function RegisterPage() {
     gender: '',
     termsAccepted: '',
   });
+
+  console.log(errors, 'errors');
 
   const validateForm = () => {
     let valid = true;

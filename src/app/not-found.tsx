@@ -1,10 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
 import AppLayout from '@/components/AppLayout';
-import Button from '@/components/Button';
-import { Container } from '@/components/Container';
-import HeartAnimation from '@/components/HeartAnimation';
 import ResultPageComponent from '@/components/ResultPageComponent';
 
 export default function ErrorNotFound() {
