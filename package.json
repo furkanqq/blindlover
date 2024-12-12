@@ -1,0 +1,78 @@
+{
+  "name": "blind_lover",
+  "description": "A Next.js starter with TypeScript, Tailwind CSS, ESLint, Prettier, Husky, Lint-staged, and more.",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Furkan Ilhan",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "nextjs",
+    "starter",
+    "typescript"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.+(ts|js|tsx)\"",
+    "format": "prettier . --write",
+    "format:ci": "prettier --list-different .",
+    "postinstall": "husky"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,js,jsx,tsx}": [
+      "eslint \"src/**/*.+(ts|js|tsx)\" --fix",
+      "prettier . --write"
+    ]
+  },
+  "dependencies": {
+    "@heroicons/react": "2.2.0",
+    "@radix-ui/react-checkbox": "1.1.2",
+    "@radix-ui/react-popover": "1.1.2",
+    "@radix-ui/react-select": "2.1.2",
+    "autoprefixer": "10.4.20",
+    "axios": "1.7.9",
+    "classnames": "2.5.1",
+    "clsx": "2.1.1",
+    "jotai": "2.10.3",
+    "next": "15.0.4",
+    "next-themes": "0.4.3",
+    "postcss": "8.4.49",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "7.0.1",
+    "sonner": "1.7.0",
+    "tailwind-merge": "2.5.5",
+    "tailwindcss-animated": "1.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.15.0",
+    "@ianvs/prettier-plugin-sort-imports": "4.4.0",
+    "@types/node": "22.9.1",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2",
+    "@typescript-eslint/eslint-plugin": "8.15.0",
+    "@typescript-eslint/parser": "8.15.0",
+    "eslint": "9.15.0",
+    "eslint-config-next": "15.0.3",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.10",
+    "prettier": "3.3.3",
+    "prettier-plugin-sort-json": "4.0.0",
+    "tailwindcss": "3.4.15",
+    "typescript": "5.6.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  }
+}
