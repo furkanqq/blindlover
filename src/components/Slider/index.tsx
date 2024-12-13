@@ -1,8 +1,11 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { DirectusServices } from '@/services/manager';
+import { blogListAtom } from '@/stores';
 import Button from '../Button';
 import { Container } from '../Container';
 
@@ -22,6 +25,15 @@ const slides: Slide[] = [
 
 const Slider = ({ title }: { title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [blogList] = useAtom(blogListAtom);
+
+  useEffect(() => {
+    DirectusServices.BlogList();
+  }, []);
+
+  if (!blogList) {
+    return null;
+  }
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
@@ -43,33 +55,30 @@ const Slider = ({ title }: { title: string }) => {
         </h2>
         {/* Carousel Wrapper */}
         <div className="relative h-56 overflow-hidden rounded-lg md:h-72">
-          {slides.map((slide, index) => (
+          {blogList.slice(0, 5).map((blog, index) => (
             <div
-              key={slide.id}
+              key={blog.id}
               className={`absolute inset-0 transition-opacity duration-700 border border-solid ease-in-out ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0'
+                index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
               }`}
             >
               <div className="flex relative bg-white h-full w-full">
                 <div className="relative w-[40%] h-full">
                   <Link href={'/'}>
-                    <Image className="rounded-l-lg" src={slide.src} alt="Blog Image" fill objectFit="cover" />
+                    <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
                   </Link>
                 </div>
                 <div className="flex flex-col justify-center gap-2 w-[60%] h-full p-5">
                   <Link href="/">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                      Artificial Intelligence: The Technology Shaping Our Future
-                    </h5>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.tr_title}</h5>
                   </Link>
-                  <p className="pr-4 font-normal text-gray-700 dark:text-gray-400 text-[14px]">
-                    Discover how artificial intelligence is revolutionizing our lives and shaping the future. Discover
-                    how artificial intelligence is revolutionizing our lives and shaping the future. Dour lives and
-                    shaping the future. Discover how artificial intelligence is revolutionizing our
-                  </p>
-                  <Link href={'/blogs'}>
+                  <p
+                    className="pr-4 font-normal text-gray-700 dark:text-gray-400 text-[14px]"
+                    dangerouslySetInnerHTML={{ __html: `${blog.tr_content.slice(0, 150)}...` }}
+                  ></p>
+                  <Link href={`/blog/${blog.slug}`}>
                     <Button type={'button'} title={'Read More'} variant={'primary'}>
-                      Şimdi Oku...
+                      Şimdi Oku
                       <ArrowRightIcon width={16} height={16} />
                     </Button>
                   </Link>

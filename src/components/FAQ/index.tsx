@@ -12,8 +12,8 @@ const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) =
         <div className="mx-auto px-5">
           {type !== 'faqs' && (
             <div className="flex flex-col items-center">
-              <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">FAQ</h2>
-              <p className="mt-3 text-lg text-neutral-500 md:text-xl">Frequenty asked questions</p>
+              <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">SSS</h2>
+              <p className="mt-3 text-lg text-neutral-500 md:text-xl">Sıkça sorulan sorular</p>
             </div>
           )}
 

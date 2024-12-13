@@ -1,24 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import React, { useEffect, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
 import { BlogCard } from '@/components/BlogCard';
 import { Container } from '@/components/Container';
-
-const blogs = Array.from({ length: 50 }, (_, i) => ({
-  id: i + 1,
-  title: `Blog Title ${i + 1}`,
-  description: `This is a description for Blog ${i + 1}.`,
-  littleDescription: `Quick insight about Blog ${i + 1}.`,
-  link: `/blog/${i + 1}`,
-  image: `https://via.placeholder.com/300x200.png?text=Blog+${i + 1}`,
-}));
+import LoadingScreen from '@/components/LoadingScreen';
+import { DirectusServices } from '@/services/manager';
+import { blogListAtom } from '@/stores';
 
 const ITEMS_PER_PAGE = 12;
 
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [blogs] = useAtom(blogListAtom);
+
+  useEffect(() => {
+    DirectusServices.BlogList();
+  }, []);
+
+  console.log(blogs, 'blogs');
+
+  if (!blogs) {
+    return <LoadingScreen />;
+  }
 
   const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
   const currentBlogs = blogs.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
@@ -44,10 +50,11 @@ export default function BlogPage() {
             {currentBlogs.map((blog, index) => (
               <BlogCard
                 key={index}
-                title={blog.title}
-                desc={blog.littleDescription}
+                title={blog.tr_title}
+                desc={blog.tr_content.slice(0, 100)}
                 image={'/blog.png'}
-                link={blog.link}
+                link={blog.slug}
+                date={blog.date_updated ? blog.date_updated : blog.date_created}
               />
             ))}
           </div>

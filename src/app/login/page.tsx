@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { IconApple } from '@/assets/IconApple';
@@ -13,7 +12,6 @@ import { Input } from '@/components/Input';
 import { BlindServices } from '@/services/manager';
 
 export default function LoginPage() {
-  const router = useRouter();
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
@@ -28,7 +26,7 @@ export default function LoginPage() {
     // e.preventDefault();
     BlindServices.AuthLogin(loginForm)
       .then(() => {
-        router.push('/');
+        window.location.href = '/';
       })
       .catch((err) => {
         //toast gelecek
@@ -42,7 +40,9 @@ export default function LoginPage() {
         <div className="max-w-screen-xl m-0 sm:m-10 bg-backgroundColor rounded-lg overflow-hidden shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className="flex justify-center items-center">
-              <Image src="/blindlover.png" alt="logo" width={200} height={180} />
+              <Link href={'/'}>
+                <Image src="/blindlover.png" alt="logo" width={200} height={180} />
+              </Link>
             </div>
             <div className="mt-12 flex flex-col items-center">
               <h1 className="text-2xl xl:text-3xl font-semibold">Sign in to find your lover</h1>

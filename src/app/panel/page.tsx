@@ -1,15 +1,41 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
+import { IconClose } from '@/assets/IconClose';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
+import { BlindServices } from '@/services/manager';
+import { profileInfoAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function PanelPage() {
+  const router = useRouter();
   const [move, setMove] = useState(false);
+  const [info] = useAtom(profileInfoAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    BlindServices.ProfileInfo();
+  }, []);
+
+  const handleStartTest = () => {
+    if (info?.emailVerified === false) {
+      router.push('/not-approved');
+    } else if (info?.relationInfo === null) {
+      openModal();
+    } else if (!info?.age || !info.gender || !info.name || info.age === '' || info.gender === '' || info.name === '') {
+      router.push('/profile');
+    } else {
+      window.location.href = '/panel/questions';
+    }
+  };
   return (
     <AppLayout>
       <Container className="pt-32 h-fit">
@@ -57,12 +83,18 @@ export default function PanelPage() {
                   relationship. If you're ready, take the test to uncover the dynamics between you and map out your
                   relationship. Who knows, this journey might bring you even closer together!`}
                 </div>
+                <NavModal isOpen={isModalOpen} onClose={closeModal} />
                 <div className="flex gap-12">
-                  <Link href={'/panel/questions'}>
-                    <Button variant={'primary'} size="md" type={'button'} title={''} className="w-40">
-                      Start Test
-                    </Button>
-                  </Link>
+                  <Button
+                    onClick={handleStartTest}
+                    variant={'primary'}
+                    size="md"
+                    type={'button'}
+                    title={''}
+                    className="w-40"
+                  >
+                    Start Test
+                  </Button>
 
                   <Button variant={'blue'} size="md" type={'button'} title={''} className="w-40">
                     Watch Video
@@ -82,3 +114,45 @@ export default function PanelPage() {
     </AppLayout>
   );
 }
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      id="crud-modal"
+      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50"
+      aria-hidden={!isOpen}
+    >
+      <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
+        {/* Modal content */}
+        <div className="bg-white rounded-lg shadow dark:bg-gray-700">
+          {/* Modal header */}
+          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">İlişki Bilgilerini Doldur</h3>
+            <Button onClick={onClose} type={'button'} variant={'dark'} title={''}>
+              <IconClose />
+            </Button>
+          </div>
+          {/* Modal body */}
+          <div className="p-4 md:p-5">
+            <p className="mb-5">
+              Teste başlayabilmeniz için, profilinizdeki Relationship Info bölümündeki soruları doldurmanız
+              gerekmektedir. Lütfen önce bu bilgileri tamamlayın.
+            </p>
+            <Link href="/profile">
+              <Button type="submit" title={''} variant={'blue'} size="md" className="w-full">
+                Profile Git
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

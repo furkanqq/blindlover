@@ -1,8 +1,9 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
 import { IconChevronRight } from '@/assets/IconChevronRight';
@@ -10,15 +11,52 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
 import { Container } from '@/components/Container';
+import LoadingScreen from '@/components/LoadingScreen';
 import QuizStepper from '@/components/QuizStepper';
-import { questions } from '@/config/dummyQuestions';
+import { BlindServices } from '@/services/manager';
+import { questionListAtom } from '@/stores';
+
+interface TypeAnswer {
+  questionId: string;
+  answer: 'NO' | 'YES' | 'EMPTY';
+}
+
+interface TypeOptions {
+  label: 'NO' | 'EMPTY' | 'YES';
+  value: 'No' | 'Empty' | 'Yes';
+}
 
 export default function QuestionsPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
+  const [allAnswer, setAllAnswer] = useState<TypeAnswer[]>([]);
+  const [questions] = useAtom(questionListAtom);
 
-  const handleAnswer = () => {
-    if (currentQuestionIndex < questions.length - 1) {
+  useEffect(() => {
+    BlindServices.QuestionList();
+  }, []);
+
+  if (!questions) {
+    return <LoadingScreen />;
+  }
+
+  console.log(questions, 'questions');
+
+  const options: TypeOptions[] = [
+    { label: 'NO', value: 'No' },
+    { label: 'EMPTY', value: 'Empty' },
+    { label: 'YES', value: 'Yes' },
+  ];
+  const handleAnswer = (answer: 'NO' | 'YES' | 'EMPTY') => {
+    if (currentQuestionIndex <= questions.length - 1) {
+      setAllAnswer((prevAnswers) => [
+        ...prevAnswers,
+        {
+          questionId: questions[currentQuestionIndex]._id,
+          answer,
+        },
+      ]);
+
       // Animasyonu tetikle
       setAnimationClass('-translate-x-full');
       setTimeout(() => {
@@ -28,6 +66,8 @@ export default function QuestionsPage() {
       }, 300);
     }
   };
+
+  console.log(allAnswer, 'allAnswer');
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
@@ -49,19 +89,19 @@ export default function QuestionsPage() {
           <div className="h-[70%] flex flex-col justify-start pt-12 items-center gap-12">
             <div
               className={`h-full flex flex-col items-center gap-12 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
-              key={questions[currentQuestionIndex].id}
+              key={questions[currentQuestionIndex]._id}
             >
               <h1 className="text-[44px] h-28 leading-[56px] text-center font-semibold px-28">
-                {questions[currentQuestionIndex].question}
+                {questions[currentQuestionIndex].turkish ? questions[currentQuestionIndex].turkish : ''}
               </h1>
               <div className="flex gap-20">
-                {questions[currentQuestionIndex].options.map((option, index) => (
+                {options.map((option, index) => (
                   <div
                     key={index}
                     className="flex justify-center items-center bg-primaryColor w-44 h-32 rounded-md active:scale-[0.98] cursor-pointer"
-                    onClick={handleAnswer}
+                    onClick={() => handleAnswer(option.label)}
                   >
-                    <span className="text-[32px] text-white">{option}</span>
+                    <span className="text-[32px] text-white">{option.value}</span>
                   </div>
                 ))}
               </div>
@@ -77,12 +117,13 @@ export default function QuestionsPage() {
                 <IconChevronLeft width={16} height={16} />
                 <span>Back</span>
               </Button>
+              <div>{questions[currentQuestionIndex].category.replace(/_/g, ' ')}</div>
               <Button
                 variant={'secondary'}
                 type={'button'}
                 title={''}
                 disabled={currentQuestionIndex === questions.length - 1}
-                onClick={handleAnswer}
+                // onClick={handleAnswer}
               >
                 <span>Next</span>
                 <IconChevronRight width={16} height={16} />
