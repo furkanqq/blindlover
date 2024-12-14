@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  blindloveradmin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blindloverfrontnew
+    env_file:
+      - .env
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
