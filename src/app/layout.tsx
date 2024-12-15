@@ -5,7 +5,6 @@ import './globals.css';
 
 import { Inter } from 'next/font/google';
 
-import { ThemeProvider } from '@/components/ThemeProvider';
 import Providers from '@/provider';
 import { AuthProvider } from '@/provider/Auth';
 
@@ -21,9 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </Providers>
       </body>
     </html>
