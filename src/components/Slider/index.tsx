@@ -49,7 +49,7 @@ const Slider = ({ title }: { title: string }) => {
 
   return (
     <Container className="pt-32 md:pt-52">
-      <div className="relative w-full bg-white p-6 rounded-md">
+      <div className="relative w-full bg-white p-12 rounded-md">
         <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-foreground ">
           {title}
         </h2>
@@ -58,7 +58,7 @@ const Slider = ({ title }: { title: string }) => {
           {blogList.slice(0, 5).map((blog, index) => (
             <div
               key={blog.id}
-              className={`absolute inset-0 transition-opacity duration-700 border border-solid ease-in-out ${
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                 index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
               }`}
             >
@@ -68,7 +68,7 @@ const Slider = ({ title }: { title: string }) => {
                     <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
                   </Link>
                 </div>
-                <div className="flex flex-col justify-center gap-2 w-[60%] h-full p-5">
+                <div className="flex flex-col justify-start gap-3 w-[60%] h-full px-5">
                   <Link href="/">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.tr_title}</h5>
                   </Link>
@@ -88,7 +88,7 @@ const Slider = ({ title }: { title: string }) => {
           ))}
         </div>
         {/* Indicators */}
-        <div className="absolute flex justify-center space-x-3 bottom-2 left-1/2 transform -translate-x-1/2">
+        <div className="absolute flex justify-center space-x-3 bottom-4 left-1/2 transform -translate-x-1/2">
           {slides.map((_, index) => (
             <button
               key={index}
