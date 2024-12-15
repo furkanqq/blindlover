@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Providers>
           <AuthProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            {children}
           </AuthProvider>
         </Providers>
       </body>
