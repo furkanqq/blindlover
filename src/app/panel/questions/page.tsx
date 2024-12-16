@@ -3,6 +3,7 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
@@ -134,13 +135,16 @@ export default function QuestionsPage() {
           </div>
         ) : (
           <div className="bg-backgroundColor w-full h-[80%] rounded-xl overflow-hidden px-12">
-            <div className="h-[15%] flex justify-between">
+            <div className="h-[20%] flex justify-between">
               <div className="flex items-center justify-center w-20">
                 <span className="text-[32px] mr-1">{`${currentQuestionIndex + 1 >= 10 ? '' : '0'}${currentQuestionIndex + 1}`}</span>
                 <span>/ {questions.length}</span>
               </div>
-              <div className="flex justify-center items-center">
+              <div className="flex flex-col justify-center items-center gap-4">
                 <QuizStepper currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} steps={5} />
+                <div className="p-2 bg-primaryColor text-white rounded-md text-[12px]">
+                  {getCategoryLabel(questions[currentQuestionIndex].category)}
+                </div>
               </div>
               <div className="flex items-center justify-center w-20">
                 <CircularProgressBar percentage={(currentQuestionIndex + 1) * (100 / questions.length)} />
@@ -177,7 +181,6 @@ export default function QuestionsPage() {
                   <IconChevronLeft width={16} height={16} />
                   <span>Back</span>
                 </Button>
-                <div>{getCategoryLabel(questions[currentQuestionIndex].category)}</div>
                 <Button
                   variant={'secondary'}
                   type={'button'}
@@ -189,6 +192,14 @@ export default function QuestionsPage() {
                   <IconChevronRight width={16} height={16} />
                 </Button>
               </div>
+            </div>
+            <div className="h-[10%] flex justify-center items-center">
+              <div className="text-[12px] flex justify-center items-center h-10 text-slate-700 border-r border-r-slate-800/30 pr-6 mr-1">
+                These questions were created with
+              </div>
+              <Link href={'/'} className="">
+                <Image src={'/blindlover_text.png'} alt="Blind Lover" width={150} height={90} />
+              </Link>
             </div>
           </div>
         )}

@@ -53,13 +53,13 @@ export default function PanelPage() {
               onClick={() => setMove(false)}
               className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer"
             >
-              <span>Career Test on Information</span>
+              <span>Test Hakkında</span>
             </div>
             <div
               onClick={() => setMove(true)}
               className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer"
             >
-              <span>Test History</span>
+              <span>Test Geçmişi</span>
             </div>
           </div>
           <div className="w-full">
@@ -71,17 +71,19 @@ export default function PanelPage() {
             >
               <div className="flex flex-col items-center gap-12">
                 <div className="flex flex-col items-center">
-                  <h3 className="text-2xl">Discover Compatibility</h3>
-                  <span className="text-xs text-slate-600">Are You Ready to Learn How Strong Your Bond Is?</span>
+                  <h3 className="text-2xl">Uyumluluğu Keşfet</h3>
+                  <span className="text-xs text-slate-600">
+                    Bağınızın Ne Kadar Güçlü Olduğunu Öğrenmeye Hazır mısınız?
+                  </span>
                 </div>
                 <div className="text-center md:px-40">
-                  {` This test is designed to help you explore the compatibility between you and the person you're thinking
-                  about! With 5 categories—General Relationship Status, Emotional Connection, Loyalty and Trust,
-                  Romantic Gestures, and Fun & Daily Habits—this fun quiz consists of 50 questions that will help you
-                  understand the depth of your bond. While answering the questions, consider your relationship with the
-                  person in mind. The results will show your compatibility level and highlight the strengths of your
-                  relationship. If you're ready, take the test to uncover the dynamics between you and map out your
-                  relationship. Who knows, this journey might bring you even closer together!`}
+                  {`Bu test, siz ve düşündüğünüz kişi arasındaki uyumu keşfetmenize yardımcı olmak için tasarlanmıştır!
+                  Genel İlişki Durumu, Duygusal Bağlantı, Sadakat ve Güven, Romantik Jestler, Eğlence ve Günlük
+                  Alışkanlıklar olmak üzere 5 kategori içeren bu eğlenceli test, ilişkinizin derinliğini anlamanıza
+                  yardımcı olacak 50 sorudan oluşmaktadır. Soruları cevaplarken, aklınızdaki kişiyle olan ilişkinizi göz
+                  önünde bulundurun. Sonuçlar, uyum seviyenizi gösterecek ve ilişkinizin güçlü yönlerini öne
+                  çıkaracaktır. Hazırsanız, bu testi yaparak aranızdaki dinamikleri ortaya çıkarabilir ve ilişkinizi
+                  haritalandırabilirsiniz. Kim bilir, bu yolculuk sizi birbirinize daha da yakınlaştırabilir!`}
                 </div>
                 <NavModal isOpen={isModalOpen} onClose={closeModal} />
                 <div className="flex gap-12">
@@ -93,21 +95,23 @@ export default function PanelPage() {
                     title={''}
                     className="w-40"
                   >
-                    Start Test
+                    Teste Başla
                   </Button>
 
                   <Button variant={'blue'} size="md" type={'button'} title={''} className="w-40">
-                    Watch Video
+                    Video İzle
                   </Button>
                 </div>
               </div>
             </div>
             <div
               id="page2"
-              className={cn('h-[100vh] hidden bg-blue-500 w-full border border-solid', {
+              className={cn('h-[50vh] hidden w-full justify-center items-center border border-solid', {
                 flex: move,
               })}
-            ></div>
+            >
+              <span>Test Geçmişi Bulunmamaktadır.</span>
+            </div>
           </div>
         </div>
       </Container>
