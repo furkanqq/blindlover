@@ -4,7 +4,14 @@ import { BlindStore } from '@/provider';
 import { authAtom, blogAtom, blogListAtom, loaderAtom, profileInfoAtom, questionListAtom } from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
 import { setAuthTokenToHeader } from './helper';
-import { AnswerRequest, LoginRequest, ProfileUpdateRequest, RegisterRequest, UpdatePasswordRequest } from './type';
+import {
+  AnswerRequest,
+  LoginRequest,
+  ProfileUpdateRequest,
+  RegisterRequest,
+  RelationInfoRequest,
+  UpdatePasswordRequest,
+} from './type';
 
 const AuthLogin = async ({ password, email }: LoginRequest) => {
   BlindStore.set(loaderAtom, true);
@@ -205,6 +212,31 @@ const Answer = async (request: AnswerRequest) => {
   }
 };
 
+const RelationInfo = async (request: RelationInfoRequest) => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.RelationInfo(request);
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      BlindServices.ProfileInfo();
+      return resData;
+    } else {
+      console.log('İlişki bilgisi alınamadı:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->RelationInfo Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 export const BlindServices = {
   AuthLogin,
   RegisterUser,
@@ -214,6 +246,7 @@ export const BlindServices = {
   UpdatePassword,
   QuestionList,
   Answer,
+  RelationInfo,
 };
 
 const BlogList = async () => {

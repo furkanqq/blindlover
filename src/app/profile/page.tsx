@@ -26,8 +26,9 @@ import {
 } from '@/components/Select';
 import { deleteAuthTokenToHeader } from '@/services/helper';
 import { BlindServices } from '@/services/manager';
-import { ProfileInfoResponse } from '@/services/type';
+import { ProfileInfoResponse, RelationInfoRequest } from '@/services/type';
 import { base64ImageAtom, profileInfoAtom } from '@/stores';
+import { DesiredPartnerFocus, LoveAspectToAnalyze, PerceivedImportance, RelationDuration } from '@/types/enum';
 
 interface FormInfo {
   fullName: string;
@@ -38,6 +39,32 @@ interface FormInfo {
 }
 
 export default function ProfilePage() {
+  const RelationDurationMap: { [key in RelationDuration]: string } = {
+    [RelationDuration.NOT_YET]: 'Henüz başlamadı',
+    [RelationDuration.ONE_THREE_MONTHS]: '1-3 ay',
+    [RelationDuration.THREE_TWELVE_MONTHS]: '3-12 ay',
+    [RelationDuration.ONE_YEAR_ABOVE]: '1 yıl veya daha uzun',
+  };
+  const DesiredPartnerFocusMap: { [key in DesiredPartnerFocus]: string } = {
+    [DesiredPartnerFocus.EMOTIONAL_SUPPORT]: 'Duygusal destek',
+    [DesiredPartnerFocus.ROMANTIC_GESTURE]: 'Romantik jestler',
+    [DesiredPartnerFocus.TIME_SEPARATION]: 'Birlikte geçirilen zamanın ayrımı',
+    [DesiredPartnerFocus.FINANCIAL_SUPPORT]: 'Finansal destek',
+    [DesiredPartnerFocus.OTHER]: 'Diğer',
+  };
+
+  const LoveAspectToAnalyzeMap: { [key in LoveAspectToAnalyze]: string } = {
+    [LoveAspectToAnalyze.EMOTIONAL_ATTACHMENT]: 'Duygusal bağlılık',
+    [LoveAspectToAnalyze.LOYALTY]: 'Sadakat',
+    [LoveAspectToAnalyze.ATTENTIVE_BEHAVIOR]: 'İlgili davranışlar',
+  };
+
+  const PerceivedImportanceMap: { [key in PerceivedImportance]: string } = {
+    [PerceivedImportance.VERY_MUCH]: 'Çok fazla',
+    [PerceivedImportance.MODERATE]: 'Orta düzeyde',
+    [PerceivedImportance.UNSURE]: 'Emin değilim',
+  };
+
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -112,9 +139,9 @@ export default function ProfilePage() {
         <div className="flex flex-col gap-4 md:gap-12 md:px-16 py-12 rounded-lg">
           <div className="flex gap-5 justify-between items-center">
             <div className="flex flex-col gap-2">
-              <h1 className="text-start text-2xl font-semibold">Profile</h1>
-              <p className="text-gray-600 text-[12px]">This is your general outlook.</p>
-              <p className="text-gray-600 text-[12px]">Last update: [date]</p>
+              <h1 className="text-start text-2xl font-semibold">Profil</h1>
+              <p className="text-gray-600 text-[12px]">Bu sizin genel görünümünüz..</p>
+              <p className="text-gray-600 text-[12px]">Son Güncelleme: [date]</p>
             </div>
             <div id="change out" className="flex justify-center items-end flex-col md:flex-row gap-2 w-full md:w-2/5">
               <UpdatePassword
@@ -127,9 +154,9 @@ export default function ProfilePage() {
                 type={'button'}
                 title={'Change'}
                 variant={'blue'}
-                className="hidden md:flex w-full md:w-5/12"
+                className="hidden md:flex w-full md:w-4/12"
               >
-                Change Password
+                Şifre Değiştir
                 <IconKey width={16} height={16} />
               </Button>
               {isDisabled ? (
@@ -140,11 +167,11 @@ export default function ProfilePage() {
                   className="hidden md:flex w-full md:w-4/12"
                   onClick={() => setIsDisabled(!isDisabled)}
                 >
-                  Update Info
+                  Bilgi Güncelle
                   <IconEdit width={16} height={16} />
                 </Button>
               ) : (
-                <div className="flex gap-2 md:w-4/12">
+                <div className="flex gap-2 md:w-5/12">
                   <Button
                     type={'button'}
                     title={'Save'}
@@ -172,7 +199,7 @@ export default function ProfilePage() {
                 className="w-[100px] md:w-3/12"
                 onClick={handleLogOut}
               >
-                <span>Logout</span>
+                <span>Çıkış</span>
                 <IconLogin width={16} height={16} />
               </Button>
             </div>
@@ -183,7 +210,7 @@ export default function ProfilePage() {
             <ProfileImageUpdater isDisabled={isDisabled} />
             <div id="inputs" className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Full Name</label>
+                <label className="text-gray-800 text-sm mb-2 block">Ad Soyad</label>
                 <Input
                   disabled={isDisabled}
                   value={formInfo.fullName}
@@ -204,7 +231,7 @@ export default function ProfilePage() {
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Gender</label>
+                <label className="text-gray-800 text-sm mb-2 block">Cinsiyet</label>
                 <Select disabled value={formInfo.gender}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a gender" />
@@ -212,15 +239,15 @@ export default function ProfilePage() {
                   <SelectContent className="bg-backgroundColor">
                     <SelectGroup>
                       <SelectLabel>Gender</SelectLabel>
-                      <SelectItem value="MALE">Male</SelectItem>
-                      <SelectItem value="FEMALE">Female</SelectItem>
-                      <SelectItem value="OTHER">Other</SelectItem>
+                      <SelectItem value="MALE">Erkek</SelectItem>
+                      <SelectItem value="FEMALE">Kadın</SelectItem>
+                      <SelectItem value="OTHER">Diğer</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Age</label>
+                <label className="text-gray-800 text-sm mb-2 block">Yaş</label>
                 <Input
                   disabled={isDisabled}
                   value={formInfo.age}
@@ -233,21 +260,53 @@ export default function ProfilePage() {
             </div>
           </div>
           <hr />
-          <div className="flex md:flex-row flex-col w-full md:items-center justify-end md:justify-between gap-4 md:gap-12">
-            <div className="flex flex-col w-[80%]">
-              <label className="font-semibold">Relationship Info</label>
-              <span className="text-[12px]">
-                To start the tests, it is necessary to complete all the required fields without leaving any blanks.
-                Please review all the sections carefully and fill in any missing information before proceeding. Properly
-                completing the form is crucial to ensure the reliability and accuracy of the test results.
-              </span>
+          {info?.relationInfo ? (
+            <div className="grid gap-6">
+              <h1 className="font-semibold text-lg">İlişki Bilgileri</h1>
+              <div className="grid grid-cols-2 gap-4">
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">İlişki Durumu:</span>{' '}
+                  {info?.relationInfo.isInRelation ? 'Evet' : 'Hayır'}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">Aşık mısınız:</span> {info?.relationInfo.hasCrush ? 'Evet' : 'Hayır'}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">İlişki Süresi:</span>{' '}
+                  {RelationDurationMap[info?.relationInfo.relationDuration as RelationDuration]}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">Partnerinizde odaklanmasını istediğiniz konu:</span>{' '}
+                  {DesiredPartnerFocusMap[info?.relationInfo.desiredPartnerFocus as DesiredPartnerFocus]}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">Analiz edilmesini istediğiniz aşk yönü:</span>{' '}
+                  {LoveAspectToAnalyzeMap[info?.relationInfo.loveAspectToAnalyze as LoveAspectToAnalyze]}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">Önem derecesi:</span>{' '}
+                  {PerceivedImportanceMap[info?.relationInfo.perceivedImportance as PerceivedImportance]}{' '}
+                </p>
+              </div>
             </div>
-            <FillNow isOpen={isModalOpen} onClose={closeModal} />
-            <Button onClick={handleFillNow} size="md" type={'button'} title={'Edit'} variant={'primary'}>
-              <span>Fill Now</span>
-              <IconArrowRight className="hidden md:flex" width={16} height={16} />
-            </Button>
-          </div>
+          ) : (
+            <div className="flex md:flex-row flex-col w-full md:items-center justify-end md:justify-between gap-4 md:gap-12">
+              <div className="flex flex-col w-[80%]">
+                <label className="font-semibold">İlişki bilgisi</label>
+                <span className="text-[12px]">
+                  Testlere başlamak için gerekli tüm alanları boşluk bırakmadan doldurmanız gerekmektedir. Lütfen tüm
+                  bölümleri dikkatlice inceleyin ve devam etmeden önce eksik bilgileri doldurun. Formun doğru bir
+                  şekilde doldurulması, test sonuçlarının güvenilirliğini ve doğruluğunu sağlamak için çok önemlidir.
+                </span>
+              </div>
+
+              <Button onClick={handleFillNow} size="md" type={'button'} title={'Edit'} variant={'primary'}>
+                <span>Şimdi Doldur</span>
+                <IconArrowRight className="hidden md:flex" width={16} height={16} />
+              </Button>
+            </div>
+          )}
+          <FillNow isOpen={isModalOpen} onClose={closeModal} />
         </div>
       </Container>
     </AppLayout>
@@ -260,7 +319,48 @@ interface ModalProps {
 }
 
 const FillNow: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const [fillForm, setFillForm] = useState<RelationInfoRequest>({
+    isInRelation: '',
+    hasCrush: '',
+    relationDuration: '',
+    desiredPartnerFocus: '',
+    loveAspectToAnalyze: '',
+    perceivedImportance: '',
+  });
   if (!isOpen) return null;
+
+  const handleIsInRelationChange = (value: string) => {
+    setFillForm({ ...fillForm, isInRelation: value === 'true' ? true : false });
+  };
+
+  const handleHasCrushChange = (value: string) => {
+    setFillForm({ ...fillForm, hasCrush: value === 'true' ? true : false });
+  };
+
+  const handleRelationDurationChange = (value: RelationDuration) => {
+    setFillForm({ ...fillForm, relationDuration: value });
+  };
+
+  const handleDesiredPartnerFocusChange = (value: DesiredPartnerFocus) => {
+    setFillForm({ ...fillForm, desiredPartnerFocus: value });
+  };
+
+  const handleLoveAspectToAnalyzeChange = (value: LoveAspectToAnalyze) => {
+    setFillForm({ ...fillForm, loveAspectToAnalyze: value });
+  };
+
+  const handlePerceivedImportanceChange = (value: PerceivedImportance) => {
+    setFillForm({ ...fillForm, perceivedImportance: value });
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    BlindServices.RelationInfo(fillForm).then((result) => {
+      if (result.status === 200) {
+        onClose();
+      }
+    });
+  };
 
   return (
     <div
@@ -279,26 +379,110 @@ const FillNow: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             </Button>
           </div>
           {/* Modal body */}
-          <form className="p-4 md:p-5">
-            <div className="grid gap-4 mb-4 grid-cols-2">
-              {Array.from({ length: 8 }, (_, index) => (
-                <div className="col-span-2" key={index}>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    How much does the person you are with or like care about you?
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type product name"
-                    required
-                  />
-                </div>
-              ))}
+          <form onSubmit={onSubmit} className="p-4 md:p-5">
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">Şu anda bir ilişki içinde misiniz?</label>
+              <Select value={fillForm.isInRelation ? 'true' : 'false'} onValueChange={handleIsInRelationChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="İlişki Durumu" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value="true">Evet</SelectItem>
+                    <SelectItem value="false">Hayır</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">
+                Şu anda birine karşı duygusal bir ilgi duyuyor musunuz?
+              </label>
+              <Select value={fillForm.hasCrush ? 'true' : 'false'} onValueChange={handleHasCrushChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Aşık Olma Durumu" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value="true">Evet</SelectItem>
+                    <SelectItem value="false">Hayır</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">İlişkinizin süresi ne kadar?</label>
+              <Select value={fillForm.relationDuration} onValueChange={handleRelationDurationChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="İlişki Süresi" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={RelationDuration.NOT_YET}>Henüz Başlamadı</SelectItem>
+                    <SelectItem value={RelationDuration.ONE_THREE_MONTHS}>1-3 ay</SelectItem>
+                    <SelectItem value={RelationDuration.THREE_TWELVE_MONTHS}>3-12 ay</SelectItem>
+                    <SelectItem value={RelationDuration.ONE_YEAR_ABOVE}>1 yıl veya daha uzun</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">
+                Partnerinizde hangi konulara daha çok odaklanmasını isterdiniz?
+              </label>
+              <Select value={fillForm.desiredPartnerFocus} onValueChange={handleDesiredPartnerFocusChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Öne Çıkmasını İstediğiniz Odak" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={DesiredPartnerFocus.EMOTIONAL_SUPPORT}>Duygusal destek</SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.ROMANTIC_GESTURE}>Romantik jestler</SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.TIME_SEPARATION}>
+                      Birlikte geçirdiğiniz zamanın ayrımı
+                    </SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.FINANCIAL_SUPPORT}>Finansal destek</SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.OTHER}>Diğer</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">
+                İlişkinizde analiz edilmesini istediğiniz aşkın hangi yönüdür?
+              </label>
+              <Select value={fillForm.loveAspectToAnalyze} onValueChange={handleLoveAspectToAnalyzeChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Analiz Edilecek Yön" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={LoveAspectToAnalyze.EMOTIONAL_ATTACHMENT}>Duygusal bağlılık</SelectItem>
+                    <SelectItem value={LoveAspectToAnalyze.LOYALTY}>Sadakat</SelectItem>
+                    <SelectItem value={LoveAspectToAnalyze.ATTENTIVE_BEHAVIOR}>İlgili davranışlar</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">
+                Bu konuyu sizin için ne kadar önemli görüyorsunuz?
+              </label>
+              <Select value={fillForm.perceivedImportance} onValueChange={handlePerceivedImportanceChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="İlişki Durumu" />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={PerceivedImportance.VERY_MUCH}>Çok fazla</SelectItem>
+                    <SelectItem value={PerceivedImportance.MODERATE}>Orta düzeyde</SelectItem>
+                    <SelectItem value={PerceivedImportance.UNSURE}>Emin değilim</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
             <Button type="submit" title={''} variant={'green'} size="md" className="w-full">
-              Save
+              Kaydet
             </Button>
           </form>
         </div>

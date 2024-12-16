@@ -4,7 +4,14 @@
 //   message: string;
 // }
 
-import { AgeRange, QuestionCategory } from '@/types/enum';
+import {
+  AgeRange,
+  DesiredPartnerFocus,
+  LoveAspectToAnalyze,
+  PerceivedImportance,
+  QuestionCategory,
+  RelationDuration,
+} from '@/types/enum';
 
 export interface RegisterRequest {
   email: string;
@@ -26,7 +33,7 @@ export interface ProfileInfoResponse {
     gender: string;
     age: string;
     emailVerified: boolean;
-    relationInfo: boolean;
+    relationInfo: RelationInfoRequest | null;
     base64Photo: string;
   };
 }
@@ -99,10 +106,19 @@ export interface QuestionListResponse {
 }
 
 export interface AnswerRequest {
-  answer: AnswerType[];
+  answers: AnswerType[];
 }
 
 export interface AnswerType {
   answer: string;
   questionId: string;
+}
+
+export interface RelationInfoRequest {
+  isInRelation: boolean | '';
+  hasCrush: boolean | '';
+  relationDuration: RelationDuration | '';
+  desiredPartnerFocus: DesiredPartnerFocus | '';
+  loveAspectToAnalyze: LoveAspectToAnalyze | '';
+  perceivedImportance: PerceivedImportance | '';
 }

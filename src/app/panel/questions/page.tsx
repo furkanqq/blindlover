@@ -3,7 +3,6 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
@@ -16,6 +15,7 @@ import LoadingScreen from '@/components/LoadingScreen';
 import QuizStepper from '@/components/QuizStepper';
 import { BlindServices } from '@/services/manager';
 import { questionListAtom } from '@/stores';
+import { QuestionCategory, QuestionCategoryValue } from '@/types/enum';
 
 interface TypeAnswer {
   questionId: string;
@@ -37,47 +37,84 @@ export default function QuestionsPage() {
     BlindServices.QuestionList();
   }, []);
 
-  if (!questions) {
-    return <LoadingScreen />;
-  }
-
-  console.log(questions, 'questions');
-
   const options: TypeOptions[] = [
     { label: 'NO', value: 'No' },
     { label: 'EMPTY', value: 'Empty' },
     { label: 'YES', value: 'Yes' },
   ];
-  const handleAnswer = (answer: 'NO' | 'YES' | 'EMPTY') => {
-    if (currentQuestionIndex <= questions.length - 1) {
-      setAllAnswer((prevAnswers) => [
-        ...prevAnswers,
-        {
-          questionId: questions[currentQuestionIndex]._id,
-          answer,
-        },
-      ]);
 
-      // Animasyonu tetikle
-      setAnimationClass('-translate-x-full');
-      setTimeout(() => {
-        setCurrentQuestionIndex((prev) => prev + 1);
-        setAnimationClass('translate-x-full');
-        setTimeout(() => setAnimationClass(''), 300); // Animasyon bitince sıfırla
-      }, 300);
+  const handleAnswer = (answer: 'NO' | 'YES' | 'EMPTY') => {
+    if (!questions) return;
+
+    const questionId = questions[currentQuestionIndex]._id;
+
+    setAllAnswer((prevAnswers) => {
+      const existingAnswerIndex = prevAnswers.findIndex((ans) => ans.questionId === questionId);
+      const updatedAnswers = [...prevAnswers];
+
+      if (existingAnswerIndex !== -1) {
+        updatedAnswers[existingAnswerIndex].answer = answer; // Update existing answer
+      } else {
+        updatedAnswers.push({ questionId, answer }); // Add new answer
+      }
+
+      return updatedAnswers;
+    });
+
+    triggerAnimation(() => {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    });
+  };
+
+  const triggerAnimation = (callback: () => void) => {
+    setAnimationClass('-translate-x-full');
+    setTimeout(() => {
+      callback();
+      setAnimationClass('translate-x-full');
+      setTimeout(() => setAnimationClass(''), 300);
+    }, 300);
+  };
+
+  useEffect(() => {
+    if (!questions || currentQuestionIndex > questions.length) return;
+
+    if (currentQuestionIndex === 50) {
+      BlindServices.Answer({ answers: allAnswer });
+    }
+  }, [currentQuestionIndex, questions, allAnswer]);
+
+  console.log(currentQuestionIndex, 'currentQuestionIndex');
+
+  if (!questions) {
+    return <LoadingScreen />;
+  }
+
+  const getCategoryLabel = (category: QuestionCategory) => {
+    switch (category) {
+      case QuestionCategory.GENERAL_RELATION_STATUS:
+        return QuestionCategoryValue.GENERAL_RELATION_STATUS;
+      case QuestionCategory.EMOTIONAL_ATTACHMENT:
+        return QuestionCategoryValue.EMOTIONAL_ATTACHMENT;
+      case QuestionCategory.ROMANTIC_BEHAVIOR:
+        return QuestionCategoryValue.ROMANTIC_BEHAVIOR;
+      case QuestionCategory.LOYALTY_AND_TRUST:
+        return QuestionCategoryValue.LOYALTY_AND_TRUST;
+      default:
+        return QuestionCategoryValue.FUN_AND_DAILY_HABITS;
     }
   };
 
   console.log(allAnswer, 'allAnswer');
+  console.log(questions, 'questions');
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
       <Container className="relative z-1 h-[100vh] flex justify-center items-center">
-        {currentQuestionIndex !== questions.length ? (
-          <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover  w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
+        {currentQuestionIndex >= questions.length ? (
+          <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
             <div className="flex flex-col justify-center items-center">
-              <Image src={'/blindlover.png'} alt="Blind Lover" width={150} height={90} />
+              <Image src={'/blindlover.png'} alt="Blind Lover" width={200} height={120} />
               <div className="text-4xl w-[40%] text-center font-semibold">
                 Testi Başarıyla Tamamladınız Sonuç Sayfasına Yönlendiriliyorsunuz...
               </div>
@@ -115,7 +152,7 @@ export default function QuestionsPage() {
                 key={questions[currentQuestionIndex]._id}
               >
                 <h1 className="text-[44px] h-28 leading-[56px] text-center font-semibold px-28">
-                  {questions[currentQuestionIndex].turkish ? questions[currentQuestionIndex].turkish : ''}
+                  {questions[currentQuestionIndex].turkish || ''}
                 </h1>
                 <div className="flex gap-20">
                   {options.map((option, index) => (
@@ -140,26 +177,18 @@ export default function QuestionsPage() {
                   <IconChevronLeft width={16} height={16} />
                   <span>Back</span>
                 </Button>
-                <div>{questions[currentQuestionIndex].category.replace(/_/g, ' ')}</div>
+                <div>{getCategoryLabel(questions[currentQuestionIndex].category)}</div>
                 <Button
                   variant={'secondary'}
                   type={'button'}
                   title={''}
                   disabled={currentQuestionIndex === questions.length - 1}
-                  onClick={() => handleAnswer('YES')}
+                  onClick={() => handleAnswer('EMPTY')}
                 >
                   <span>Next</span>
                   <IconChevronRight width={16} height={16} />
                 </Button>
               </div>
-            </div>
-            <div className="h-[15%] flex justify-center items-center">
-              <div className="text-[12px] flex justify-center items-center h-10 text-slate-700 border-r border-r-slate-800/30 pr-6 mr-1">
-                These questions were created with
-              </div>
-              <Link href={'/'} className="">
-                <Image src={'/blindlover_text.png'} alt="Blind Lover" width={150} height={90} />
-              </Link>
             </div>
           </div>
         )}

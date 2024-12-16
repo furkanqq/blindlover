@@ -9,7 +9,7 @@ type QuizStepperProps = {
 const QuizStepper: React.FC<QuizStepperProps> = ({ currentQuestion, totalQuestions, steps }) => {
   const stepSize = totalQuestions / steps; // Her bir stepte kaç soru var
   const currentStep = Math.ceil(currentQuestion / stepSize); // Hangi steptesin
-  const progressInStep = ((currentQuestion % stepSize) / stepSize) * 100 || 0; // Mevcut stepteki ilerleme
+  const progressInStep = currentQuestion % stepSize === 0 ? 100 : ((currentQuestion % stepSize) / stepSize) * 100 || 0; // Mevcut stepteki ilerleme
 
   return (
     <div className="w-full flex flex-col items-center gap-4">

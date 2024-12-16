@@ -3,7 +3,14 @@ import axios, { AxiosError, AxiosInstance, HttpStatusCode } from 'axios';
 import { Base } from '@/constants/Base';
 import { getCookie } from '@/helpers/cookieHelper';
 import { deleteAuthTokenToHeader } from './helper';
-import { AnswerRequest, LoginRequest, ProfileUpdateRequest, RegisterRequest, UpdatePasswordRequest } from './type';
+import {
+  AnswerRequest,
+  LoginRequest,
+  ProfileUpdateRequest,
+  RegisterRequest,
+  RelationInfoRequest,
+  UpdatePasswordRequest,
+} from './type';
 
 export const BlindHttp: AxiosInstance = axios.create({
   headers: {
@@ -79,5 +86,8 @@ export const BlindApiUrl = {
   },
   Answer: (request: AnswerRequest) => {
     return BlindHttp.post('/answer', request);
+  },
+  RelationInfo: (request: RelationInfoRequest) => {
+    return BlindHttp.post('/profile/relation', request);
   },
 };
