@@ -1,7 +1,15 @@
 'use client';
 
 import { BlindStore } from '@/provider';
-import { authAtom, blogAtom, blogListAtom, loaderAtom, profileInfoAtom, questionListAtom } from '@/stores';
+import {
+  answerListAtom,
+  authAtom,
+  blogAtom,
+  blogListAtom,
+  loaderAtom,
+  profileInfoAtom,
+  questionListAtom,
+} from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
 import { setAuthTokenToHeader } from './helper';
 import {
@@ -237,6 +245,31 @@ const RelationInfo = async (request: RelationInfoRequest) => {
   }
 };
 
+const QuestionResult = async () => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.QuestionResult();
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      BlindStore.set(answerListAtom, resData.data);
+      return resData;
+    } else {
+      console.log('Cevaplar alınamadı:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->QuestionResult Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 export const BlindServices = {
   AuthLogin,
   RegisterUser,
@@ -247,6 +280,7 @@ export const BlindServices = {
   QuestionList,
   Answer,
   RelationInfo,
+  QuestionResult,
 };
 
 const BlogList = async () => {

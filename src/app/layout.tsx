@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <AdSense pId={'6764792523122888'} />
+        <link rel="icon" href="/heart.png" sizes="any" />
       </head>
       <body className={inter.className}>
         <Providers>

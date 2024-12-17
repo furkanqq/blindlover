@@ -1,6 +1,12 @@
 import { atom } from 'jotai';
 
-import { BlindBlogListResponse, BlindBlogResponse, ProfileInfoResponse, QuestionListResponse } from '@/services/type';
+import {
+  BlindBlogListResponse,
+  BlindBlogResponse,
+  ProfileInfoResponse,
+  QuestionListResponse,
+  QuestionResult,
+} from '@/services/type';
 
 // export const userAtom = atom<GGetUserDetailResponse['data'] | undefined>(
 //     undefined
@@ -18,3 +24,5 @@ export const blogListAtom = atom<BlindBlogListResponse['data'] | undefined>();
 export const blogAtom = atom<BlindBlogResponse | undefined>();
 
 export const questionListAtom = atom<QuestionListResponse['data'] | undefined>();
+
+export const answerListAtom = atom<QuestionResult['data'] | undefined>();

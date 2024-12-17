@@ -9,7 +9,7 @@ const CTASection = () => {
     <Container>
       <div className="w-full">
         <div className="mx-auto w-full pt-24 sm:pt-32">
-          <div className="w-full relative isolate overflow-hidden bg-backgroundColor px-6 pt-16 pb-16 lg:pb-0 shadow-2xl rounded-lg sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+          <div className="w-full relative isolate overflow-hidden  border border-solid bg-backgroundColor px-6 pt-16 pb-16 lg:pb-0 rounded-lg sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
               <h2 className="text-balance text-3xl font-semibold tracking-tight text-primaryColor sm:text-4xl">
                 Seni Ne Kadar Seviyor? HEMEN ÖĞREN!
@@ -35,8 +35,8 @@ const CTASection = () => {
                 </div>
               </div>
             </div>
-            <div className="relative mt-16 h-80 lg:mt-8 hidden lg:flex">
-              <div className="absolute w-[800px] h-[800px] left-0 top-0  max-w-none rounded-md overflow-hidden bg-white ring-1 ring-white/10">
+            <div className="relative h-80 hidden lg:flex">
+              <div className="absolute w-[800px] h-[800px] left-0 top-0  max-w-none overflow-hidden bg-white ring-1 ring-white/10">
                 <Image src="/CTA.png" alt="App screenshot" fill />
               </div>
             </div>

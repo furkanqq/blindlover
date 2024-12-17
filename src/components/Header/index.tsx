@@ -29,7 +29,7 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
   return (
     <div
       className={cn(
-        'fixed top-0 flex items-center justify-center w-full h-20 transition-all z-50 bg-transparent py-9',
+        'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-transparent py-9',
         {
           'shadow bg-backgroundColor': scrollHeight,
         }
@@ -39,41 +39,52 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
         <Link href={'/'} className="">
           <Image src={'/blindlover_text.png'} alt="Blind Lover" width={200} height={120} />
         </Link>
-        <div className="w-fit flex gap-5">
+        <div className="w-fit flex">
           {token ? (
             <>
               <Link href={'/profile'}>
-                <Button className="w-32" variant={!scrollHeight ? 'login' : 'primary'} type={'reset'} title={''}>
-                  <UserCircleIcon width={16} height={16} />
+                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
                   <span>Profil</span>
+                  <UserCircleIcon width={12} height={12} />
                 </Button>
               </Link>
               <Link href={'/panel'}>
-                <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'reset'} title={''}>
-                  <DocumentTextIcon width={16} height={16} />
+                <Button
+                  className="w-32"
+                  variant={!scrollHeight ? 'hborderlight' : 'hborderprimary'}
+                  type={'reset'}
+                  title={''}
+                >
                   <span>Teste Başla</span>
+                  <DocumentTextIcon width={12} height={12} />
                 </Button>
               </Link>
             </>
           ) : (
             <>
               <Link href={'/login'}>
-                <Button className="w-32" variant={!scrollHeight ? 'login' : 'primary'} type={'reset'} title={''}>
-                  <IconLogin width={16} height={16} />
+                {/* <Button className="w-32" variant={!scrollHeight ? 'login' : 'heart'} type={'reset'} title={''}> */}
+                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
                   <span>Giriş Yap</span>
+                  <IconLogin width={12} height={12} />
                 </Button>
               </Link>
               <Link href={'/register'}>
-                <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'reset'} title={''}>
-                  <IconLogin width={16} height={16} />
+                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
                   <span>Kayıt Ol</span>
+                  <IconLogin width={12} height={12} />
                 </Button>
               </Link>
             </>
           )}
 
-          <Button className="w-32" variant={!scrollHeight ? 'light' : 'secondary'} type={'button'} title={''}>
-            Dil Seçeneği
+          <Button
+            className="w-32"
+            variant={!scrollHeight ? 'hborderlight' : 'hborderprimary'}
+            type={'button'}
+            title={''}
+          >
+            <span>Dil</span> <span>Seçeneği</span>
           </Button>
         </div>
       </div>

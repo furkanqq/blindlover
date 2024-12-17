@@ -90,4 +90,7 @@ export const BlindApiUrl = {
   RelationInfo: (request: RelationInfoRequest) => {
     return BlindHttp.post('/profile/relation', request);
   },
+  QuestionResult: () => {
+    return BlindHttp.get('/answer');
+  },
 };

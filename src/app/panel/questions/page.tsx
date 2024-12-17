@@ -105,9 +105,6 @@ export default function QuestionsPage() {
     }
   };
 
-  console.log(allAnswer, 'allAnswer');
-  console.log(questions, 'questions');
-
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
@@ -122,15 +119,17 @@ export default function QuestionsPage() {
             </div>
             <div className="flex flex-col justify-center items-center">
               <div className="text-xs">Eğer Henüz Yönlenmediyse</div>
-              <Button
-                variant={'primary'}
-                type={'button'}
-                title={'Sonuç Sayfasına Git'}
-                onClick={() => console.log('Sonuç Sayfasına Git')}
-              >
-                Sonuç Sayfasına Git
-                <ArrowRightIcon width={16} height={16} />
-              </Button>
+              <Link href={'/panel/questions/result'}>
+                <Button
+                  variant={'primary'}
+                  type={'button'}
+                  title={'Sonuç Sayfasına Git'}
+                  onClick={() => console.log('Sonuç Sayfasına Git')}
+                >
+                  Sonuç Sayfasına Git
+                  <ArrowRightIcon width={16} height={16} />
+                </Button>
+              </Link>
             </div>
           </div>
         ) : (

@@ -45,15 +45,15 @@ const Footer = () => {
             ))}
             <div className="col-span-2 flex flex-col gap-4">
               <div>
-                <h3 className="font-semibold">PEPE BİLİŞİM VE TEKNOLOJİ ANONİM ŞİRKETİ</h3>
-                <div>Halaskargazi Cd. Lotus Nişantaşı No: 38-66,</div>
+                <h3 className="font-semibold">Balance Yazılım ve Teknoloji Anonim Şirketi</h3>
+                <div>Halaskargazi Cd. Lotus Nişantaşı No: 38-66E / 215,,</div>
                 <div>34371 Şişli – İstanbul</div>
               </div>
               <div>
                 <div>İletişim</div>
                 <div>0212 806 48 13</div>
                 <div>
-                  <Link href={'mailto:hello@blindlover.com'}>hello@blindlover.com</Link>
+                  <Link href={'mailto:info@balance.software'}>info@balance.software</Link>
                 </div>
               </div>
             </div>

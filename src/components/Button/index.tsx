@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { forwardRef, memo, useId } from 'react';
 
 import { IconLoader } from '@/assets/IconLoader';
@@ -15,7 +16,11 @@ export type ButtonVariant =
   | 'login'
   | 'light'
   | 'close'
-  | 'dark';
+  | 'dark'
+  | 'hprimary'
+  | 'hlight'
+  | 'hborderlight'
+  | 'hborderprimary';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -69,20 +74,39 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     className
   );
 
+  const HeartStyles = cn(
+    'relative flex justify-center items-center text-center text-white text-[10px] focus:outline-none transition-colors duration-200 active:scale-[0.98] leading-3',
+    {
+      'text-primaryColor': variant === 'hlight' || variant === 'hborderprimary',
+    },
+    className
+  );
+
   return (
-    <button
-      ref={ref}
-      id={id}
-      type={type}
-      title={title}
-      aria-label={title}
-      className={variantStyles}
-      onClick={onClick}
-      disabled={disabled || loading}
-      {...attributes}
-    >
-      {loading ? <IconLoader className="animate-spin" /> : children}
-    </button>
+    <>
+      {variant.toString().startsWith('h') ? (
+        <div className={HeartStyles}>
+          <Image src={`/${variant}.png`} alt="Heart" width={74} height={74} />
+          <span className="absolute top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%]">
+            {children}
+          </span>
+        </div>
+      ) : (
+        <button
+          ref={ref}
+          id={id}
+          type={type}
+          title={title}
+          aria-label={title}
+          className={variantStyles}
+          onClick={onClick}
+          disabled={disabled || loading}
+          {...attributes}
+        >
+          {loading ? <IconLoader className="animate-spin" /> : children}
+        </button>
+      )}
+    </>
   );
 });
 

@@ -122,3 +122,36 @@ export interface RelationInfoRequest {
   loveAspectToAnalyze: LoveAspectToAnalyze | '';
   perceivedImportance: PerceivedImportance | '';
 }
+
+interface AiResultResponse {
+  lovePercentage: string;
+  answerCategoryAnalysis: {
+    generalRelationStatus: string;
+    emotionalAttachment: string;
+    loyaltyAndTrust: string;
+    romanticBehavior: string;
+    funAndDailyHabits: string;
+  };
+  comment: string;
+  _id: string;
+}
+
+interface AiResultResponseLanguages {
+  turkish: AiResultResponse;
+  english: AiResultResponse;
+  spanish: AiResultResponse;
+  portuguese: AiResultResponse;
+  french: AiResultResponse;
+  russian: AiResultResponse;
+  _id: string;
+}
+
+export interface QuestionResult {
+  data: Array<{
+    _id: string;
+    customerId: string;
+    aiResultResponse: AiResultResponseLanguages;
+    createdAt: string;
+    updatedAt: string;
+  }>;
+}

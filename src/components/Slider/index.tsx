@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 import { DirectusServices } from '@/services/manager';
 import { blogListAtom } from '@/stores';
+import { cn } from '@/utils/cn';
 import Button from '../Button';
 import { Container } from '../Container';
 
@@ -23,7 +24,7 @@ const slides: Slide[] = [
   { id: 5, src: '/blog.png', alt: 'Slide 5' },
 ];
 
-const Slider = ({ title }: { title: string }) => {
+const Slider = ({ title, mirror }: { title: string; mirror: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blogList] = useAtom(blogListAtom);
 
@@ -49,8 +50,8 @@ const Slider = ({ title }: { title: string }) => {
 
   return (
     <Container className="pt-32 md:pt-52">
-      <div className="relative w-full bg-white p-12 rounded-md">
-        <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-foreground ">
+      <div className="relative w-full bg-white border border-solid p-12 rounded-md">
+        <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-primaryColor ">
           {title}
         </h2>
         {/* Carousel Wrapper */}
@@ -62,7 +63,11 @@ const Slider = ({ title }: { title: string }) => {
                 index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
               }`}
             >
-              <div className="flex relative bg-white h-full w-full">
+              <div
+                className={cn('flex relative bg-white h-full w-full', {
+                  'flex-row-reverse': mirror,
+                })}
+              >
                 <div className="relative w-[40%] h-full">
                   <Link href={'/'}>
                     <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
@@ -73,7 +78,9 @@ const Slider = ({ title }: { title: string }) => {
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.tr_title}</h5>
                   </Link>
                   <p
-                    className="pr-4 font-normal text-gray-700 dark:text-gray-400 text-[14px]"
+                    className={cn('pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-[14px]', {
+                      'pl-4 pr-0': mirror,
+                    })}
                     dangerouslySetInnerHTML={{ __html: `${blog.tr_content.slice(0, 150)}...` }}
                   ></p>
                   <Link href={`/blog/${blog.slug}`}>

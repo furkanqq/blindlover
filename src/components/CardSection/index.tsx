@@ -7,7 +7,9 @@ const CardSection = () => {
     <Container>
       <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="text-center text-base/7 font-semibold text-primaryColor">Blind Lover</h2>
+          <h2 className="flex justify-center items-center text-base/7 font-semibold text-primaryColor">
+            <Image src={'/blindlover_text.png'} alt="Blind Lover" width={120} height={30} />
+          </h2>
           <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight sm:text-5xl">
             Neden Bizi Tercih Etmelisin?
           </p>
