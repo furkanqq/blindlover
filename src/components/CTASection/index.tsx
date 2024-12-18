@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContext } from 'react';
 
+import { AuthContext } from '@/provider/Auth';
 import Button from '../Button';
 import { Container } from '../Container';
 
 const CTASection = () => {
+  const { token } = useContext(AuthContext);
+
   return (
     <Container>
       <div className="w-full">
@@ -19,7 +23,7 @@ const CTASection = () => {
                 burada devam et!
               </p>
               <div className="mt-10 flex flex-col gap-3 justify-center items-center lg:items-start lg:justify-start">
-                <Link href={'/register'}>
+                <Link href={token ? '/panel' : '/register'}>
                   <Button variant={'primary'} type={'button'} title={'Lets Start'}>
                     HEMEN BAŞLA!
                   </Button>

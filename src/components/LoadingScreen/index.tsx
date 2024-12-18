@@ -8,7 +8,6 @@ export default function LoadingScreen() {
       </div>
       <div className="text-3xl text-white flex flex-col justify-center items-center">
         <Image src="/blindlover_text.png" alt="Blind Lover" width={200} height={120} />
-        <span className="text-primaryColor">Loading...</span>
       </div>
     </div>
   );

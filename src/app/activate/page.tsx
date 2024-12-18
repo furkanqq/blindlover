@@ -13,7 +13,7 @@ export default function ActivatePage() {
           'Please confirm your email address by clicking the button below. Verifying your email will grant you full access to your account and ensure a more secure experience.'
         }
         sendB
-        logoutB
+        homeB
       />
     </AppLayout>
   );

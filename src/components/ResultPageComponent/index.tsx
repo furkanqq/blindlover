@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
+import { deleteAuthTokenToHeader } from '@/services/helper';
 import { BlindServices } from '@/services/manager';
 
 export default function ResultPageComponent({
@@ -26,6 +28,7 @@ export default function ResultPageComponent({
   tryB?: boolean;
   sendB?: boolean;
 }) {
+  const router = useRouter();
   function sendEmail() {
     BlindServices.Activate();
 
@@ -59,13 +62,30 @@ export default function ResultPageComponent({
           )}
 
           {tryB && (
-            <Button variant={'primary'} className="w-32" type={'button'} size="md" title={''}>
+            <Button
+              onClick={() => sendEmail()}
+              variant={'primary'}
+              className="w-32"
+              type={'button'}
+              size="md"
+              title={''}
+            >
               Try Again
             </Button>
           )}
 
           {logoutB && (
-            <Button variant={'light'} className="w-32" type={'button'} size="md" title={''}>
+            <Button
+              onClick={() => {
+                deleteAuthTokenToHeader();
+                router.push('/login');
+              }}
+              variant={'light'}
+              className="w-32"
+              type={'button'}
+              size="md"
+              title={''}
+            >
               Logout
             </Button>
           )}

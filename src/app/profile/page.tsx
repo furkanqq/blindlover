@@ -263,7 +263,7 @@ export default function ProfilePage() {
           {info?.relationInfo ? (
             <div className="grid gap-6">
               <h1 className="font-semibold text-lg">İlişki Bilgileri</h1>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
                   <span className="font-semibold">İlişki Durumu:</span>{' '}
                   {info?.relationInfo.isInRelation ? 'Evet' : 'Hayır'}{' '}

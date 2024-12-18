@@ -17,8 +17,8 @@ export default function Home() {
       <HeaderSection />
       <CTASection />
       {/* <BlogPreview /> */}
-      <Slider mirror={false} title={'AŞK’ına AŞK Katacak Öneriler ve Eğlenceli Fikirler'} />
-      <Slider mirror title={'AŞK’ınla İzlenecek Film ve Diziler'} />
+      <Slider startIndex={0} endIndex={5} mirror={false} title={'AŞK’ına AŞK Katacak Öneriler ve Eğlenceli Fikirler'} />
+      <Slider startIndex={6} endIndex={11} mirror title={'AŞK’ınla İzlenecek Film ve Diziler'} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>
   );

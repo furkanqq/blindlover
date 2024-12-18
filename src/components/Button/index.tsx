@@ -86,8 +86,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     <>
       {variant.toString().startsWith('h') ? (
         <div className={HeartStyles}>
-          <Image src={`/${variant}.png`} alt="Heart" width={74} height={74} />
-          <span className="absolute top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%]">
+          <Image src={`/${variant}.png`} alt="Heart" width={74} height={74} className="cursor-pointer" />
+          <span className="absolute top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] select-none cursor-pointer">
             {children}
           </span>
         </div>

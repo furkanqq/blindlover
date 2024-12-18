@@ -24,7 +24,7 @@ export default function ResultPage() {
   return (
     <AppLayout type="auth" className="bg-primaryColor">
       <div className="relative h-screen">
-        <div className="z-[0] absolute bg-[url(/heartPattern1.png)] h-full w-full animate-jump animate-thrice animate-duration-[12000ms] animate-ease-linear"></div>
+        <div className="z-[0] absolute bg-[url(/heartPattern1.png)] h-full w-full animate-jump animate-infinite animate-duration-[8000ms] animate-ease-linear"></div>
         {currentIndex === 0 && (
           <div
             className="relative z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"

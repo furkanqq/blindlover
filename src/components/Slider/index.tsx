@@ -10,21 +10,17 @@ import { cn } from '@/utils/cn';
 import Button from '../Button';
 import { Container } from '../Container';
 
-interface Slide {
-  id: number;
-  src: string;
-  alt: string;
-}
-
-const slides: Slide[] = [
-  { id: 1, src: '/blog.png', alt: 'Slide 1' },
-  { id: 2, src: '/app.webp', alt: 'Slide 2' },
-  { id: 3, src: '/blog.png', alt: 'Slide 3' },
-  { id: 4, src: '/blog.png', alt: 'Slide 4' },
-  { id: 5, src: '/blog.png', alt: 'Slide 5' },
-];
-
-const Slider = ({ title, mirror }: { title: string; mirror: boolean }) => {
+const Slider = ({
+  title,
+  mirror,
+  startIndex,
+  endIndex,
+}: {
+  title: string;
+  mirror: boolean;
+  startIndex: number;
+  endIndex: number;
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blogList] = useAtom(blogListAtom);
 
@@ -37,11 +33,11 @@ const Slider = ({ title, mirror }: { title: string; mirror: boolean }) => {
   }
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? endIndex - startIndex - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === endIndex - startIndex - 1 ? 0 : prevIndex + 1));
   };
 
   const goToSlide = (index: number) => {
@@ -56,7 +52,7 @@ const Slider = ({ title, mirror }: { title: string; mirror: boolean }) => {
         </h2>
         {/* Carousel Wrapper */}
         <div className="relative h-56 overflow-hidden rounded-lg md:h-72">
-          {blogList.slice(0, 5).map((blog, index) => (
+          {blogList.slice(startIndex, endIndex).map((blog, index) => (
             <div
               key={blog.id}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
@@ -96,7 +92,7 @@ const Slider = ({ title, mirror }: { title: string; mirror: boolean }) => {
         </div>
         {/* Indicators */}
         <div className="absolute flex justify-center space-x-3 bottom-4 left-1/2 transform -translate-x-1/2">
-          {slides.map((_, index) => (
+          {blogList.slice(startIndex, endIndex).map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}

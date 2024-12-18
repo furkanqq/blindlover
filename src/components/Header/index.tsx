@@ -9,11 +9,17 @@ import { IconLogin } from '@/assets/IconLogin';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
-export default function Header({ token, type = 'default' }: { type?: 'auth' | 'default' | 'landing'; token: boolean }) {
+export default function Header({
+  token,
+  type = 'default',
+}: {
+  type?: 'auth' | 'default' | 'landing' | 'detail';
+  token: boolean;
+}) {
   const [scrollHeight, setScrollHeight] = useState(false);
 
   useEffect(() => {
-    if (type === 'landing') {
+    if (type === 'landing' || type === 'detail') {
       const getHeight = () => {
         setScrollHeight(window.scrollY > 50);
       };
@@ -35,7 +41,7 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
         }
       )}
     >
-      <div className="container h-full flex items-center justify-between">
+      <div className="container h-full flex items-center justify-between pr-20">
         <Link href={'/'} className="">
           <Image src={'/blindlover_text.png'} alt="Blind Lover" width={200} height={120} />
         </Link>
@@ -43,7 +49,12 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
           {token ? (
             <>
               <Link href={'/profile'}>
-                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
                   <span>Profil</span>
                   <UserCircleIcon width={12} height={12} />
                 </Button>
@@ -51,7 +62,7 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
               <Link href={'/panel'}>
                 <Button
                   className="w-32"
-                  variant={!scrollHeight ? 'hborderlight' : 'hborderprimary'}
+                  variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
                   type={'reset'}
                   title={''}
                 >
@@ -64,13 +75,23 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
             <>
               <Link href={'/login'}>
                 {/* <Button className="w-32" variant={!scrollHeight ? 'login' : 'heart'} type={'reset'} title={''}> */}
-                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
                   <span>Giriş Yap</span>
                   <IconLogin width={12} height={12} />
                 </Button>
               </Link>
               <Link href={'/register'}>
-                <Button className="w-32" variant={!scrollHeight ? 'hlight' : 'hprimary'} type={'reset'} title={''}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
                   <span>Kayıt Ol</span>
                   <IconLogin width={12} height={12} />
                 </Button>
@@ -80,7 +101,7 @@ export default function Header({ token, type = 'default' }: { type?: 'auth' | 'd
 
           <Button
             className="w-32"
-            variant={!scrollHeight ? 'hborderlight' : 'hborderprimary'}
+            variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
             type={'button'}
             title={''}
           >

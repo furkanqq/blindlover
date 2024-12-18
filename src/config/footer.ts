@@ -13,29 +13,37 @@ export const FooterConfig = [
         title: 'Blog',
         link: '/blog',
       },
-      {
-        title: 'Bize Ulaşın',
-        link: '/contact',
-      },
-      {
-        title: 'SSS',
-        link: '/faqs',
-      },
     ],
   },
   {
     section: [
       {
         title: 'Gizlilik Politikası',
-        link: '/privacy',
+        link: '/privacy-policy',
       },
       {
         title: 'Çerez Politikası',
-        link: '/cookie',
+        link: '/cookie-policy',
       },
       {
         title: 'Şartlar ve Koşullar',
-        link: '/terms',
+        link: '/terms-of-use',
+      },
+    ],
+  },
+  {
+    section: [
+      {
+        title: 'Bize Ulaşın',
+        link: 'mailto:hello@blindlover.com',
+      },
+      {
+        title: 'SSS',
+        link: '/faqs',
+      },
+      {
+        title: 'hello@blindlover.com',
+        link: 'mailto:hello@blindlover.com',
       },
     ],
   },

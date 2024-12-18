@@ -12,7 +12,7 @@ export default function AppLayout({
   className,
 }: {
   children: React.ReactNode;
-  type?: 'auth' | 'default' | 'landing';
+  type?: 'auth' | 'default' | 'landing' | 'detail';
   className?: string;
 }) {
   const { token } = useContext(AuthContext);

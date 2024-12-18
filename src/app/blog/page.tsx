@@ -34,18 +34,18 @@ export default function BlogPage() {
   };
 
   return (
-    <AppLayout type="landing" className="">
+    <AppLayout type="detail" className="">
       <div className="">
         {/* Banner */}
-        <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
+        <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
           <h1 className="text-4xl font-bold">
-            Welcome <span className="text-primaryColor">to</span> the <span className="text-primaryColor">Blog</span>
+            <span className="text-primaryColor">{`Blog'a`}</span> Hoş Geldiniz
           </h1>
-          <p className="text-md text-gray-500 mt-4">Explore the latest updates and insights</p>
+          <p className="text-md text-gray-500 mt-4">En son güncellemeleri ve görüşleri keşfedin</p>
         </div>
 
         {/* Blog Cards */}
-        <Container>
+        <Container className="mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentBlogs.map((blog, index) => (
               <BlogCard

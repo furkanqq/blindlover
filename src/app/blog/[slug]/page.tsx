@@ -20,8 +20,6 @@ export default function BlogDetail() {
     DirectusServices.Blog(pathname.slice(6));
   }, []);
 
-  console.log(blog, 'blog');
-
   if (!blog) {
     return <LoadingScreen />;
   }
