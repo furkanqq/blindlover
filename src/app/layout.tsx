@@ -22,6 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <AdSense pId={'6764792523122888'} />
         <link rel="icon" href="/heart.png" sizes="any" />
+        <link rel="icon" href="/heart.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/heart.png" type="image/png" sizes="16x16" />
       </head>
       <body className={inter.className}>
         <Providers>
