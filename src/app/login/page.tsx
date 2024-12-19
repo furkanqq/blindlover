@@ -45,7 +45,9 @@ export default function LoginPage() {
               </Link>
             </div>
             <div className="mt-12 flex flex-col items-center">
-              <h1 className="text-2xl xl:text-3xl font-semibold">Sign in to find your lover</h1>
+              <h1 className="text-2xl xl:text-3xl font-semibold text-center">
+                Hayatının Aşkını Bulmak için Giriş Yap!
+              </h1>
               <div className="w-full flex-1 mt-8">
                 <form className="flex flex-col mx-auto max-w-xs">
                   <div className="flex flex-col gap-5">
@@ -65,26 +67,26 @@ export default function LoginPage() {
                     />
                   </div>
                   <Button variant={'primary'} type="button" className="mt-5" title={''} onClick={handleLogin}>
-                    <span>Login Now</span>
+                    <span>Şimdi Giriş Yap</span>
                   </Button>
                   <div className="text-[12px] mt-1 hover:underline">
-                    <Link href={'/register'}>{`Don't have an acount? Sign Up`}</Link>
+                    <Link href={'/register'}>{`Hesabınız yok mu? Hemen Kaydolun`}</Link>
                   </div>
                 </form>
                 <div className="my-5 border-b text-center">
                   <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                    Or
+                    Ya da
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 items-center">
                   <Button size="md" variant={'light'} type="button" title="" className="w-56 border-foreground">
                     <IconGoogle width={20} height={20} />
-                    <span>Continue with Google</span>
+                    <span>Google ile Devam Et</span>
                   </Button>
 
                   <Button size="md" variant={'dark'} type="button" title="" className="w-56">
                     <IconApple width={20} height={20} />
-                    <span>Continue with Apple</span>
+                    <span>Apple ile Devam Et</span>
                   </Button>
                 </div>
               </div>

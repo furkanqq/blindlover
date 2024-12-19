@@ -10,6 +10,8 @@ import type { NextRequest } from 'next/server';
 export async function middleware(req: NextRequest) {
   const url: NextURL = req.nextUrl.clone();
 
+  console.log(url.pathname.startsWith(PageLink.Panel), 'url.pathname.startsWith(PageLink.Panel)');
+
   const authToken = req.cookies.get(Base.Key.AuthToken)?.value;
 
   if (url.pathname.startsWith(PageLink.Profile) && !authToken) {
@@ -18,13 +20,10 @@ export async function middleware(req: NextRequest) {
   if (url.pathname.startsWith(PageLink.Panel) && !authToken) {
     return NextResponse.redirect(new URL(PageLink.Login, req.url));
   }
-  // if (url.pathname.startsWith(PageLink.Blog) && !authToken) {
-  //   return NextResponse.redirect(new URL(PageLink.Login, req.url));
-  // }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/profile', '/panel', '/blog'], // Belirli rotalar
+  matcher: '/:path*', // Tüm rotalar
 };

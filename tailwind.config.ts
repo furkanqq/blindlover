@@ -29,6 +29,7 @@ const config: Config = {
       animation: {
         'spin-slow': 'spin-slow 10s linear infinite', // Yavaş dönen animasyon
         'custom-pulse': 'custom-pulse 3s infinite', // Pulse animasyonu
+        'card-custom-pulse': 'card-custom-pulse 5s infinite', // Pulse animasyonu
       },
       keyframes: {
         'spin-slow': {
@@ -38,6 +39,10 @@ const config: Config = {
         'custom-pulse': {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.2)' },
+        },
+        'card-custom-pulse': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.5)' },
         },
       },
     },

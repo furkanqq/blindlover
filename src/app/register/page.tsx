@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -138,7 +139,7 @@ export default function RegisterPage() {
       <div className="">
         <div className="relative text-center bg-primaryColor min-h-[200px] sm:p-12 p-10">
           <div className="absolute top-0 left-0 w-full h-full bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35"></div>
-          <h4 className="sm:text-3xl text-2xl font-bold text-backgroundColor">Create your free account</h4>
+          <h4 className="sm:text-3xl text-2xl font-bold text-backgroundColor">Hesabınızı Oluşturun</h4>
         </div>
 
         <div className="relative z-2 mx-4 mb-4 -mt-16">
@@ -154,7 +155,7 @@ export default function RegisterPage() {
                 title={'Google'}
               >
                 <IconGoogle />
-                <span>Continue with Google</span>
+                <span>Google ile Devam Et</span>
               </Button>
               <Button
                 variant={'dark'}
@@ -163,12 +164,12 @@ export default function RegisterPage() {
                 className="w-full px-6 py-3 flex items-center justify-center rounded-md text-backgroundColor text-sm tracking-wider font-semibold border-none outline-none bg-foreground hover:bg-[#333]"
               >
                 <IconApple width={20} height={20} />
-                <span>Continue with Apple</span>
+                <span>Apple ile Devam Et</span>
               </Button>
             </div>
 
             <div className="my-8 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-              <p className="mx-4 text-center">Or</p>
+              <p className="mx-4 text-center">Ya da </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -178,65 +179,65 @@ export default function RegisterPage() {
                   name="email"
                   type="text"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Enter email"
+                  placeholder="Email Girin"
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Full Name</label>
+                <label className="text-gray-800 text-sm mb-2 block">Ad Soyad</label>
                 <Input
                   name="name"
                   type="text"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Enter full name"
+                  placeholder="Ad Soyad Girin"
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Password</label>
+                <label className="text-gray-800 text-sm mb-2 block">Şifre</label>
                 <Input
                   name="password"
                   type="password"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Enter password"
+                  placeholder="Şifre girin"
                   onChange={handleInputChange}
                 />
               </div>
 
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Age</label>
+                <label className="text-gray-800 text-sm mb-2 block">Yaş</label>
                 {/* <DatePicker /> */}
                 <Input
                   name="age"
                   type="number"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Enter age"
+                  placeholder="Yaşınızı girin"
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Confirm Password</label>
+                <label className="text-gray-800 text-sm mb-2 block">Şifreyi Onayla</label>
                 <Input
                   name="confirmPassword"
                   type="password"
                   className="focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Enter confirm password"
+                  placeholder="Şifreyi onayla"
                   onChange={handleInputChange}
                 />
               </div>
 
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Gender</label>
+                <label className="text-gray-800 text-sm mb-2 block">Cinsiyet</label>
                 <Select onValueChange={handleGenderChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a gender" />
+                    <SelectValue placeholder="Cinsiyet Seçiniz" />
                   </SelectTrigger>
                   <SelectContent className="bg-backgroundColor">
                     <SelectGroup>
                       <SelectLabel>Gender</SelectLabel>
-                      <SelectItem value="MALE">Male</SelectItem>
-                      <SelectItem value="FEMALE">Female</SelectItem>
-                      <SelectItem value="OTHER">Other</SelectItem>
+                      <SelectItem value="MALE">Erkek</SelectItem>
+                      <SelectItem value="FEMALE">Kadın</SelectItem>
+                      <SelectItem value="OTHER">Diğer</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -259,16 +260,21 @@ export default function RegisterPage() {
                   htmlFor="terms1"
                   className="text-sm font-medium leading-none  peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  Accept terms and conditions
+                  Şartları ve koşulları kabul edin
                 </label>
-                <p className="text-xs text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
+                <p className="text-xs text-muted-foreground">
+                  Hizmet Şartlarımızı ve Gizlilik Politikamızı kabul ediyorsunuz.
+                </p>
               </div>
             </div>
             <div className="mt-8">
               <Button size="md" variant="primary" title="Sign Up" type="submit" className="w-full">
-                Sign Up
+                Kayıt Ol
               </Button>
             </div>
+            <Link href="/login">
+              <div className="text-center text-xs mt-4 underline">Zaten bir hesabınız var mı? Oturum aç</div>
+            </Link>
           </form>
         </div>
       </div>

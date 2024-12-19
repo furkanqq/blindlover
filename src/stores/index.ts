@@ -25,4 +25,4 @@ export const blogAtom = atom<BlindBlogResponse | undefined>();
 
 export const questionListAtom = atom<QuestionListResponse['data'] | undefined>();
 
-export const answerListAtom = atom<QuestionResult['data'] | undefined>();
+export const resultListAtom = atom<QuestionResult['data'] | undefined>();

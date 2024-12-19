@@ -75,7 +75,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   );
 
   const HeartStyles = cn(
-    'relative flex justify-center items-center text-center text-white text-[10px] focus:outline-none transition-colors duration-200 active:scale-[0.98] leading-3',
+    'relative flex justify-center items-center text-center !w-fit md:!w-32 text-white text-[10px] focus:outline-none transition-colors duration-200 active:scale-[0.98] leading-3',
     {
       'text-primaryColor': variant === 'hlight' || variant === 'hborderprimary',
     },
@@ -86,8 +86,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     <>
       {variant.toString().startsWith('h') ? (
         <div className={HeartStyles}>
-          <Image src={`/${variant}.png`} alt="Heart" width={74} height={74} className="cursor-pointer" />
-          <span className="absolute top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] select-none cursor-pointer">
+          <Image
+            src={`/${variant}.png`}
+            alt="Heart"
+            width={44}
+            height={44}
+            className="cursor-pointer md:w-[74px] md:h-[74px] w-[44px] h-[44px]"
+          />
+          <span className="absolute top-[50%] md:top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] select-none cursor-pointer">
             {children}
           </span>
         </div>

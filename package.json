@@ -45,7 +45,8 @@
     "react-router-dom": "7.0.1",
     "sonner": "1.7.0",
     "tailwind-merge": "2.5.5",
-    "tailwindcss-animated": "1.1.2"
+    "tailwindcss-animated": "1.1.2",
+    "vaul": "1.1.2"
   },
   "devDependencies": {
     "@commitlint/cli": "19.6.0",

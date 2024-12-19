@@ -2,13 +2,13 @@
 
 import { BlindStore } from '@/provider';
 import {
-  answerListAtom,
   authAtom,
   blogAtom,
   blogListAtom,
   loaderAtom,
   profileInfoAtom,
   questionListAtom,
+  resultListAtom,
 } from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
 import { setAuthTokenToHeader } from './helper';
@@ -258,7 +258,7 @@ const QuestionResult = async () => {
     const resData = res.data;
 
     if (resData?.status === 200) {
-      BlindStore.set(answerListAtom, resData.data);
+      BlindStore.set(resultListAtom, resData.data);
       return resData;
     } else {
       console.log('Cevaplar alınamadı:', resData.message || 'Hata oluştu.');
