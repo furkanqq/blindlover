@@ -33,6 +33,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickDiv?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -42,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     variant = 'default',
     size = 'large',
     onClick,
+    onClickDiv,
     className,
     disabled = false,
     loading = false,
@@ -85,7 +87,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   return (
     <>
       {variant.toString().startsWith('h') ? (
-        <div className={HeartStyles}>
+        <div className={HeartStyles} onClick={onClickDiv}>
           <Image
             src={`/${variant}.png`}
             alt="Heart"

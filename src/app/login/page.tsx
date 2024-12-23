@@ -25,8 +25,10 @@ export default function LoginPage() {
   function handleLogin() {
     // e.preventDefault();
     BlindServices.AuthLogin(loginForm)
-      .then(() => {
-        window.location.href = '/';
+      .then((result) => {
+        if (result.status === 200) {
+          window.location.href = '/';
+        }
       })
       .catch((err) => {
         //toast gelecek

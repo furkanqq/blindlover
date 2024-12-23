@@ -47,10 +47,10 @@ export default function QuestionsPage() {
   const handleAnswer = (answer: 'NO' | 'YES' | 'EMPTY') => {
     if (!questions) return;
 
-    const questionId = questions[currentQuestionIndex]._id;
+    const questionId = questions[currentQuestionIndex]._id.toString();
 
     setAllAnswer((prevAnswers) => {
-      const existingAnswerIndex = prevAnswers.findIndex((ans) => ans.questionId === questionId);
+      const existingAnswerIndex = prevAnswers.findIndex((ans) => ans.questionId.toString() === questionId.toString());
       const updatedAnswers = [...prevAnswers];
 
       if (existingAnswerIndex !== -1) {
@@ -113,13 +113,13 @@ export default function QuestionsPage() {
           <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
             <div className="flex flex-col justify-center items-center">
               <Image src={'/blindlover.png'} alt="Blind Lover" width={200} height={120} />
-              <div className="text-4xl w-[40%] text-center font-semibold">
+              <div className="md:text-4xl w-full md:w-[40%] text-center font-semibold">
                 Testi Başarıyla Tamamladınız Sonuç Sayfasına Yönlendiriliyorsunuz...
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
               <div className="text-xs">Eğer Henüz Yönlenmediyse</div>
-              <Link href={'/panel/questions/result'}>
+              <Link href={'/test-result'}>
                 <Button
                   variant={'primary'}
                   type={'button'}
@@ -133,8 +133,8 @@ export default function QuestionsPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-backgroundColor w-full h-[80%] rounded-xl overflow-hidden px-12">
-            <div className="h-[20%] flex justify-between">
+          <div className="bg-backgroundColor w-full h-[95%] md:h-[80%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
+            <div className="h-[20%] flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center justify-center w-20">
                 <span className="text-[32px] mr-1">{`${currentQuestionIndex + 1 >= 10 ? '' : '0'}${currentQuestionIndex + 1}`}</span>
                 <span>/ {questions.length}</span>
@@ -142,10 +142,10 @@ export default function QuestionsPage() {
               <div className="flex flex-col justify-center items-center gap-4">
                 <QuizStepper currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} steps={5} />
                 <div className="p-2 bg-primaryColor text-white rounded-md text-[12px]">
-                  {getCategoryLabel(questions[currentQuestionIndex].category)}
+                  {getCategoryLabel(questions[currentQuestionIndex].category as QuestionCategory)}
                 </div>
               </div>
-              <div className="flex items-center justify-center w-20">
+              <div className="hidden md:flex items-center justify-center w-20">
                 <CircularProgressBar percentage={(currentQuestionIndex + 1) * (100 / questions.length)} />
               </div>
             </div>
@@ -154,17 +154,17 @@ export default function QuestionsPage() {
                 className={`h-full flex flex-col items-center gap-12 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
                 key={questions[currentQuestionIndex]._id}
               >
-                <h1 className="text-[44px] h-28 leading-[56px] text-center font-semibold px-28">
+                <h1 className="text-xl md:text-[44px] h-28 md:leading-[56px] text-center font-semibold px-4 md:px-28">
                   {questions[currentQuestionIndex].turkish || ''}
                 </h1>
-                <div className="flex gap-20">
+                <div className="flex gap-4 md:gap-20">
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-center items-center bg-primaryColor w-44 h-32 rounded-md active:scale-[0.98] cursor-pointer"
+                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-44 md:h-32 rounded-md active:scale-[0.98] cursor-pointer"
                       onClick={() => handleAnswer(option.label)}
                     >
-                      <span className="text-[32px] text-white">{option.value}</span>
+                      <span className="md:text-[32px] text-white">{option.value}</span>
                     </div>
                   ))}
                 </div>

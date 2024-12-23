@@ -2,29 +2,31 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
 import { CTASection } from '@/components/CTASection';
+import { AuthContext } from '@/provider/Auth';
 
-export default function BlogPage() {
+export default function AboutPage() {
+  const { token } = useContext(AuthContext);
   return (
     <AppLayout type="detail" className="">
       <div className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[50vh] w-full">
-          <h1 className="text-6xl font-bold">Hakkımızda</h1>
-          <p className="text-md text-gray-500 mt-4">Sevginizin gücünü, testimizle ölçün.</p>
+          <h1 className="text-2xl md:text-6xl font-bold">Hakkımızda</h1>
+          <p className="text-sm md:text-md text-gray-500 mt-4">Sevginizin gücünü, testimizle ölçün.</p>
         </div>
 
         <Container className="h-[70vh] flex justify-between mt-20">
-          <div className="relative h-full w-[36%]">
+          <div className="relative h-full w-[36%] hidden md:flex">
             <Image src="/about.png" alt="Blind Lover" fill objectFit="cover" objectPosition="top" />
           </div>
-          <div className="w-[60%] h-full flex flex-col justify-center gap-6">
-            <h2 className="text-5xl h-20 font-semibold flex items-center bg-gradient-to-r from-black via-primaryDisabled to-primaryColor text-transparent bg-clip-text">
+          <div className="w-full md:w-[60%] h-full flex flex-col justify-center gap-6">
+            <h2 className="text-3xl md:text-5xl text-center md:text-start md:h-20 font-semibold flex items-center bg-gradient-to-r from-black via-primaryDisabled to-primaryColor text-transparent bg-clip-text">
               <span>Aşkı Ölçmenin Formülü Var Mı?</span>
             </h2>
             <p>
@@ -38,7 +40,7 @@ export default function BlogPage() {
               isteyenler için tasarlandık!
             </p>
             <Link href={'/panel'}>
-              <Button size="md" type={'button'} title={'Lets Start'} variant={'primary'}>
+              <Button size="md" type={'button'} title={'Lets Start'} variant={'primary'} className="w-full md:w-fit">
                 Hemen Başla
               </Button>
             </Link>
@@ -48,7 +50,7 @@ export default function BlogPage() {
         <Container className="mt-24 sm-mt-32">
           <div className="rounded-lg text-center">
             <h1 className="text-4xl font-extrabold mb-6 border-b-[1px] border-white pb-4">Ne Sunuyoruz?</h1>
-            <div className="grid grid-cols-2 justify-center items-center gap-4">
+            <div className="grid md:grid-cols-2 justify-center items-center gap-4">
               <div className="flex flex-col items-center justify-center rounded-lg h-36   bg-white px-4">
                 <span className="text-3xl mr-4">🎯</span>
                 <span className="text-md">
@@ -94,28 +96,20 @@ export default function BlogPage() {
 
         <CTASection />
 
-        <Container className="mt-24 sm:mt-32">
+        <Container className="mt-24 sm:mt-32 hidden md:flex">
           <div className="relative border border-solid  gap-6 rounded-lg overflow-hidden flex flex-col justify-center items-end bg-transparent text-foreground text-center h-[50vh] w-full shadow">
             <div className="absolute w-full h-full">
               <Image src="/aboutBanner.png" alt="Blind Lover" fill objectFit="cover" objectPosition="top" />
             </div>
             <h1 className="mr-24 relative z-1 text-4xl font-bold">Seni Ne Kadar Seviyor?</h1>
             <p className="mr-24 relative z-1 text-md text-primaryColor mt-4">Cevabı Bizde!</p>
-            <div className="relative z-1 flex justify-center items-center mr-24 gap-6">
-              <Button type={'button'} title={'Lets Start'} variant={'secondary'} className="w-32">
-                Hemen Başla
-              </Button>
-              <span className="text-xs">Ya da</span>
-              <Button type={'button'} title={'Lets Start'} variant={'primary'} className="w-32">
-                Kayıt Ol
-              </Button>
-            </div>
-          </div>
-        </Container>
 
-        {/* Content */}
-        <Container className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <Link href={token ? '/panel' : '/register'} className="mr-24 relative z-1">
+              <Button type={'button'} title={'Lets Start'} variant={'primary'} className="w-32">
+                {token ? 'Hemen Başla' : 'Kayıt Ol'}
+              </Button>
+            </Link>
+          </div>
         </Container>
       </div>
     </AppLayout>

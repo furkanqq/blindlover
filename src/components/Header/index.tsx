@@ -5,10 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { IconClose } from '@/assets/IconClose';
+import { IconEN } from '@/assets/IconEN';
+import { IconES } from '@/assets/IconES';
+import { IconFR } from '@/assets/IconFR';
 import { IconLogin } from '@/assets/IconLogin';
+import { IconPT } from '@/assets/IconPT';
+import { IconRU } from '@/assets/IconRU';
+import { IconTR } from '@/assets/IconTR';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
-import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '../Drawer';
 
 export default function Header({
   token,
@@ -18,6 +24,9 @@ export default function Header({
   token: boolean;
 }) {
   const [scrollHeight, setScrollHeight] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     if (type === 'landing' || type === 'detail') {
@@ -33,12 +42,14 @@ export default function Header({
     }
   }, []);
 
+  console.log(isModalOpen, 'isModalOpen');
+
   return (
     <div
       className={cn(
         'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white sm:bg-transparent py-9',
         {
-          'shadow bg-backgroundColor': scrollHeight,
+          'shadow sm:bg-backgroundColor': scrollHeight,
         }
       )}
     >
@@ -109,59 +120,87 @@ export default function Header({
               </Link>
             </>
           )}
-
-          <Drawer>
-            <DrawerTrigger>
-              <Button
-                className="w-32"
-                variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
-                type={'button'}
-                title={''}
-              >
-                <span className="hidden md:flex">Dil</span>
-                <LanguageIcon width={12} height={12} />
-              </Button>
-            </DrawerTrigger>
-            <DrawerContent className="px-8 sm:px-16 md:px-28">
-              <DrawerHeader>
-                <DrawerTitle className="text-white">Dil Seçiminizi Yapın</DrawerTitle>
-              </DrawerHeader>
-              <DrawerFooter className="grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    Turkish
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    English
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    Spanish
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    French
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    Portuguese
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button variant="border" title="" size={'md'} type={'reset'} className={'w-full'}>
-                    Russian
-                  </Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <LanguageModal isOpen={isModalOpen} onClose={closeModal} />
+          <Button
+            className="w-32"
+            variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
+            type={'button'}
+            title={''}
+            onClickDiv={openModal}
+          >
+            <span className="hidden md:flex">Dil</span>
+            <LanguageIcon width={12} height={12} />
+          </Button>
         </div>
       </div>
     </div>
   );
 }
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+  const lg = 'tr';
+  return (
+    <div
+      id="crud-modal"
+      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50 select-none backdrop-blur-md"
+      aria-hidden={!isOpen}
+    >
+      <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
+        {/* Modal content */}
+        <div className="bg-primaryColor rounded-lg shadow">
+          {/* Modal header */}
+          <div className="flex items-center justify-between p-4 md:p-5 border-b border-solid border-primaryDisabled rounded-t">
+            <h3 className="text-lg font-semibold text-white ">Dil Seçiminizi Yapın</h3>
+            <Button onClick={onClose} type={'button'} variant={'border'} title={''}>
+              <IconClose />
+            </Button>
+          </div>
+          {/* Modal body */}
+          <div className="p-4 md:p-5 grid grid-cols-2 gap-4">
+            <Button
+              variant={lg === 'tr' ? 'border' : 'light'}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
+              <IconTR />
+              Turkish
+            </Button>
+
+            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+              <IconEN />
+              English
+            </Button>
+
+            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+              <IconES />
+              Spanish
+            </Button>
+
+            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+              <IconFR />
+              French
+            </Button>
+
+            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+              <IconPT />
+              Portuguese
+            </Button>
+
+            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+              <IconRU />
+              Russian
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

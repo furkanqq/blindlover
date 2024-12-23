@@ -10,19 +10,21 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
 import { BlindServices } from '@/services/manager';
-import { profileInfoAtom } from '@/stores';
+import { profileInfoAtom, resultListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function PanelPage() {
   const router = useRouter();
   const [move, setMove] = useState(false);
   const [info] = useAtom(profileInfoAtom);
+  const [resultList] = useAtom(resultListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     BlindServices.ProfileInfo();
+    BlindServices.QuestionResult();
   }, []);
 
   const handleStartTest = () => {
@@ -39,10 +41,10 @@ export default function PanelPage() {
   return (
     <AppLayout>
       <Container className="pt-32 h-fit">
-        <div className="flex justify-center items-center flex-col  h-fit w-full gap-12">
+        <div className="flex justify-center items-center flex-col  h-fit w-full gap-4 md:gap-12">
           <div
             className={cn(
-              "relative flex justify-between h-14 w-[50%] text-center text-gray-500 bg-gray-100 rounded-xl p-1 after:absolute after:content-[''] after:w-[50%] after:h-11 after:top-[50%] after:translate-y-[-50%] after:bg-white after:rounded-xl after:transition-transform after:duration-500 after:ease-in-out",
+              "relative flex justify-between h-14 w-full md:w-[50%] text-center text-gray-500 bg-gray-100 rounded-xl p-1 after:absolute after:content-[''] after:w-[50%] after:h-11 after:top-[50%] after:translate-y-[-50%] after:bg-white after:rounded-xl after:transition-transform after:duration-500 after:ease-in-out",
               {
                 'after:translate-x-[96%]': move,
                 'after:translate-x-[1%]': !move,
@@ -51,13 +53,13 @@ export default function PanelPage() {
           >
             <div
               onClick={() => setMove(false)}
-              className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer"
+              className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer text-sm"
             >
               <span>Test Hakkında</span>
             </div>
             <div
               onClick={() => setMove(true)}
-              className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer"
+              className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer text-sm"
             >
               <span>Test Geçmişi</span>
             </div>
@@ -65,18 +67,18 @@ export default function PanelPage() {
           <div className="w-full">
             <div
               id="page1"
-              className={cn('h-[50vh] flex w-full', {
+              className={cn('min-h-[50vh] flex w-full', {
                 hidden: move,
               })}
             >
-              <div className="flex flex-col items-center gap-12">
+              <div className="flex flex-col items-center gap-4 md:gap-12">
                 <div className="flex flex-col items-center">
                   <h3 className="text-2xl">Uyumluluğu Keşfet</h3>
-                  <span className="text-xs text-slate-600">
+                  <span className="text-xs text-slate-600 px-12 text-center">
                     Bağınızın Ne Kadar Güçlü Olduğunu Öğrenmeye Hazır mısınız?
                   </span>
                 </div>
-                <div className="text-center md:px-40">
+                <div className="text-center md:px-40 text-sm md:text-base">
                   {`Bu test, siz ve düşündüğünüz kişi arasındaki uyumu keşfetmenize yardımcı olmak için tasarlanmıştır!
                   Genel İlişki Durumu, Duygusal Bağlantı, Sadakat ve Güven, Romantik Jestler, Eğlence ve Günlük
                   Alışkanlıklar olmak üzere 5 kategori içeren bu eğlenceli test, ilişkinizin derinliğini anlamanıza
@@ -86,19 +88,19 @@ export default function PanelPage() {
                   haritalandırabilirsiniz. Kim bilir, bu yolculuk sizi birbirinize daha da yakınlaştırabilir!`}
                 </div>
                 <NavModal isOpen={isModalOpen} onClose={closeModal} />
-                <div className="flex gap-12">
+                <div className="flex flex-col md:flex-row gap-2 md:gap-12 w-full justify-center">
                   <Button
                     onClick={handleStartTest}
                     variant={'primary'}
                     size="md"
                     type={'button'}
                     title={''}
-                    className="w-40"
+                    className="w-full md:w-40"
                   >
                     Teste Başla
                   </Button>
 
-                  <Button variant={'blue'} size="md" type={'button'} title={''} className="w-40">
+                  <Button variant={'blue'} size="md" type={'button'} title={''} className="w-full md:w-40">
                     Video İzle
                   </Button>
                 </div>

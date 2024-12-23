@@ -28,7 +28,9 @@ const QuizStepper: React.FC<QuizStepperProps> = ({ currentQuestion, totalQuestio
                 />
               )}
             </div>
-            <span className={`w-28 text-xs mt-2 ${i + 1 <= currentStep ? 'text-blue-600' : 'text-gray-500'}`}></span>
+            <span
+              className={`w-10 md:w-28 text-xs mt-2 ${i + 1 <= currentStep ? 'text-primaryColor' : 'text-gray-500'}`}
+            ></span>
           </div>
         ))}
       </div>
