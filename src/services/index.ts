@@ -62,6 +62,7 @@ export const DirectusHttpUrl = {
     return DirectusHttp.get('/items/blindBlog?filter[slug][_eq]=' + param);
   },
 };
+
 export const BlindApiUrl = {
   RegisterUser: (request: RegisterRequest) => {
     return BlindHttp.post('/auth/register', request);
@@ -90,7 +91,10 @@ export const BlindApiUrl = {
   RelationInfo: (request: RelationInfoRequest) => {
     return BlindHttp.post('/profile/relation', request);
   },
-  QuestionResult: () => {
+  QuestionResultList: () => {
     return BlindHttp.get('/answer');
+  },
+  QuestionResult: (id: string) => {
+    return BlindHttp.get('/answer/' + id);
   },
 };

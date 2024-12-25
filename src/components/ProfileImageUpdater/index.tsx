@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { BlindStore } from '@/provider';
 import { base64ImageAtom } from '@/stores';
 
-const ProfileImageUpdater = ({ isDisabled }: { isDisabled: boolean }) => {
+const ProfileImageUpdater = ({ isDisabled, image }: { isDisabled: boolean; image: string }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,11 +29,17 @@ const ProfileImageUpdater = ({ isDisabled }: { isDisabled: boolean }) => {
         <label htmlFor="profileImageInput" className="cursor-pointer">
           <div
             className={`w-32 h-32 rounded-full bg-primaryDisabled/20 flex items-center justify-center overflow-hidden ${
-              selectedImage ? 'shadow-lg shadow-gray-700' : 'border-2 border-dashed border-primaryColor/40'
+              selectedImage || (image && isDisabled === true)
+                ? 'shadow-lg shadow-gray-700'
+                : 'border-2 border-dashed border-primaryColor/40'
             }`}
           >
-            {selectedImage ? (
-              <img src={selectedImage} alt="Profile" className="w-full h-full object-cover" />
+            {selectedImage || (image && isDisabled === true) ? (
+              <img
+                src={selectedImage !== null ? selectedImage : image}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
             ) : (
               <div className="flex flex-col justify-center items-center text-gray-600">
                 <CameraIcon width={20} height={20} />

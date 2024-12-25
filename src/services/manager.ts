@@ -8,6 +8,7 @@ import {
   loaderAtom,
   profileInfoAtom,
   questionListAtom,
+  resultAtom,
   resultListAtom,
 } from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
@@ -245,11 +246,11 @@ const RelationInfo = async (request: RelationInfoRequest) => {
   }
 };
 
-const QuestionResult = async () => {
+const QuestionResultList = async () => {
   BlindStore.set(loaderAtom, true);
 
   try {
-    const res = await BlindApiUrl.QuestionResult();
+    const res = await BlindApiUrl.QuestionResultList();
 
     if (!res || !res.data) {
       throw new Error('API yanıtı alınamadı.');
@@ -262,6 +263,31 @@ const QuestionResult = async () => {
       return resData;
     } else {
       console.log('Cevaplar alınamadı:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->QuestionResultList Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
+const QuestionResult = async (id: string) => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.QuestionResult(id);
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      BlindStore.set(resultAtom, resData.data);
+      return resData;
+    } else {
+      console.log('Sonuc alınamadı:', resData.message || 'Hata oluştu.');
     }
   } catch (err: any) {
     console.log('BlindServices->QuestionResult Hatası:', err.message || err);
@@ -280,6 +306,7 @@ export const BlindServices = {
   QuestionList,
   Answer,
   RelationInfo,
+  QuestionResultList,
   QuestionResult,
 };
 

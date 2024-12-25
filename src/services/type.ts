@@ -34,7 +34,9 @@ export interface ProfileInfoResponse {
     age: string;
     emailVerified: boolean;
     relationInfo: RelationInfoRequest | null;
-    base64Photo: string;
+    profileImageUrl: null;
+    createdAt: string;
+    updatedAt: string;
   };
 }
 
@@ -146,7 +148,7 @@ interface AiResultResponseLanguages {
   _id: string;
 }
 
-export interface QuestionResult {
+export interface QuestionResultList {
   data: Array<{
     _id: string;
     customerId: string;
@@ -154,4 +156,14 @@ export interface QuestionResult {
     createdAt: string;
     updatedAt: string;
   }>;
+}
+
+export interface QuestionResult {
+  data: {
+    _id: string;
+    customerId: string;
+    aiResultResponse: AiResultResponseLanguages;
+    createdAt: string;
+    updatedAt: string;
+  };
 }

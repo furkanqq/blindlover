@@ -1,6 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
@@ -8,27 +9,26 @@ import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
 import { BlindServices } from '@/services/manager';
 import { QuestionResult } from '@/services/type';
-import { resultListAtom } from '@/stores';
+import { resultAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function ResultPage() {
-  const [resultList] = useAtom(resultListAtom);
+  const [result] = useAtom(resultAtom);
+  const pathname = usePathname();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    BlindServices.QuestionResult();
-  }, []);
+    BlindServices.QuestionResult(pathname.slice(8));
+  }, [pathname]);
 
-  console.log(resultList, ' resultList');
-
-  if (!resultList) {
+  if (!result) {
     return <LoadingScreen />;
   }
   return (
     <React.Fragment>
       {currentIndex === 7 ? (
         <AppLayout type="detail">
-          <ResultContainer resultList={resultList} />
+          <ResultContainer result={result} />
         </AppLayout>
       ) : (
         <div className="relative h-screen bg-primaryColor cursor-pointer">
@@ -50,7 +50,7 @@ export default function ResultPage() {
               onClick={() => setCurrentIndex(1)}
             >
               <h1 className="text-[40px]">Uyumluluk Oranınız</h1>
-              <h2 className="text-[200px] font-extrabold">{resultList[0].aiResultResponse.turkish.lovePercentage}</h2>
+              <h2 className="text-[200px] font-extrabold">{result.aiResultResponse.turkish.lovePercentage}</h2>
               <h3>Partnerinizle harika bir uyum içindesiniz!</h3>
             </div>
           )}
@@ -61,7 +61,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">GENEL İLİŞKİ DURUMU</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
+                {result.aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
               </h2>
             </div>
           )}
@@ -72,7 +72,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">DUYGUSAL BAĞLILIK</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
+                {result.aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
               </h2>
             </div>
           )}
@@ -83,7 +83,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">SADAKAT VE GÜVEN</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
+                {result.aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
               </h2>
             </div>
           )}
@@ -94,7 +94,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">ROMANTİK DAVRANIŞLAR</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
+                {result.aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
               </h2>
             </div>
           )}
@@ -105,7 +105,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">EĞLENCE VE GÜNLÜK ALIŞKANLIKLAR</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
+                {result.aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
               </h2>
             </div>
           )}
@@ -116,7 +116,7 @@ export default function ResultPage() {
             >
               <h1 className="text-[40px]">YAPAY ZEKA YORUMU</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {resultList[0].aiResultResponse.turkish.comment}
+                {result.aiResultResponse.turkish.comment}
               </h2>
             </div>
           )}
@@ -126,7 +126,7 @@ export default function ResultPage() {
   );
 }
 
-const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] }) => {
+const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
 
   const observer = useRef<IntersectionObserver | null>(null); // IntersectionObserver türünü belirt
@@ -157,17 +157,17 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
   }, []);
 
   return (
-    <Container className="pt-24 grid grid-cols-2 gap-6">
+    <Container className="pt-24 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6">
       {[
         {
           id: 'compatibility',
           title: 'Uyumluluk Oranınız',
           content: (
             <>
-              <h2 className="relative z-[1] text-[80px] font-extrabold">
-                {resultList[0].aiResultResponse.turkish.lovePercentage}
+              <h2 className="relative z-[1] text-5xl md:text-[80px] font-extrabold">
+                {result.aiResultResponse.turkish.lovePercentage}
               </h2>
-              <h3 className="relative z-[1] ">Partnerinizle harika bir uyum içindesiniz!</h3>
+              <h3 className="relative z-[1] text-xs">Partnerinizle harika bir uyum içindesiniz!</h3>
             </>
           ),
         },
@@ -175,8 +175,8 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'generalRelationStatus',
           title: 'GENEL İLİŞKİ DURUMU',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">
-              {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
             </h2>
           ),
         },
@@ -184,8 +184,8 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'emotionalAttachment',
           title: 'DUYGUSAL BAĞLILIK',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">
-              {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
             </h2>
           ),
         },
@@ -193,8 +193,8 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'loyaltyAndTrust',
           title: 'SADAKAT VE GÜVEN',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">
-              {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
             </h2>
           ),
         },
@@ -202,8 +202,8 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'romanticBehavior',
           title: 'ROMANTİK DAVRANIŞLAR',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">
-              {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
             </h2>
           ),
         },
@@ -211,8 +211,8 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'funAndDailyHabits',
           title: 'EĞLENCE VE GÜNLÜK ALIŞKANLIKLAR',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">
-              {resultList[0].aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
             </h2>
           ),
         },
@@ -220,7 +220,9 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           id: 'aiComment',
           title: 'YAPAY ZEKA YORUMU',
           content: (
-            <h2 className="text-[18px] font-semibold text-center">{resultList[0].aiResultResponse.turkish.comment}</h2>
+            <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
+              {result.aiResultResponse.turkish.comment}
+            </h2>
           ),
         },
       ].map(({ id, title, content }) => (
@@ -228,22 +230,31 @@ const ResultContainer = ({ resultList }: { resultList: QuestionResult['data'] })
           key={id}
           data-id={id}
           className={cn(
-            `relative overflow-hidden  fade-section h-[45vh] flex flex-col justify-center items-center gap-4 transition-opacity duration-700 border-2 border-solid border-primaryColor px-12 text-center rounded-md backdrop-blur-md`,
+            `relative overflow-hidden  fade-section h-[45vh] flex flex-col justify-center items-center gap-4 transition-opacity duration-700 px-12 text-center rounded-md bg-white`,
             {
               'animate-flip-up animate-duration-500': visibleSections.includes(id),
               'opacity-0': !visibleSections.includes(id),
-              'col-span-2 bg-primaryColor text-white': id === 'compatibility',
+              'md:col-span-2 bg-primaryColor text-white': id === 'compatibility',
               'animate-delay-100': id === 'compatibility',
               'animate-delay-200':
                 id === 'generalRelationStatus' || id === 'loyaltyAndTrust' || id === 'funAndDailyHabits',
               'animate-delay-300': id === 'emotionalAttachment' || id === 'romanticBehavior' || id === 'aiComment',
+              'border-2 border-solid border-blue-600 text-blue-600': id === 'generalRelationStatus',
+              'border-2 border-solid border-red-500 text-red-500': id === 'emotionalAttachment',
+              'border-2 border-solid border-green-500 text-green-500': id === 'loyaltyAndTrust',
+              'border-2 border-solid border-pink-500 text-pink-500': id === 'romanticBehavior',
+              'border-2 border-solid border-orange-500 text-orange-500': id === 'funAndDailyHabits',
+              'border-2 border-solid border-purple-500 text-purple-500': id === 'aiComment',
             }
           )}
         >
           {id === 'compatibility' && (
             <div className="absolute w-full h-full bg-[url(/heartPattern.png)] bg-cover bg-opacity-35 animate-card-custom-pulse"></div>
           )}
-          <h1 className="relative z-[1] text-[28px] font-bold">{title}</h1>
+          {id !== 'compatibility' && (
+            <div className="absolute w-full h-full bg-[url(/heartPattern1.png)] bg-cover opacity-40"></div>
+          )}
+          <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{title}</h1>
           {content}
           <hr />
         </div>

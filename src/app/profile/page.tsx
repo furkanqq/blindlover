@@ -98,7 +98,7 @@ export default function ProfilePage() {
         email: info?.email || '',
         age: info.age.toString() || '',
         gender: info?.gender || '',
-        image: info.base64Photo || '',
+        image: info.profileImageUrl || '',
       });
     }
   }, [info]);
@@ -207,7 +207,7 @@ export default function ProfilePage() {
 
           <hr />
           <div className="flex flex-col md:flex-row gap-16 items-center justify-center">
-            <ProfileImageUpdater isDisabled={isDisabled} />
+            <ProfileImageUpdater image={formInfo.image} isDisabled={isDisabled} />
             <div id="inputs" className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
               <div>
                 <label className="text-gray-800 text-sm mb-2 block">Ad Soyad</label>

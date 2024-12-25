@@ -8,14 +8,16 @@ import { useEffect, useState } from 'react';
 import { IconClose } from '@/assets/IconClose';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
+import CircularProgressBar from '@/components/CircularProgressBar';
 import { Container } from '@/components/Container';
 import { BlindServices } from '@/services/manager';
 import { profileInfoAtom, resultListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
+import { formatDate } from '@/utils/formatDate';
 
 export default function PanelPage() {
   const router = useRouter();
-  const [move, setMove] = useState(false);
+  const [move, setMove] = useState(true);
   const [info] = useAtom(profileInfoAtom);
   const [resultList] = useAtom(resultListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +28,16 @@ export default function PanelPage() {
 
   useEffect(() => {
     BlindServices.ProfileInfo();
-    BlindServices.QuestionResult();
   }, []);
+
+  useEffect(() => {
+    if (resultList && resultList.length > 0) {
+      return;
+    }
+    if (move) {
+      BlindServices.QuestionResultList();
+    }
+  }, [move]);
 
   const handleStartTest = () => {
     if (info?.emailVerified === false) {
@@ -40,6 +50,10 @@ export default function PanelPage() {
       window.location.href = '/panel/questions';
     }
   };
+
+  if (resultList) {
+    console.log(resultList[0]);
+  }
   return (
     <AppLayout>
       <Container className="pt-32 h-fit">
@@ -105,11 +119,28 @@ export default function PanelPage() {
             </div>
             <div
               id="page2"
-              className={cn('h-[50vh] hidden w-full justify-center items-center border border-solid', {
-                flex: move,
-              })}
+              className={cn(
+                'h-[50vh] hidden w-full border border-solid flex-col p-6 gap-3 overflow-auto shadow-inner',
+                {
+                  flex: move,
+                }
+              )}
             >
-              <span>Test Geçmişi Bulunmamaktadır.</span>
+              {resultList && resultList.length > 0 ? (
+                resultList.map((result, index) => (
+                  <Link href={'/result/' + result._id} key={index}>
+                    <div className="border border-solid rounded-md py-4 px-6 flex justify-between items-center bg-white">
+                      <CircularProgressBar percentage={+result.aiResultResponse.turkish.lovePercentage.split('%')[0]} />
+                      <div>Test Sonucu</div>
+                      <div>{formatDate(result.createdAt, { locale: 'tr-TR' })}</div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-center">
+                  <span>Test Geçmişi Bulunmamaktadır.</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

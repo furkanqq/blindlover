@@ -6,6 +6,7 @@ import {
   ProfileInfoResponse,
   QuestionListResponse,
   QuestionResult,
+  QuestionResultList,
 } from '@/services/type';
 
 // export const userAtom = atom<GGetUserDetailResponse['data'] | undefined>(
@@ -25,4 +26,6 @@ export const blogAtom = atom<BlindBlogResponse | undefined>();
 
 export const questionListAtom = atom<QuestionListResponse['data'] | undefined>();
 
-export const resultListAtom = atom<QuestionResult['data'] | undefined>();
+export const resultListAtom = atom<QuestionResultList['data'] | undefined>();
+
+export const resultAtom = atom<QuestionResult['data'] | undefined>();
