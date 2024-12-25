@@ -10,17 +10,19 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
 import { BlindServices } from '@/services/manager';
-import { profileInfoAtom } from '@/stores';
+import { profileInfoAtom, resultListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function PanelPage() {
   const router = useRouter();
   const [move, setMove] = useState(false);
   const [info] = useAtom(profileInfoAtom);
-  // const [resultList] = useAtom(resultListAtom);
+  const [resultList] = useAtom(resultListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  console.log(resultList, 'resultList');
 
   useEffect(() => {
     BlindServices.ProfileInfo();
