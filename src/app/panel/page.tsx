@@ -10,14 +10,14 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
 import { BlindServices } from '@/services/manager';
-import { profileInfoAtom, resultListAtom } from '@/stores';
+import { profileInfoAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function PanelPage() {
   const router = useRouter();
   const [move, setMove] = useState(false);
   const [info] = useAtom(profileInfoAtom);
-  const [resultList] = useAtom(resultListAtom);
+  // const [resultList] = useAtom(resultListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -88,22 +88,17 @@ export default function PanelPage() {
                   haritalandırabilirsiniz. Kim bilir, bu yolculuk sizi birbirinize daha da yakınlaştırabilir!`}
                 </div>
                 <NavModal isOpen={isModalOpen} onClose={closeModal} />
-                <div className="flex flex-col md:flex-row gap-2 md:gap-12 w-full justify-center">
-                  <Button
-                    onClick={handleStartTest}
-                    variant={'primary'}
-                    size="md"
-                    type={'button'}
-                    title={''}
-                    className="w-full md:w-40"
-                  >
-                    Teste Başla
-                  </Button>
 
-                  <Button variant={'blue'} size="md" type={'button'} title={''} className="w-full md:w-40">
-                    Video İzle
-                  </Button>
-                </div>
+                <Button
+                  onClick={handleStartTest}
+                  variant={'primary'}
+                  size="md"
+                  type={'button'}
+                  title={''}
+                  className="w-full md:w-40"
+                >
+                  Teste Başla
+                </Button>
               </div>
             </div>
             <div
