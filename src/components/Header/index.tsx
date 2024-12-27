@@ -1,8 +1,10 @@
 'use client';
 
 import { ClipboardDocumentListIcon, DocumentTextIcon, LanguageIcon, UserCircleIcon } from '@heroicons/react/16/solid';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { IconClose } from '@/assets/IconClose';
@@ -13,6 +15,7 @@ import { IconLogin } from '@/assets/IconLogin';
 import { IconPT } from '@/assets/IconPT';
 import { IconRU } from '@/assets/IconRU';
 import { IconTR } from '@/assets/IconTR';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
@@ -23,6 +26,7 @@ export default function Header({
   type?: 'auth' | 'default' | 'landing' | 'detail';
   token: boolean;
 }) {
+  const t = useTranslations('LandingPage');
   const [scrollHeight, setScrollHeight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -77,7 +81,7 @@ export default function Header({
                   type={'reset'}
                   title={''}
                 >
-                  <span>Profil</span>
+                  <span>{t('header.profile')}</span>
                   <UserCircleIcon width={12} height={12} />
                 </Button>
               </Link>
@@ -88,7 +92,7 @@ export default function Header({
                   type={'reset'}
                   title={''}
                 >
-                  <span>Teste Başla</span>
+                  <span>{t('header.test')}</span>
                   <DocumentTextIcon width={12} height={12} />
                 </Button>
               </Link>
@@ -103,7 +107,7 @@ export default function Header({
                   type={'reset'}
                   title={''}
                 >
-                  <span className="hidden md:flex">Giriş Yap</span>
+                  <span className="hidden md:flex">{t('header.login')}</span>
                   <IconLogin width={12} height={12} />
                 </Button>
               </Link>
@@ -114,7 +118,7 @@ export default function Header({
                   type={'reset'}
                   title={''}
                 >
-                  <span className="hidden md:flex">Kayıt Ol</span>
+                  <span className="hidden md:flex">{t('header.register')}</span>
                   <ClipboardDocumentListIcon width={12} height={12} />
                 </Button>
               </Link>
@@ -128,7 +132,7 @@ export default function Header({
             title={''}
             onClickDiv={openModal}
           >
-            <span className="hidden md:flex">Dil</span>
+            <span className="hidden md:flex">{t('header.lang')}</span>
             <LanguageIcon width={12} height={12} />
           </Button>
         </div>
@@ -143,8 +147,21 @@ interface ModalProps {
 }
 
 const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
   if (!isOpen) return null;
-  const lg = 'tr';
+
+  function onSelect(nextLocale: string) {
+    router.replace(
+      {
+        pathname,
+        // query: { ...params }, // Query değerleri burada URL'ye dahil ediliyor
+      },
+      { locale: nextLocale as string }
+    );
+  }
+
   return (
     <div
       id="crud-modal"
@@ -164,7 +181,8 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           {/* Modal body */}
           <div className="p-4 md:p-5 grid grid-cols-2 gap-4">
             <Button
-              variant={lg === 'tr' ? 'border' : 'light'}
+              variant={params.locale === 'tr' ? 'border' : 'light'}
+              onClick={() => onSelect('tr')}
               title=""
               size={'md'}
               type={'button'}
@@ -174,27 +192,62 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               Turkish
             </Button>
 
-            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+            <Button
+              variant={params.locale === 'en' ? 'border' : 'light'}
+              onClick={() => onSelect('en')}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
               <IconEN />
               English
             </Button>
 
-            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+            <Button
+              variant={params.locale === 'es' ? 'border' : 'light'}
+              onClick={() => onSelect('es')}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
               <IconES />
               Spanish
             </Button>
 
-            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+            <Button
+              variant={params.locale === 'fr' ? 'border' : 'light'}
+              onClick={() => onSelect('fr')}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
               <IconFR />
               French
             </Button>
 
-            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+            <Button
+              variant={params.locale === 'pt' ? 'border' : 'light'}
+              onClick={() => onSelect('pt')}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
               <IconPT />
               Portuguese
             </Button>
 
-            <Button variant="light" title="" size={'md'} type={'button'} className={'w-full'}>
+            <Button
+              variant={params.locale === 'ru' ? 'border' : 'light'}
+              onClick={() => onSelect('ru')}
+              title=""
+              size={'md'}
+              type={'button'}
+              className={'w-full'}
+            >
               <IconRU />
               Russian
             </Button>

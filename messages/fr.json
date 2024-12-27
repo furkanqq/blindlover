@@ -1,0 +1,35 @@
+{
+  "LandingPage": {
+    "banner": {
+      "button": "Commencer le Test",
+      "subtitle": "Voulez-vous savoir à quel point votre relation est forte ou mesurer l'intérêt de quelqu'un qui vous plaît ? Découvrez notre test amusant et découvrez votre pourcentage d'amour dès maintenant !",
+      "title": "Nous Avons Conçu la Façon la Plus Amusante de Découvrir l'Amour Rien Que pour Vous !"
+    },
+    "header": {
+      "profile": "Profil",
+      "login": "Se Connecter",
+      "test": "Commencer le Test",
+      "lang": "Langue",
+      "register": "S'inscrire"
+    },
+    "cardSection": {
+      "main_title": "Pourquoi Nous Choisir?",
+      "first_card": {
+        "title": "Amusant et Facile",
+        "desc": "Pas besoin d'analyses complexes. Répondez simplement aux questions et découvrez le résultat."
+      },
+      "second_card": {
+        "title": "Quel Est Votre Pourcentage d'Amour?",
+        "desc": "Avec une analyse basée sur l'IA, découvrez l'intérêt que votre partenaire ou votre coup de cœur vous porte, exprimé en pourcentage."
+      },
+      "third_card": {
+        "title": "Des Tests Pour Tous Les Âges",
+        "desc": "Que vous ayez 19, 30 ou 64 ans, profitez de questions adaptées à votre âge et à votre situation relationnelle."
+      },
+      "fourth_card": {
+        "title": "Disponible sur Mobile et Web",
+        "desc": "Faites votre test sur n'importe quel appareil et partagez le résultat avec vos amis!"
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
@@ -10,18 +11,16 @@ import Button from '../Button';
 
 export default function Banner() {
   const { token } = useContext(AuthContext);
+  const t = useTranslations('LandingPage');
 
   return (
     <div className="flex flex-col md:flex-row h-[100vh]">
       <div className="flex justify-center items-end pb-12 md:pb-0 md:items-center h-1/2 md:h-full w-full md:w-1/2">
         <div className="w-[65%] flex flex-col gap-4 md:gap-10">
-          <h1 className="text-[20px] leading-10 md:text-[52px]  md:leading-[60px] font-semibold">
-            Aşkı Keşfetmenin En Eğlenceli Yolunu Senin İçin Tasarladık!
+          <h1 className="text-[20px] leading-10 md:text-[44px]  md:leading-[60px] font-semibold">
+            {t('banner.title')}
           </h1>
-          <p className="text-[14px] hidden sm:flex text-foreground/50">
-            İlişkinizin ne kadar güçlü olduğunu öğrenmek ya da hoşlandığın kişinin sana ilgisini ölçmek ister misin?
-            Eğlenceli sorularla dolu testimizi hemen keşfet ve aşk yüzdesini öğren!
-          </p>
+          <p className="text-[14px] hidden sm:flex text-foreground/50">{t('banner.subtitle')}</p>
           <Link href={token ? '/panel' : '/register'}>
             <Button
               className="flex justify-center items-center gap-4 w-full"
@@ -30,7 +29,7 @@ export default function Banner() {
               size="md"
               type={'button'}
             >
-              <span>Teste Başla</span>
+              <span>{t('banner.button')}</span>
               <IconArrowRight />
             </Button>
           </Link>

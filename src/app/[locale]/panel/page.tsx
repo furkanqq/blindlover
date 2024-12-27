@@ -17,7 +17,7 @@ import { formatDate } from '@/utils/formatDate';
 
 export default function PanelPage() {
   const router = useRouter();
-  const [move, setMove] = useState(true);
+  const [move, setMove] = useState(false);
   const [info] = useAtom(profileInfoAtom);
   const [resultList] = useAtom(resultListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,0 +1,35 @@
+{
+  "LandingPage": {
+    "banner": {
+      "button": "Start the Test",
+      "subtitle": "Do you want to find out how strong your relationship is or measure the interest of someone you like? Discover our fun-filled test and find out your love percentage now!",
+      "title": "We've Designed the Most Fun Way to Discover Love Just for You!"
+    },
+    "header": {
+      "profile": "Profile",
+      "login": "Log In",
+      "test": "Start the Test",
+      "lang": "Language",
+      "register": "Register"
+    },
+    "cardSection": {
+      "main_title": "Why Choose Us?",
+      "first_card": {
+        "title": "Fun and Easy",
+        "desc": "No need for complex analyses. Just answer the questions and get the result."
+      },
+      "second_card": {
+        "title": "What’s Your Love Percentage?",
+        "desc": "With AI-powered analysis, find out how interested your partner or crush is in you, expressed as a percentage."
+      },
+      "third_card": {
+        "title": "Tests for All Ages",
+        "desc": "Whether you’re 19, 30, or 64, enjoy customized questions tailored to your age and relationship status."
+      },
+      "fourth_card": {
+        "title": "Available on Mobile and Web",
+        "desc": "Take your test on any device and share the result with your friends!"
+      }
+    }
+  }
+}

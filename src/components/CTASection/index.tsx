@@ -15,7 +15,7 @@ const CTASection = () => {
         <div className="mx-auto w-full pt-24 sm:pt-32">
           <div className="w-full relative isolate overflow-hidden  border border-solid bg-backgroundColor px-6 pt-16 pb-16 lg:pb-0 rounded-lg sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-              <h2 className="text-balance text-3xl font-semibold tracking-tight text-primaryColor sm:text-4xl">
+              <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
                 Seni Ne Kadar Seviyor? HEMEN ÖĞREN!
               </h2>
               <p className="mt-6 text-pretty text-lg/8 text-gray-500">

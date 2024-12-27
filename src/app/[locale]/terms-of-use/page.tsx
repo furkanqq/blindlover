@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import AppLayout from '@/components/AppLayout';
 import { Container } from '@/components/Container';
 
@@ -11,14 +13,14 @@ export default function TermsOfUsePage() {
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Kullanım Şartları</h1>
           <p className="text-gray-700 mb-4">
             Bu kullanım şartları,{' '}
-            <a
+            <Link
               href="https://blindlover.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
               https://blindlover.com
-            </a>{' '}
+            </Link>{' '}
             web sitesinin ve BlindLover hizmetlerinin kullanımını düzenler. Lütfen web sitemizi ve uygulamamızı
             kullanmadan önce bu şartları dikkatlice okuyun. BlindLover’ı kullanarak bu şartları kabul ettiğinizi beyan
             etmiş olursunuz.
@@ -48,9 +50,9 @@ export default function TermsOfUsePage() {
           <p className="text-gray-700 mb-4">
             BlindLover, kullanıcıların gizliliğine önem verir. Kullanıcı verileriniz, Gizlilik Politikamız doğrultusunda
             işlenir. Verilerinizin nasıl kullanıldığı hakkında daha fazla bilgi için{' '}
-            <a href="/privacy-policy" className="text-blue-600 hover:underline">
+            <Link href="/privacy-policy" className="text-blue-600 hover:underline">
               Gizlilik Politikamıza
-            </a>{' '}
+            </Link>{' '}
             göz atabilirsiniz.
           </p>
 
@@ -85,9 +87,9 @@ export default function TermsOfUsePage() {
           <p className="text-gray-700 mb-4">Kullanım şartları hakkında sorularınız için bize ulaşabilirsiniz:</p>
           <p className="text-gray-700">
             E-posta:{' '}
-            <a href="mailto:hello@blindlover.com" className="text-blue-600 hover:underline">
+            <Link href="mailto:hello@blindlover.com" className="text-blue-600 hover:underline">
               hello@blindlover.com
-            </a>
+            </Link>
           </p>
         </div>
       </Container>

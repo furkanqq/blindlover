@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import AppLayout from '@/components/AppLayout';
 import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
+import MarkdownContent from '@/components/MarkdownContent';
 import { DirectusServices } from '@/services/manager';
 import { blogAtom } from '@/stores';
 import { formatDate } from '@/utils/formatDate';
@@ -29,11 +30,9 @@ export default function BlogDetail() {
       <article className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[300px] w-full">
-          <h1 className="text-4xl mt-12 font-bold md:w-[720px]">{blog?.tr_title}</h1>
+          <h1 className="text-4xl mt-12 font-bold md:w-[720px]">{blog?.title_tr}</h1>
           <div className="text-md text-gray-500 mt-4">
-            {blog.date_updated
-              ? formatDate(blog.date_updated, { locale: 'tr-TR' })
-              : formatDate(blog.date_created, { locale: 'tr-TR' })}
+            {blog.date_created && formatDate(blog.date_created, { locale: 'tr-TR' })}
           </div>
         </div>
 
@@ -43,7 +42,8 @@ export default function BlogDetail() {
               <Image src={'/blog.png'} alt={'blog'} fill objectFit="cover" />
             </div>
           </div>
-          <div className="px-2 md:px-32 text-[20px]" dangerouslySetInnerHTML={{ __html: blog?.tr_content }}></div>
+          {/* <div className="px-2 md:px-32 text-[20px]">{blog?.content_tr}</div> */}
+          <MarkdownContent content={blog?.content_tr} />
         </Container>
       </article>
     </AppLayout>

@@ -56,10 +56,10 @@ BlindHttp.interceptors.response.use(
 
 export const DirectusHttpUrl = {
   BlogList: () => {
-    return DirectusHttp.get('/items/blindBlog');
+    return DirectusHttp.get('/items/blindlover');
   },
   Blog: (param: string) => {
-    return DirectusHttp.get('/items/blindBlog?filter[slug][_eq]=' + param);
+    return DirectusHttp.get('/items/blindlover?filter[slug][_eq]=' + param);
   },
 };
 

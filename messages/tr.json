@@ -1,0 +1,35 @@
+{
+  "LandingPage": {
+    "banner": {
+      "button": "Teste Başla",
+      "subtitle": "İlişkinizin ne kadar güçlü olduğunu öğrenmek ya da hoşlandığın kişinin sana ilgisini ölçmek ister misin? Eğlenceli sorularla dolu testimizi hemen keşfet ve aşk yüzdesini öğren!",
+      "title": "Aşkı Keşfetmenin En Eğlenceli Yolunu Senin İçin Tasarladık!"
+    },
+    "header": {
+      "profile": "Profil",
+      "login": "Giriş Yap",
+      "test": "Teste Başla",
+      "lang": "Dil",
+      "register": "Kayıt Ol"
+    },
+    "cardSection": {
+      "main_title": "Neden Bizi Tercih Etmelisin?",
+      "first_card": {
+        "title": "Eğlenceli ve Kolay",
+        "desc": "Karmaşık analizlere gerek yok. Sadece sorulara cevap ver ve sonucu öğren."
+      },
+      "second_card": {
+        "title": "Aşkın Yüzde Kaç?",
+        "desc": "Yapay zeka destekli analizlerle, partnerinin ya da hoşlandığın kişinin sana olan ilgisini yüzde olarak öğren."
+      },
+      "third_card": {
+        "title": "Her Yaşa Uygun Testler",
+        "desc": "İster 19 yaşında ister 30 ya da 64 yaşında ol. Tüm yaş gruplarına ve ilişki durumlarına göre özelleştirilmiş sorular."
+      },
+      "fourth_card": {
+        "title": "Hem Mobil Hem Web",
+        "desc": "İstediğin cihazda hemen testini yap. Çıkan sonucu arkadaşlarınla paylaş!"
+      }
+    }
+  }
+}

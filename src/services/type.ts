@@ -54,41 +54,45 @@ export interface UpdatePasswordRequest {
 export interface BlindBlogListResponse {
   data: Array<{
     status: 'published' | 'archived' | 'draft';
-    user_created: string;
-    user_updated: string;
     date_created: string;
-    date_updated: string;
-    sort: number | null;
-    blog_image: string;
+    banner_image: string;
+    small_image: string;
     id: number;
-    tr_title: string;
-    en_title: string;
-    es_title: string;
-    ru_title: string;
-    fr_title: string;
-    pt_title: string;
+    title_tr: string;
+    title_en: string;
+    title_es: string;
+    title_ru: string;
+    title_fr: string;
+    title_pt: string;
     slug: string;
-    tr_content: string;
+    content_tr: string;
+    content_en: string;
+    content_es: string;
+    content_ru: string;
+    content_fr: string;
+    content_pt: string;
   }>;
 }
 
 export interface BlindBlogResponse {
   status: 'published' | 'archived' | 'draft';
-  user_created: string;
-  user_updated: string;
   date_created: string;
-  date_updated: string;
-  sort: number | null;
-  blog_image: string;
+  banner_image: string;
+  small_image: string;
   id: number;
-  tr_title: string;
-  en_title: string;
-  es_title: string;
-  ru_title: string;
-  fr_title: string;
-  pt_title: string;
+  title_tr: string;
+  title_en: string;
+  title_es: string;
+  title_ru: string;
+  title_fr: string;
+  title_pt: string;
   slug: string;
-  tr_content: string;
+  content_tr: string;
+  content_en: string;
+  content_es: string;
+  content_ru: string;
+  content_fr: string;
+  content_pt: string;
 }
 
 export interface QuestionListResponse {

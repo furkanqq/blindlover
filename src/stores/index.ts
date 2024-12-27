@@ -16,6 +16,7 @@ import {
 
 export const loaderAtom = atom(false);
 export const authAtom = atom('');
+export const languageAtom = atom<string>('en');
 
 export const profileInfoAtom = atom<ProfileInfoResponse['data'] | undefined>();
 

@@ -9,6 +9,7 @@ import { blogListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 import { Container } from '../Container';
+import MarkdownContent from '../MarkdownContent';
 
 const Slider = ({
   title,
@@ -47,7 +48,7 @@ const Slider = ({
   return (
     <Container className="pt-32 md:pt-52">
       <div className="relative w-full bg-white border border-solid p-12 rounded-md">
-        <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-primaryColor ">
+        <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-black ">
           {title}
         </h2>
         {/* Carousel Wrapper */}
@@ -71,14 +72,16 @@ const Slider = ({
                 </div>
                 <div className="flex flex-col justify-start gap-3 w-[60%] h-full px-5">
                   <Link href="/">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.tr_title}</h5>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.title_tr}</h5>
                   </Link>
-                  <p
+
+                  <MarkdownContent
+                    content={blog.content_tr.slice(0, 200)}
                     className={cn('pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-[14px]', {
                       'pl-4 pr-0': mirror,
                     })}
-                    dangerouslySetInnerHTML={{ __html: `${blog.tr_content.slice(0, 150)}...` }}
-                  ></p>
+                  />
+
                   <Link href={`/blog/${blog.slug}`}>
                     <Button type={'button'} title={'Read More'} variant={'primary'}>
                       Şimdi Oku

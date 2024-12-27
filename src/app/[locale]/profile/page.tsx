@@ -29,6 +29,7 @@ import { BlindServices } from '@/services/manager';
 import { ProfileInfoResponse, RelationInfoRequest } from '@/services/type';
 import { base64ImageAtom, profileInfoAtom } from '@/stores';
 import { DesiredPartnerFocus, LoveAspectToAnalyze, PerceivedImportance, RelationDuration } from '@/types/enum';
+import { formatDate } from '@/utils/formatDate';
 
 interface FormInfo {
   fullName: string;
@@ -135,13 +136,18 @@ export default function ProfilePage() {
 
   return (
     <AppLayout>
-      <Container className="pb-0 md:pb-28 pt-16 md:pt-24">
+      <Container className="pb-0 md:pb-20 pt-16 md:pt-24">
         <div className="flex flex-col gap-4 md:gap-12 md:px-16 py-12 rounded-lg">
           <div className="flex gap-5 justify-between items-center">
             <div className="flex flex-col gap-2">
               <h1 className="text-start text-2xl font-semibold">Profil</h1>
               <p className="text-gray-600 text-[12px]">Bu sizin genel görünümünüz..</p>
-              <p className="text-gray-600 text-[12px]">Son Güncelleme: [date]</p>
+              <p className="text-gray-600 text-[12px]">
+                Son Güncelleme:{' '}
+                {info?.updatedAt
+                  ? formatDate(info?.updatedAt, { locale: 'tr-TR' })
+                  : formatDate(info?.createdAt as string, { locale: 'tr-TR' })}
+              </p>
             </div>
             <div id="change out" className="flex justify-center items-end flex-col md:flex-row gap-2 w-full md:w-2/5">
               <UpdatePassword

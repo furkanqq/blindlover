@@ -3,9 +3,13 @@ import { Metadata } from 'next';
 
 import './globals.css';
 
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
+import { notFound } from 'next/navigation';
 
 import AdSense from '@/components/AdSense';
+import { Locale, routing } from '@/i18n/routing';
 import Providers from '@/provider';
 import { AuthProvider } from '@/provider/Auth';
 
@@ -21,9 +25,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  const { locale } = await params;
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as Locale)) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <AdSense pId={'9281616897705500'} />
         <meta name="google-adsense-account" content="ca-pub-9281616897705500" />
@@ -35,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={inter.className}>
         <Providers>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+          </AuthProvider>
         </Providers>
       </body>
     </html>

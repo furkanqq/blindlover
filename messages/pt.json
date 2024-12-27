@@ -1,0 +1,35 @@
+{
+  "LandingPage": {
+    "banner": {
+      "button": "Começar o Teste",
+      "subtitle": "Quer descobrir o quão forte é o seu relacionamento ou medir o interesse de alguém que você gosta? Descubra nosso teste cheio de diversão e descubra sua porcentagem de amor agora mesmo!",
+      "title": "Criamos a Forma Mais Divertida de Descobrir o Amor para Você!"
+    },
+    "header": {
+      "profile": "Perfil",
+      "login": "Entrar",
+      "test": "Começar o Teste",
+      "lang": "Idioma",
+      "register": "Registrar"
+    },
+    "cardSection": {
+      "main_title": "Por Que Escolher-nos?",
+      "first_card": {
+        "title": "Divertido e Fácil",
+        "desc": "Não é necessário análises complexas. Basta responder às perguntas e obter o resultado."
+      },
+      "second_card": {
+        "title": "Qual É a Sua Porcentagem de Amor?",
+        "desc": "Com análise baseada em IA, descubra o quanto seu parceiro ou crush está interessado em você, em porcentagem."
+      },
+      "third_card": {
+        "title": "Testes Para Todas as Idades",
+        "desc": "Seja 19, 30 ou 64 anos, aproveite perguntas personalizadas para a sua idade e status de relacionamento."
+      },
+      "fourth_card": {
+        "title": "Disponível em Mobile e Web",
+        "desc": "Faça seu teste em qualquer dispositivo e compartilhe o resultado com seus amigos!"
+      }
+    }
+  }
+}

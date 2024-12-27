@@ -50,11 +50,11 @@ export default function BlogPage() {
             {currentBlogs.map((blog, index) => (
               <BlogCard
                 key={index}
-                title={blog.tr_title}
-                desc={blog.tr_content.slice(0, 100)}
+                title={blog.title_tr}
+                desc={blog.content_tr.slice(0, 100)}
                 image={'/blog.png'}
                 link={blog.slug}
-                date={blog.date_updated ? blog.date_updated : blog.date_created}
+                date={blog.date_created && blog.date_created}
               />
             ))}
           </div>
