@@ -1,9 +1,43 @@
 {
+  "AboutPage": {
+    "banner": {
+      "title": "À Propos de Nous",
+      "subtitle": "Mesurez la puissance de votre amour avec notre test."
+    },
+    "firstSection": {
+      "title": "Y a-t-il une formule pour mesurer l'amour ?",
+      "desc": "Nous le pensons ! BlindLover est là pour vous aider à trouver les réponses aux questions que vous vous posez sur votre relation ou sur la personne qui vous plaît. Que vous testiez votre amour pour votre partenaire ou découvriez l'intérêt de votre crush pour vous, BlindLover vous offre un voyage amusant.",
+      "desc_two": "Nos tests analysent vos réponses grâce à la puissance de l'IA et vous présentent des résultats personnalisés. Votre score d'amour en pourcentage vous est livré avec des commentaires amusants. Nous sommes conçus pour ceux qui veulent évaluer les relations de manière ludique et interactive !",
+      "button": "Commencez maintenant !"
+    },
+    "secondSection": {
+      "title": "Que proposons-nous ?",
+      "first": "Tests amusants et personnalisés : Découvrez votre pourcentage d'amour grâce à des questions conçues juste pour vous.",
+      "second": "Analyses assistées par IA : Nous analysons vos réponses pour vous fournir les résultats les plus précis.",
+      "third": "Accès mobile et web : Participez facilement aux tests via l'application et le web.",
+      "fourth": "Adapté à tous les âges et situations : Une jeune relation, un lien de longue durée, ou peut-être juste un crush ? Nous sommes prêts pour tout."
+    },
+    "thirdSection": {
+      "title": "Découvrez BlindLover !",
+      "desc": "Pour tester votre amour, vous amuser un peu et peut-être en apprendre davantage sur votre relation, BlindLover est le bon endroit. Répondez aux questions, obtenez vos résultats et découvrez le niveau d'amour dans votre vie. N'oubliez pas, chaque amour est un voyage, mais nous rendons ce voyage beaucoup plus amusant !"
+    },
+    "fourthSection": {
+      "title": "À quel point t'aime-t-il/elle ?",
+      "desc": "La Réponse est chez Nous !",
+      "button": "Commencez maintenant !",
+      "button_two": "Inscrivez-vous"
+    }
+  },
+  "BlogPage": {
+    "title": "Bienvenue sur le Blog",
+    "subtitle": "Découvrez les dernières mises à jour et opinions",
+    "read_more": "Lisez maintenant"
+  },
   "LandingPage": {
     "banner": {
-      "button": "Commencer le Test",
-      "subtitle": "Voulez-vous savoir à quel point votre relation est forte ou mesurer l'intérêt de quelqu'un qui vous plaît ? Découvrez notre test amusant et découvrez votre pourcentage d'amour dès maintenant !",
-      "title": "Nous Avons Conçu la Façon la Plus Amusante de Découvrir l'Amour Rien Que pour Vous !"
+      "button": "Commencez le Test",
+      "subtitle": "Voulez-vous savoir à quel point votre relation est forte ou mesurer l'intérêt de la personne qui vous plaît ? Découvrez notre test plein de fun et apprenez votre pourcentage d'amour !",
+      "title": "Nous avons conçu la manière la plus amusante de découvrir l'amour pour vous !"
     },
     "header": {
       "profile": "Profil",
@@ -13,23 +47,85 @@
       "register": "S'inscrire"
     },
     "cardSection": {
-      "main_title": "Pourquoi Nous Choisir?",
+      "main_title": "Pourquoi Nous Choisir ?",
       "first_card": {
         "title": "Amusant et Facile",
-        "desc": "Pas besoin d'analyses complexes. Répondez simplement aux questions et découvrez le résultat."
+        "desc": "Pas besoin d'analyses complexes. Répondez simplement aux questions et voyez le résultat."
       },
       "second_card": {
-        "title": "Quel Est Votre Pourcentage d'Amour?",
-        "desc": "Avec une analyse basée sur l'IA, découvrez l'intérêt que votre partenaire ou votre coup de cœur vous porte, exprimé en pourcentage."
+        "title": "Quel est votre pourcentage d'amour ?",
+        "desc": "Grâce à l'analyse alimentée par l'IA, découvrez le pourcentage d'intérêt que votre partenaire ou béguin a pour vous."
       },
       "third_card": {
-        "title": "Des Tests Pour Tous Les Âges",
-        "desc": "Que vous ayez 19, 30 ou 64 ans, profitez de questions adaptées à votre âge et à votre situation relationnelle."
+        "title": "Tests Adaptés à Tous les Âges",
+        "desc": "Que vous ayez 19, 30 ou 64 ans. Des questions personnalisées pour tous les âges et statuts relationnels."
       },
       "fourth_card": {
-        "title": "Disponible sur Mobile et Web",
-        "desc": "Faites votre test sur n'importe quel appareil et partagez le résultat avec vos amis!"
+        "title": "À la fois Mobile et Web",
+        "desc": "Faites le test sur n'importe quel appareil. Partagez les résultats avec vos amis !"
       }
-    }
+    },
+    "headerSection": {
+      "title": "Comment fonctionne Blindlover ?",
+      "one": "Avez-vous un partenaire ou non ? Sélectionnez votre statut relationnel !",
+      "two": "Répondez aux 50 questions amusantes de la catégorie !",
+      "three": "Laissez notre IA analyser vos réponses pour mesurer votre amour !",
+      "four": "Découvrez votre pourcentage d'amour et explorez des commentaires amusants sur votre relation !"
+    },
+    "ctaSection": {
+      "title": "À quel point vous aime-t-il ? DÉCOUVREZ MAINTENANT !",
+      "desc": "Participez au test pour découvrir à quel point votre partenaire ou béguin vous aime. Téléchargez l'application ou continuez ici !",
+      "button": "COMMENCEZ MAINTENANT !",
+      "nav": "Ou téléchargez notre application mobile !"
+    },
+    "slider_title": "Des idées amusantes et douces pour ajouter plus d'amour à votre amour !",
+    "slider_title_two": "Films et Séries à Regarder avec ton Amour",
+    "faq": "FAQ",
+    "faq_long": "Questions Fréquemment Posées",
+    "footer": {
+      "desc": "La manière la plus amusante de découvrir l'amour !",
+      "about_us": "À Propos",
+      "test": "Test d'Amour",
+      "blog": "Blog",
+      "contact": "Contactez-Nous",
+      "faq": "FAQ",
+      "privacy": "Politique de Confidentialité",
+      "cookie": "Politique de Cookies",
+      "terms": "Conditions Générales",
+      "rights": "Tous droits réservés.",
+      "mail": "hello@blindlover.com"
+    },
+    "see_all": "Voir Tout"
+  },
+  "PanelPage": {
+    "title": "Découvrez la Compatibilité",
+    "subtitle": "Êtes-vous Prêt à Découvrir la Force de Votre Lien ?",
+    "desc": "Ce test est conçu pour vous aider à explorer la compatibilité entre vous et la personne à laquelle vous pensez ! Avec 5 catégories : État Général de la Relation, Connexion Émotionnelle, Loyauté et Confiance, Gestes Romantiques, Amusement et Habitudes Quotidiennes, ce test ludique de 50 questions vous aidera à comprendre la profondeur de votre relation. En répondant aux questions, prenez en compte votre relation avec la personne en question. Les résultats révéleront votre niveau de compatibilité et mettront en avant les forces de votre relation. Si vous êtes prêt, faites ce test pour découvrir les dynamiques entre vous et cartographier votre relation. Qui sait, ce voyage pourrait vous rapprocher encore plus !",
+    "button": "Commencer le Test",
+    "about_test": "À Propos du Test",
+    "last_test": "Historique des Tests",
+    "test_result": "Résultat du Test",
+    "no_found": "Aucun Historique de Test Trouvé.",
+    "info_title": "Remplissez les Détails de la Relation",
+    "info_desc": "Pour commencer le test, vous devez remplir les questions dans la section Détails de la Relation de votre profil. Veuillez d'abord compléter ces informations.",
+    "info_nav": "Aller au Profil"
+  },
+  "ResultPage": {
+    "rate": "Votre Taux de Compatibilité",
+    "GENERAL_RELATION_STATUS": "STATUT GÉNÉRAL DE LA RELATION",
+    "EMOTIONAL_ATTACHMENT": "ATTACHEMENT ÉMOTIONNEL",
+    "LOYALTY_AND_TRUST": "LOYAUTÉ ET CONFIANCE",
+    "ROMANTIC_BEHAVIOR": "COMPORTEMENTS ROMANTIQUES",
+    "FUN_AND_DAILY_HABITS": "DIVERTISSEMENT ET HABITUDES QUOTIDIENNES",
+    "click": "Appuyez sur l'écran et continuez",
+    "ai_comment": "COMMENTAIRE DE L'INTELLIGENCE ARTIFICIELLE",
+    "NO": "NON",
+    "YES": "OUI",
+    "EMPTY": "VIDE",
+    "next": "Suivant",
+    "back": "Retour",
+    "created": "Ces questions ont été créées avec",
+    "back_to_home": "Retour à la page d'accueil",
+    "thanks": "Vous avez réussi le test. La page des résultats sera envoyée à votre adresse e-mail. Merci."
   }
 }

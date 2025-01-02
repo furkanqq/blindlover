@@ -1,4 +1,38 @@
 {
+  "AboutPage": {
+    "banner": {
+      "title": "Hakkımızda",
+      "subtitle": "Sevginizin gücünü, testimizle ölçün."
+    },
+    "firstSection": {
+      "title": "Aşkı Ölçmenin Formülü Var mı?",
+      "desc": "Bizce var! BlindLover, ilişkilerinize veya hoşlandığınız kişiye dair o merak ettiğiniz soruların cevabını bulmanıza yardımcı olmak için burada. İster sevgilinize olan aşkını test edin, ister hoşlandığınız kişinin size olan ilgisini keşfedin; BlindLover, size eğlenceli bir yolculuk sunar.",
+      "desc_two": "Testlerimiz, yapay zekanın gücüyle analiz edilerek size özel sonuçlar sunar. Yüzdelik aşk skorunuz, eğlenceli yorumlarla birlikte size sunulur. İlişkileri eğlenceli ve interaktif bir şekilde değerlendirmek isteyenler için tasarlandık!",
+      "button": "Hemen Başla!"
+    },
+    "secondSection": {
+      "title": "Ne Sunuyoruz?",
+      "first": "Eğlenceli ve Kişisel Testler: Sadece size özel sorularla, aşk yüzdesini keşfetmenin keyfini çıkarın.",
+      "second": "Yapay Zeka Destekli Analizler: Yanıtlarınızı analiz ederek size en doğru sonuçları sunuyoruz.",
+      "third": "Mobil ve Web Erişimi: Hem uygulama hem de web üzerinden kolayca testlere katılabilirsiniz.",
+      "fourth": "Her Yaşa ve Duruma Uygun: Genç bir ilişki mi, uzun yıllara dayanan bir bağ mı? Ya da belki sadece hoşlandığınız bir kişi var? Hepsi için biz hazırız."
+    },
+    "thirdSection": {
+      "title": "Blindlover’ı Keşfet!",
+      "desc": "Aşkınızı test etmek, biraz eğlenmek ve belki de ilişkiniz hakkında daha fazla şey öğrenmek için BlindLover doğru yer. Cevaplarınızı verin, sonuçlarınızı alın ve hayatınızdaki aşkın seviyesini öğrenin. Unutmayın, her aşk bir yolculuktur, ama biz bu yolculuğu çok daha eğlenceli hale getiriyoruz!"
+    },
+    "fourthSection": {
+      "title": "Seni Ne Kadar Seviyor?",
+      "desc": "Cevabı Bizde!",
+      "button": "Hemen Başla!",
+      "button_two": "Kayıt Ol"
+    }
+  },
+  "BlogPage": {
+    "title": "Blog'a Hoş Geldiniz",
+    "subtitle": "En son güncellemeleri ve görüşleri keşfedin",
+    "read_more": "Şimdi oku"
+  },
   "LandingPage": {
     "banner": {
       "button": "Teste Başla",
@@ -30,6 +64,68 @@
         "title": "Hem Mobil Hem Web",
         "desc": "İstediğin cihazda hemen testini yap. Çıkan sonucu arkadaşlarınla paylaş!"
       }
-    }
+    },
+    "headerSection": {
+      "title": "Blindlover Nasıl Çalışıyor?",
+      "one": "Sevgilin var mı, yok mu? İlişki durumunu seç!",
+      "two": "Kategorideki toplam 50 eğlenceli soruyu yanıtla!",
+      "three": "Yapay zekamız aşkını ölçmek için yanıtlarını analiz etsin!",
+      "four": "Aşk yüzdeni öğren ve ilişkin hakkında eğlenceli yorumları keşfet!"
+    },
+    "ctaSection": {
+      "title": "Seni Ne Kadar Seviyor? HEMEN ÖĞREN!",
+      "desc": "Sevgilin ya da hoşlandığın kişi seni ne kadar seviyor öğrenmek için teste katıl. Uygulamayı indir ya da burada devam et!",
+      "button": "HEMEN BAŞLA!",
+      "nav": "Ya da mobil uygulamamızı indir!"
+    },
+    "slider_title": "AŞK’ına AŞK Katacak Öneriler ve Eğlenceli Fikirler",
+    "slider_title_two": "AŞK’ınla İzlenecek Film ve Diziler",
+    "faq": "SSS",
+    "faq_long": "Sıkça Sorulan Sorular",
+    "footer": {
+      "desc": "Aşkı Keşfetmenin En Eğlenceli Hali!",
+      "about_us": "Hakkımızda",
+      "test": "Aşk Testi",
+      "blog": "Blog",
+      "contact": "Bize Ulaşın",
+      "faq": "SSS",
+      "privacy": "Gizlilik Politikası",
+      "cookie": "Çerez Politikası",
+      "terms": "Şartlar ve Koşullar",
+      "rights": "Tüm hakları saklıdır.",
+      "mail": "hello@blindlover.com"
+    },
+    "see_all": "Tümünü Gör"
+  },
+  "PanelPage": {
+    "title": "Uyumluluğu Keşfet",
+    "subtitle": "Bağınızın Ne Kadar Güçlü Olduğunu Öğrenmeye Hazır mısınız?",
+    "desc": "Bu test, siz ve düşündüğünüz kişi arasındaki uyumu keşfetmenize yardımcı olmak için tasarlanmıştır! Genel İlişki Durumu, Duygusal Bağlantı, Sadakat ve Güven, Romantik Jestler, Eğlence ve Günlük Alışkanlıklar olmak üzere 5 kategori içeren bu eğlenceli test, ilişkinizin derinliğini anlamanıza yardımcı olacak 50 sorudan oluşmaktadır. Soruları cevaplarken, aklınızdaki kişiyle olan ilişkinizi göz önünde bulundurun. Sonuçlar, uyum seviyenizi gösterecek ve ilişkinizin güçlü yönlerini öne çıkaracaktır. Hazırsanız, bu testi yaparak aranızdaki dinamikleri ortaya çıkarabilir ve ilişkinizi haritalandırabilirsiniz. Kim bilir, bu yolculuk sizi birbirinize daha da yakınlaştırabilir!",
+    "button": "Teste Başla",
+    "about_test": "Test Hakkında",
+    "last_test": "Test Geçmişi",
+    "test_result": "Test Sonucu",
+    "no_found": "Test Geçmişi Bulunmamaktadır.",
+    "info_title": "İlişki Bilgilerini Doldur",
+    "info_desc": "Teste başlayabilmeniz için, profilinizdeki İlişki bilgileri bölümündeki soruları doldurmanız gerekmektedir. Lütfen önce bu bilgileri tamamlayın.",
+    "info_nav": "Profile Git"
+  },
+  "ResultPage": {
+    "rate": "Uyumluluk Oranınız",
+    "GENERAL_RELATION_STATUS": "GENEL İLİŞKİ DURUMU",
+    "EMOTIONAL_ATTACHMENT": "DUYGUSAL BAĞLILIK",
+    "LOYALTY_AND_TRUST": "SADAKAT VE GÜVEN",
+    "ROMANTIC_BEHAVIOR": "ROMANTİK DAVRANIŞLAR",
+    "FUN_AND_DAILY_HABITS": "EĞLENCE VE GÜNLÜK ALIŞKANLIKLAR",
+    "click": "Ekrana bas ve ilerle",
+    "ai_comment": "YAPAY ZEKA YORUMU",
+    "NO": "HAYIR",
+    "YES": "EVET",
+    "EMPTY": "BOŞ",
+    "next": "İleri",
+    "back": "Geri",
+    "created": "Bu sorular Blindlover ile oluşturulmuştur",
+    "back_to_home": "Ana sayfaya dön",
+    "thanks": "Testi Başarıyla Tamamladınız. Sonuç Sayfası Mailinize Gönderilecektir. Teşekkür Ederiz."
   }
 }

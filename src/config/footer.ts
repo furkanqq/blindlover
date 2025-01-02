@@ -2,15 +2,15 @@ export const FooterConfig = [
   {
     section: [
       {
-        title: 'Hakkımızda',
+        title: 'about_us',
         link: '/about',
       },
       {
-        title: 'Aşk Testi',
+        title: 'test',
         link: '/panel',
       },
       {
-        title: 'Blog',
+        title: 'blog',
         link: '/blog',
       },
     ],
@@ -18,15 +18,15 @@ export const FooterConfig = [
   {
     section: [
       {
-        title: 'Gizlilik Politikası',
+        title: 'privacy',
         link: '/privacy-policy',
       },
       {
-        title: 'Çerez Politikası',
+        title: 'cookie',
         link: '/cookie-policy',
       },
       {
-        title: 'Şartlar ve Koşullar',
+        title: 'terms',
         link: '/terms-of-use',
       },
     ],
@@ -34,15 +34,15 @@ export const FooterConfig = [
   {
     section: [
       {
-        title: 'Bize Ulaşın',
+        title: 'contact',
         link: 'mailto:hello@blindlover.com',
       },
       {
-        title: 'SSS',
-        link: '/faqs',
+        title: 'faq',
+        link: '/faq',
       },
       {
-        title: 'hello@blindlover.com',
+        title: 'mail',
         link: 'mailto:hello@blindlover.com',
       },
     ],

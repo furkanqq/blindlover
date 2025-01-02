@@ -1,57 +1,81 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import { usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
 import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
 import { BlindServices } from '@/services/manager';
-import { QuestionResult } from '@/services/type';
+import { AiResultResponse, AiResultResponseLanguages, QuestionResult } from '@/services/type';
 import { resultAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
 export default function ResultPage() {
   const [result] = useAtom(resultAtom);
-  const pathname = usePathname();
+  const { slug } = useParams();
+  const t = useTranslations('ResultPage');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const locale = useLocale();
+  const [country, setCountry] = useState<string>('');
 
   useEffect(() => {
-    BlindServices.QuestionResult(pathname.slice(8));
-  }, [pathname]);
+    if (locale === 'tr') {
+      setCountry('turkish');
+    } else if (locale === 'en') {
+      setCountry('english');
+    } else if (locale === 'fr') {
+      setCountry('french');
+    } else if (locale === 'es') {
+      setCountry('spanish');
+    } else if (locale === 'ru') {
+      setCountry('russian');
+    } else if (locale === 'pt') {
+      setCountry('portuguese');
+    }
+  }, [locale]);
+
+  useEffect(() => {
+    BlindServices.QuestionResult(slug as string);
+  }, [slug]);
 
   if (!result) {
     return <LoadingScreen />;
   }
+
+  const localKey = `${country}` as keyof AiResultResponseLanguages;
   return (
     <React.Fragment>
       {currentIndex === 7 ? (
         <AppLayout type="detail">
-          <ResultContainer result={result} />
+          <ResultContainer result={result} country={country} />
         </AppLayout>
       ) : (
-        <div className="relative h-screen bg-primaryColor cursor-pointer">
+        <div className="relative h-screen overflow-hidden bg-primaryColor cursor-pointer">
           <div className="z-[0] absolute bg-[url(/heartPattern1.png)] h-full w-full animate-jump animate-infinite animate-duration-[8000ms] animate-ease-linear"></div>
           <div
             className={cn(
               'absolute p-4 opacity-20 top-20 transition-transform duration-500 rounded-md border-2 border-solid border-white font-semibold text-lg text-white',
               {
-                'translate-x-[80vw]': currentIndex % 2 === 0,
+                'translate-x-[70vw]': currentIndex % 2 === 0,
                 'translate-x-[10vw]': currentIndex % 2 !== 0,
               }
             )}
           >
-            Ekrana bas ve ilerle
+            {t('click')}
           </div>
           {currentIndex === 0 && (
             <div
               className="relative z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(1)}
             >
-              <h1 className="text-[40px]">Uyumluluk Oranınız</h1>
-              <h2 className="text-[200px] font-extrabold">{result.aiResultResponse.turkish.lovePercentage}</h2>
-              <h3>Partnerinizle harika bir uyum içindesiniz!</h3>
+              <h1 className="text-[40px]">{t('rate')}</h1>
+              <h2 className="text-[200px] font-extrabold">
+                {' '}
+                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
+              </h2>
             </div>
           )}
           {currentIndex === 1 && (
@@ -59,9 +83,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(2)}
             >
-              <h1 className="text-[40px]">GENEL İLİŞKİ DURUMU</h1>
+              <h1 className="text-[40px]">{t('GENERAL_RELATION_STATUS')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.generalRelationStatus}
               </h2>
             </div>
           )}
@@ -70,9 +94,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(3)}
             >
-              <h1 className="text-[40px]">DUYGUSAL BAĞLILIK</h1>
+              <h1 className="text-[40px]">{t('EMOTIONAL_ATTACHMENT')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.emotionalAttachment}
               </h2>
             </div>
           )}
@@ -81,9 +105,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(4)}
             >
-              <h1 className="text-[40px]">SADAKAT VE GÜVEN</h1>
+              <h1 className="text-[40px]">{t('LOYALTY_AND_TRUST')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.loyaltyAndTrust}
               </h2>
             </div>
           )}
@@ -92,9 +116,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(5)}
             >
-              <h1 className="text-[40px]">ROMANTİK DAVRANIŞLAR</h1>
+              <h1 className="text-[40px]">{t('ROMANTIC_BEHAVIOR')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.romanticBehavior}
               </h2>
             </div>
           )}
@@ -103,9 +127,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(6)}
             >
-              <h1 className="text-[40px]">EĞLENCE VE GÜNLÜK ALIŞKANLIKLAR</h1>
+              <h1 className="text-[40px]">{t('FUN_AND_DAILY_HABITS')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.funAndDailyHabits}
               </h2>
             </div>
           )}
@@ -114,9 +138,9 @@ export default function ResultPage() {
               className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
               onClick={() => setCurrentIndex(7)}
             >
-              <h1 className="text-[40px]">YAPAY ZEKA YORUMU</h1>
+              <h1 className="text-[40px]">{t('ai_comment')}</h1>
               <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {result.aiResultResponse.turkish.comment}
+                {(result.aiResultResponse[localKey] as AiResultResponse).comment}
               </h2>
             </div>
           )}
@@ -126,8 +150,9 @@ export default function ResultPage() {
   );
 }
 
-const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
+const ResultContainer = ({ result, country }: { result: QuestionResult['data']; country: string }) => {
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
+  const t = useTranslations('ResultPage');
 
   const observer = useRef<IntersectionObserver | null>(null); // IntersectionObserver türünü belirt
 
@@ -155,73 +180,73 @@ const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
       observer.current = null; // Bellek sızıntısını önlemek için sıfırla
     };
   }, []);
+  const localKey = `${country}` as keyof AiResultResponseLanguages;
 
   return (
     <Container className="pt-24 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6">
       {[
         {
           id: 'compatibility',
-          title: 'Uyumluluk Oranınız',
+          title: 'rate',
           content: (
             <>
               <h2 className="relative z-[1] text-5xl md:text-[80px] font-extrabold">
-                {result.aiResultResponse.turkish.lovePercentage}
+                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
               </h2>
-              <h3 className="relative z-[1] text-xs">Partnerinizle harika bir uyum içindesiniz!</h3>
             </>
           ),
         },
         {
           id: 'generalRelationStatus',
-          title: 'GENEL İLİŞKİ DURUMU',
+          title: 'GENERAL_RELATION_STATUS',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.answerCategoryAnalysis.generalRelationStatus}
+              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.generalRelationStatus}
             </h2>
           ),
         },
         {
           id: 'emotionalAttachment',
-          title: 'DUYGUSAL BAĞLILIK',
+          title: 'EMOTIONAL_ATTACHMENT',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.answerCategoryAnalysis.emotionalAttachment}
+              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.emotionalAttachment}
             </h2>
           ),
         },
         {
           id: 'loyaltyAndTrust',
-          title: 'SADAKAT VE GÜVEN',
+          title: 'LOYALTY_AND_TRUST',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.answerCategoryAnalysis.loyaltyAndTrust}
+              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.loyaltyAndTrust}
             </h2>
           ),
         },
         {
           id: 'romanticBehavior',
-          title: 'ROMANTİK DAVRANIŞLAR',
+          title: 'ROMANTIC_BEHAVIOR',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.answerCategoryAnalysis.romanticBehavior}
+              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.romanticBehavior}
             </h2>
           ),
         },
         {
           id: 'funAndDailyHabits',
-          title: 'EĞLENCE VE GÜNLÜK ALIŞKANLIKLAR',
+          title: 'FUN_AND_DAILY_HABITS',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.answerCategoryAnalysis.funAndDailyHabits}
+              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.funAndDailyHabits}
             </h2>
           ),
         },
         {
           id: 'aiComment',
-          title: 'YAPAY ZEKA YORUMU',
+          title: 'ai_comment',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {result.aiResultResponse.turkish.comment}
+              {(result.aiResultResponse[localKey] as AiResultResponse).comment}
             </h2>
           ),
         },
@@ -254,7 +279,7 @@ const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
           {id !== 'compatibility' && (
             <div className="absolute w-full h-full bg-[url(/heartPattern1.png)] bg-cover opacity-40"></div>
           )}
-          <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{title}</h1>
+          <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{t(title)}</h1>
           {content}
           <hr />
         </div>

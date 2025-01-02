@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
+import { Link } from '@/i18n/routing';
 import { deleteAuthTokenToHeader } from '@/services/helper';
 import { BlindServices } from '@/services/manager';
 

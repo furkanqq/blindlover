@@ -1,9 +1,10 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+import { Link } from '@/i18n/routing';
 import { DirectusServices } from '@/services/manager';
 import { blogListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
@@ -24,6 +25,8 @@ const Slider = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blogList] = useAtom(blogListAtom);
+  const locale = useLocale();
+  const t = useTranslations('BlogPage');
 
   useEffect(() => {
     DirectusServices.BlogList();
@@ -53,45 +56,54 @@ const Slider = ({
         </h2>
         {/* Carousel Wrapper */}
         <div className="relative h-56 overflow-hidden rounded-lg md:h-72">
-          {blogList.slice(startIndex, endIndex).map((blog, index) => (
-            <div
-              key={blog.id}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
-              }`}
-            >
+          {blogList.slice(startIndex, endIndex).map((blog, index) => {
+            const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
+            const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
+            return (
               <div
-                className={cn('flex relative bg-white h-full w-full', {
-                  'flex-row-reverse': mirror,
-                })}
+                key={blog.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
+                }`}
               >
-                <div className="relative w-[40%] h-full">
-                  <Link href={'/'}>
-                    <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
-                  </Link>
-                </div>
-                <div className="flex flex-col justify-start gap-3 w-[60%] h-full px-5">
-                  <Link href="/">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog.title_tr}</h5>
-                  </Link>
+                <div
+                  className={cn('flex relative bg-white h-full w-full', {
+                    'flex-row-reverse': mirror,
+                  })}
+                >
+                  <div className="relative w-[40%] h-full">
+                    <Link href={'/'}>
+                      <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
+                    </Link>
+                  </div>
+                  <div className="flex flex-col justify-start gap-3 w-[60%] h-full px-5">
+                    <Link href="/">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog[titleKey]}</h5>
+                    </Link>
 
-                  <MarkdownContent
-                    content={blog.content_tr.slice(0, 200)}
-                    className={cn('pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-[14px]', {
-                      'pl-4 pr-0': mirror,
-                    })}
-                  />
+                    <MarkdownContent
+                      content={blog[descKey].toString().slice(0, 200)}
+                      className={cn('pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-[14px]', {
+                        'pl-4 pr-0': mirror,
+                      })}
+                    />
 
-                  <Link href={`/blog/${blog.slug}`}>
-                    <Button type={'button'} title={'Read More'} variant={'primary'}>
-                      Şimdi Oku
-                      <ArrowRightIcon width={16} height={16} />
-                    </Button>
-                  </Link>
+                    <Link
+                      href={{
+                        pathname: '/blog/[slug]',
+                        params: { slug: blog.slug },
+                      }}
+                    >
+                      <Button type={'button'} title={'Read More'} variant={'primary'}>
+                        {t('read_more')}
+                        <ArrowRightIcon width={16} height={16} />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         {/* Indicators */}
         <div className="absolute flex justify-center space-x-3 bottom-4 left-1/2 transform -translate-x-1/2">

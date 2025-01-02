@@ -1,9 +1,12 @@
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { FooterConfig } from '@/config/footer';
 
 const Footer = () => {
+  const locale = useLocale();
+  const t = useTranslations('LandingPage');
   return (
     <div className="relative mt-20 md:mt-32 bg-backgroundColor">
       <svg
@@ -19,11 +22,11 @@ const Footer = () => {
       <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="grid gap-4 row-gap-10 mb-8 lg:grid-cols-6">
           <div className="md:max-w-md lg:col-span-2">
-            <Link href="/" aria-label="Go home" title="Company" className="inline-flex items-center">
+            <Link href={`/${locale}`} aria-label="Go home" title="Company" className="inline-flex items-center">
               <Image src={'/blindlover.png'} alt="logo" width={200} height={40} />
             </Link>
             <div className="mt-4 lg:max-w-sm">
-              <p className="text-sm text-deep-purple-50">Aşkı Keşfetmenin En Eğlenceli Hali!</p>
+              <p className="text-sm text-deep-purple-50">{t('footer.desc')}</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6 row-gap-8 lg:col-span-4 md:grid-cols-3">
@@ -33,10 +36,10 @@ const Footer = () => {
                   {footerItem.section.map((item, index) => (
                     <li key={index}>
                       <Link
-                        href={item.link}
+                        href={`/${locale}${item.link}`}
                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                       >
-                        {item.title}
+                        {t(`footer.${item.title}`)}
                       </Link>
                     </li>
                   ))}
@@ -60,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
-          <p className="text-sm text-foreground">2024 © http://blindlover.com Tüm hakları saklıdır.</p>
+          <p className="text-sm text-foreground">2024 © http://blindlover.com {t('footer.rights')}</p>
           <div className="flex items-center mt-4 space-x-4 sm:mt-0">
             <Link
               href="https://www.instagram.com/blind.lover_1/"

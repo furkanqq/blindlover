@@ -1,8 +1,9 @@
 'use client';
 
 import { useAtom } from 'jotai';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 import AppLayout from '@/components/AppLayout';
@@ -14,25 +15,28 @@ import { blogAtom } from '@/stores';
 import { formatDate } from '@/utils/formatDate';
 
 export default function BlogDetail() {
-  const pathname = usePathname();
+  const { slug } = useParams();
   const [blog] = useAtom(blogAtom);
+  const locale = useLocale();
 
   useEffect(() => {
-    DirectusServices.Blog(pathname.slice(6));
+    DirectusServices.Blog(slug as string);
   }, []);
 
   if (!blog) {
     return <LoadingScreen />;
   }
 
+  const titleKey = `title_${locale}` as keyof typeof blog;
+  const descKey = `content_${locale}` as keyof typeof blog;
   return (
-    <AppLayout type="landing" className="">
+    <AppLayout type="detail" className="">
       <article className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[300px] w-full">
-          <h1 className="text-4xl mt-12 font-bold md:w-[720px]">{blog?.title_tr}</h1>
+          <h1 className="text-4xl mt-12 font-bold md:w-[720px]">{blog[titleKey]}</h1>
           <div className="text-md text-gray-500 mt-4">
-            {blog.date_created && formatDate(blog.date_created, { locale: 'tr-TR' })}
+            {blog.date_created && formatDate(blog.date_created, { locale: `${locale}-${locale.toUpperCase}` })}
           </div>
         </div>
 
@@ -43,7 +47,7 @@ export default function BlogDetail() {
             </div>
           </div>
           {/* <div className="px-2 md:px-32 text-[20px]">{blog?.content_tr}</div> */}
-          <MarkdownContent content={blog?.content_tr} />
+          <MarkdownContent content={blog[descKey] as string} />
         </Container>
       </article>
     </AppLayout>

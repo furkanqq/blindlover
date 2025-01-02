@@ -1,19 +1,21 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
+import { Link } from '@/i18n/routing';
 import { FAQTypes } from '@/types/types';
 import Button from '../Button';
 import { Container } from '../Container';
 
 const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) => {
+  const t = useTranslations('LandingPage');
   return (
     <Container>
       <div className="relative w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:mx-auto sm:max-w-full sm:rounded-lg sm:px-10">
         <div className="mx-auto px-5">
           {type !== 'faqs' && (
             <div className="flex flex-col items-center">
-              <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">SSS</h2>
-              <p className="mt-3 text-lg text-neutral-500 md:text-xl">Sıkça sorulan sorular</p>
+              <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">{t('faq')}</h2>
+              <p className="mt-3 text-lg text-neutral-500 md:text-xl">{t('faq_long')}</p>
             </div>
           )}
 
@@ -46,9 +48,9 @@ const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) =
               ))}
             {type === 'landing' && (
               <div className="w-full flex justify-center items-center pt-7">
-                <Link href={'/faqs'}>
+                <Link href={'/faq'}>
                   <Button type={'button'} variant={'primary'} title={'See All'}>
-                    Hepsini Gör
+                    {t('see_all')}
                     <ArrowRightIcon width={14} height={14} />
                   </Button>
                 </Link>

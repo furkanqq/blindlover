@@ -1,35 +1,128 @@
 {
+  "AboutPage": {
+    "banner": {
+      "title": "About Us",
+      "subtitle": "Measure the power of your love with our test."
+    },
+    "firstSection": {
+      "title": "Is There a Formula to Measure Love?",
+      "desc": "We think so! BlindLover is here to help you find answers to the questions you’re curious about regarding your relationship or your crush. Whether you test your love for your partner or discover your crush’s interest in you, BlindLover offers you a fun journey.",
+      "desc_two": "Our tests analyze your answers with the power of AI and present results tailored for you. Your percentage love score is delivered along with fun comments. We’re designed for those who want to evaluate relationships in a fun and interactive way!",
+      "button": "Start Now!"
+    },
+    "secondSection": {
+      "title": "What Do We Offer?",
+      "first": "Fun and Personalized Tests: Enjoy discovering your love percentage with questions tailored just for you.",
+      "second": "AI-Powered Analysis: We analyze your answers to provide you with the most accurate results.",
+      "third": "Mobile and Web Access: Participate in tests easily via both the app and web.",
+      "fourth": "Suitable for All Ages and Situations: A young relationship, a long-term bond, or perhaps just a crush? We’re ready for all."
+    },
+    "thirdSection": {
+      "title": "Discover BlindLover!",
+      "desc": "To test your love, have some fun, and perhaps learn more about your relationship, BlindLover is the right place. Answer the questions, get your results, and discover the level of love in your life. Remember, every love is a journey, but we make this journey much more fun!"
+    },
+    "fourthSection": {
+      "title": "How Much Does They Love You?",
+      "desc": "The Answer is with Us!",
+      "button": "Start Now!",
+      "button_two": "Sign Up"
+    }
+  },
+  "BlogPage": {
+    "title": "Welcome to the Blog",
+    "subtitle": "Discover the latest updates and opinions",
+    "read_more": "Read now"
+  },
   "LandingPage": {
     "banner": {
       "button": "Start the Test",
-      "subtitle": "Do you want to find out how strong your relationship is or measure the interest of someone you like? Discover our fun-filled test and find out your love percentage now!",
-      "title": "We've Designed the Most Fun Way to Discover Love Just for You!"
+      "subtitle": "Do you want to find out how strong your relationship is or measure the interest of the person you like? Discover our fun-filled test now and learn your love percentage!",
+      "title": "We Designed the Most Fun Way to Discover Love for You!"
     },
     "header": {
       "profile": "Profile",
       "login": "Log In",
       "test": "Start the Test",
       "lang": "Language",
-      "register": "Register"
+      "register": "Sign Up"
     },
     "cardSection": {
-      "main_title": "Why Choose Us?",
+      "main_title": "Why Should You Choose Us?",
       "first_card": {
         "title": "Fun and Easy",
-        "desc": "No need for complex analyses. Just answer the questions and get the result."
+        "desc": "No need for complicated analysis. Just answer the questions and see the result."
       },
       "second_card": {
         "title": "What’s Your Love Percentage?",
-        "desc": "With AI-powered analysis, find out how interested your partner or crush is in you, expressed as a percentage."
+        "desc": "With AI-powered analysis, learn the percentage of interest your partner or crush has for you."
       },
       "third_card": {
-        "title": "Tests for All Ages",
-        "desc": "Whether you’re 19, 30, or 64, enjoy customized questions tailored to your age and relationship status."
+        "title": "Tests Suitable for All Ages",
+        "desc": "Whether you’re 19, 30, or 64 years old. Customized questions for all age groups and relationship statuses."
       },
       "fourth_card": {
-        "title": "Available on Mobile and Web",
-        "desc": "Take your test on any device and share the result with your friends!"
+        "title": "Both Mobile and Web",
+        "desc": "Take the test on any device. Share the results with your friends!"
       }
-    }
+    },
+    "headerSection": {
+      "title": "How Does Blindlover Work?",
+      "one": "Do you have a partner or not? Select your relationship status!",
+      "two": "Answer all 50 fun questions in the category!",
+      "three": "Let our AI analyze your answers to measure your love!",
+      "four": "Learn your love percentage and discover fun comments about your relationship!"
+    },
+    "ctaSection": {
+      "title": "How Much Do They Love You? FIND OUT NOW!",
+      "desc": "Join the test to find out how much your partner or crush loves you. Download the app or continue here!",
+      "button": "START NOW!",
+      "nav": "Or download our mobile app!"
+    },
+    "slider_title": "Fun and Sweet Ideas to Add More Love to Your Love!",
+    "slider_title_two": "Movies and Series to Watch with Your Love",
+    "faq": "FAQ",
+    "faq_long": "Frequently Asked Questions",
+    "footer": {
+      "desc": "The Most Fun Way to Discover Love!",
+      "about_us": "About Us",
+      "test": "Love Test",
+      "blog": "Blog",
+      "contact": "Contact Us",
+      "faq": "FAQ",
+      "privacy": "Privacy Policy",
+      "cookie": "Cookie Policy",
+      "terms": "Terms and Conditions",
+      "rights": "All rights reserved.",
+      "mail": "hello@blindlover.com"
+    },
+    "see_all": "See All"
+  },
+  "PanelPage": {
+    "title": "Discover Compatibility",
+    "subtitle": "Are You Ready to Find Out How Strong Your Bond Is?",
+    "desc": "This test is designed to help you explore the compatibility between you and the person in mind! Featuring 5 categories: General Relationship Status, Emotional Connection, Loyalty and Trust, Romantic Gestures, Fun and Daily Habits, this fun test consists of 50 questions that will help you understand the depth of your relationship. While answering the questions, consider your relationship with the person in mind. The results will reveal your compatibility level and highlight the strengths of your relationship. If you're ready, take this test to uncover the dynamics between you and map out your relationship. Who knows, this journey might bring you even closer together!",
+    "button": "Start the Test",
+    "about_test": "About the Test",
+    "last_test": "Test History",
+    "test_result": "Test Result",
+    "no_found": "No Test History Found.",
+    "info_title": "Fill Out Relationship Details",
+    "info_desc": "To start the test, you need to fill out the questions in the Relationship Details section of your profile. Please complete this information first.",
+    "info_nav": "Go to Profile"
+  },
+  "ResultPage": {
+    "rate": "Your Compatibility Rate",
+    "GENERAL_RELATION_STATUS": "GENERAL RELATION STATUS",
+    "EMOTIONAL_ATTACHMENT": "EMOTIONAL ATTACHMENT",
+    "LOYALTY_AND_TRUST": "LOYALTY AND TRUST",
+    "ROMANTIC_BEHAVIOR": "ROMANTIC BEHAVIORS",
+    "FUN_AND_DAILY_HABITS": "FUN AND DAILY HABITS",
+    "click": "Tap the screen and proceed",
+    "ai_comment": "ARTIFICIAL INTELLIGENCE COMMENT",
+    "next": "Next",
+    "back": "Back",
+    "created": "hese questions were created with",
+    "back_to_home": "Back to home",
+    "thanks": "You have successfully completed the test. The results page will be sent to your email. Thank you."
   }
 }

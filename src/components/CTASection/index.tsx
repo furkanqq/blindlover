@@ -1,13 +1,15 @@
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useContext } from 'react';
 
+import { Link } from '@/i18n/routing';
 import { AuthContext } from '@/provider/Auth';
 import Button from '../Button';
 import { Container } from '../Container';
 
 const CTASection = () => {
   const { token } = useContext(AuthContext);
+  const t = useTranslations('LandingPage');
 
   return (
     <Container>
@@ -16,19 +18,16 @@ const CTASection = () => {
           <div className="w-full relative isolate overflow-hidden  border border-solid bg-backgroundColor px-6 pt-16 pb-16 lg:pb-0 rounded-lg sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
               <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Seni Ne Kadar Seviyor? HEMEN ÖĞREN!
+                {t('ctaSection.title')}
               </h2>
-              <p className="mt-6 text-pretty text-lg/8 text-gray-500">
-                Sevgilin ya da hoşlandığın kişi seni ne kadar seviyor öğrenmek için teste katıl. Uygulamayı indir ya da
-                burada devam et!
-              </p>
+              <p className="mt-6 text-pretty text-lg/8 text-gray-500">{t('ctaSection.desc')}</p>
               <div className="mt-10 flex flex-col gap-3 justify-center items-center lg:items-start lg:justify-start">
                 <Link href={token ? '/panel' : '/register'}>
                   <Button variant={'primary'} type={'button'} title={'Lets Start'}>
-                    HEMEN BAŞLA!
+                    {t('ctaSection.button')}
                   </Button>
                 </Link>
-                <div className="text-primaryColor mt-2 text-[12px]">Ya da mobil uygulamamızı indir!</div>
+                <div className="text-primaryColor mt-2 text-[12px]">{t('ctaSection.nav')}</div>
                 <div className="flex gap-2 relative">
                   <Link href={'/'} className="relative h-[50px] w-[120px]">
                     <Image src="/gplaybadge.png" alt="Google Play" fill objectFit="cover" />

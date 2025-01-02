@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -10,6 +10,7 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
 import { Container } from '@/components/Container';
+import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 import { profileInfoAtom, resultListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
@@ -23,8 +24,8 @@ export default function PanelPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
-  console.log(resultList, 'resultList');
+  const t = useTranslations('PanelPage');
+  const locale = useLocale();
 
   useEffect(() => {
     BlindServices.ProfileInfo();
@@ -47,7 +48,7 @@ export default function PanelPage() {
     } else if (!info?.age || !info.gender || !info.name || info.age === '' || info.gender === '' || info.name === '') {
       router.push('/profile');
     } else {
-      window.location.href = '/panel/questions';
+      window.location.href = `/${locale}/panel/questions`;
     }
   };
 
@@ -71,13 +72,13 @@ export default function PanelPage() {
               onClick={() => setMove(false)}
               className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer text-sm"
             >
-              <span>Test Hakkında</span>
+              <span>{t('about_test')}</span>
             </div>
             <div
               onClick={() => setMove(true)}
               className="w-1/2 h-full relative z-10 text-center flex justify-center items-center cursor-pointer text-sm"
             >
-              <span>Test Geçmişi</span>
+              <span>{t('last_test')}</span>
             </div>
           </div>
           <div className="w-full">
@@ -89,20 +90,10 @@ export default function PanelPage() {
             >
               <div className="flex flex-col items-center gap-4 md:gap-12">
                 <div className="flex flex-col items-center">
-                  <h3 className="text-2xl">Uyumluluğu Keşfet</h3>
-                  <span className="text-xs text-slate-600 px-12 text-center">
-                    Bağınızın Ne Kadar Güçlü Olduğunu Öğrenmeye Hazır mısınız?
-                  </span>
+                  <h3 className="text-2xl">{t('title')}</h3>
+                  <span className="text-xs text-slate-600 px-12 text-center">{t('subtitle')}</span>
                 </div>
-                <div className="text-center md:px-40 text-sm md:text-base">
-                  {`Bu test, siz ve düşündüğünüz kişi arasındaki uyumu keşfetmenize yardımcı olmak için tasarlanmıştır!
-                  Genel İlişki Durumu, Duygusal Bağlantı, Sadakat ve Güven, Romantik Jestler, Eğlence ve Günlük
-                  Alışkanlıklar olmak üzere 5 kategori içeren bu eğlenceli test, ilişkinizin derinliğini anlamanıza
-                  yardımcı olacak 50 sorudan oluşmaktadır. Soruları cevaplarken, aklınızdaki kişiyle olan ilişkinizi göz
-                  önünde bulundurun. Sonuçlar, uyum seviyenizi gösterecek ve ilişkinizin güçlü yönlerini öne
-                  çıkaracaktır. Hazırsanız, bu testi yaparak aranızdaki dinamikleri ortaya çıkarabilir ve ilişkinizi
-                  haritalandırabilirsiniz. Kim bilir, bu yolculuk sizi birbirinize daha da yakınlaştırabilir!`}
-                </div>
+                <div className="text-center md:px-40 text-sm md:text-base">{t('desc')}</div>
                 <NavModal isOpen={isModalOpen} onClose={closeModal} />
 
                 <Button
@@ -111,9 +102,9 @@ export default function PanelPage() {
                   size="md"
                   type={'button'}
                   title={''}
-                  className="w-full md:w-40"
+                  className="w-full md:w-52"
                 >
-                  Teste Başla
+                  {t('button')}
                 </Button>
               </div>
             </div>
@@ -128,17 +119,23 @@ export default function PanelPage() {
             >
               {resultList && resultList.length > 0 ? (
                 resultList.map((result, index) => (
-                  <Link href={'/result/' + result._id} key={index}>
+                  <Link
+                    href={{
+                      pathname: '/result/[slug]',
+                      params: { slug: result._id },
+                    }}
+                    key={index}
+                  >
                     <div className="border border-solid rounded-md py-4 px-6 flex justify-between items-center bg-white">
                       <CircularProgressBar percentage={+result.aiResultResponse.turkish.lovePercentage.split('%')[0]} />
-                      <div>Test Sonucu</div>
-                      <div>{formatDate(result.createdAt, { locale: 'tr-TR' })}</div>
+                      <div>{t('test_result')}</div>
+                      <div>{formatDate(result.createdAt, { locale: `${locale}-${locale.toUpperCase()}` })}</div>
                     </div>
                   </Link>
                 ))
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-center">
-                  <span>Test Geçmişi Bulunmamaktadır.</span>
+                  <span>{t('no_found')}</span>
                 </div>
               )}
             </div>
@@ -155,6 +152,7 @@ interface ModalProps {
 }
 
 const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const t = useTranslations('PanelPage');
   if (!isOpen) return null;
 
   return (
@@ -168,20 +166,17 @@ const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <div className="bg-white rounded-lg shadow dark:bg-gray-700">
           {/* Modal header */}
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">İlişki Bilgilerini Doldur</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('info_title')}</h3>
             <Button onClick={onClose} type={'button'} variant={'dark'} title={''}>
               <IconClose />
             </Button>
           </div>
           {/* Modal body */}
           <div className="p-4 md:p-5">
-            <p className="mb-5">
-              Teste başlayabilmeniz için, profilinizdeki Relationship Info bölümündeki soruları doldurmanız
-              gerekmektedir. Lütfen önce bu bilgileri tamamlayın.
-            </p>
+            <p className="mb-5">{t('info_desc')}</p>
             <Link href="/profile">
               <Button type="submit" title={''} variant={'blue'} size="md" className="w-full">
-                Profile Git
+                {t('info_nav')}
               </Button>
             </Link>
           </div>

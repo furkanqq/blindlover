@@ -113,6 +113,7 @@ export interface QuestionListResponse {
 
 export interface AnswerRequest {
   answers: AnswerType[];
+  answerLanguage: 'tr' | 'en' | 'es' | 'pt' | 'ru' | 'fr';
 }
 
 export interface AnswerType {
@@ -129,7 +130,7 @@ export interface RelationInfoRequest {
   perceivedImportance: PerceivedImportance | '';
 }
 
-interface AiResultResponse {
+export interface AiResultResponse {
   lovePercentage: string;
   answerCategoryAnalysis: {
     generalRelationStatus: string;
@@ -142,7 +143,7 @@ interface AiResultResponse {
   _id: string;
 }
 
-interface AiResultResponseLanguages {
+export interface AiResultResponseLanguages {
   turkish: AiResultResponse;
   english: AiResultResponse;
   spanish: AiResultResponse;
@@ -150,6 +151,15 @@ interface AiResultResponseLanguages {
   french: AiResultResponse;
   russian: AiResultResponse;
   _id: string;
+}
+export interface QuestionResult {
+  data: {
+    _id: string;
+    customerId: string;
+    aiResultResponse: AiResultResponseLanguages;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export interface QuestionResultList {
@@ -160,14 +170,4 @@ export interface QuestionResultList {
     createdAt: string;
     updatedAt: string;
   }>;
-}
-
-export interface QuestionResult {
-  data: {
-    _id: string;
-    customerId: string;
-    aiResultResponse: AiResultResponseLanguages;
-    createdAt: string;
-    updatedAt: string;
-  };
 }

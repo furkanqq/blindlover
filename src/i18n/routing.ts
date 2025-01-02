@@ -8,6 +8,14 @@ export const routing = defineRouting({
   // Used when no locale matches
   defaultLocale: 'en',
   pathnames: {
+    '/': {
+      en: '/',
+      tr: '/',
+      fr: '/',
+      es: '/',
+      ru: '/',
+      pt: '/',
+    },
     '/about': {
       en: '/about',
       tr: '/hakkimizda',
@@ -96,6 +104,14 @@ export const routing = defineRouting({
       ru: '/результат',
       pt: '/resultado',
     },
+    '/result/[slug]': {
+      en: '/result/[slug]',
+      tr: '/sonuc/[slug]',
+      fr: '/resultat/[slug]',
+      es: '/resultado/[slug]',
+      ru: '/результат/[slug]',
+      pt: '/resultado/[slug]',
+    },
     '/not-approved': {
       en: '/not-approved',
       tr: '/onaylanmadi',
@@ -119,6 +135,22 @@ export const routing = defineRouting({
       es: '/politica-de-privacidad',
       ru: '/политика-конфиденциальности',
       pt: '/politica-de-privacidade',
+    },
+    '/blog': {
+      en: '/blog',
+      tr: '/blog',
+      fr: '/blog',
+      es: '/blog',
+      ru: '/blog',
+      pt: '/blog',
+    },
+    '/blog/[slug]': {
+      en: '/blog/[slug]',
+      tr: '/blog/[slug]',
+      fr: '/blog/[slug]',
+      es: '/blog/[slug]',
+      ru: '/blog/[slug]',
+      pt: '/blog/[slug]',
     },
   },
 });

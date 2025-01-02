@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 
 import { IconApple } from '@/assets/IconApple';
@@ -9,6 +8,7 @@ import { IconGoogle } from '@/assets/IconGoogle';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Input } from '@/components/Input';
+import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 
 export default function LoginPage() {

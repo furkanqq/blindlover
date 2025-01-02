@@ -1,9 +1,43 @@
 {
+  "AboutPage": {
+    "banner": {
+      "title": "Sobre Nosotros",
+      "subtitle": "Mide el poder de tu amor con nuestro test."
+    },
+    "firstSection": {
+      "title": "¿Existe una fórmula para medir el amor?",
+      "desc": "¡Creemos que sí! BlindLover está aquí para ayudarte a encontrar las respuestas a las preguntas que tienes sobre tu relación o la persona que te gusta. Ya sea que pongas a prueba tu amor por tu pareja o descubras el interés de tu crush, BlindLover te ofrece un viaje divertido.",
+      "desc_two": "Nuestras pruebas analizan tus respuestas con la potencia de la IA y te presentan resultados personalizados. Tu porcentaje de amor viene acompañado de comentarios divertidos. ¡Estamos diseñados para aquellos que desean evaluar relaciones de una manera divertida e interactiva!",
+      "button": "¡Empieza ahora!"
+    },
+    "secondSection": {
+      "title": "¿Qué ofrecemos?",
+      "first": "Pruebas divertidas y personalizadas: Disfruta descubriendo tu porcentaje de amor con preguntas diseñadas solo para ti.",
+      "second": "Análisis con inteligencia artificial: Analizamos tus respuestas para ofrecerte los resultados más precisos.",
+      "third": "Acceso móvil y web: Participa fácilmente en las pruebas a través de la aplicación y la web.",
+      "fourth": "Adecuado para todas las edades y situaciones: ¿Una relación joven, un vínculo duradero, o quizás solo un crush? Estamos listos para todo."
+    },
+    "thirdSection": {
+      "title": "¡Descubre BlindLover!",
+      "desc": "Para poner a prueba tu amor, divertirte un poco y quizás aprender más sobre tu relación, BlindLover es el lugar adecuado. Responde las preguntas, recibe tus resultados y descubre el nivel de amor en tu vida. ¡Recuerda, cada amor es un viaje, pero hacemos este viaje mucho más divertido!"
+    },
+    "fourthSection": {
+      "title": "¿Cuánto te quiere?",
+      "desc": "¡La Respuesta está con Nosotros!",
+      "button": "¡Empieza ahora!",
+      "button_two": "Regístrate"
+    }
+  },
+  "BlogPage": {
+    "title": "Bienvenido al Blog",
+    "subtitle": "Descubre las últimas actualizaciones y opiniones",
+    "read_more": "Lee ahora"
+  },
   "LandingPage": {
     "banner": {
-      "button": "Comenzar el Test",
-      "subtitle": "¿Quieres saber qué tan fuerte es tu relación o medir el interés de alguien que te gusta? ¡Descubre nuestro test lleno de diversión y averigua tu porcentaje de amor ahora mismo!",
-      "title": "¡Hemos Diseñado la Forma Más Divertida de Descubrir el Amor Solo para Ti!"
+      "button": "Comienza la Prueba",
+      "subtitle": "¿Quieres saber qué tan fuerte es tu relación o medir el interés de la persona que te gusta? ¡Descubre ahora nuestro test lleno de diversión y averigua tu porcentaje de amor!",
+      "title": "¡Hemos diseñado la forma más divertida de descubrir el amor para ti!"
     },
     "header": {
       "profile": "Perfil",
@@ -13,23 +47,85 @@
       "register": "Registrarse"
     },
     "cardSection": {
-      "main_title": "¿Por Qué Elegirnos?",
+      "main_title": "¿Por qué deberías elegirnos?",
       "first_card": {
         "title": "Divertido y Fácil",
-        "desc": "No necesitas análisis complejos. Solo responde las preguntas y obtén el resultado."
+        "desc": "No necesitas análisis complicados. Solo responde las preguntas y mira el resultado."
       },
       "second_card": {
-        "title": "¿Cuál Es Tu Porcentaje de Amor?",
-        "desc": "Con análisis impulsados por IA, descubre cuánto interés tiene tu pareja o persona que te gusta en ti, expresado en porcentaje."
+        "title": "¿Cuál es tu porcentaje de amor?",
+        "desc": "Con análisis impulsados por IA, descubre el porcentaje de interés que tu pareja o persona de interés tiene por ti."
       },
       "third_card": {
-        "title": "Pruebas Para Todas las Edades",
-        "desc": "Ya sea que tengas 19, 30 o 64 años, disfruta de preguntas personalizadas para tu edad y estado de relación."
+        "title": "Pruebas Adecuadas para Todas las Edades",
+        "desc": "Ya tengas 19, 30 o 64 años. Preguntas personalizadas para todas las edades y estados de relación."
       },
       "fourth_card": {
-        "title": "Disponible en Móvil y Web",
-        "desc": "Realiza tu prueba en cualquier dispositivo y comparte el resultado con tus amigos!"
+        "title": "Tanto en Móvil como en Web",
+        "desc": "Haz la prueba en cualquier dispositivo. ¡Comparte los resultados con tus amigos!"
       }
-    }
+    },
+    "headerSection": {
+      "title": "¿Cómo funciona Blindlover?",
+      "one": "¿Tienes pareja o no? ¡Selecciona tu estado de relación!",
+      "two": "¡Responde las 50 preguntas divertidas de la categoría!",
+      "three": "¡Deja que nuestra IA analice tus respuestas para medir tu amor!",
+      "four": "¡Descubre tu porcentaje de amor y encuentra comentarios divertidos sobre tu relación!"
+    },
+    "ctaSection": {
+      "title": "¿Cuánto te quiere? ¡DESCÚBRELO AHORA!",
+      "desc": "Participa en la prueba para descubrir cuánto te quiere tu pareja o crush. ¡Descarga la app o continúa aquí!",
+      "button": "¡EMPIEZA AHORA!",
+      "nav": "O descarga nuestra aplicación móvil!"
+    },
+    "slider_title": "¡Ideas divertidas y dulces para agregar más amor a tu amor!",
+    "slider_title_two": "Películas y Series para Ver con tu Amor",
+    "faq": "Preguntas Frecuentes",
+    "faq_long": "Preguntas Frecuentes",
+    "footer": {
+      "desc": "¡La forma más divertida de descubrir el amor!",
+      "about_us": "Sobre Nosotros",
+      "test": "Test de Amor",
+      "blog": "Blog",
+      "contact": "Contáctanos",
+      "faq": "Preguntas Frecuentes",
+      "privacy": "Política de Privacidad",
+      "cookie": "Política de Cookies",
+      "terms": "Términos y Condiciones",
+      "rights": "Todos los derechos reservados.",
+      "mail": "hello@blindlover.com"
+    },
+    "see_all": "Ver Todo"
+  },
+  "PanelPage": {
+    "title": "Descubre la Compatibilidad",
+    "subtitle": "¿Estás Listo para Saber Qué Tan Fuerte Es Tu Conexión?",
+    "desc": "¡Este test está diseñado para ayudarte a explorar la compatibilidad entre tú y la persona en mente! Consta de 5 categorías: Estado General de la Relación, Conexión Emocional, Lealtad y Confianza, Gestos Románticos, Diversión y Hábitos Diarios, este divertido test incluye 50 preguntas que te ayudarán a comprender la profundidad de tu relación. Mientras respondes las preguntas, ten en cuenta tu relación con la persona en mente. Los resultados revelarán tu nivel de compatibilidad y destacarán los puntos fuertes de tu relación. Si estás listo, haz este test para descubrir las dinámicas entre ustedes y trazar un mapa de tu relación. ¡Quién sabe, este viaje podría acercarlos aún más!",
+    "button": "Comenzar el Test",
+    "about_test": "Sobre el Test",
+    "last_test": "Historial de Test",
+    "test_result": "Resultado del Test",
+    "no_found": "No se Encontró Historial de Test.",
+    "info_title": "Complete los Detalles de la Relación",
+    "info_desc": "Para comenzar el test, debe completar las preguntas en la sección de Detalles de la Relación en su perfil. Por favor, complete esta información primero.",
+    "info_nav": "Ir al Perfil"
+  },
+  "ResultPage": {
+    "rate": "Tu Tasa de Compatibilidad",
+    "GENERAL_RELATION_STATUS": "ESTADO GENERAL DE LA RELACIÓN",
+    "EMOTIONAL_ATTACHMENT": "VINCULACIÓN EMOCIONAL",
+    "LOYALTY_AND_TRUST": "LEALTAD Y CONFIANZA",
+    "ROMANTIC_BEHAVIOR": "COMPORTAMIENTOS ROMÁNTICOS",
+    "FUN_AND_DAILY_HABITS": "DIVERSIÓN Y HÁBITOS DIARIOS",
+    "click": "Toca la pantalla y sigue adelante",
+    "ai_comment": "COMENTARIO DE INTELIGENCIA ARTIFICIAL",
+    "NO": "NO",
+    "YES": "SÍ",
+    "EMPTY": "VACÍO",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "created": "Estas preguntas fueron creadas con",
+    "back_to_home": "Volver a la página principal",
+    "thanks": "Has completado la prueba con éxito. La página de resultados será enviada a tu correo electrónico. Gracias."
   }
 }

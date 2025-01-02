@@ -97,4 +97,7 @@ export const BlindApiUrl = {
   QuestionResult: (id: string) => {
     return BlindHttp.get('/answer/' + id);
   },
+  ProfileDelete: () => {
+    return BlindHttp.delete('/profile');
+  },
 };

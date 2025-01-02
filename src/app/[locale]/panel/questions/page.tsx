@@ -1,9 +1,8 @@
 'use client';
 
-import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
@@ -14,9 +13,9 @@ import CircularProgressBar from '@/components/CircularProgressBar';
 import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
 import QuizStepper from '@/components/QuizStepper';
+import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 import { questionListAtom } from '@/stores';
-import { QuestionCategory, QuestionCategoryValue } from '@/types/enum';
 
 interface TypeAnswer {
   questionId: string;
@@ -33,6 +32,27 @@ export default function QuestionsPage() {
   const [animationClass, setAnimationClass] = useState('');
   const [allAnswer, setAllAnswer] = useState<TypeAnswer[]>([]);
   const [questions] = useAtom(questionListAtom);
+  const t = useTranslations('ResultPage');
+  const locale = useLocale();
+  const [country, setCountry] = useState<string>('');
+
+  useEffect(() => {
+    if (locale === 'tr') {
+      setCountry('turkish');
+    } else if (locale === 'en') {
+      setCountry('english');
+    } else if (locale === 'fr') {
+      setCountry('french');
+    } else if (locale === 'es') {
+      setCountry('spanish');
+    } else if (locale === 'ru') {
+      setCountry('russian');
+    } else if (locale === 'pt') {
+      setCountry('portuguese');
+    }
+  }, [locale]);
+
+  console.log(questions, 'questions');
 
   useEffect(() => {
     BlindServices.QuestionList();
@@ -80,54 +100,28 @@ export default function QuestionsPage() {
     if (!questions || currentQuestionIndex > questions.length) return;
 
     if (currentQuestionIndex === 50) {
-      BlindServices.Answer({ answers: allAnswer });
+      BlindServices.Answer({ answers: allAnswer, answerLanguage: locale as 'tr' | 'en' | 'es' | 'fr' | 'ru' | 'pt' });
     }
   }, [currentQuestionIndex, questions, allAnswer]);
-
-  console.log(currentQuestionIndex, 'currentQuestionIndex');
 
   if (!questions) {
     return <LoadingScreen />;
   }
 
-  const getCategoryLabel = (category: QuestionCategory) => {
-    switch (category) {
-      case QuestionCategory.GENERAL_RELATION_STATUS:
-        return QuestionCategoryValue.GENERAL_RELATION_STATUS;
-      case QuestionCategory.EMOTIONAL_ATTACHMENT:
-        return QuestionCategoryValue.EMOTIONAL_ATTACHMENT;
-      case QuestionCategory.ROMANTIC_BEHAVIOR:
-        return QuestionCategoryValue.ROMANTIC_BEHAVIOR;
-      case QuestionCategory.LOYALTY_AND_TRUST:
-        return QuestionCategoryValue.LOYALTY_AND_TRUST;
-      default:
-        return QuestionCategoryValue.FUN_AND_DAILY_HABITS;
-    }
-  };
+  const localKey: keyof (typeof questions)[0] = `${country}` as keyof (typeof questions)[0];
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
       <Container className="relative z-1 h-[100vh] flex justify-center items-center">
-        {currentQuestionIndex >= questions.length ? (
+        {currentQuestionIndex <= questions.length ? (
           <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center gap-4">
               <Image src={'/blindlover.png'} alt="Blind Lover" width={200} height={120} />
-              <div className="md:text-4xl w-full md:w-[40%] text-center font-semibold">
-                Testi Başarıyla Tamamladınız Sonuç Sayfasına Yönlendiriliyorsunuz...
-              </div>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <div className="text-xs">Eğer Henüz Yönlenmediyse</div>
-              <Link href={'/test-result'}>
-                <Button
-                  variant={'primary'}
-                  type={'button'}
-                  title={'Sonuç Sayfasına Git'}
-                  onClick={() => console.log('Sonuç Sayfasına Git')}
-                >
-                  Sonuç Sayfasına Git
-                  <ArrowRightIcon width={16} height={16} />
+              <div className="md:text-4xl w-full md:w-[40%] text-center font-semibold">{t('thanks')}</div>
+              <Link href={'/'} className="text-white">
+                <Button variant={'primary'} type={'button'} title={t('back_to_home')}>
+                  {t('back_to_home')}
                 </Button>
               </Link>
             </div>
@@ -142,7 +136,7 @@ export default function QuestionsPage() {
               <div className="flex flex-col justify-center items-center gap-4">
                 <QuizStepper currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} steps={5} />
                 <div className="p-2 bg-primaryColor text-white rounded-md text-[12px]">
-                  {getCategoryLabel(questions[currentQuestionIndex].category as QuestionCategory)}
+                  {t(questions[currentQuestionIndex].category)}
                 </div>
               </div>
               <div className="hidden md:flex items-center justify-center w-20">
@@ -155,7 +149,7 @@ export default function QuestionsPage() {
                 key={questions[currentQuestionIndex]._id}
               >
                 <h1 className="text-xl md:text-[44px] h-28 md:leading-[56px] text-center font-semibold px-4 md:px-28">
-                  {questions[currentQuestionIndex].turkish || ''}
+                  {(questions[currentQuestionIndex][localKey] as string) || ''}
                 </h1>
                 <div className="flex gap-4 md:gap-20">
                   {options.map((option, index) => (
@@ -164,7 +158,7 @@ export default function QuestionsPage() {
                       className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-44 md:h-32 rounded-md active:scale-[0.98] cursor-pointer"
                       onClick={() => handleAnswer(option.label)}
                     >
-                      <span className="md:text-[32px] text-white">{option.value}</span>
+                      <span className="md:text-[32px] text-white">{t(option.value.toUpperCase())}</span>
                     </div>
                   ))}
                 </div>
@@ -178,7 +172,7 @@ export default function QuestionsPage() {
                   onClick={() => setCurrentQuestionIndex((prev) => Math.max(prev - 1, 0))}
                 >
                   <IconChevronLeft width={16} height={16} />
-                  <span>Back</span>
+                  <span>{t('back')}</span>
                 </Button>
                 <Button
                   variant={'secondary'}
@@ -187,14 +181,14 @@ export default function QuestionsPage() {
                   disabled={currentQuestionIndex === questions.length - 1}
                   onClick={() => handleAnswer('EMPTY')}
                 >
-                  <span>Next</span>
+                  <span>{t('next')}</span>
                   <IconChevronRight width={16} height={16} />
                 </Button>
               </div>
             </div>
             <div className="h-[10%] flex justify-center items-center">
               <div className="text-[12px] flex justify-center items-center h-10 text-slate-700 border-r border-r-slate-800/30 pr-6 mr-1">
-                These questions were created with
+                {t('created')}
               </div>
               <Link href={'/'} className="">
                 <Image src={'/blindlover_text.png'} alt="Blind Lover" width={150} height={90} />

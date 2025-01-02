@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -19,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/Select';
+import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 
 export default function RegisterPage() {

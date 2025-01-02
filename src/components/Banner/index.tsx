@@ -2,10 +2,10 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useContext } from 'react';
 
 import { IconArrowRight } from '@/assets/IconArrowRight';
+import { Link } from '@/i18n/routing';
 import { AuthContext } from '@/provider/Auth';
 import Button from '../Button';
 

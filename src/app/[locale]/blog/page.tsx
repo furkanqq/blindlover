@@ -1,6 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
+import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
@@ -15,14 +16,14 @@ const ITEMS_PER_PAGE = 12;
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [blogs] = useAtom(blogListAtom);
+  const locale = useLocale();
+  const t = useTranslations('BlogPage');
 
   useEffect(() => {
     DirectusServices.BlogList();
   }, []);
 
-  console.log(blogs, 'blogs');
-
-  if (!blogs) {
+  if (!blogs || !locale) {
     return <LoadingScreen />;
   }
 
@@ -39,7 +40,8 @@ export default function BlogPage() {
         {/* Banner */}
         <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
           <h1 className="text-4xl font-bold">
-            <span className="text-primaryColor">{`Blog'a`}</span> Hoş Geldiniz
+            <span className="text-primaryColor">{t('title').split(' ')[0]}</span>{' '}
+            {t('title').split(' ').slice(1).join(' ')}
           </h1>
           <p className="text-md text-gray-500 mt-4">En son güncellemeleri ve görüşleri keşfedin</p>
         </div>
@@ -47,16 +49,22 @@ export default function BlogPage() {
         {/* Blog Cards */}
         <Container className="mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentBlogs.map((blog, index) => (
-              <BlogCard
-                key={index}
-                title={blog.title_tr}
-                desc={blog.content_tr.slice(0, 100)}
-                image={'/blog.png'}
-                link={blog.slug}
-                date={blog.date_created && blog.date_created}
-              />
-            ))}
+            {currentBlogs.map((blog, index) => {
+              const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
+              const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
+
+              return (
+                <BlogCard
+                  key={index}
+                  title={blog[titleKey] as string}
+                  desc={blog[descKey].toString().slice(0, 100)}
+                  image={'/blog.png'}
+                  link={blog.slug}
+                  date={blog.date_created && blog.date_created}
+                  buttonText={t('read_more')}
+                />
+              );
+            })}
           </div>
         </Container>
 

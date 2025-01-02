@@ -3,7 +3,6 @@
 import { ClipboardDocumentListIcon, DocumentTextIcon, LanguageIcon, UserCircleIcon } from '@heroicons/react/16/solid';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +14,7 @@ import { IconLogin } from '@/assets/IconLogin';
 import { IconPT } from '@/assets/IconPT';
 import { IconRU } from '@/assets/IconRU';
 import { IconTR } from '@/assets/IconTR';
-import { usePathname, useRouter } from '@/i18n/routing';
+import { Link, Locale, usePathname, useRouter } from '@/i18n/routing';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
@@ -45,8 +44,6 @@ export default function Header({
       setScrollHeight(true);
     }
   }, []);
-
-  console.log(isModalOpen, 'isModalOpen');
 
   return (
     <div
@@ -156,9 +153,9 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     router.replace(
       {
         pathname,
-        // query: { ...params }, // Query değerleri burada URL'ye dahil ediliyor
+        params: params.slug as any,
       },
-      { locale: nextLocale as string }
+      { locale: nextLocale as Locale }
     );
   }
 
