@@ -4,7 +4,7 @@ export const enum PageLink {
   Blog = '/blog',
   Login = '/login',
   Register = '/register',
-  FAQs = '/faqs',
+  FAQs = '/faq',
   Contact = '/contact',
   About = '/about',
   Panel = '/panel',

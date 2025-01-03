@@ -1,20 +1,15 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
-import Banner from '@/components/Banner';
-import { CardSection } from '@/components/CardSection';
-import { CTASection } from '@/components/CTASection';
 import { FAQ } from '@/components/FAQ';
-import { HeaderSection } from '@/components/HeaderSection';
-import { Slider } from '@/components/Slider';
 import { FAQConfig_en, FAQConfig_es, FAQConfig_fr, FAQConfig_pt, FAQConfig_ru, FAQConfig_tr } from '@/config/FAQConfig';
 
-export default function Home() {
-  const t = useTranslations('LandingPage');
+export default function FAQsPage() {
   const locale = useLocale();
+  const t = useTranslations('FAQPage');
   const [FAQConfig, setFAQConfig] = useState(FAQConfig_en);
   useEffect(() => {
     if (locale === 'tr') {
@@ -33,14 +28,15 @@ export default function Home() {
   }, []);
 
   return (
-    <AppLayout type="landing">
-      <Banner />
-      <CardSection />
-      <HeaderSection />
-      <CTASection />
-      <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
-      <Slider startIndex={6} endIndex={11} mirror title={t('slider_title_two')} />
-      <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
+    <AppLayout type="detail" className="">
+      <div className="">
+        <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
+          <h1 className="text-4xl font-bold">{t('faq')}</h1>
+          <p className="text-md text-gray-500 mt-4">{t('faq_long')}</p>
+        </div>
+
+        <FAQ FAQuestions={FAQConfig} type={'faqs'} />
+      </div>
     </AppLayout>
   );
 }

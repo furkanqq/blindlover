@@ -1,6 +1,6 @@
 'use client';
 
-import { CameraIcon } from '@heroicons/react/16/solid';
+import { CameraIcon, PlusCircleIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
 import { BlindStore } from '@/provider';
@@ -42,8 +42,10 @@ const ProfileImageUpdater = ({ isDisabled, image }: { isDisabled: boolean; image
               />
             ) : (
               <div className="flex flex-col justify-center items-center text-gray-600">
-                <CameraIcon width={20} height={20} />
-                <span className="text-sm">Fotoğraf Ekle</span>
+                <CameraIcon width={24} height={24} />
+                <span className="text-sm">
+                  <PlusCircleIcon width={16} height={16} />
+                </span>
               </div>
             )}
           </div>

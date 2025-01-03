@@ -12,7 +12,7 @@ import {
   resultListAtom,
 } from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
-import { setAuthTokenToHeader } from './helper';
+import { deleteAuthTokenToHeader, setAuthTokenToHeader } from './helper';
 import {
   AnswerRequest,
   LoginRequest,
@@ -296,6 +296,31 @@ const QuestionResult = async (id: string) => {
   }
 };
 
+const ProfileDelete = async (request: string) => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.ProfileDelete(request);
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      deleteAuthTokenToHeader();
+      return resData;
+    } else {
+      console.log('Profil silinemedi:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->DeleteProfile Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 export const BlindServices = {
   AuthLogin,
   RegisterUser,
@@ -308,6 +333,7 @@ export const BlindServices = {
   RelationInfo,
   QuestionResultList,
   QuestionResult,
+  ProfileDelete,
 };
 
 const BlogList = async () => {

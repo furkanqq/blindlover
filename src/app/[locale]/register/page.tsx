@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -23,6 +24,7 @@ import { BlindServices } from '@/services/manager';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const locale = useLocale();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -123,7 +125,7 @@ export default function RegisterPage() {
       BlindServices.RegisterUser(request)
         .then((result) => {
           if (result.status === 200) {
-            router.push('/activate');
+            router.push(`/${locale}/activate`);
           }
         })
         .catch((err) => {

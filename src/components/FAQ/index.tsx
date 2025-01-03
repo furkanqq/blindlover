@@ -7,7 +7,7 @@ import Button from '../Button';
 import { Container } from '../Container';
 
 const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) => {
-  const t = useTranslations('LandingPage');
+  const t = useTranslations('FAQPage');
   return (
     <Container>
       <div className="relative w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:mx-auto sm:max-w-full sm:rounded-lg sm:px-10">

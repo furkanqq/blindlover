@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ export default function LoginPage() {
     email: '',
     password: '',
   });
+  const locale = useLocale();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -27,7 +29,7 @@ export default function LoginPage() {
     BlindServices.AuthLogin(loginForm)
       .then((result) => {
         if (result.status === 200) {
-          window.location.href = '/';
+          window.location.href = `/${locale}/`;
         }
       })
       .catch((err) => {

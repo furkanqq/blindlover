@@ -1,3 +1,4 @@
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -29,6 +30,7 @@ export default function ResultPageComponent({
   sendB?: boolean;
 }) {
   const router = useRouter();
+  const locale = useLocale();
   function sendEmail() {
     BlindServices.Activate();
 
@@ -78,7 +80,7 @@ export default function ResultPageComponent({
             <Button
               onClick={() => {
                 deleteAuthTokenToHeader();
-                router.push('/login');
+                router.push(`/${locale}/login`);
               }}
               variant={'light'}
               className="w-32"

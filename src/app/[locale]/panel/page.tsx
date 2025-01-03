@@ -42,11 +42,11 @@ export default function PanelPage() {
 
   const handleStartTest = () => {
     if (info?.emailVerified === false) {
-      router.push('/not-approved');
+      router.push(`/${locale}/not-approved`);
     } else if (info?.relationInfo === null) {
       openModal();
     } else if (!info?.age || !info.gender || !info.name || info.age === '' || info.gender === '' || info.name === '') {
-      router.push('/profile');
+      router.push(`/${locale}/profile`);
     } else {
       window.location.href = `/${locale}/panel/questions`;
     }
