@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -25,6 +25,7 @@ import { BlindServices } from '@/services/manager';
 export default function RegisterPage() {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('RegisterPage');
 
   const [formData, setFormData] = useState({
     email: '',
@@ -141,7 +142,7 @@ export default function RegisterPage() {
       <div className="">
         <div className="relative text-center bg-primaryColor min-h-[200px] sm:p-12 p-10">
           <div className="absolute top-0 left-0 w-full h-full bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35"></div>
-          <h4 className="sm:text-3xl text-2xl font-bold text-backgroundColor">Hesabınızı Oluşturun</h4>
+          <h4 className="sm:text-3xl text-2xl font-bold text-backgroundColor">{t('title')}</h4>
         </div>
 
         <div className="relative z-2 mx-4 mb-4 -mt-16">
@@ -157,7 +158,7 @@ export default function RegisterPage() {
                 title={'Google'}
               >
                 <IconGoogle />
-                <span>Google ile Devam Et</span>
+                <span>{t('google')}</span>
               </Button>
               <Button
                 variant={'dark'}
@@ -166,80 +167,80 @@ export default function RegisterPage() {
                 className="w-full px-6 py-3 flex items-center justify-center rounded-md text-backgroundColor text-sm tracking-wider font-semibold border-none outline-none bg-foreground hover:bg-[#333]"
               >
                 <IconApple width={20} height={20} />
-                <span>Apple ile Devam Et</span>
+                <span>{t('apple')}</span>
               </Button>
             </div>
 
             <div className="my-8 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-              <p className="mx-4 text-center">Ya da </p>
+              <p className="mx-4 text-center">{t('or')}</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Email</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('email')}</label>
                 <Input
                   name="email"
                   type="text"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Email Girin"
+                  placeholder={t('email_placeholder')}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Ad Soyad</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('name')}</label>
                 <Input
                   name="name"
                   type="text"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Ad Soyad Girin"
+                  placeholder={t('name_placeholder')}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Şifre</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('password')}</label>
                 <Input
                   name="password"
                   type="password"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Şifre girin"
+                  placeholder={t('password_placeholder')}
                   onChange={handleInputChange}
                 />
               </div>
 
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Yaş</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('age')}</label>
                 {/* <DatePicker /> */}
                 <Input
                   name="age"
                   type="number"
                   className=" focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Yaşınızı girin"
+                  placeholder={t('age_placeholder')}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Şifreyi Onayla</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('confirm_password')}</label>
                 <Input
                   name="confirmPassword"
                   type="password"
                   className="focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all"
-                  placeholder="Şifreyi onayla"
+                  placeholder={t('confirm_password_placeholder')}
                   onChange={handleInputChange}
                 />
               </div>
 
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Cinsiyet</label>
+                <label className="text-gray-800 text-sm mb-2 block">{t('gender')}</label>
                 <Select onValueChange={handleGenderChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Cinsiyet Seçiniz" />
+                    <SelectValue placeholder={t('gender_placeholder')} />
                   </SelectTrigger>
                   <SelectContent className="bg-backgroundColor">
                     <SelectGroup>
                       <SelectLabel>Gender</SelectLabel>
-                      <SelectItem value="MALE">Erkek</SelectItem>
-                      <SelectItem value="FEMALE">Kadın</SelectItem>
-                      <SelectItem value="OTHER">Diğer</SelectItem>
+                      <SelectItem value="MALE">{t('male')}</SelectItem>
+                      <SelectItem value="FEMALE">{t('female')}</SelectItem>
+                      <SelectItem value="OTHER">{t('other')}</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -262,20 +263,18 @@ export default function RegisterPage() {
                   htmlFor="terms1"
                   className="text-sm font-medium leading-none  peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  Şartları ve koşulları kabul edin
+                  {t('terms')}
                 </label>
-                <p className="text-xs text-muted-foreground">
-                  Hizmet Şartlarımızı ve Gizlilik Politikamızı kabul ediyorsunuz.
-                </p>
+                <p className="text-xs text-muted-foreground">{t('terms1')}</p>
               </div>
             </div>
             <div className="mt-8">
               <Button size="md" variant="primary" title="Sign Up" type="submit" className="w-full">
-                Kayıt Ol
+                {t('button')}
               </Button>
             </div>
             <Link href="/login">
-              <div className="text-center text-xs mt-4 underline">Zaten bir hesabınız var mı? Oturum aç</div>
+              <div className="text-center text-xs mt-4 underline">{t('login')}</div>
             </Link>
           </form>
         </div>

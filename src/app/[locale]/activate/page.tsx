@@ -1,20 +1,15 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import AppLayout from '@/components/AppLayout';
 import ResultPageComponent from '@/components/ResultPageComponent';
 
 export default function ActivatePage() {
+  const t = useTranslations('ActivatePage');
   return (
     <AppLayout type="auth">
-      <ResultPageComponent
-        imgUrl={'/pleaseVerify.png'}
-        title={'Activate Your Account'}
-        desc={
-          'Please confirm your email address by clicking the button below. Verifying your email will grant you full access to your account and ensure a more secure experience.'
-        }
-        sendB
-        homeB
-      />
+      <ResultPageComponent imgUrl={'/pleaseVerify.png'} title={t('title')} desc={t('desc')} sendB homeB />
     </AppLayout>
   );
 }

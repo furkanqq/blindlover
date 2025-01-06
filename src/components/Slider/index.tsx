@@ -51,7 +51,7 @@ const Slider = ({
   return (
     <Container className="pt-32 md:pt-52">
       <div className="relative w-full bg-white border border-solid p-12 rounded-md">
-        <h2 className="absolute top-[-100px] left-[50%] translate-x-[-50%] mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-center text-black ">
+        <h2 className="absolute top-[-60px] left-[50%] translate-x-[-50%] mb-4 text-base md:text-3xl  w-full md:w-full tracking-tight font-extrabold text-center text-black ">
           {title}
         </h2>
         {/* Carousel Wrapper */}
@@ -67,25 +67,30 @@ const Slider = ({
                 }`}
               >
                 <div
-                  className={cn('flex relative bg-white h-full w-full', {
-                    'flex-row-reverse': mirror,
+                  className={cn('flex flex-col sm:flex-row relative bg-white h-full w-full', {
+                    'flex-col-reverse sm:flex-row-reverse': mirror,
                   })}
                 >
-                  <div className="relative w-[40%] h-full">
+                  <div className="relative w-full mb-2 md:mb-0 md:w-[40%] h-full">
                     <Link href={'/'}>
                       <Image className="rounded-l-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
                     </Link>
                   </div>
-                  <div className="flex flex-col justify-start gap-3 w-[60%] h-full px-5">
+                  <div className="flex flex-col justify-start gap-3 w-full md:w-[60%] h-full px-5">
                     <Link href="/">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{blog[titleKey]}</h5>
+                      <h5 className="mb-2 text-xs md:text-2xl font-bold tracking-tight text-gray-900">
+                        {blog[titleKey]}
+                      </h5>
                     </Link>
 
                     <MarkdownContent
                       content={blog[descKey].toString().slice(0, 200)}
-                      className={cn('pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-[14px]', {
-                        'pl-4 pr-0': mirror,
-                      })}
+                      className={cn(
+                        'hidden md:flex flex-col pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-xs md:text-[14px]',
+                        {
+                          'pl-4 pr-0': mirror,
+                        }
+                      )}
                     />
 
                     <Link
@@ -94,9 +99,9 @@ const Slider = ({
                         params: { slug: blog.slug },
                       }}
                     >
-                      <Button type={'button'} title={'Read More'} variant={'primary'}>
+                      <Button type={'button'} title={'Read More'} variant={'primary'} className="!text-xs">
                         {t('read_more')}
-                        <ArrowRightIcon width={16} height={16} />
+                        <ArrowRightIcon className="hidden" width={16} height={16} />
                       </Button>
                     </Link>
                   </div>

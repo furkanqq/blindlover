@@ -64,6 +64,15 @@ export default function QuestionsPage() {
     { label: 'YES', value: 'Yes' },
   ];
 
+  const triggerAnimation = (callback: () => void) => {
+    setAnimationClass('-translate-x-full');
+    setTimeout(() => {
+      callback();
+      setAnimationClass('translate-x-full');
+      setTimeout(() => setAnimationClass(''), 300);
+    }, 300);
+  };
+
   const handleAnswer = (answer: 'NO' | 'YES' | 'EMPTY') => {
     if (!questions) return;
 
@@ -87,20 +96,11 @@ export default function QuestionsPage() {
     });
   };
 
-  const triggerAnimation = (callback: () => void) => {
-    setAnimationClass('-translate-x-full');
-    setTimeout(() => {
-      callback();
-      setAnimationClass('translate-x-full');
-      setTimeout(() => setAnimationClass(''), 300);
-    }, 300);
-  };
-
   useEffect(() => {
     if (!questions || currentQuestionIndex > questions.length) return;
 
     if (currentQuestionIndex === 50) {
-      BlindServices.Answer({ answers: allAnswer, answerLanguage: locale as 'tr' | 'en' | 'es' | 'fr' | 'ru' | 'pt' });
+      BlindServices.Answer({ answers: allAnswer, language: locale as 'tr' | 'en' | 'es' | 'fr' | 'ru' | 'pt' });
     }
   }, [currentQuestionIndex, questions, allAnswer]);
 
@@ -114,7 +114,7 @@ export default function QuestionsPage() {
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
       <Container className="relative z-1 h-[100vh] flex justify-center items-center">
-        {currentQuestionIndex <= questions.length ? (
+        {currentQuestionIndex >= questions.length ? (
           <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
             <div className="flex flex-col justify-center items-center gap-4">
               <Image src={'/blindlover.png'} alt="Blind Lover" width={200} height={120} />

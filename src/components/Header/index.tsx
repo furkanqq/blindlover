@@ -18,126 +18,6 @@ import { Link, Locale, usePathname, useRouter } from '@/i18n/routing';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
-export default function Header({
-  token,
-  type = 'default',
-}: {
-  type?: 'auth' | 'default' | 'landing' | 'detail';
-  token: boolean;
-}) {
-  const t = useTranslations('LandingPage');
-  const [scrollHeight, setScrollHeight] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  useEffect(() => {
-    if (type === 'landing' || type === 'detail') {
-      const getHeight = () => {
-        setScrollHeight(window.scrollY > 50);
-      };
-
-      window.addEventListener('scroll', getHeight);
-
-      return () => window.removeEventListener('scroll', getHeight);
-    } else {
-      setScrollHeight(true);
-    }
-  }, []);
-
-  return (
-    <div
-      className={cn(
-        'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white sm:bg-transparent py-9',
-        {
-          'shadow sm:bg-backgroundColor': scrollHeight,
-        }
-      )}
-    >
-      <div
-        className={cn('container h-[92px] flex items-center justify-between', {
-          'pr-4 md:pr-20': type === 'landing',
-        })}
-      >
-        <Link href={'/'} className="">
-          <Image
-            src={'/blindlover_text.png'}
-            alt="Blind Lover"
-            width={200}
-            height={120}
-            className="cursor-pointer md:w-[200px] md:h-[120px] w-[140px] h-[80px]"
-          />
-        </Link>
-        <div className="w-fit gap-2 flex">
-          {token ? (
-            <>
-              <Link href={'/profile'}>
-                <Button
-                  className="w-32"
-                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
-                  type={'reset'}
-                  title={''}
-                >
-                  <span>{t('header.profile')}</span>
-                  <UserCircleIcon width={12} height={12} />
-                </Button>
-              </Link>
-              <Link href={'/panel'}>
-                <Button
-                  className="w-32"
-                  variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
-                  type={'reset'}
-                  title={''}
-                >
-                  <span>{t('header.test')}</span>
-                  <DocumentTextIcon width={12} height={12} />
-                </Button>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link href={'/login'}>
-                {/* <Button className="w-32" variant={!scrollHeight ? 'login' : 'heart'} type={'reset'} title={''}> */}
-                <Button
-                  className="w-32"
-                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
-                  type={'reset'}
-                  title={''}
-                >
-                  <span className="hidden md:flex">{t('header.login')}</span>
-                  <IconLogin width={12} height={12} />
-                </Button>
-              </Link>
-              <Link href={'/register'}>
-                <Button
-                  className="w-32"
-                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
-                  type={'reset'}
-                  title={''}
-                >
-                  <span className="hidden md:flex">{t('header.register')}</span>
-                  <ClipboardDocumentListIcon width={12} height={12} />
-                </Button>
-              </Link>
-            </>
-          )}
-          <LanguageModal isOpen={isModalOpen} onClose={closeModal} />
-          <Button
-            className="w-32"
-            variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
-            type={'button'}
-            title={''}
-            onClickDiv={openModal}
-          >
-            <span className="hidden md:flex">{t('header.lang')}</span>
-            <LanguageIcon width={12} height={12} />
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -254,3 +134,123 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     </div>
   );
 };
+
+export default function Header({
+  token,
+  type = 'default',
+}: {
+  type?: 'auth' | 'default' | 'landing' | 'detail';
+  token: boolean;
+}) {
+  const t = useTranslations('LandingPage');
+  const [scrollHeight, setScrollHeight] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    if (type === 'landing' || type === 'detail') {
+      const getHeight = () => {
+        setScrollHeight(window.scrollY > 50);
+      };
+
+      window.addEventListener('scroll', getHeight);
+
+      return () => window.removeEventListener('scroll', getHeight);
+    } else {
+      setScrollHeight(true);
+    }
+  }, []);
+
+  return (
+    <div
+      className={cn(
+        'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white bg-transparent py-9',
+        {
+          'shadow bg-backgroundColor': scrollHeight,
+        }
+      )}
+    >
+      <div
+        className={cn('container h-[92px] flex items-center justify-between', {
+          'pr-4 md:pr-20': type === 'landing',
+        })}
+      >
+        <Link href={'/'} className="">
+          <Image
+            src={'/blindlover_text.png'}
+            alt="Blind Lover"
+            width={200}
+            height={120}
+            className="cursor-pointer md:w-[200px] md:h-[120px] w-[140px] h-[80px]"
+          />
+        </Link>
+        <div className="w-fit gap-2 flex">
+          {token ? (
+            <>
+              <Link href={'/profile'}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
+                  <span className="hidden md:flex">{t('header.profile')}</span>
+                  <UserCircleIcon width={12} height={12} />
+                </Button>
+              </Link>
+              <Link href={'/panel'}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
+                  type={'reset'}
+                  title={''}
+                >
+                  <span className="hidden md:flex">{t('header.test')}</span>
+                  <DocumentTextIcon width={12} height={12} />
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href={'/login'}>
+                {/* <Button className="w-32" variant={!scrollHeight ? 'login' : 'heart'} type={'reset'} title={''}> */}
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
+                  <span className="hidden md:flex">{t('header.login')}</span>
+                  <IconLogin width={12} height={12} />
+                </Button>
+              </Link>
+              <Link href={'/register'}>
+                <Button
+                  className="w-32"
+                  variant={type === 'detail' ? 'hprimary' : !scrollHeight ? 'hlight' : 'hprimary'}
+                  type={'reset'}
+                  title={''}
+                >
+                  <span className="hidden md:flex">{t('header.register')}</span>
+                  <ClipboardDocumentListIcon width={12} height={12} />
+                </Button>
+              </Link>
+            </>
+          )}
+          <LanguageModal isOpen={isModalOpen} onClose={closeModal} />
+          <Button
+            className="w-32"
+            variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
+            type={'button'}
+            title={''}
+            onClickDiv={openModal}
+          >
+            <span className="hidden md:flex">{t('header.lang')}</span>
+            <LanguageIcon width={12} height={12} />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

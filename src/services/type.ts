@@ -113,7 +113,7 @@ export interface QuestionListResponse {
 
 export interface AnswerRequest {
   answers: AnswerType[];
-  answerLanguage: 'tr' | 'en' | 'es' | 'pt' | 'ru' | 'fr';
+  language: 'tr' | 'en' | 'es' | 'pt' | 'ru' | 'fr';
 }
 
 export interface AnswerType {

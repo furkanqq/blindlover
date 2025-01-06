@@ -30,7 +30,7 @@ export default function Home() {
     } else if (locale === 'pt') {
       setFAQConfig(FAQConfig_pt);
     }
-  }, []);
+  }, [locale]);
 
   return (
     <AppLayout type="landing">

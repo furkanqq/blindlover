@@ -1,4 +1,8 @@
 {
+  "404Page": {
+    "title": "¡Ups! Parece que estás perdido.",
+    "desc": "No pudimos encontrar la página que estabas buscando. Podría haber sido eliminada o estar temporalmente no disponible."
+  },
   "AboutPage": {
     "banner": {
       "title": "Sobre Nosotros",
@@ -28,10 +32,20 @@
       "button_two": "Regístrate"
     }
   },
+  "ActivatePage": {
+    "title": "Activa tu cuenta",
+    "desc": "Por favor, confirma tu dirección de correo electrónico haciendo clic en el botón de abajo. Verificar tu correo electrónico te dará acceso completo a tu cuenta y garantizará una experiencia más segura."
+  },
   "BlogPage": {
     "title": "Bienvenido al Blog",
     "subtitle": "Descubre las últimas actualizaciones y opiniones",
     "read_more": "Lee ahora"
+  },
+  "Buttons": {
+    "send": "Enviar Correo",
+    "try": "Intentar de Nuevo",
+    "logout": "Cerrar Sesión",
+    "back_to_home": "Ir a la Página Principal"
   },
   "CookiePage": {
     "title": "Política de Cookies",
@@ -130,6 +144,20 @@
     },
     "see_all": "Ver Todo"
   },
+  "LoginPage": {
+    "title": "¡Inicia sesión para encontrar el amor de tu vida!",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "button": "Iniciar sesión",
+    "register": "¿No tienes una cuenta? Regístrate ahora",
+    "or": "O",
+    "google": "Continuar con Google",
+    "apple": "Continuar con Apple"
+  },
+  "NotApprovedPage": {
+    "title": "Por Favor Verifique",
+    "desc": "Nos dimos cuenta de que su cuenta no ha sido verificada. Por favor, verifique su cuenta haciendo clic en el enlace que enviamos a su correo electrónico."
+  },
   "PanelPage": {
     "title": "Descubre la Compatibilidad",
     "subtitle": "¿Estás Listo para Saber Qué Tan Fuerte Es Tu Conexión?",
@@ -143,6 +171,60 @@
     "info_desc": "Para comenzar el test, debe completar las preguntas en la sección de Detalles de la Relación en su perfil. Por favor, complete esta información primero.",
     "info_nav": "Ir al Perfil"
   },
+  "PrivacyPage": {
+    "title": "Política de Privacidad",
+    "intro": "En BlindLover, la privacidad de nuestros usuarios es nuestra máxima prioridad. Esta Política de Privacidad explica cómo procesamos y protegemos la información recopilada a través del sitio web  <Link>https://blindlover.com</Link> y de nuestra aplicación móvil. Al utilizar BlindLover, aceptas esta política.",
+    "section1Title": "1. ¿Qué Información Recopilamos?",
+    "section1Content": "Cuando utilizas BlindLover, podemos recopilar la siguiente información:",
+    "section1List": {
+      "one": "Información Personal: Nombre, dirección de correo electrónico (si se proporciona durante el registro).",
+      "two": "Respuestas del Usuario: Las respuestas que das durante los tests.",
+      "three": "Información del Dispositivo: Dirección IP, tipo de dispositivo, sistema operativo e información del navegador.",
+      "four": "Datos de Uso: Funciones que utilizas y cómo interactúas con nuestro sitio web o aplicación."
+    },
+    "section2Title": "2. ¿Cómo Utilizamos Esta Información?",
+    "section2Content": "Utilizamos la información recopilada para los siguientes propósitos:",
+    "section2List": {
+      "one": "Analizar tus resultados de los tests y proporcionarte comentarios personalizados.",
+      "two": "Mejorar nuestros servicios y optimizar la experiencia del usuario.",
+      "three": "Hacer que nuestro sitio web y aplicación sean más eficientes.",
+      "four": "Ofrecer nuevas funciones basadas en tus comentarios."
+    },
+    "section3Title": "3. Cookies y Tecnologías de Seguimiento",
+    "section3Content": "BlindLover utiliza cookies y tecnologías similares para mejorar tu experiencia de usuario. Las cookies son pequeños archivos de datos almacenados en tu dispositivo.",
+    "section3List": {
+      "one": "Cookies Esenciales: Se utilizan para proporcionar funcionalidades básicas del sitio web.",
+      "two": "Cookies de Rendimiento: Se utilizan para analizar datos de uso.",
+      "three": "Cookies Publicitarias: Se utilizan para mostrar anuncios adaptados a tus intereses."
+    },
+    "section3Note": "Puedes gestionar o desactivar las cookies a través de la configuración de tu navegador.",
+    "section4Title": "4. ¿Con Quién Compartimos Tu Información?",
+    "section4Content": "Podemos compartir tu información con terceros en los siguientes casos:",
+    "section4List": {
+      "one": "Proveedores de Servicios: Podemos colaborar con terceros para analizar datos, alojar servicios y proporcionar soporte técnico.",
+      "two": "Obligaciones Legales: Podemos compartir tu información con las autoridades competentes cuando sea requerido por la ley.",
+      "three": "Socios Publicitarios: Podemos compartir datos anonimizados para ofrecer anuncios adaptados a tus intereses."
+    },
+    "section5Title": "5. ¿Cómo Protegemos Tu Información?",
+    "section5Content": "Implementamos medidas técnicas y organizativas estándares en la industria para garantizar la seguridad de tu información personal. Sin embargo, no podemos garantizar la seguridad total de los datos transmitidos a través de Internet.",
+    "section6Title": "6. Período de Conservación de los Datos",
+    "section6Content": "Tu información personal se conserva únicamente durante el tiempo necesario para cumplir con los fines especificados. Las cuentas de usuario o datos pueden eliminarse a solicitud del usuario.",
+    "section7Title": "7. Tus Derechos",
+    "section7Content": "Como usuario de BlindLover, tienes los siguientes derechos:",
+    "section7List": {
+      "one": "Derecho de Acceso: Puedes saber qué información tenemos sobre ti.",
+      "two": "Derecho de Rectificación: Puedes corregir información inexacta o incompleta.",
+      "three": "Derecho de Supresión: Puedes solicitar la eliminación de tu información personal.",
+      "four": "Derecho de Oposición: Puedes oponerte al procesamiento de tus datos."
+    },
+    "section7Note": "Para ejercer tus derechos, contáctanos en hello@blindlover.com.",
+    "section8Title": "8. Cambios",
+    "section8Content": "BlindLover puede actualizar esta Política de Privacidad ocasionalmente. Cuando se realicen actualizaciones, la nueva política se publicará en nuestro sitio web.",
+    "section9Title": "9. Contáctanos",
+    "section9Content": "Si tienes alguna pregunta sobre nuestra política de privacidad, por favor contáctanos:\nCorreo electrónico: hello@blindlover.com",
+    "closing": "Gracias por utilizar BlindLover. Proteger tus datos y respetar tu privacidad es nuestra prioridad."
+  },
+
   "ProfilePage": {
     "profile": "Perfil",
     "subtitle": "Esta es tu visión general.",
@@ -206,7 +288,31 @@
     "confirm_pass": "Confirmar Contraseña",
     "delete": "Eliminar"
   },
-
+  "RegisterPage": {
+    "title": "Crea tu cuenta",
+    "or": "O",
+    "google": "Continuar con Google",
+    "apple": "Continuar con Apple",
+    "name": "Nombre completo",
+    "name_placeholder": "Ingresa tu nombre completo",
+    "email": "Correo electrónico",
+    "email_placeholder": "Ingresa tu correo electrónico",
+    "password": "Contraseña",
+    "password_placeholder": "Ingresa tu contraseña",
+    "confirm_password": "Confirmar contraseña",
+    "confirm_password_placeholder": "Reingresa tu contraseña",
+    "age": "Edad",
+    "age_placeholder": "Ingresa tu edad",
+    "gender": "Género",
+    "gender_placeholder": "Selecciona tu género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+    "terms": "Acepta los términos y condiciones",
+    "terms1": "Aceptas nuestros Términos de Servicio y Política de Privacidad.",
+    "button": "Regístrate",
+    "login": "¿Ya tienes una cuenta? Iniciar sesión"
+  },
   "ResultPage": {
     "rate": "Tu Tasa de Compatibilidad",
     "GENERAL_RELATION_STATUS": "ESTADO GENERAL DE LA RELACIÓN",
@@ -249,5 +355,9 @@
     "section8Title": "8. Contáctanos",
     "section8Content": "Para cualquier pregunta sobre los Términos y Condiciones, por favor contáctanos: ",
     "email": "Correo electrónico:"
+  },
+  "VerificationSuccessPage": {
+    "title": "¡Verificado con Éxito!",
+    "desc": "Su cuenta ha sido verificada con éxito. Ahora puede acceder a todas las funciones."
   }
 }

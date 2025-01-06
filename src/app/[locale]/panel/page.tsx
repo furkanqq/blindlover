@@ -16,6 +16,46 @@ import { profileInfoAtom, resultListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 import { formatDate } from '@/utils/formatDate';
 
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const t = useTranslations('PanelPage');
+  if (!isOpen) return null;
+
+  return (
+    <div
+      id="crud-modal"
+      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50"
+      aria-hidden={!isOpen}
+    >
+      <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
+        {/* Modal content */}
+        <div className="bg-white rounded-lg shadow dark:bg-gray-700">
+          {/* Modal header */}
+          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('info_title')}</h3>
+            <Button onClick={onClose} type={'button'} variant={'dark'} title={''}>
+              <IconClose />
+            </Button>
+          </div>
+          {/* Modal body */}
+          <div className="p-4 md:p-5">
+            <p className="mb-5">{t('info_desc')}</p>
+            <Link href="/profile">
+              <Button type="submit" title={''} variant={'blue'} size="md" className="w-full">
+                {t('info_nav')}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function PanelPage() {
   const router = useRouter();
   const [move, setMove] = useState(false);
@@ -38,7 +78,7 @@ export default function PanelPage() {
     if (move) {
       BlindServices.QuestionResultList();
     }
-  }, [move]);
+  }, [move, resultList]);
 
   const handleStartTest = () => {
     if (info?.emailVerified === false) {
@@ -90,7 +130,7 @@ export default function PanelPage() {
             >
               <div className="flex flex-col items-center gap-4 md:gap-12">
                 <div className="flex flex-col items-center">
-                  <h3 className="text-2xl">{t('title')}</h3>
+                  <h3 className="text-2xl text-center">{t('title')}</h3>
                   <span className="text-xs text-slate-600 px-12 text-center">{t('subtitle')}</span>
                 </div>
                 <div className="text-center md:px-40 text-sm md:text-base">{t('desc')}</div>
@@ -111,7 +151,7 @@ export default function PanelPage() {
             <div
               id="page2"
               className={cn(
-                'h-[50vh] hidden w-full border border-solid flex-col p-6 gap-3 overflow-auto shadow-inner',
+                'h-[50vh] hidden w-full border border-solid flex-col p-2 md:p-6 gap-3 overflow-auto shadow-inner',
                 {
                   flex: move,
                 }
@@ -126,10 +166,12 @@ export default function PanelPage() {
                     }}
                     key={index}
                   >
-                    <div className="border border-solid rounded-md py-4 px-6 flex justify-between items-center bg-white">
+                    <div className="border border-solid rounded-md py-4 px-2 md:px-6 gap-2 flex flex-col md:flex-row justify-between items-center bg-white">
                       <CircularProgressBar percentage={+result.aiResultResponse.turkish.lovePercentage.split('%')[0]} />
-                      <div>{t('test_result')}</div>
-                      <div>{formatDate(result.createdAt, { locale: `${locale}-${locale.toUpperCase()}` })}</div>
+                      <div className="text-xs md:text-base text-center">{t('test_result')}</div>
+                      <div className="text-xs md:text-base text-center">
+                        {formatDate(result.createdAt, { locale: `${locale}-${locale.toUpperCase()}` })}
+                      </div>
                     </div>
                   </Link>
                 ))
@@ -145,43 +187,3 @@ export default function PanelPage() {
     </AppLayout>
   );
 }
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  const t = useTranslations('PanelPage');
-  if (!isOpen) return null;
-
-  return (
-    <div
-      id="crud-modal"
-      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50"
-      aria-hidden={!isOpen}
-    >
-      <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
-        {/* Modal content */}
-        <div className="bg-white rounded-lg shadow dark:bg-gray-700">
-          {/* Modal header */}
-          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('info_title')}</h3>
-            <Button onClick={onClose} type={'button'} variant={'dark'} title={''}>
-              <IconClose />
-            </Button>
-          </div>
-          {/* Modal body */}
-          <div className="p-4 md:p-5">
-            <p className="mb-5">{t('info_desc')}</p>
-            <Link href="/profile">
-              <Button type="submit" title={''} variant={'blue'} size="md" className="w-full">
-                {t('info_nav')}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};

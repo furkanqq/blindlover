@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         protocol: 'https',
       },
+      {
+        hostname: 'bn-cdn-all.fra1.digitaloceanspaces.com',
+        protocol: 'https',
+      },
     ],
   },
 };

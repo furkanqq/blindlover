@@ -1,4 +1,8 @@
 {
+  "404Page": {
+    "title": "Ops! Parece que você está perdido.",
+    "desc": "Não conseguimos encontrar a página que você estava procurando. Ela pode ter sido removida ou estar temporariamente indisponível."
+  },
   "AboutPage": {
     "banner": {
       "title": "Sobre Nós",
@@ -28,10 +32,20 @@
       "button_two": "Inscreva-se"
     }
   },
+  "ActivatePage": {
+    "title": "Ative sua conta",
+    "desc": "Por favor, confirme seu endereço de e-mail clicando no botão abaixo. Verificar seu e-mail lhe dará acesso total à sua conta e garantirá uma experiência mais segura."
+  },
   "BlogPage": {
     "title": "Bem-vindo ao Blog",
     "subtitle": "Descubra as últimas atualizações e opiniões",
     "read_more": "Leia agora"
+  },
+  "Buttons": {
+    "send": "Enviar Email",
+    "try": "Tentar Novamente",
+    "logout": "Sair",
+    "back_to_home": "Ir para a Página Inicial"
   },
   "CookiePage": {
     "title": "Política de Cookies",
@@ -130,6 +144,20 @@
     },
     "see_all": "Ver Tudo"
   },
+  "LoginPage": {
+    "title": "Faça login para encontrar o amor da sua vida!",
+    "email": "E-mail",
+    "password": "Senha",
+    "button": "Entrar",
+    "register": "Não tem uma conta? Inscreva-se agora",
+    "or": "Ou",
+    "google": "Continuar com o Google",
+    "apple": "Continuar com a Apple"
+  },
+  "NotApprovedPage": {
+    "title": "Por Favor Verifique",
+    "desc": "Percebemos que sua conta não foi verificada. Por favor, verifique sua conta clicando no link que enviamos para o seu e-mail."
+  },
   "PanelPage": {
     "title": "Descubra a Compatibilidade",
     "subtitle": "Está Pronto para Descobrir Quão Forte é o Seu Vínculo?",
@@ -143,6 +171,58 @@
     "info_desc": "Para iniciar o teste, você precisa preencher as perguntas na seção Detalhes do Relacionamento do seu perfil. Por favor, complete estas informações primeiro.",
     "info_nav": "Ir para o Perfil"
   },
+  "PrivacyPage": {
+    "title": "Política de Privacidade",
+    "intro": "Na BlindLover, a privacidade dos nossos usuários é a nossa maior prioridade. Esta Política de Privacidade explica como processamos e protegemos as informações coletadas através do site  <Link>https://blindlover.com</Link> e do nosso aplicativo móvel. Ao usar o BlindLover, você aceita esta política.",
+    "section1Title": "1. Quais Informações Coletamos?",
+    "section1Content": "Quando você usa o BlindLover, podemos coletar as seguintes informações:",
+    "section1List": {
+      "one": "Informações Pessoais: Nome, endereço de e-mail (se fornecido durante o registro).",
+      "two": "Respostas do Usuário: As respostas que você fornece durante os testes.",
+      "three": "Informações do Dispositivo: Endereço IP, tipo de dispositivo, sistema operacional e informações do navegador.",
+      "four": "Dados de Uso: Funcionalidades que você utiliza e como interage com nosso site ou aplicativo."
+    },
+    "section2Title": "2. Como Usamos Essas Informações?",
+    "section2Content": "Usamos as informações coletadas para os seguintes fins:",
+    "section2List": {
+      "one": "Analisar os resultados dos seus testes e fornecer feedback personalizado.",
+      "two": "Melhorar nossos serviços e otimizar a experiência do usuário.",
+      "three": "Tornar nosso site e aplicativo mais eficientes.",
+      "four": "Oferecer novos recursos com base nos seus comentários."
+    },
+    "section3Title": "3. Cookies e Tecnologias de Rastreamento",
+    "section3Content": "A BlindLover utiliza cookies e tecnologias semelhantes para melhorar sua experiência de usuário. Os cookies são pequenos arquivos de dados armazenados no seu dispositivo.",
+    "section3List": {
+      "one": "Cookies Essenciais: Utilizados para fornecer funcionalidades básicas do site.",
+      "two": "Cookies de Desempenho: Utilizados para analisar dados de uso.",
+      "three": "Cookies Publicitários: Utilizados para exibir anúncios adaptados aos seus interesses."
+    },
+    "section4Title": "4. Com Quem Compartilhamos Suas Informações?",
+    "section4Content": "Podemos compartilhar suas informações com terceiros nas seguintes situações:",
+    "section4List": {
+      "one": "Provedores de Serviços: Podemos trabalhar com terceiros para analisar dados, hospedar serviços e fornecer suporte técnico.",
+      "two": "Obrigações Legais: Podemos compartilhar suas informações com autoridades competentes quando exigido por lei.",
+      "three": "Parceiros Publicitários: Podemos compartilhar dados anonimizados para oferecer anúncios adaptados aos seus interesses."
+    },
+    "section5Title": "5. Como Protegemos Suas Informações?",
+    "section5Content": "Implementamos medidas técnicas e organizacionais padrão da indústria para garantir a segurança das suas informações pessoais. No entanto, não podemos garantir a segurança completa dos dados transmitidos pela Internet.",
+    "section6Title": "6. Período de Retenção dos Dados",
+    "section6Content": "Suas informações pessoais são retidas apenas pelo tempo necessário para atingir os objetivos especificados. Contas de usuário ou dados podem ser excluídos mediante solicitação.",
+    "section7Title": "7. Seus Direitos",
+    "section7Content": "Como usuário da BlindLover, você possui os seguintes direitos:",
+    "section7List": {
+      "one": "Direito de Acesso: Você pode saber quais informações mantemos sobre você.",
+      "two": "Direito de Retificação: Você pode corrigir informações imprecisas ou incompletas.",
+      "three": "Direito de Exclusão: Você pode solicitar a exclusão das suas informações pessoais.",
+      "four": "Direito de Oposição: Você pode se opor ao processamento dos seus dados."
+    },
+    "section8Title": "8. Alterações",
+    "section8Content": "A BlindLover pode atualizar esta Política de Privacidade ocasionalmente. Quando alterações forem realizadas, a nova política será publicada em nosso site.",
+    "section9Title": "9. Entre em Contato Conosco",
+    "section9Content": "Se você tiver dúvidas sobre nossa política de privacidade, entre em contato conosco: hello@blindlover.com",
+    "closing": "Obrigado por usar a BlindLover. Proteger seus dados e respeitar sua privacidade são nossas prioridades."
+  },
+
   "ProfilePage": {
     "profile": "Perfil",
     "subtitle": "Esta é a sua visão geral.",
@@ -206,7 +286,31 @@
     "confirm_pass": "Confirmar senha",
     "delete": "Excluir"
   },
-
+  "RegisterPage": {
+    "title": "Crie sua conta",
+    "or": "Ou",
+    "google": "Continuar com o Google",
+    "apple": "Continuar com a Apple",
+    "name": "Nome completo",
+    "name_placeholder": "Digite seu nome completo",
+    "email": "E-mail",
+    "email_placeholder": "Digite seu endereço de e-mail",
+    "password": "Senha",
+    "password_placeholder": "Digite sua senha",
+    "confirm_password": "Confirmar senha",
+    "confirm_password_placeholder": "Digite sua senha novamente",
+    "age": "Idade",
+    "age_placeholder": "Digite sua idade",
+    "gender": "Gênero",
+    "gender_placeholder": "Selecione seu gênero",
+    "male": "Masculino",
+    "female": "Feminino",
+    "other": "Outro",
+    "terms": "Concordar com os termos e condições",
+    "terms1": "Você concorda com nossos Termos de Serviço e Política de Privacidade.",
+    "button": "Inscrever-se",
+    "login": "Já tem uma conta? Entrar"
+  },
   "ResultPage": {
     "rate": "Sua Taxa de Compatibilidade",
     "GENERAL_RELATION_STATUS": "STATUS GERAL DO RELACIONAMENTO",
@@ -249,5 +353,9 @@
     "section8Title": "8. Entre em Contato Conosco",
     "section8Content": "Para qualquer dúvida sobre os Termos e Condições, entre em contato conosco: ",
     "email": "E-mail: "
+  },
+  "VerificationSuccessPage": {
+    "title": "Verificado com Sucesso!",
+    "desc": "Sua conta foi verificada com sucesso. Agora você pode acessar todos os recursos."
   }
 }

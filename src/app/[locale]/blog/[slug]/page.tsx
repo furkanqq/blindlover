@@ -21,7 +21,7 @@ export default function BlogDetail() {
 
   useEffect(() => {
     DirectusServices.Blog(slug as string);
-  }, []);
+  }, [slug]);
 
   if (!blog) {
     return <LoadingScreen />;

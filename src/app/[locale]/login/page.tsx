@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -18,6 +18,7 @@ export default function LoginPage() {
     password: '',
   });
   const locale = useLocale();
+  const t = useTranslations('LoginPage');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -49,9 +50,7 @@ export default function LoginPage() {
               </Link>
             </div>
             <div className="mt-12 flex flex-col items-center">
-              <h1 className="text-2xl xl:text-3xl font-semibold text-center">
-                Hayatının Aşkını Bulmak için Giriş Yap!
-              </h1>
+              <h1 className="md:text-2xl xl:text-3xl font-semibold text-center">{t('title')}</h1>
               <div className="w-full flex-1 mt-8">
                 <form className="flex flex-col mx-auto max-w-xs">
                   <div className="flex flex-col gap-5">
@@ -59,38 +58,38 @@ export default function LoginPage() {
                       className="w-full"
                       name="email"
                       type="email"
-                      placeholder="Email"
+                      placeholder={t('email')}
                       onChange={handleInputChange}
                     />
                     <Input
                       className="w-full"
                       name="password"
                       type="password"
-                      placeholder="Password"
+                      placeholder={t('password')}
                       onChange={handleInputChange}
                     />
                   </div>
                   <Button variant={'primary'} type="button" className="mt-5" title={''} onClick={handleLogin}>
-                    <span>Şimdi Giriş Yap</span>
+                    <span>{t('button')}</span>
                   </Button>
                   <div className="text-[12px] mt-1 hover:underline">
-                    <Link href={'/register'}>{`Hesabınız yok mu? Hemen Kaydolun`}</Link>
+                    <Link href={'/register'}>{t('register')}</Link>
                   </div>
                 </form>
                 <div className="my-5 border-b text-center">
                   <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                    Ya da
+                    {t('or')}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 items-center">
                   <Button size="md" variant={'light'} type="button" title="" className="w-56 border-foreground">
                     <IconGoogle width={20} height={20} />
-                    <span>Google ile Devam Et</span>
+                    <span>{t('google')}</span>
                   </Button>
 
                   <Button size="md" variant={'dark'} type="button" title="" className="w-56">
                     <IconApple width={20} height={20} />
-                    <span>Apple ile Devam Et</span>
+                    <span>{t('apple')}</span>
                   </Button>
                 </div>
               </div>

@@ -33,309 +33,6 @@ import { base64ImageAtom, profileInfoAtom } from '@/stores';
 import { DesiredPartnerFocus, LoveAspectToAnalyze, PerceivedImportance, RelationDuration } from '@/types/enum';
 import { formatDate } from '@/utils/formatDate';
 
-interface FormInfo {
-  fullName: string;
-  email: string;
-  age: string;
-  gender: string;
-  image: string;
-}
-
-export default function ProfilePage() {
-  // const RelationDurationMap: { [key in RelationDuration]: string } = {
-  //   [RelationDuration.NOT_YET]: 'Henüz başlamadı',
-  //   [RelationDuration.ONE_THREE_MONTHS]: '1-3 ay',
-  //   [RelationDuration.THREE_TWELVE_MONTHS]: '3-12 ay',
-  //   [RelationDuration.ONE_YEAR_ABOVE]: '1 yıl veya daha uzun',
-  // };
-  // const DesiredPartnerFocusMap: { [key in DesiredPartnerFocus]: string } = {
-  //   [DesiredPartnerFocus.EMOTIONAL_SUPPORT]: 'Duygusal destek',
-  //   [DesiredPartnerFocus.ROMANTIC_GESTURE]: 'Romantik jestler',
-  //   [DesiredPartnerFocus.TIME_SEPARATION]: 'Birlikte geçirilen zamanın ayrımı',
-  //   [DesiredPartnerFocus.FINANCIAL_SUPPORT]: 'Finansal destek',
-  //   [DesiredPartnerFocus.OTHER]: 'Diğer',
-  // };
-
-  // const LoveAspectToAnalyzeMap: { [key in LoveAspectToAnalyze]: string } = {
-  //   [LoveAspectToAnalyze.EMOTIONAL_ATTACHMENT]: 'Duygusal bağlılık',
-  //   [LoveAspectToAnalyze.LOYALTY]: 'Sadakat',
-  //   [LoveAspectToAnalyze.ATTENTIVE_BEHAVIOR]: 'İlgili davranışlar',
-  // };
-
-  // const PerceivedImportanceMap: { [key in PerceivedImportance]: string } = {
-  //   [PerceivedImportance.VERY_MUCH]: 'Çok fazla',
-  //   [PerceivedImportance.MODERATE]: 'Orta düzeyde',
-  //   [PerceivedImportance.UNSURE]: 'Emin değilim',
-  // };
-
-  const t = useTranslations('ProfilePage');
-  const router = useRouter();
-  const locale = useLocale();
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [formInfo, setFormInfo] = useState<FormInfo>({
-    fullName: '',
-    email: '',
-    age: '',
-    gender: '',
-    image: '',
-  });
-  const [info] = useAtom(profileInfoAtom);
-  const [image] = useAtom(base64ImageAtom);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const openDeleteModal = () => setIsDeleteModalOpen(true);
-  const closeDeleteModal = () => setIsDeleteModalOpen(false);
-
-  const openUpdateModal = () => setIsUpdateModalOpen(true);
-  const closeUpdateModal = () => setIsUpdateModalOpen(false);
-
-  useEffect(() => {
-    BlindServices.ProfileInfo();
-  }, []);
-
-  useEffect(() => {
-    if (info) {
-      setFormInfo({
-        fullName: info?.name || '',
-        email: info?.email || '',
-        age: info.age.toString() || '',
-        gender: info?.gender || '',
-        image: info.profileImageUrl || '',
-      });
-    }
-  }, [info]);
-
-  function handleLogOut() {
-    deleteAuthTokenToHeader();
-    window.location.href = `/${locale}/`;
-  }
-
-  function handleSave() {
-    if (info?.emailVerified === false) {
-      router.push(`/${locale}/not-approved`);
-    }
-    const updateForm = {
-      name: formInfo.fullName,
-      age: formInfo.age,
-      base64Photo: image,
-    };
-
-    BlindServices.ProfileUpdate(updateForm).then((result) => {
-      if (result.status === 200) {
-        setIsDisabled(!isDisabled);
-      }
-    });
-  }
-
-  function handleFillNow() {
-    if (info?.emailVerified === false) {
-      router.push(`/${locale}/not-approved`);
-    } else {
-      openModal();
-    }
-  }
-
-  console.log(info);
-
-  return (
-    <AppLayout>
-      <Container className="pb-0 md:pb-20 pt-16 md:pt-24">
-        <div className="flex flex-col gap-4 md:gap-12 md:px-16 py-12 rounded-lg">
-          <div className="flex gap-5 justify-between items-center">
-            <div className="flex flex-col gap-2">
-              <h1 className="text-start text-2xl font-semibold">{t('profile')}</h1>
-              <p className="text-gray-600 text-[12px]">{t('subtitle')}</p>
-              <p className="text-gray-600 text-[12px]">
-                {t('last_update')}{' '}
-                {info?.updatedAt
-                  ? formatDate(info?.updatedAt, { locale: `${locale}-${locale.toUpperCase()}` })
-                  : formatDate(info?.createdAt as string, { locale: `${locale}-${locale.toUpperCase()}` })}
-              </p>
-            </div>
-            <div id="change out" className="flex justify-center items-end flex-col md:flex-row gap-2 w-full md:w-2/5">
-              <UpdatePassword
-                info={info as ProfileInfoResponse['data']}
-                isOpen={isUpdateModalOpen}
-                onClose={closeUpdateModal}
-              />
-              <Button
-                onClick={openUpdateModal}
-                type={'button'}
-                title={'Change'}
-                variant={'blue'}
-                className="hidden md:flex w-full md:w-4/12"
-              >
-                {t('change_password')}
-                <IconKey width={16} height={16} />
-              </Button>
-              {isDisabled ? (
-                <Button
-                  type={'button'}
-                  title={'Update'}
-                  variant={'green'}
-                  className="hidden md:flex w-full md:w-4/12"
-                  onClick={() => setIsDisabled(!isDisabled)}
-                >
-                  {t('update_info')}
-                  <IconEdit width={16} height={16} />
-                </Button>
-              ) : (
-                <div className="flex gap-2 md:w-5/12">
-                  <Button
-                    type={'button'}
-                    title={'Save'}
-                    variant={'green'}
-                    className="hidden md:flex w-full md:w-1/2"
-                    onClick={() => handleSave()}
-                  >
-                    <IconCheck width={16} height={16} />
-                  </Button>
-                  <Button
-                    type={'button'}
-                    title={'Cancel'}
-                    variant={'primary'}
-                    className="hidden md:flex w-full md:w-1/2"
-                    onClick={() => setIsDisabled(!isDisabled)}
-                  >
-                    <IconClose width={16} height={16} />
-                  </Button>
-                </div>
-              )}
-              <Button
-                type={'button'}
-                title={'Logout'}
-                variant={'primary'}
-                className="w-[100px] md:w-3/12"
-                onClick={handleLogOut}
-              >
-                <span> {t('logout')}</span>
-                <IconLogin width={16} height={16} />
-              </Button>
-            </div>
-          </div>
-
-          <hr />
-          <div className="flex flex-col md:flex-row gap-16 items-center justify-center">
-            <ProfileImageUpdater image={formInfo.image} isDisabled={isDisabled} />
-            <div id="inputs" className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-              <div>
-                <label className="text-gray-800 text-sm mb-2 block">{t('name_label')}</label>
-                <Input
-                  disabled={isDisabled}
-                  value={formInfo.fullName}
-                  onChange={(e) => setFormInfo({ ...formInfo, fullName: e.target.value })}
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
-                />
-              </div>
-              <div>
-                <label className="text-gray-800 text-sm mb-2 block">{t('mail')}</label>
-                <Input
-                  disabled
-                  value={formInfo.email}
-                  type="email"
-                  placeholder="Email"
-                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
-                />
-              </div>
-              <div>
-                <label className="text-gray-800 text-sm mb-2 block">{t('gender_label')}</label>
-                <Select disabled value={formInfo.gender}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a gender" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-backgroundColor">
-                    <SelectGroup>
-                      <SelectLabel>Gender</SelectLabel>
-                      <SelectItem value="MALE">{t('male')}</SelectItem>
-                      <SelectItem value="FEMALE">{t('female')}</SelectItem>
-                      <SelectItem value="OTHER">{t('OTHER')}</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-gray-800 text-sm mb-2 block">{t('age_label')}</label>
-                <Input
-                  disabled={isDisabled}
-                  value={formInfo.age}
-                  onChange={(e) => setFormInfo({ ...formInfo, age: e.target.value })}
-                  type="number"
-                  placeholder="Age"
-                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
-                />
-              </div>
-            </div>
-          </div>
-          <hr />
-          {info?.relationInfo ? (
-            <div className="grid gap-6">
-              <h1 className="font-semibold text-lg">{t('relationship_info')}</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('relationship_status')}</span>
-                  {info?.relationInfo.isInRelation ? t('yes') : t('no')}{' '}
-                </p>
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('love')}</span> {info?.relationInfo.hasCrush ? t('yes') : t('no')}{' '}
-                </p>
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('time')}</span> {t(info?.relationInfo.relationDuration)}{' '}
-                </p>
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('focus')}</span> {t(info?.relationInfo.desiredPartnerFocus)}
-                </p>
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('love_direction')}</span>{' '}
-                  {t(info?.relationInfo.loveAspectToAnalyze)}{' '}
-                </p>
-                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
-                  <span className="font-semibold">{t('degree')}</span> {t(info?.relationInfo.perceivedImportance)}{' '}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex md:flex-row flex-col w-full md:items-center justify-end md:justify-between gap-4 md:gap-12">
-              <div className="flex flex-col w-[80%]">
-                <label className="font-semibold">{t('info_title')}</label>
-                <span className="text-[12px]">{t('info_desc')}</span>
-              </div>
-
-              <Button onClick={handleFillNow} size="md" type={'button'} title={'Edit'} variant={'primary'}>
-                <span>{t('fill_now')}</span>
-                <IconArrowRight className="hidden md:flex" width={16} height={16} />
-              </Button>
-            </div>
-          )}
-          <Button
-            onClick={openDeleteModal}
-            type={'button'}
-            title={'Change'}
-            size="md"
-            variant={'primary'}
-            className="hidden md:flex w-full"
-          >
-            {t('delete_account')}
-            <TrashIcon width={16} height={16} />
-          </Button>
-          <DeleteAccount
-            info={info as ProfileInfoResponse['data']}
-            isOpen={isDeleteModalOpen}
-            onClose={closeDeleteModal}
-          />
-          <FillNow isOpen={isModalOpen} onClose={closeModal} />
-        </div>
-      </Container>
-    </AppLayout>
-  );
-}
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -739,3 +436,280 @@ const DeleteAccount: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
     </div>
   );
 };
+
+interface FormInfo {
+  fullName: string;
+  email: string;
+  age: string;
+  gender: string;
+  image: string;
+}
+
+export default function ProfilePage() {
+  const t = useTranslations('ProfilePage');
+  const router = useRouter();
+  const locale = useLocale();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [formInfo, setFormInfo] = useState<FormInfo>({
+    fullName: '',
+    email: '',
+    age: '',
+    gender: '',
+    image: '',
+  });
+  const [info] = useAtom(profileInfoAtom);
+  const [image] = useAtom(base64ImageAtom);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const openDeleteModal = () => setIsDeleteModalOpen(true);
+  const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const openUpdateModal = () => setIsUpdateModalOpen(true);
+  const closeUpdateModal = () => setIsUpdateModalOpen(false);
+
+  useEffect(() => {
+    BlindServices.ProfileInfo();
+  }, []);
+
+  useEffect(() => {
+    if (info) {
+      setFormInfo({
+        fullName: info?.name || '',
+        email: info?.email || '',
+        age: info.age.toString() || '',
+        gender: info?.gender || '',
+        image: info.profileImageUrl || '',
+      });
+    }
+  }, [info]);
+
+  function handleLogOut() {
+    deleteAuthTokenToHeader();
+    window.location.href = `/${locale}/`;
+  }
+
+  function handleSave() {
+    if (info?.emailVerified === false) {
+      router.push(`/${locale}/not-approved`);
+    }
+    const updateForm = {
+      name: formInfo.fullName,
+      age: formInfo.age,
+      base64Photo: image,
+    };
+
+    BlindServices.ProfileUpdate(updateForm).then((result) => {
+      if (result.status === 200) {
+        setIsDisabled(!isDisabled);
+      }
+    });
+  }
+
+  function handleFillNow() {
+    if (info?.emailVerified === false) {
+      router.push(`/${locale}/not-approved`);
+    } else {
+      openModal();
+    }
+  }
+
+  console.log(info);
+
+  return (
+    <AppLayout>
+      <Container className="pb-0 md:pb-20 pt-16 md:pt-24">
+        <div className="flex flex-col gap-4 md:gap-12 md:px-16 py-12 rounded-lg">
+          <div className="flex gap-5 justify-between items-center">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-start text-2xl font-semibold">{t('profile')}</h1>
+              <p className="text-gray-600 text-[12px]">{t('subtitle')}</p>
+              <p className="text-gray-600 text-[12px]">
+                {t('last_update')}{' '}
+                {info?.updatedAt
+                  ? formatDate(info?.updatedAt, { locale: `${locale}-${locale.toUpperCase()}` })
+                  : formatDate(info?.createdAt as string, { locale: `${locale}-${locale.toUpperCase()}` })}
+              </p>
+            </div>
+            <div id="change out" className="flex justify-center items-end flex-col md:flex-row gap-2 w-full md:w-2/5">
+              <UpdatePassword
+                info={info as ProfileInfoResponse['data']}
+                isOpen={isUpdateModalOpen}
+                onClose={closeUpdateModal}
+              />
+              <Button
+                onClick={openUpdateModal}
+                type={'button'}
+                title={'Change'}
+                variant={'blue'}
+                className="hidden md:flex w-full md:w-4/12"
+              >
+                {t('change_password')}
+                <IconKey width={16} height={16} />
+              </Button>
+              {isDisabled ? (
+                <Button
+                  type={'button'}
+                  title={'Update'}
+                  variant={'green'}
+                  className="hidden md:flex w-full md:w-4/12"
+                  onClick={() => setIsDisabled(!isDisabled)}
+                >
+                  {t('update_info')}
+                  <IconEdit width={16} height={16} />
+                </Button>
+              ) : (
+                <div className="flex gap-2 md:w-5/12">
+                  <Button
+                    type={'button'}
+                    title={'Save'}
+                    variant={'green'}
+                    className="hidden md:flex w-full md:w-1/2"
+                    onClick={() => handleSave()}
+                  >
+                    <IconCheck width={16} height={16} />
+                  </Button>
+                  <Button
+                    type={'button'}
+                    title={'Cancel'}
+                    variant={'primary'}
+                    className="hidden md:flex w-full md:w-1/2"
+                    onClick={() => setIsDisabled(!isDisabled)}
+                  >
+                    <IconClose width={16} height={16} />
+                  </Button>
+                </div>
+              )}
+              <Button
+                type={'button'}
+                title={'Logout'}
+                variant={'primary'}
+                className="w-[100px] md:w-3/12"
+                onClick={handleLogOut}
+              >
+                <span> {t('logout')}</span>
+                <IconLogin width={16} height={16} />
+              </Button>
+            </div>
+          </div>
+
+          <hr />
+          <div className="flex flex-col md:flex-row gap-16 items-center justify-center">
+            <ProfileImageUpdater image={formInfo.image} isDisabled={isDisabled} />
+            <div id="inputs" className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">{t('name_label')}</label>
+                <Input
+                  disabled={isDisabled}
+                  value={formInfo.fullName}
+                  onChange={(e) => setFormInfo({ ...formInfo, fullName: e.target.value })}
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
+                />
+              </div>
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">{t('mail')}</label>
+                <Input
+                  disabled
+                  value={formInfo.email}
+                  type="email"
+                  placeholder="Email"
+                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
+                />
+              </div>
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">{t('gender_label')}</label>
+                <Select disabled value={formInfo.gender}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a gender" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-backgroundColor">
+                    <SelectGroup>
+                      <SelectLabel>Gender</SelectLabel>
+                      <SelectItem value="MALE">{t('male')}</SelectItem>
+                      <SelectItem value="FEMALE">{t('female')}</SelectItem>
+                      <SelectItem value="OTHER">{t('OTHER')}</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">{t('age_label')}</label>
+                <Input
+                  disabled={isDisabled}
+                  value={formInfo.age}
+                  onChange={(e) => setFormInfo({ ...formInfo, age: e.target.value })}
+                  type="number"
+                  placeholder="Age"
+                  className="w-full px-3 py-2 text-gray-800 text-sm border border-solid rounded-md outline-none focus:border-primaryColor"
+                />
+              </div>
+            </div>
+          </div>
+          <hr />
+          {info?.relationInfo ? (
+            <div className="grid gap-6">
+              <h1 className="font-semibold text-lg">{t('relationship_info')}</h1>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('relationship_status')}</span>
+                  {info?.relationInfo.isInRelation ? t('yes') : t('no')}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('love')}</span> {info?.relationInfo.hasCrush ? t('yes') : t('no')}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('time')}</span> {t(info?.relationInfo.relationDuration)}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('focus')}</span> {t(info?.relationInfo.desiredPartnerFocus)}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('love_direction')}</span>{' '}
+                  {t(info?.relationInfo.loveAspectToAnalyze)}{' '}
+                </p>
+                <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
+                  <span className="font-semibold">{t('degree')}</span> {t(info?.relationInfo.perceivedImportance)}{' '}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex md:flex-row flex-col w-full md:items-center justify-end md:justify-between gap-4 md:gap-12">
+              <div className="flex flex-col w-[80%]">
+                <label className="font-semibold">{t('info_title')}</label>
+                <span className="text-[12px]">{t('info_desc')}</span>
+              </div>
+
+              <Button onClick={handleFillNow} size="md" type={'button'} title={'Edit'} variant={'primary'}>
+                <span>{t('fill_now')}</span>
+                <IconArrowRight className="hidden md:flex" width={16} height={16} />
+              </Button>
+            </div>
+          )}
+          <Button
+            onClick={openDeleteModal}
+            type={'button'}
+            title={'Change'}
+            size="md"
+            variant={'primary'}
+            className="hidden md:flex w-full"
+          >
+            {t('delete_account')}
+            <TrashIcon width={16} height={16} />
+          </Button>
+          <DeleteAccount
+            info={info as ProfileInfoResponse['data']}
+            isOpen={isDeleteModalOpen}
+            onClose={closeDeleteModal}
+          />
+          <FillNow isOpen={isModalOpen} onClose={closeModal} />
+        </div>
+      </Container>
+    </AppLayout>
+  );
+}

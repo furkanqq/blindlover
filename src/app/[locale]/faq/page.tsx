@@ -25,7 +25,7 @@ export default function FAQsPage() {
     } else if (locale === 'pt') {
       setFAQConfig(FAQConfig_pt);
     }
-  }, []);
+  }, [locale]);
 
   return (
     <AppLayout type="detail" className="">

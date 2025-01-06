@@ -1,4 +1,4 @@
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -29,6 +29,7 @@ export default function ResultPageComponent({
   tryB?: boolean;
   sendB?: boolean;
 }) {
+  const t = useTranslations('Buttons');
   const router = useRouter();
   const locale = useLocale();
   function sendEmail() {
@@ -59,7 +60,7 @@ export default function ResultPageComponent({
               size="md"
               title={''}
             >
-              Send Email
+              {t('send')}
             </Button>
           )}
 
@@ -72,7 +73,7 @@ export default function ResultPageComponent({
               size="md"
               title={''}
             >
-              Try Again
+              {t('try')}
             </Button>
           )}
 
@@ -88,14 +89,14 @@ export default function ResultPageComponent({
               size="md"
               title={''}
             >
-              Logout
+              {t('logout')}
             </Button>
           )}
 
           {homeB && (
             <Link href={'/'}>
               <Button variant={'primary'} className="w-44" type={'button'} size="md" title={''}>
-                Go to Homepage
+                {t('back_to_home')}
               </Button>
             </Link>
           )}

@@ -93,9 +93,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
             alt="Heart"
             width={44}
             height={44}
-            className="cursor-pointer md:w-[74px] md:h-[74px] w-[44px] h-[44px]"
+            className="cursor-pointer hidden sm:flex md:w-[74px] md:h-[74px] w-[44px] h-[44px]"
           />
-          <span className="absolute top-[50%] md:top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] select-none cursor-pointer">
+          <Image
+            src={`/hprimary.png`}
+            alt="Heart"
+            width={44}
+            height={44}
+            className="cursor-pointer flex sm:hidden md:w-[74px] md:h-[74px] w-[44px] h-[44px]"
+          />
+          <span className="absolute top-[50%] text-white sm:text-inherit md:top-9 flex flex-col justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] select-none cursor-pointer">
             {children}
           </span>
         </div>

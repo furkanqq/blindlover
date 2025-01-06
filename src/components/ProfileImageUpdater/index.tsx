@@ -1,6 +1,7 @@
 'use client';
 
 import { CameraIcon, PlusCircleIcon } from '@heroicons/react/16/solid';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { BlindStore } from '@/provider';
@@ -35,10 +36,12 @@ const ProfileImageUpdater = ({ isDisabled, image }: { isDisabled: boolean; image
             }`}
           >
             {selectedImage || (image && isDisabled === true) ? (
-              <img
+              <Image
                 src={selectedImage !== null ? selectedImage : image}
                 alt="Profile"
                 className="w-full h-full object-cover"
+                width={128}
+                height={128}
               />
             ) : (
               <div className="flex flex-col justify-center items-center text-gray-600">

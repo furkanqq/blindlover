@@ -13,143 +13,6 @@ import { AiResultResponse, AiResultResponseLanguages, QuestionResult } from '@/s
 import { resultAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 
-export default function ResultPage() {
-  const [result] = useAtom(resultAtom);
-  const { slug } = useParams();
-  const t = useTranslations('ResultPage');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const locale = useLocale();
-  const [country, setCountry] = useState<string>('');
-
-  useEffect(() => {
-    if (locale === 'tr') {
-      setCountry('turkish');
-    } else if (locale === 'en') {
-      setCountry('english');
-    } else if (locale === 'fr') {
-      setCountry('french');
-    } else if (locale === 'es') {
-      setCountry('spanish');
-    } else if (locale === 'ru') {
-      setCountry('russian');
-    } else if (locale === 'pt') {
-      setCountry('portuguese');
-    }
-  }, [locale]);
-
-  useEffect(() => {
-    BlindServices.QuestionResult(slug as string);
-  }, [slug]);
-
-  if (!result) {
-    return <LoadingScreen />;
-  }
-
-  const localKey = `${country}` as keyof AiResultResponseLanguages;
-  return (
-    <React.Fragment>
-      {currentIndex === 7 ? (
-        <AppLayout type="detail">
-          <ResultContainer result={result} country={country} />
-        </AppLayout>
-      ) : (
-        <div className="relative h-screen overflow-hidden bg-primaryColor cursor-pointer">
-          <div className="z-[0] absolute bg-[url(/heartPattern1.png)] h-full w-full animate-jump animate-infinite animate-duration-[8000ms] animate-ease-linear"></div>
-          <div
-            className={cn(
-              'absolute p-4 opacity-20 top-20 transition-transform duration-500 rounded-md border-2 border-solid border-white font-semibold text-lg text-white',
-              {
-                'translate-x-[70vw]': currentIndex % 2 === 0,
-                'translate-x-[10vw]': currentIndex % 2 !== 0,
-              }
-            )}
-          >
-            {t('click')}
-          </div>
-          {currentIndex === 0 && (
-            <div
-              className="relative z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(1)}
-            >
-              <h1 className="text-[40px]">{t('rate')}</h1>
-              <h2 className="text-[200px] font-extrabold">
-                {' '}
-                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 1 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(2)}
-            >
-              <h1 className="text-[40px]">{t('GENERAL_RELATION_STATUS')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.generalRelationStatus}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 2 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(3)}
-            >
-              <h1 className="text-[40px]">{t('EMOTIONAL_ATTACHMENT')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.emotionalAttachment}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 3 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(4)}
-            >
-              <h1 className="text-[40px]">{t('LOYALTY_AND_TRUST')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.loyaltyAndTrust}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 4 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(5)}
-            >
-              <h1 className="text-[40px]">{t('ROMANTIC_BEHAVIOR')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.romanticBehavior}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 5 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(6)}
-            >
-              <h1 className="text-[40px]">{t('FUN_AND_DAILY_HABITS')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.funAndDailyHabits}
-              </h2>
-            </div>
-          )}
-          {currentIndex === 6 && (
-            <div
-              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
-              onClick={() => setCurrentIndex(7)}
-            >
-              <h1 className="text-[40px]">{t('ai_comment')}</h1>
-              <h2 className="text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
-                {(result.aiResultResponse[localKey] as AiResultResponse).comment}
-              </h2>
-            </div>
-          )}
-        </div>
-      )}
-    </React.Fragment>
-  );
-}
-
 const ResultContainer = ({ result, country }: { result: QuestionResult['data']; country: string }) => {
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
   const t = useTranslations('ResultPage');
@@ -287,3 +150,140 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
     </Container>
   );
 };
+
+export default function ResultPage() {
+  const [result] = useAtom(resultAtom);
+  const { slug } = useParams();
+  const t = useTranslations('ResultPage');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const locale = useLocale();
+  const [country, setCountry] = useState<string>('');
+
+  useEffect(() => {
+    if (locale === 'tr') {
+      setCountry('turkish');
+    } else if (locale === 'en') {
+      setCountry('english');
+    } else if (locale === 'fr') {
+      setCountry('french');
+    } else if (locale === 'es') {
+      setCountry('spanish');
+    } else if (locale === 'ru') {
+      setCountry('russian');
+    } else if (locale === 'pt') {
+      setCountry('portuguese');
+    }
+  }, [locale]);
+
+  useEffect(() => {
+    BlindServices.QuestionResult(slug as string);
+  }, [slug]);
+
+  if (!result) {
+    return <LoadingScreen />;
+  }
+
+  const localKey = `${country}` as keyof AiResultResponseLanguages;
+  return (
+    <React.Fragment>
+      {currentIndex === 7 ? (
+        <AppLayout type="detail">
+          <ResultContainer result={result} country={country} />
+        </AppLayout>
+      ) : (
+        <div className="relative h-screen overflow-hidden bg-primaryColor cursor-pointer">
+          <div className="z-[0] absolute bg-[url(/heartPattern1.png)] h-full w-full animate-jump animate-infinite animate-duration-[8000ms] animate-ease-linear"></div>
+          <div
+            className={cn(
+              'hidden md:flex absolute p-4 opacity-20 top-20 transition-transform duration-500 rounded-md border-2 border-solid border-white font-semibold text-xs md:text-lg text-white',
+              {
+                'md:translate-x-[70vw]': currentIndex % 2 === 0,
+                'md:translate-x-[10vw]': currentIndex % 2 !== 0,
+              }
+            )}
+          >
+            {t('click')}
+          </div>
+          {currentIndex === 0 && (
+            <div
+              className="relative z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(1)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('rate')}</h1>
+              <h2 className="text-7xl md:text-[200px] font-extrabold">
+                {' '}
+                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 1 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(2)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('GENERAL_RELATION_STATUS')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.generalRelationStatus}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 2 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(3)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('EMOTIONAL_ATTACHMENT')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.emotionalAttachment}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 3 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(4)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('LOYALTY_AND_TRUST')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.loyaltyAndTrust}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 4 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(5)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('ROMANTIC_BEHAVIOR')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.romanticBehavior}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 5 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(6)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('FUN_AND_DAILY_HABITS')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.funAndDailyHabits}
+              </h2>
+            </div>
+          )}
+          {currentIndex === 6 && (
+            <div
+              className="relative font-extrabold gap-4 z-1 flex flex-col justify-center items-center h-full text-white animate-jump-in animate-duration-[1500ms] animate-ease-in-out"
+              onClick={() => setCurrentIndex(7)}
+            >
+              <h1 className="md:text-[40px] text-center">{t('ai_comment')}</h1>
+              <h2 className="md:text-[40px] w-[90%] md:w-[50%] font-semibold text-center">
+                {(result.aiResultResponse[localKey] as AiResultResponse).comment}
+              </h2>
+            </div>
+          )}
+        </div>
+      )}
+    </React.Fragment>
+  );
+}

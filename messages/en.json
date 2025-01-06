@@ -1,4 +1,8 @@
 {
+  "404Page": {
+    "title": "Oops! Looks like you're lost.",
+    "desc": "We couldn't find the page you were searching for. It might have been removed or is temporarily unavailable."
+  },
   "AboutPage": {
     "banner": {
       "title": "About Us",
@@ -28,10 +32,20 @@
       "button_two": "Sign Up"
     }
   },
+  "ActivatePage": {
+    "title": "Activate Your Account",
+    "desc": "Please confirm your email address by clicking the button below. Verifying your email will grant you full access to your account and ensure a more secure experience."
+  },
   "BlogPage": {
     "title": "Welcome to the Blog",
     "subtitle": "Discover the latest updates and opinions",
     "read_more": "Read now"
+  },
+  "Buttons": {
+    "send": "Send Email",
+    "try": "Try Again",
+    "logout": "Logout",
+    "back_to_home": "Go to Homepage"
   },
   "CookiePage": {
     "title": "Cookie Policy",
@@ -130,6 +144,20 @@
     },
     "see_all": "See All"
   },
+  "LoginPage": {
+    "title": "Log in to Find the Love of Your Life!",
+    "email": "Email",
+    "password": "Password",
+    "button": "Log In",
+    "register": "Don't have an account? Sign Up Now",
+    "or": "Or",
+    "google": "Continue with Google",
+    "apple": "Continue with Apple"
+  },
+  "NotApprovedPage": {
+    "title": "Please Verify",
+    "desc": "We noticed that your account has not been verified. Please verify your account by clicking the link we sent to your email."
+  },
   "PanelPage": {
     "title": "Discover Compatibility",
     "subtitle": "Are You Ready to Find Out How Strong Your Bond Is?",
@@ -143,6 +171,60 @@
     "info_desc": "To start the test, you need to fill out the questions in the Relationship Details section of your profile. Please complete this information first.",
     "info_nav": "Go to Profile"
   },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "intro": "At BlindLover, your privacy is of utmost importance to us. This Privacy Policy explains how we process and protect the information collected through the  <Link>https://blindlover.com</Link> website and mobile application. By using BlindLover, you agree to this policy.",
+    "section1Title": "1. What Information Do We Collect?",
+    "section1Content": "When you use BlindLover, we may collect the following information:",
+    "section1List": {
+      "one": "Personal Information: Name, email address (if provided during registration).",
+      "two": "User Responses: Answers you provide during tests.",
+      "three": "Device Information: IP address, device type, operating system, and browser information.",
+      "four": "Usage Data: Features you use and how you interact with our website or application."
+    },
+    "section2Title": "2. How Do We Use the Information?",
+    "section2Content": "We use the information we collect for the following purposes:",
+    "section2List": {
+      "one": "To analyze your test results and provide personalized feedback.",
+      "two": "To improve our services and enhance user experience.",
+      "three": "To make our website and application more efficient.",
+      "four": "To offer new features based on your feedback."
+    },
+    "section3Title": "3. Cookies and Tracking Technologies",
+    "section3Content": "BlindLover uses cookies and similar technologies to enhance your user experience. Cookies are small data files stored on your device.",
+    "section3List": {
+      "one": "Essential Cookies: Used to provide basic functionality of the website.",
+      "two": "Performance Cookies: Used to analyze usage data.",
+      "three": "Advertising Cookies: Used to show ads tailored to your interests."
+    },
+    "section3Note": "You can manage or disable cookies through your browser settings.",
+    "section4Title": "4. Who Do We Share Your Information With?",
+    "section4Content": "We may share your information with third parties in the following cases:",
+    "section4List": {
+      "one": "Service Providers: We may work with third parties to analyze data, host services, and provide technical support.",
+      "two": "Legal Obligations: We may share your information with relevant authorities when legally required.",
+      "three": "Advertising Partners: We may share anonymized data to provide ads tailored to your interests."
+    },
+    "section5Title": "5. How Do We Protect Your Information?",
+    "section5Content": "We take industry-standard technical and organizational measures to ensure the security of your personal information. However, we cannot guarantee complete security for data transmitted over the internet.",
+    "section6Title": "6. Data Retention Period",
+    "section6Content": "Your personal information is retained only for the time necessary to achieve the purposes specified. User accounts or data can be deleted upon request.",
+    "section7Title": "7. Your Rights",
+    "section7Content": "As a BlindLover user, you have the following rights:",
+    "section7List": {
+      "one": "Right of Access: You can learn which information we hold about you.",
+      "two": "Right to Rectification: You can correct inaccurate or incomplete information.",
+      "three": "Right to Erasure: You can request the deletion of your personal information.",
+      "four": "Right to Object: You can object to the processing of your data."
+    },
+    "section7Note": "To exercise your rights, please contact us at hello@blindlover.com.",
+    "section8Title": "8. Changes",
+    "section8Content": "BlindLover may update this Privacy Policy from time to time. When updates are made, the new policy will be published on our website.",
+    "section9Title": "9. Contact Us",
+    "section9Content": "If you have any questions about our privacy policy, please contact us:\nEmail: hello@blindlover.com",
+    "closing": "Thank you for using BlindLover. Protecting your data and respecting your privacy is our priority."
+  },
+
   "ProfilePage": {
     "profile": "Profile",
     "subtitle": "This is your general overview.",
@@ -206,6 +288,31 @@
     "confirm_pass": "Confirm Password",
     "delete": "Delete"
   },
+  "RegisterPage": {
+    "title": "Create Your Account",
+    "or": "Or",
+    "google": "Continue with Google",
+    "apple": "Continue with Apple",
+    "name": "Full Name",
+    "name_placeholder": "Enter your full name",
+    "email": "Email",
+    "email_placeholder": "Enter your email address",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Re-enter your password",
+    "age": "Age",
+    "age_placeholder": "Enter your age",
+    "gender": "Gender",
+    "gender_placeholder": "Select your gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "terms": "Agree to terms and conditions",
+    "terms1": "You agree to our Terms of Service and Privacy Policy.",
+    "button": "Sign Up",
+    "login": "Already have an account? Log in"
+  },
   "ResultPage": {
     "rate": "Your Compatibility Rate",
     "GENERAL_RELATION_STATUS": "GENERAL RELATION STATUS",
@@ -245,5 +352,9 @@
     "section8Title": "8. Contact Us",
     "section8Content": "For any questions regarding the Terms and Conditions, please contact us: ",
     "email": "Email: "
+  },
+  "VerificationSuccessPage": {
+    "title": "Successfully Verified!",
+    "desc": "Your account has been successfully verified. You can now access all features."
   }
 }

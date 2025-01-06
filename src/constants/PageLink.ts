@@ -9,4 +9,5 @@ export const enum PageLink {
   About = '/about',
   Panel = '/panel',
   Questions = '/panel/questions',
+  Result = '/result',
 }

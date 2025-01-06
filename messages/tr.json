@@ -1,4 +1,8 @@
 {
+  "404Page": {
+    "title": "Hata! Kaybolmuş gibi görünüyorsunuz.",
+    "desc": "Aradığınız sayfayı bulamadık. Sayfa kaldırılmış olabilir veya geçici olarak kullanılamıyor."
+  },
   "AboutPage": {
     "banner": {
       "title": "Hakkımızda",
@@ -28,10 +32,20 @@
       "button_two": "Kayıt Ol"
     }
   },
+  "ActivatePage": {
+    "title": "Hesabınızı Etkinleştirin",
+    "desc": "Lütfen aşağıdaki düğmeye tıklayarak e-posta adresinizi doğrulayın. E-posta adresinizi doğrulamak, hesabınıza tam erişim sağlayacak ve daha güvenli bir deneyim sunacaktır."
+  },
   "BlogPage": {
     "title": "Blog'a Hoş Geldiniz",
     "subtitle": "En son güncellemeleri ve görüşleri keşfedin",
     "read_more": "Şimdi oku"
+  },
+  "Buttons": {
+    "send": "E-posta Gönder",
+    "try": "Tekrar Dene",
+    "logout": "Çıkış Yap",
+    "back_to_home": "Ana Sayfaya Dön"
   },
   "CookiePage": {
     "title": "Çerez Politikası",
@@ -131,6 +145,21 @@
     },
     "see_all": "Tümünü Gör"
   },
+  "LoginPage": {
+    "title": " Hayatının Aşkını Bulmak için Giriş Yap!",
+    "email": "E-posta",
+    "password": "Şifre",
+    "button": "Giriş Yap",
+    "register": "Hesabınız yok mu? Hemen Kaydolun",
+    "or": "Ya da",
+    "google": "Google ile Devam Et",
+    "apple": "Apple ile Devam Et"
+  },
+  "NotApprovedPage": {
+    "title": "Lütfen Doğrulayın",
+    "desc": "Hesabınızın henüz doğrulanmadığını fark ettik. Lütfen e-postanıza gönderdiğimiz bağlantıya tıklayarak hesabınızı doğrulayın."
+  },
+
   "PanelPage": {
     "title": "Uyumluluğu Keşfet",
     "subtitle": "Bağınızın Ne Kadar Güçlü Olduğunu Öğrenmeye Hazır mısınız?",
@@ -146,7 +175,7 @@
   },
   "PrivacyPage": {
     "title": "Gizlilik Politikası",
-    "intro": "BlindLover olarak gizliliğinize büyük önem veriyoruz. Bu Gizlilik Politikası, https://blindlover.com web sitesi ve mobil uygulaması aracılığıyla topladığımız bilgileri nasıl işlediğimizi ve koruduğumuzu açıklar. BlindLover’ı kullanarak bu politikayı kabul etmiş sayılırsınız.",
+    "intro": "BlindLover olarak gizliliğinize büyük önem veriyoruz. Bu Gizlilik Politikası, <Link>https://blindlover.com</Link> web sitesi ve mobil uygulaması aracılığıyla topladığımız bilgileri nasıl işlediğimizi ve koruduğumuzu açıklar. BlindLover’ı kullanarak bu politikayı kabul etmiş sayılırsınız.",
     "section1Title": "1. Hangi Bilgileri Topluyoruz?",
     "section1Content": "BlindLover’ı kullandığınızda aşağıdaki bilgileri toplayabiliriz:",
     "section1List": {
@@ -258,6 +287,31 @@
     "confirm_pass": "Şifre Tekrarı",
     "delete": "Sil"
   },
+  "RegisterPage": {
+    "title": "Hesabınızı Oluşturun",
+    "or": "Ya da",
+    "google": "Google ile Devam Et",
+    "apple": "Apple ile Devam Et",
+    "name": "Ad Soyad",
+    "name_placeholder": "Adınızı ve soyadınızı girin",
+    "email": "E-posta",
+    "email_placeholder": "E-posta adresinizi girin",
+    "password": "Şifre",
+    "password_placeholder": "Şifrenizi girin",
+    "confirm_password": "Şifre Tekrar",
+    "confirm_password_placeholder": "Şifrenizi tekrar girin",
+    "age": "Yaş",
+    "age_placeholder": "Yaşınızı girin",
+    "gender": "Cinsiyet",
+    "gender_placeholder": "Cinsiyetinizi seçin",
+    "male": "Erkek",
+    "female": "Kadın",
+    "other": "Diğer",
+    "terms": "Şartları ve koşulları kabul edin",
+    "terms1": "Hizmet Şartlarımızı ve Gizlilik Politikamızı kabul ediyorsunuz.",
+    "button": "Kayıt Ol",
+    "login": "Zaten bir hesabınız var mı? Oturum aç"
+  },
   "ResultPage": {
     "rate": "Uyumluluk Oranınız",
     "GENERAL_RELATION_STATUS": "GENEL İLİŞKİ DURUMU",
@@ -300,5 +354,9 @@
     "section8Title": "8. İletişim",
     "section8Content": "Kullanım şartları hakkında sorularınız için bize ulaşabilirsiniz: ",
     "email": "E-posta:"
+  },
+  "VerificationSuccessPage": {
+    "title": "Başarıyla Doğrulandı!",
+    "desc": "Hesabınız başarıyla doğrulandı. Artık tüm özelliklere erişebilirsiniz."
   }
 }
