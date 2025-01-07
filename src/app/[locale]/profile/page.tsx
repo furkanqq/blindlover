@@ -546,7 +546,7 @@ export default function ProfilePage() {
                 type={'button'}
                 title={'Change'}
                 variant={'blue'}
-                className="hidden md:flex w-full md:w-4/12"
+                className="hidden md:flex w-full md:w-4/12 h-12"
               >
                 {t('change_password')}
                 <IconKey width={16} height={16} />
@@ -556,7 +556,7 @@ export default function ProfilePage() {
                   type={'button'}
                   title={'Update'}
                   variant={'green'}
-                  className="hidden md:flex w-full md:w-4/12"
+                  className="hidden md:flex w-full md:w-4/12 h-12"
                   onClick={() => setIsDisabled(!isDisabled)}
                 >
                   {t('update_info')}
@@ -568,7 +568,7 @@ export default function ProfilePage() {
                     type={'button'}
                     title={'Save'}
                     variant={'green'}
-                    className="hidden md:flex w-full md:w-1/2"
+                    className="hidden md:flex w-full md:w-1/2 h-12"
                     onClick={() => handleSave()}
                   >
                     <IconCheck width={16} height={16} />
@@ -577,7 +577,7 @@ export default function ProfilePage() {
                     type={'button'}
                     title={'Cancel'}
                     variant={'primary'}
-                    className="hidden md:flex w-full md:w-1/2"
+                    className="hidden md:flex w-full md:w-1/2 h-12"
                     onClick={() => setIsDisabled(!isDisabled)}
                   >
                     <IconClose width={16} height={16} />
@@ -588,7 +588,7 @@ export default function ProfilePage() {
                 type={'button'}
                 title={'Logout'}
                 variant={'primary'}
-                className="w-[100px] md:w-3/12"
+                className="w-[100px] md:w-3/12 h-12"
                 onClick={handleLogOut}
               >
                 <span> {t('logout')}</span>
