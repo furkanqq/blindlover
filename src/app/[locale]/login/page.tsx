@@ -40,13 +40,13 @@ export default function LoginPage() {
   }
 
   return (
-    <AppLayout type="auth">
-      <div className="min-h-screen flex justify-center">
+    <AppLayout type="detail">
+      <div className="mt-16 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-backgroundColor rounded-lg overflow-hidden shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className="flex justify-center items-center">
               <Link href={'/'}>
-                <Image src="/blindlover.png" alt="logo" width={200} height={180} />
+                <Image src="/blindlover.png" alt="logo" width={200} height={160} />
               </Link>
             </div>
             <div className="mt-12 flex flex-col items-center">
@@ -81,7 +81,7 @@ export default function LoginPage() {
                     {t('or')}
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 items-center">
+                <div className="flex gap-4 items-center">
                   <Button size="md" variant={'light'} type="button" title="" className="w-56 border-foreground">
                     <IconGoogle width={20} height={20} />
                     <span>{t('google')}</span>

@@ -3,6 +3,7 @@ type LocaleOptions = {
 };
 
 export const formatDate = (dateString: string | undefined, { locale }: LocaleOptions) => {
+  console.log(locale, 'locale');
   try {
     if (!dateString) return;
     const date = new Date(dateString);

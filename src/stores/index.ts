@@ -3,6 +3,8 @@ import { atom } from 'jotai';
 import {
   BlindBlogListResponse,
   BlindBlogResponse,
+  BlindMovieListResponse,
+  BlindSeriesListResponse,
   ProfileInfoResponse,
   QuestionListResponse,
   QuestionResult,
@@ -23,6 +25,8 @@ export const profileInfoAtom = atom<ProfileInfoResponse['data'] | undefined>();
 export const base64ImageAtom = atom('');
 
 export const blogListAtom = atom<BlindBlogListResponse['data'] | undefined>();
+export const movieListAtom = atom<BlindMovieListResponse['data'] | undefined>();
+export const seriesListAtom = atom<BlindSeriesListResponse['data'] | undefined>();
 export const blogAtom = atom<BlindBlogResponse | undefined>();
 
 export const questionListAtom = atom<QuestionListResponse['data'] | undefined>();

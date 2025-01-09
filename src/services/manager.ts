@@ -6,10 +6,12 @@ import {
   blogAtom,
   blogListAtom,
   loaderAtom,
+  movieListAtom,
   profileInfoAtom,
   questionListAtom,
   resultAtom,
   resultListAtom,
+  seriesListAtom,
 } from '@/stores';
 import { BlindApiUrl, DirectusHttpUrl } from '.';
 import { deleteAuthTokenToHeader, setAuthTokenToHeader } from './helper';
@@ -357,6 +359,47 @@ const BlogList = async () => {
   }
 };
 
+const MovieList = async () => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await DirectusHttpUrl.MovieList();
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    BlindStore.set(movieListAtom, resData.data);
+    return resData;
+  } catch (err: any) {
+    console.log('BlindServices->BlogList Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+const SeriesList = async () => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await DirectusHttpUrl.SeriesList();
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    BlindStore.set(seriesListAtom, resData.data);
+    return resData;
+  } catch (err: any) {
+    console.log('BlindServices->BlogList Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 const Blog = async (param: string) => {
   BlindStore.set(loaderAtom, true);
 
@@ -380,4 +423,6 @@ const Blog = async (param: string) => {
 export const DirectusServices = {
   BlogList,
   Blog,
+  MovieList,
+  SeriesList,
 };

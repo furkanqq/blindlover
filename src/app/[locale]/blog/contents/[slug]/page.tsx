@@ -12,7 +12,6 @@ import LoadingScreen from '@/components/LoadingScreen';
 import MarkdownContent from '@/components/MarkdownContent';
 import { DirectusServices } from '@/services/manager';
 import { blogAtom } from '@/stores';
-import { formatDate } from '@/utils/formatDate';
 
 export default function BlogDetail() {
   const { slug } = useParams();
@@ -30,14 +29,14 @@ export default function BlogDetail() {
   const titleKey = `title_${locale}` as keyof typeof blog;
   const descKey = `content_${locale}` as keyof typeof blog;
   return (
-    <AppLayout type="detail" className="">
+    <AppLayout type="detail" className="" slug>
       <article className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[300px] w-full">
           <h1 className="text-4xl mt-12 font-bold md:w-[720px]">{blog[titleKey]}</h1>
-          <div className="text-md text-gray-500 mt-4">
-            {blog.date_created && formatDate(blog.date_created, { locale: `${locale}-${locale.toUpperCase}` })}
-          </div>
+          {/* <div className="text-md text-gray-500 mt-4">
+            {blog.date_created && formatDate(blog.date_created, { locale: `${locale}-${locale.toUpperCase()}` })}
+          </div> */}
         </div>
 
         <Container className="mt-12 flex flex-col gap-12">
@@ -46,7 +45,6 @@ export default function BlogDetail() {
               <Image src={'/blog.png'} alt={'blog'} fill objectFit="cover" />
             </div>
           </div>
-          {/* <div className="px-2 md:px-32 text-[20px]">{blog?.content_tr}</div> */}
           <MarkdownContent content={blog[descKey] as string} />
         </Container>
       </article>

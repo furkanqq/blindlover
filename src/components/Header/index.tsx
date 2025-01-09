@@ -138,9 +138,11 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 export default function Header({
   token,
   type = 'default',
+  slug = false,
 }: {
   type?: 'auth' | 'default' | 'landing' | 'detail';
   token: boolean;
+  slug?: boolean;
 }) {
   const t = useTranslations('LandingPage');
   const [scrollHeight, setScrollHeight] = useState(false);
@@ -239,16 +241,18 @@ export default function Header({
             </>
           )}
           <LanguageModal isOpen={isModalOpen} onClose={closeModal} />
-          <Button
-            className="w-32"
-            variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
-            type={'button'}
-            title={''}
-            onClickDiv={openModal}
-          >
-            <span className="hidden md:flex">{t('header.lang')}</span>
-            <LanguageIcon width={12} height={12} />
-          </Button>
+          {!slug && (
+            <Button
+              className="w-32"
+              variant={type === 'detail' ? 'hborderprimary' : !scrollHeight ? 'hborderlight' : 'hborderprimary'}
+              type={'button'}
+              title={''}
+              onClickDiv={openModal}
+            >
+              <span className="hidden md:flex">{t('header.lang')}</span>
+              <LanguageIcon width={12} height={12} />
+            </Button>
+          )}
         </div>
       </div>
     </div>

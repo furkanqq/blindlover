@@ -1,56 +1,48 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
-import { useLocale } from 'next-intl';
 import Image from 'next/image';
 
 import { Link } from '@/i18n/routing';
-import { formatDate } from '@/utils/formatDate';
 import Button from '../Button';
 import MarkdownContent from '../MarkdownContent';
 
 const BlogCard = ({
   title,
   desc,
-  date,
   image,
   link,
   buttonText,
 }: {
   title: string;
   desc: string;
-  date?: string;
   image: string;
   link: string;
   buttonText: string;
 }) => {
-  const locale = useLocale();
   return (
-    <article className="relative max-w-sm bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-lg">
-      <div className="absolute bottom-1 right-2 text-xs text-gray-400">
-        {formatDate(date as string, { locale: `${locale}-${locale.toUpperCase()}` })}
-      </div>
-      <div className="relative h-40">
+    <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
+      <div className="relative h-full w-4/12 hidden md:flex">
         <Link
           href={{
-            pathname: '/blog/[slug]',
+            pathname: '/blog/contents/[slug]',
             params: { slug: link },
           }}
         >
-          <Image className="rounded-t-lg" src={image ? image : ''} alt="Blog Image" fill objectFit="cover" />
+          <Image className="" src={image ? image : ''} alt="Blog Image" fill objectFit="cover" />
         </Link>
       </div>
-      <div className="p-5 flex flex-col justify-between h-[22rem]">
+      <div className="p-5 flex sm:w-8/12 w-full flex-col justify-between sm:h-[20rem]">
         <Link
           href={{
-            pathname: '/blog/[slug]',
+            pathname: '/blog/contents/[slug]',
             params: { slug: link },
           }}
         >
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{title}</h5>
+          <h5 className="mb-2 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{title}</h5>
         </Link>
-        <MarkdownContent content={desc} className="!mb-3 font-normal !text-gray-700 text-[14px]" />
+        <MarkdownContent content={desc} className="!mb-3 font-normal !text-gray-700 text-xs sm:text-[14px]" />
         <Link
           href={{
-            pathname: '/blog/[slug]',
+            pathname: '/blog/contents/[slug]',
             params: { slug: link },
           }}
         >

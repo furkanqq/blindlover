@@ -39,7 +39,21 @@
   "BlogPage": {
     "title": "Welcome to the Blog",
     "subtitle": "Discover the latest updates and opinions",
-    "read_more": "Read now"
+    "read_more": "Read now",
+    "more_detail": "For more detailed information",
+    "all_movies": "All Movies",
+    "all_series": "All Series",
+    "category1": "Romantic Movies",
+    "category2": "Romantic Comedy Movies",
+    "category3": "Drama and Emotional Movies",
+    "category4": "Fantasy and Science Fiction Love Stories",
+    "category5": "Animations and Easy Movies",
+    "s_category1": "Romantic Series",
+    "s_category2": "Romantic Comedy Series",
+    "s_category3": "Fantasy and Science Fiction Series (With Romantic Elements)",
+    "s_category4": "Drama and Emotional Series",
+    "s_category5": "Korean Dramas (Romantic and Emotional)",
+    "s_category6": "Youth and Fun Series"
   },
   "Buttons": {
     "send": "Send Email",

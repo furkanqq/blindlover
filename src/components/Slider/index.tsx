@@ -95,7 +95,7 @@ const Slider = ({
 
                     <Link
                       href={{
-                        pathname: '/blog/[slug]',
+                        pathname: '/blog/contents/[slug]',
                         params: { slug: blog.slug },
                       }}
                     >

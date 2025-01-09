@@ -10,17 +10,19 @@ export default function AppLayout({
   children,
   type,
   className,
+  slug,
 }: {
   children: React.ReactNode;
   type?: 'auth' | 'default' | 'landing' | 'detail';
   className?: string;
+  slug?: boolean;
 }) {
   const { token } = useContext(AuthContext);
 
   return (
     // <BrowserRouter>
     <main className={cn('min-h-[100vh]', className)}>
-      {type === 'auth' ? null : <Header token={token ? token : false} type={type} />}
+      {type === 'auth' ? null : <Header token={token ? token : false} type={type} slug={slug} />}
       <Toaster position="top-right" />
       {children}
       {type === 'auth' ? null : <Footer />}

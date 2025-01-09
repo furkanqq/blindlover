@@ -58,6 +58,12 @@ export const DirectusHttpUrl = {
   BlogList: () => {
     return DirectusHttp.get('/items/blindlover');
   },
+  MovieList: () => {
+    return DirectusHttp.get('/items/blind_movies');
+  },
+  SeriesList: () => {
+    return DirectusHttp.get('/items/blind_series');
+  },
   Blog: (param: string) => {
     return DirectusHttp.get('/items/blindlover?filter[slug][_eq]=' + param);
   },

@@ -74,6 +74,50 @@ export interface BlindBlogListResponse {
   }>;
 }
 
+export interface BlindMovieListResponse {
+  data: Array<{
+    status: 'published' | 'archived' | 'draft';
+    date_created: string;
+    id: number;
+    movie_name: string;
+    category_tr: string;
+    category_en: string;
+    category_es: string;
+    category_ru: string;
+    category_fr: string;
+    category_pt: string;
+    link: string;
+    content_tr: string;
+    content_en: string;
+    content_es: string;
+    content_ru: string;
+    content_fr: string;
+    content_pt: string;
+  }>;
+}
+
+export interface BlindSeriesListResponse {
+  data: Array<{
+    status: 'published' | 'archived' | 'draft';
+    date_created: string;
+    id: number;
+    series_name: string;
+    category_tr: string;
+    category_en: string;
+    category_es: string;
+    category_ru: string;
+    category_fr: string;
+    category_pt: string;
+    link: string;
+    series_content_tr: string;
+    series_content_en: string;
+    series_content_es: string;
+    series_content_ru: string;
+    series_content_fr: string;
+    series_content_pt: string;
+  }>;
+}
+
 export interface BlindBlogResponse {
   status: 'published' | 'archived' | 'draft';
   date_created: string;

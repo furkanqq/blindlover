@@ -39,7 +39,15 @@
   "BlogPage": {
     "title": "Bem-vindo ao Blog",
     "subtitle": "Descubra as últimas atualizações e opiniões",
-    "read_more": "Leia agora"
+    "read_more": "Leia agora",
+    "more_detail": "Para mais informações detalhadas",
+    "all_movies": "Todos os Filmes",
+    "all_series": "Todas as Séries",
+    "category1": "Filmes Românticos",
+    "category2": "Filmes de Comédia Romântica",
+    "category3": "Filmes Dramáticos e Emocionais",
+    "category4": "Histórias de Amor de Fantasia e Ficção Científica",
+    "category5": "Filmes de Animação e Leves"
   },
   "Buttons": {
     "send": "Enviar Email",

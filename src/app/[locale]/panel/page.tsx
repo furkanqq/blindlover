@@ -78,7 +78,7 @@ export default function PanelPage() {
     if (move) {
       BlindServices.QuestionResultList();
     }
-  }, [move, resultList]);
+  }, [move, resultList, locale]);
 
   const handleStartTest = () => {
     if (info?.emailVerified === false) {

@@ -138,11 +138,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <AppLayout type="auth">
+    <AppLayout type="detail">
       <div className="">
-        <div className="relative text-center bg-primaryColor min-h-[200px] sm:p-12 p-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35"></div>
-          <h4 className="sm:text-3xl text-2xl font-bold text-backgroundColor">{t('title')}</h4>
+        <div className="relative text-center bg-white min-h-[200px] sm:p-12 p-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-fixed bg-[url('/heartPattern1.png')] bg-repeat bg-contain opacity-35"></div>
+          <h4 className="sm:text-3xl text-2xl font-bold text-primaryColor">{t('title')}</h4>
         </div>
 
         <div className="relative z-2 mx-4 mb-4 -mt-16">

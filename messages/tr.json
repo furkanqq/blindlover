@@ -39,7 +39,21 @@
   "BlogPage": {
     "title": "Blog'a Hoş Geldiniz",
     "subtitle": "En son güncellemeleri ve görüşleri keşfedin",
-    "read_more": "Şimdi oku"
+    "read_more": "Şimdi oku",
+    "more_detail": "Daha detaylı bilgi için",
+    "all_movies": "Tüm Filmler",
+    "all_series": "Tüm Diziler",
+    "category1": "Romantik Filmler",
+    "category2": "Romantik-Komedi Filmleri",
+    "category3": "Dram ve Duygusal Filmler",
+    "category4": "Fantastik ve Bilim Kurgu Temalı Aşk Hikayeleri",
+    "category5": "Animasyonlar ve Hafif Filmler",
+    "s_category1": "Romantik Diziler",
+    "s_category2": "Romantik-Komedi Dizileri",
+    "s_category3": "Fantastik ve Bilim Kurgu Dizileri (Romantik Ögeler İçeren)",
+    "s_category4": "Dram ve Duygusal Diziler",
+    "s_category5": "Kore Dizileri (Romantik ve Duygusal)",
+    "s_category6": "Gençlik ve Eğlenceli Diziler"
   },
   "Buttons": {
     "send": "E-posta Gönder",

@@ -187,7 +187,7 @@ export default function ResultPage() {
   return (
     <React.Fragment>
       {currentIndex === 7 ? (
-        <AppLayout type="detail">
+        <AppLayout type="detail" slug>
           <ResultContainer result={result} country={country} />
         </AppLayout>
       ) : (
