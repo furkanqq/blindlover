@@ -24,7 +24,7 @@ interface TypeAnswer {
 
 interface TypeOptions {
   label: 'NO' | 'EMPTY' | 'YES';
-  value: 'No' | 'Empty' | 'Yes';
+  value: 'No' | 'Undecided' | 'Yes';
 }
 
 export default function QuestionsPage() {
@@ -52,15 +52,13 @@ export default function QuestionsPage() {
     }
   }, [locale]);
 
-  console.log(questions, 'questions');
-
   useEffect(() => {
     BlindServices.QuestionList();
   }, []);
 
   const options: TypeOptions[] = [
     { label: 'NO', value: 'No' },
-    { label: 'EMPTY', value: 'Empty' },
+    { label: 'EMPTY', value: 'Undecided' },
     { label: 'YES', value: 'Yes' },
   ];
 
@@ -127,7 +125,7 @@ export default function QuestionsPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-backgroundColor w-full h-[95%] md:h-[80%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
+          <div className="bg-backgroundColor w-[90%] h-[95%] md:h-[70%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
             <div className="h-[20%] flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center justify-center w-20">
                 <span className="text-[32px] mr-1">{`${currentQuestionIndex + 1 >= 10 ? '' : '0'}${currentQuestionIndex + 1}`}</span>
@@ -145,20 +143,20 @@ export default function QuestionsPage() {
             </div>
             <div className="h-[70%] flex flex-col justify-start pt-12 items-center gap-12">
               <div
-                className={`h-full flex flex-col items-center gap-12 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
+                className={`h-full flex flex-col items-center gap-14 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
                 key={questions[currentQuestionIndex]._id}
               >
-                <h1 className="text-xl md:text-[44px] h-28 md:leading-[56px] text-center font-semibold px-4 md:px-28">
+                <h1 className="text-xl md:text-[38px] h-28 md:leading-[56px] text-center font-semibold px-4 md:px-28">
                   {(questions[currentQuestionIndex][localKey] as string) || ''}
                 </h1>
                 <div className="flex gap-4 md:gap-20">
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-44 md:h-32 rounded-md active:scale-[0.98] cursor-pointer"
+                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-52 md:h-24 rounded-md active:scale-[0.98] cursor-pointer"
                       onClick={() => handleAnswer(option.label)}
                     >
-                      <span className="md:text-[32px] text-white">{t(option.value.toUpperCase())}</span>
+                      <span className="md:text-[28px] text-white">{t(option.value.toUpperCase())}</span>
                     </div>
                   ))}
                 </div>

@@ -9,6 +9,7 @@ import { CardSection } from '@/components/CardSection';
 import { CTASection } from '@/components/CTASection';
 import { FAQ } from '@/components/FAQ';
 import { HeaderSection } from '@/components/HeaderSection';
+import { MovieSeriesSlider } from '@/components/MovieSeriesSlider';
 import { Slider } from '@/components/Slider';
 import { FAQConfig_en, FAQConfig_es, FAQConfig_fr, FAQConfig_pt, FAQConfig_ru, FAQConfig_tr } from '@/config/FAQConfig';
 
@@ -39,7 +40,7 @@ export default function Home() {
       <HeaderSection />
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
-      <Slider startIndex={6} endIndex={11} mirror title={t('slider_title_two')} />
+      <MovieSeriesSlider mirror title={t('slider_title_two')} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>
   );

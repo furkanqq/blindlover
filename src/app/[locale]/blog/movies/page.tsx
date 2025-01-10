@@ -23,6 +23,7 @@ export default function MoviesPage() {
   const locale = useLocale();
   const t = useTranslations('BlogPage');
   const [category, setCategory] = useState<string>('');
+  const [categoryImage, setCategoryImage] = useState<string>('');
 
   useEffect(() => {
     DirectusServices.MovieList();
@@ -55,36 +56,39 @@ export default function MoviesPage() {
         </div>
         {category !== '' && (
           <Container>
-            <div className="pt-4 cursor-pointer flex gap-3" onClick={() => setCategory('')}>
+            <div className="pt-6 cursor-pointer flex gap-3" onClick={() => setCategory('')}>
               <ArrowLeftIcon width={24} height={24} />
-              <span>Tüm Kategoriler</span>
+              <span>{t('all_categories')}</span>
             </div>
           </Container>
         )}
 
         {category === '' && (
           <Container>
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 py-4 pt-14">
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 py-4 pt-10">
               {MovieCategory.map((cate, index) => (
                 <article
                   key={index}
                   className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"
                 >
                   <div className="relative h-40">
-                    <Image className="" src={'/blog.png'} alt="Blog Image" fill objectFit="cover" />
+                    <Image className="" src={cate.image} alt="Blog Image" fill objectFit="cover" />
                   </div>
-                  <div className="p-5 flex w-full flex-col justify-between sm:h-[16rem]">
+                  <div className="p-5 flex w-full flex-col justify-between sm:h-[17rem]">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">{t(cate.category_name)}</h5>
 
-                    <div className="!mb-3 font-normal !text-gray-700 text-xs ">{cate.content}</div>
+                    <div className="!mb-3 font-normal !text-gray-700 text-xs ">{t(cate.content)}</div>
 
                     <Button
                       type={'button'}
                       title={'Read More'}
                       variant={'primary'}
-                      onClick={() => setCategory(t(cate.category_name))}
+                      onClick={() => {
+                        setCategory(t(cate.category_name));
+                        setCategoryImage(cate.image);
+                      }}
                     >
-                      Keşfet
+                      {t('explore')}
                     </Button>
                   </div>
                 </article>
@@ -95,6 +99,11 @@ export default function MoviesPage() {
         {category !== '' && (
           <Container className="mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
+                <div className="relative h-full w-full hidden md:flex">
+                  <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
+                </div>
+              </article>
               {currentMovies.map((movies, index) => {
                 const descKey = `content_${locale.split('-')[0]}` as keyof typeof movies;
                 return (
@@ -102,7 +111,6 @@ export default function MoviesPage() {
                     key={index}
                     title={movies.movie_name}
                     desc={movies[descKey] as string}
-                    image="/blog.png"
                     link={movies.link}
                   />
                 );

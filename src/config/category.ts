@@ -1,52 +1,60 @@
 export const MovieCategory = [
   {
     category_name: 'category1',
-    content: 'Unutulmaz romantik filmleri senin için seçtik. Keyifle izlemek için filmini seç.',
+    content: 'category1_desc',
+    image: '/m1.png',
   },
   {
     category_name: 'category2',
-    content: 'Romantik olsun ama eğlenceli de olsun diyorsan, hemen unutulmaz romantik komedi seçkimize göz at.',
+    content: 'category2_desc',
+    image: '/m2.png',
   },
   {
     category_name: 'category3',
-    content: 'Biraz göz yaşı biraz duygulara dokunuş… Efsane dram filmlerimizi beğenine sunuyoruz.',
+    content: 'category3_desc',
+    image: '/m3.png',
   },
   {
     category_name: 'category4',
-    content: 'Bilim Kurgu filmlerini çok sevdiğini duyar gibiyiz. Senin için seçtiklerimiz listede seni bekliyor.',
+    content: 'category4_desc',
+    image: '/m4.png',
   },
   {
     category_name: 'category5',
-    content:
-      'Animasyon tutkunu olduğunu biliyoruz. Bu kategoride hem animasyon hem de izlerken zihnini yormayacak filmleri bulabilirsin.',
+    content: 'category5_desc',
+    image: '/m5.png',
   },
 ];
 
 export const SeriesCategory = [
   {
     category_name: 's_category1',
-    content: 'Unutulmaz romantik filmleri senin için seçtik. Keyifle izlemek için filmini seç.',
+    content: 's_category1_desc',
+    image: '/m1.png',
   },
   {
     category_name: 's_category2',
-    content: 'Romantik olsun ama eğlenceli de olsun diyorsan, hemen unutulmaz romantik komedi seçkimize göz at.',
+    content: 's_category2_desc',
+    image: '/m2.png',
   },
   {
     category_name: 's_category3',
-    content: 'Biraz göz yaşı biraz duygulara dokunuş… Efsane dram filmlerimizi beğenine sunuyoruz.',
+    content: 's_category3_desc',
+    image: '/m3.png',
   },
   {
     category_name: 's_category4',
-    content: 'Bilim Kurgu filmlerini çok sevdiğini duyar gibiyiz. Senin için seçtiklerimiz listede seni bekliyor.',
+    content: 's_category4_desc',
+    image: '/s4.png',
   },
   {
     category_name: 's_category5',
-    content:
-      'Animasyon tutkunu olduğunu biliyoruz. Bu kategoride hem animasyon hem de izlerken zihnini yormayacak filmleri bulabilirsin.',
+    content: 's_category5_desc',
+    image: '/s5.png',
   },
   {
     category_name: 's_category6',
-    content:
-      'Animasyon tutkunu olduğunu biliyoruz. Bu kategoride hem animasyon hem de izlerken zihnini yormayacak filmleri bulabilirsin.',
+    content: 's_category6_desc',
+    image: '/s6.png',
   },
 ];

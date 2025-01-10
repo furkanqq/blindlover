@@ -33,31 +33,25 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card
               key={1}
-              title={'AŞK’ınız İçin Öneriler ve Eğlenceli Fikirler'}
-              desc={
-                'Alt metin: İlişkinizi her daim dinamik tutacak, beraber keyli vakit geçirmeniz için bazı kirlerimiz var'
-              }
-              image={'/blog.png'}
+              title={t('blog_content_title')}
+              desc={t('blog_content_desc')}
+              image={'/blogCover.jpg'}
               link={'/contents'}
               buttonText={t('read_more')}
             />
             <Card
               key={2}
-              title={'SİZ’in İçin Seçtiğimiz En Güzel Filmler'}
-              desc={
-                'Sevdiğinle birlikteyken hangi filmi izlesek diye düşünmene gerek yok çünkü biz senin için en güzel filmleri seçtik. Modunuz ne tür film izlemek istiyorsa, içinde AŞK olan lmlerimize mutlaka göz atın!'
-              }
-              image={'/blog.png'}
+              title={t('blog_movies_title')}
+              desc={t('blog_movies_desc')}
+              image={'/moviesCover.jpg'}
               link={'/movies'}
               buttonText={t('read_more')}
             />
             <Card
               key={3}
-              title={'SİZ’in İçin Seçtiğimiz En Güzel Diziler'}
-              desc={
-                'Sevdiğinle birlikteyken hangi diziye başlasak diye düşünmene gerek yok çünkü biz senin için en güzel dizileri seçtik. Modunuz ne tür dizi izlemek istiyorsa, içinde AŞK olan efsane dizilerimize mutlaka göz atın!'
-              }
-              image={'/blog.png'}
+              title={t('blog_series_title')}
+              desc={t('blog_series_desc')}
+              image={'/seriesCover.jpg'}
               link={'/series'}
               buttonText={t('read_more')}
             />

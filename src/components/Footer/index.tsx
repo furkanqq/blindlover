@@ -35,12 +35,21 @@ const Footer = () => {
                 <ul className="mt-2 space-y-2">
                   {footerItem.section.map((item, index) => (
                     <li key={index}>
-                      <Link
-                        href={`/${locale}${item.link}`}
-                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                      >
-                        {t(`footer.${item.title}`)}
-                      </Link>
+                      {item.link.startsWith('mailto') ? (
+                        <Link
+                          href={`${item.link}`}
+                          className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                        >
+                          {t(`footer.${item.title}`)}
+                        </Link>
+                      ) : (
+                        <Link
+                          href={`/${locale}${item.link}`}
+                          className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                        >
+                          {t(`footer.${item.title}`)}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

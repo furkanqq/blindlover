@@ -19,8 +19,8 @@ const BlogCard = ({
   buttonText: string;
 }) => {
   return (
-    <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
-      <div className="relative h-full w-4/12 hidden md:flex">
+    <article className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+      <div className="relative h-40">
         <Link
           href={{
             pathname: '/blog/contents/[slug]',
@@ -30,7 +30,7 @@ const BlogCard = ({
           <Image className="" src={image ? image : ''} alt="Blog Image" fill objectFit="cover" />
         </Link>
       </div>
-      <div className="p-5 flex sm:w-8/12 w-full flex-col justify-between sm:h-[20rem]">
+      <div className="p-5 flex flex-col justify-between h-[20rem]">
         <Link
           href={{
             pathname: '/blog/contents/[slug]',

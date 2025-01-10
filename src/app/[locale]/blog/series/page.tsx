@@ -1,28 +1,32 @@
 'use client';
 
+import { ArrowLeftIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import AppLayout from '@/components/AppLayout';
+import Button from '@/components/Button';
 import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
 import { MovieCard } from '@/components/MovieCard';
+import { SeriesCategory } from '@/config/category';
 import { DirectusServices } from '@/services/manager';
 import { seriesListAtom } from '@/stores';
 
 const ITEMS_PER_PAGE = 10;
 
-export default function SeriesPage() {
+export default function MoviesPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [series] = useAtom(seriesListAtom);
   const locale = useLocale();
   const t = useTranslations('BlogPage');
-  const [category, setCategory] = useState<string>(t('all_series'));
+  const [category, setCategory] = useState<string>('');
+  const [categoryImage, setCategoryImage] = useState<string>('');
 
   useEffect(() => {
     DirectusServices.SeriesList();
-    setCategory(t('all_series'));
   }, []);
 
   if (!series || !locale) {
@@ -30,12 +34,9 @@ export default function SeriesPage() {
   }
 
   const categoryKeyPrefix = `category_${locale.split('-')[0]}` as keyof (typeof series)[0];
-  const filteredSeries =
-    category === t('all_series') ? series : series.filter((item) => item[categoryKeyPrefix] === category);
+  const filteredSeries = series.filter((item) => item[categoryKeyPrefix] === category);
 
   const currentSeries = filteredSeries.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
-  //   const uniqueCategories = [t('all_series'), ...new Set(series.map((item) => item[categoryKeyPrefix]))];
 
   const totalPages = Math.ceil(filteredSeries.length / ITEMS_PER_PAGE);
 
@@ -46,47 +47,77 @@ export default function SeriesPage() {
   return (
     <AppLayout type="detail">
       <div className="">
-        <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center text-foreground text-center h-[400px] w-full">
+        <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center text-foreground text-center h-[300px] w-full">
           <h1 className="text-4xl font-bold">
             <span className="text-primaryColor">{t('title').split(' ')[0]}</span>{' '}
             {t('title').split(' ').slice(1).join(' ')}
           </h1>
           <p className="text-md text-gray-500 mt-4">{t('subtitle')}</p>
         </div>
+        {category !== '' && (
+          <Container>
+            <div className="pt-6 cursor-pointer flex gap-3" onClick={() => setCategory('')}>
+              <ArrowLeftIcon width={24} height={24} />
+              <span>{t('all_categories')}</span>
+            </div>
+          </Container>
+        )}
 
-        {/* <Container>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 py-4">
-            {uniqueCategories.map((cate, index) => (
-              <div
-                key={index}
-                className={cn('cursor-pointer hover:scale-[1.01] border text-center rounded-lg py-3', {
-                  'col-span-2': index === 0,
-                  'border-solid border-primaryColor': cate === category,
-                })}
-                onClick={() => setCategory(cate as string)}
-              >
-                {cate}
-              </div>
-            ))}
-          </div>
-        </Container> */}
-
-        <Container className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {currentSeries.map((series, index) => {
-              const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
-              return (
-                <MovieCard
+        {category === '' && (
+          <Container>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 py-4 pt-14">
+              {SeriesCategory.map((cate, index) => (
+                <article
                   key={index}
-                  title={series.series_name}
-                  desc={series[descKey] as string}
-                  image="/blog.png"
-                  link={series.link}
-                />
-              );
-            })}
-          </div>
-        </Container>
+                  className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"
+                >
+                  <div className="relative h-40">
+                    <Image className="" src={cate.image} alt="Blog Image" fill objectFit="cover" />
+                  </div>
+                  <div className="p-5 flex w-full flex-col justify-between sm:h-[16rem]">
+                    <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">{t(cate.category_name)}</h5>
+
+                    <div className="!mb-3 font-normal !text-gray-700 text-xs ">{t(cate.content)}</div>
+
+                    <Button
+                      type={'button'}
+                      title={'Read More'}
+                      variant={'primary'}
+                      onClick={() => {
+                        setCategory(t(cate.category_name));
+                        setCategoryImage(cate.image);
+                      }}
+                    >
+                      {t('explore')}
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        )}
+        {category !== '' && (
+          <Container className="mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
+                <div className="relative h-full w-full hidden md:flex">
+                  <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
+                </div>
+              </article>
+              {currentSeries.map((series, index) => {
+                const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
+                return (
+                  <MovieCard
+                    key={index}
+                    title={series.series_name}
+                    desc={series[descKey] as string}
+                    link={series.link}
+                  />
+                );
+              })}
+            </div>
+          </Container>
+        )}
 
         {totalPages > 1 && (
           <div className="flex justify-center items-center mt-8 space-x-2">

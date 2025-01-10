@@ -49,9 +49,9 @@ const AuthLogin = async ({ password, email }: LoginRequest) => {
   }
 };
 
-const RegisterUser = async ({ password, name, age, gender, email }: RegisterRequest) => {
+const RegisterUser = async ({ password, name, age, gender, email, mailLanguage }: RegisterRequest) => {
   BlindStore.set(loaderAtom, true);
-  const requestBody: RegisterRequest = { password, email, name, age, gender };
+  const requestBody: RegisterRequest = { password, email, name, age, gender, mailLanguage };
 
   try {
     const res = await BlindApiUrl.RegisterUser(requestBody);

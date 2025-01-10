@@ -35,6 +35,7 @@ export default function RegisterPage() {
     age: '',
     gender: '',
     termsAccepted: false,
+    mailLanguage: '',
   });
 
   const [errors, setErrors] = useState({
@@ -84,6 +85,11 @@ export default function RegisterPage() {
       valid = false;
     }
 
+    if (!formData.mailLanguage) {
+      newErrors.confirmPassword = 'Language is required.';
+      valid = false;
+    }
+
     if (!formData.age || isNaN(Number(formData.age))) {
       console.log(formData.age, 'age1');
       newErrors.age = 'Please enter a valid age.';
@@ -113,6 +119,10 @@ export default function RegisterPage() {
     setFormData({ ...formData, gender: value });
   };
 
+  const handleLangChange = (value: string) => {
+    setFormData({ ...formData, mailLanguage: value });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
@@ -122,6 +132,7 @@ export default function RegisterPage() {
         password: formData.password,
         age: formData.age.toString(),
         gender: formData.gender,
+        mailLanguage: formData.mailLanguage,
       };
       BlindServices.RegisterUser(request)
         .then((result) => {
@@ -246,26 +257,47 @@ export default function RegisterPage() {
                 </Select>
               </div>
             </div>
-            <div className="items-top flex items-center space-x-2 mt-8">
-              <Checkbox
-                id="terms1"
-                onCheckedChange={(checked) => {
-                  if (checked === true || checked === false) {
-                    setFormData((prev) => ({
-                      ...prev,
-                      termsAccepted: checked,
-                    }));
-                  }
-                }}
-              />{' '}
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none  peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {t('terms')}
-                </label>
-                <p className="text-xs text-muted-foreground">{t('terms1')}</p>
+            <div className="grid md:grid-cols-2 gap-8 items-center justify-center mt-8">
+              <div className="items-top flex items-center space-x-2 w-full">
+                <Checkbox
+                  id="terms1"
+                  onCheckedChange={(checked) => {
+                    if (checked === true || checked === false) {
+                      setFormData((prev) => ({
+                        ...prev,
+                        termsAccepted: checked,
+                      }));
+                    }
+                  }}
+                />{' '}
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="terms1"
+                    className="text-sm font-medium leading-none  peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    {t('terms')}
+                  </label>
+                  <p className="text-xs text-muted-foreground">{t('terms1')}</p>
+                </div>
+              </div>
+              <div className="w-full">
+                <label className="text-gray-800 text-sm mb-2 block">{t('lang')}</label>
+                <Select onValueChange={handleLangChange}>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('lang_placeholder')} />
+                  </SelectTrigger>
+                  <SelectContent className="bg-backgroundColor">
+                    <SelectGroup>
+                      <SelectLabel>{t('lang')}</SelectLabel>
+                      <SelectItem value="tr">Turkish</SelectItem>
+                      <SelectItem value="en">English</SelectItem>
+                      <SelectItem value="es">Spanish</SelectItem>
+                      <SelectItem value="fr">French</SelectItem>
+                      <SelectItem value="pt">Portuguese</SelectItem>
+                      <SelectItem value="ru">Russian</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="mt-8">

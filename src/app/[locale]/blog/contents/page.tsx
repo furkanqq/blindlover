@@ -11,7 +11,7 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { DirectusServices } from '@/services/manager';
 import { blogListAtom } from '@/stores';
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +38,7 @@ export default function BlogPage() {
     <AppLayout type="detail" className="">
       <div className="">
         {/* Banner */}
-        <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
+        <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[300px] w-full">
           <h1 className="text-4xl font-bold">
             <span className="text-primaryColor">{t('title').split(' ')[0]}</span>{' '}
             {t('title').split(' ').slice(1).join(' ')}
@@ -48,7 +48,7 @@ export default function BlogPage() {
 
         {/* Blog Cards */}
         <Container className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {currentBlogs.map((blog, index) => {
               const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
               const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
@@ -57,7 +57,7 @@ export default function BlogPage() {
                 <BlogCard
                   key={index}
                   title={blog[titleKey] as string}
-                  desc={blog[descKey].toString().slice(0, 140)}
+                  desc={blog[descKey].toString().slice(0, 120)}
                   image={'/blog.png'}
                   link={blog.slug}
                   buttonText={t('read_more')}

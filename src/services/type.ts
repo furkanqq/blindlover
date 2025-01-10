@@ -19,6 +19,7 @@ export interface RegisterRequest {
   name: string;
   age: string;
   gender: string;
+  mailLanguage: string;
 }
 
 export interface LoginRequest {

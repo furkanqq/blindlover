@@ -1,47 +1,24 @@
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
-import { useAtom } from 'jotai';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import { SliderConfig, SliderConfigType } from '@/config/homeSlider';
 import { Link } from '@/i18n/routing';
-import { DirectusServices } from '@/services/manager';
-import { blogListAtom } from '@/stores';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 import { Container } from '../Container';
-import MarkdownContent from '../MarkdownContent';
 
-const Slider = ({
-  title,
-  mirror,
-  startIndex,
-  endIndex,
-}: {
-  title: string;
-  mirror: boolean;
-  startIndex: number;
-  endIndex: number;
-}) => {
+const MovieSeriesSlider = ({ title, mirror }: { title: string; mirror: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [blogList] = useAtom(blogListAtom);
-  const locale = useLocale();
   const t = useTranslations('BlogPage');
 
-  useEffect(() => {
-    DirectusServices.BlogList();
-  }, []);
-
-  if (!blogList) {
-    return null;
-  }
-
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? endIndex - startIndex - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? SliderConfig.length - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === endIndex - startIndex - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === SliderConfig.length - 1 ? 0 : prevIndex + 1));
   };
 
   const goToSlide = (index: number) => {
@@ -51,19 +28,17 @@ const Slider = ({
   return (
     <Container className="pt-32 md:pt-52">
       <div className="relative w-full bg-white border border-solid p-12 rounded-md">
-        <Link href={'/blog/contents'}>
+        <Link href={'/blog'}>
           <h2 className="absolute top-[-60px] left-[50%] translate-x-[-50%] mb-4 text-base md:text-4xl  w-full md:w-full tracking-tight font-extrabold text-center text-black ">
             {title}
           </h2>
         </Link>
         {/* Carousel Wrapper */}
         <div className="relative h-56 overflow-hidden rounded-lg md:h-72">
-          {blogList.slice(startIndex, endIndex).map((blog, index) => {
-            const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
-            const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
+          {SliderConfig.map((content: SliderConfigType, index) => {
             return (
               <div
-                key={blog.id}
+                key={index}
                 className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                   index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
                 }`}
@@ -75,34 +50,25 @@ const Slider = ({
                 >
                   <div className="relative w-full mb-2 md:mb-0 md:w-[40%] h-full">
                     <Link href={'/'}>
-                      <Image className="rounded-r-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
+                      <Image className="rounded-l-lg" src={content.image} alt="Blog Image" fill objectFit="cover" />
                     </Link>
                   </div>
-                  <div className="flex flex-col justify-start gap-3 w-full md:w-[60%] h-full px-5">
+                  <div className="flex flex-col justify-between gap-3 w-full md:w-[60%] h-full pl-8 pr-5">
                     <Link href="/">
-                      <h5 className="mb-2 text-xs md:text-2xl font-bold tracking-tight text-gray-900">
-                        {blog[titleKey]}
+                      <h5 className="mb-2 text-xs md:text-3xl font-bold tracking-tight text-gray-900">
+                        {t(content.title)}
                       </h5>
                     </Link>
 
-                    <MarkdownContent
-                      content={blog[descKey].toString().slice(0, 200)}
-                      className={cn(
-                        'hidden md:flex flex-col pr-4 pl-0 font-normal text-gray-700 dark:text-gray-400 text-xs md:text-[14px]',
-                        {
-                          'pl-4 pr-0': mirror,
-                        },
-                      )}
-                    />
-
-                    <Link
-                      href={{
-                        pathname: `/blog/contents/[slug]`,
-                        params: { slug: blog.slug },
-                      }}
+                    <div
+                      className={cn('hidden md:flex pr-20 font-normal text-gray-700 !leading-7 text-xs md:text-[18px]')}
                     >
-                      <Button type={'button'} title={'Read More'} variant={'primary'} className="!text-xs">
-                        {t('read_more')}
+                      {t(content.description)}
+                    </div>
+
+                    <Link href={content.link}>
+                      <Button type={'button'} title={'Explore'} variant={'primary'} className="!text-xs">
+                        {t('explore')}
                         <ArrowRightIcon className="hidden" width={16} height={16} />
                       </Button>
                     </Link>
@@ -114,7 +80,7 @@ const Slider = ({
         </div>
         {/* Indicators */}
         <div className="absolute flex justify-center space-x-3 bottom-4 left-1/2 transform -translate-x-1/2">
-          {blogList.slice(startIndex, endIndex).map((_, index) => (
+          {SliderConfig.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
@@ -164,4 +130,4 @@ const Slider = ({
   );
 };
 
-export { Slider };
+export { MovieSeriesSlider };
