@@ -85,7 +85,7 @@ export default function MoviesPage() {
                       variant={'primary'}
                       onClick={() => {
                         setCategory(t(cate.category_name));
-                        setCategoryImage(cate.image);
+                        setCategoryImage(cate.cover);
                       }}
                     >
                       {t('explore')}
