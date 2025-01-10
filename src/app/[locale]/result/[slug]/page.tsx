@@ -32,7 +32,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           }
         });
       },
-      { threshold: 0.2 } // Eleman %20 görünür olduğunda tetiklenir
+      { threshold: 0.2 }, // Eleman %20 görünür olduğunda tetiklenir
     );
 
     const sections = document.querySelectorAll('.fade-section');
@@ -133,7 +133,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               'border-2 border-solid border-pink-500 text-pink-500': id === 'romanticBehavior',
               'border-2 border-solid border-orange-500 text-orange-500': id === 'funAndDailyHabits',
               'border-2 border-solid border-purple-500 text-purple-500': id === 'aiComment',
-            }
+            },
           )}
         >
           {id === 'compatibility' && (
@@ -199,7 +199,7 @@ export default function ResultPage() {
               {
                 'md:translate-x-[70vw]': currentIndex % 2 === 0,
                 'md:translate-x-[10vw]': currentIndex % 2 !== 0,
-              }
+              },
             )}
           >
             {t('click')}

@@ -32,7 +32,7 @@ export const Container = (props: ContainerProps) => {
       <div
         className={classNames(
           'w-full max-w-full mx-auto px-4 sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl',
-          className
+          className,
         )}
       >
         {children}

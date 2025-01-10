@@ -39,7 +39,7 @@ BlindHttp.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 BlindHttp.interceptors.response.use(
@@ -51,7 +51,7 @@ BlindHttp.interceptors.response.use(
       deleteAuthTokenToHeader();
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export const DirectusHttpUrl = {

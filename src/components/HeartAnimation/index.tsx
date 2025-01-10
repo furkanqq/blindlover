@@ -23,7 +23,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ topPX, leftPX, rightPX,
       <div className="relative w-16 h-16">
         <div
           className={clsx(
-            `absolute top-0 left-0 w-full h-full clip-heart animate-jump animate-infinite animate-ease-out animate-alternate animate-duration-[2000ms]`
+            `absolute top-0 left-0 w-full h-full clip-heart animate-jump animate-infinite animate-ease-out animate-alternate animate-duration-[2000ms]`,
           )}
         >
           <Image src="/heart.png" alt="heart" layout="fill" objectFit="contain" />

@@ -35,7 +35,7 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         pathname,
         params: params.slug as any,
       },
-      { locale: nextLocale as Locale }
+      { locale: nextLocale as Locale },
     );
   }
 
@@ -170,7 +170,7 @@ export default function Header({
         'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white bg-transparent py-9',
         {
           'shadow bg-backgroundColor': scrollHeight,
-        }
+        },
       )}
     >
       <div

@@ -105,7 +105,7 @@ export default function PanelPage() {
               {
                 'after:translate-x-[96%]': move,
                 'after:translate-x-[1%]': !move,
-              }
+              },
             )}
           >
             <div
@@ -154,7 +154,7 @@ export default function PanelPage() {
                 'h-[50vh] hidden w-full border border-solid flex-col p-2 md:p-6 gap-3 overflow-auto shadow-inner',
                 {
                   flex: move,
-                }
+                },
               )}
             >
               {resultList && resultList.length > 0 ? (

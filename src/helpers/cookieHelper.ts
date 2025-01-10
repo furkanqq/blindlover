@@ -52,7 +52,7 @@ export const deleteCookie = (
   name: string,
   options?: {
     path?: string;
-  }
+  },
 ) => {
   const path = options && options.path ? `; path=${options.path}` : '';
   document.cookie = name + '=; Max-Age=-99999999;' + path;

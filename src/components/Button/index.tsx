@@ -50,7 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     children,
     ...attributes
   },
-  ref
+  ref,
 ) {
   const id = useId();
 
@@ -73,7 +73,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       'md:px-6 md:py-4 md:text-[14px]': size === 'md',
       'px-8 py-6 text-[16px]': size === 'lg',
     },
-    className
+    className,
   );
 
   const HeartStyles = cn(
@@ -81,7 +81,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     {
       'text-primaryColor': variant === 'hlight' || variant === 'hborderprimary',
     },
-    className
+    className,
   );
 
   return (
