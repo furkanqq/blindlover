@@ -27,7 +27,7 @@ const BlogCard = ({
             params: { slug: link },
           }}
         >
-          <Image className="" src={image ? image : ''} alt="Blog Image" fill objectFit="cover" />
+          <Image className="" src={image} alt="Blog Image" fill objectFit="cover" objectPosition="top" />
         </Link>
       </div>
       <div className="p-5 flex flex-col justify-between h-[20rem]">

@@ -80,6 +80,12 @@
     "logout": "Logout",
     "back_to_home": "Go to Homepage"
   },
+  "CookieConsent": {
+    "title": "This website uses cookies to ensure you have the best experience.",
+    "accept": "I Accept",
+    "reject": "I Decline",
+    "more": "Learn More"
+  },
   "CookiePage": {
     "title": "Cookie Policy",
     "intro": "This Cookie Policy explains how cookies are used when you visit the BlindLover website <Link>(https://blindlover.com)</Link>. Our purpose in using cookies is to provide you with the best user experience and continuously improve our services.",

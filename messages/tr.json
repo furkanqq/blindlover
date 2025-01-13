@@ -80,6 +80,12 @@
     "logout": "Çıkış Yap",
     "back_to_home": "Ana Sayfaya Dön"
   },
+  "CookieConsent": {
+    "title": "Bu web sitesi, en iyi deneyimi yaşamanızı sağlamak için çerezler kullanmaktadır.",
+    "accept": "Kabul Ediyorum",
+    "reject": "Reddediyorum",
+    "more": "Daha Fazla"
+  },
   "CookiePage": {
     "title": "Çerez Politikası",
     "intro": "Bu Çerez Politikası, BlindLover web sitesini <Link>(https://blindlover.com)</Link> ziyaret ettiğinizde cihazınıza yerleştirilen çerezlerin nasıl kullanıldığını açıklar. Çerezleri kullanım amacımız, size en iyi kullanıcı deneyimini sunmak ve hizmetlerimizi sürekli olarak geliştirmektir.",

@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         hostname: 'bn-cdn-all.fra1.digitaloceanspaces.com',
         protocol: 'https',
       },
+      {
+        hostname: 'gw.balancenetwork.io',
+        protocol: 'https',
+      },
     ],
   },
 };

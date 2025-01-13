@@ -75,7 +75,13 @@ const Slider = ({
                 >
                   <div className="relative w-full mb-2 md:mb-0 md:w-[40%] h-full">
                     <Link href={'/'}>
-                      <Image className="rounded-r-lg" src="/blog.png" alt="Blog Image" fill objectFit="cover" />
+                      <Image
+                        className="rounded-r-lg"
+                        src={`${process.env.NEXT_PUBLIC_DIRECTUS_API_URL + '/assets/' + blog?.small_image}`}
+                        alt="Blog Image"
+                        fill
+                        objectFit="cover"
+                      />
                     </Link>
                   </div>
                   <div className="flex flex-col justify-start gap-3 w-full md:w-[60%] h-full px-5">

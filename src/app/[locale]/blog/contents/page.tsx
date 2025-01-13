@@ -34,6 +34,8 @@ export default function BlogPage() {
     setCurrentPage(page);
   };
 
+  console.log(blogs, 'blogs');
+
   return (
     <AppLayout type="detail" className="">
       <div className="">
@@ -58,7 +60,7 @@ export default function BlogPage() {
                   key={index}
                   title={blog[titleKey] as string}
                   desc={blog[descKey].toString().slice(0, 120)}
-                  image={'/blog.png'}
+                  image={`${process.env.NEXT_PUBLIC_DIRECTUS_API_URL + '/assets/' + blog?.small_image}`}
                   link={blog.slug}
                   buttonText={t('read_more')}
                 />

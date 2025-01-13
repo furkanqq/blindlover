@@ -80,6 +80,12 @@
     "logout": "Sair",
     "back_to_home": "Ir para a Página Inicial"
   },
+  "CookieConsent": {
+    "title": "Este site usa cookies para garantir que você tenha a melhor experiência.",
+    "accept": "Aceito",
+    "reject": "Recuso",
+    "more": "Saiba Mais"
+  },
   "CookiePage": {
     "title": "Política de Cookies",
     "intro": "Esta Política de Cookies explica como os cookies são utilizados quando você visita o site da BlindLover <Link>(https://blindlover.com)</Link>. Nosso objetivo ao utilizar cookies é oferecer a você a melhor experiência possível e melhorar continuamente nossos serviços.",

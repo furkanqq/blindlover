@@ -41,8 +41,15 @@ export default function BlogDetail() {
 
         <Container className="mt-12 flex flex-col gap-12">
           <div className="relative w-full h-[300px] py-[10px] flex justify-center items-center">
-            <div className="relative h-full w-[350px] sm:w-[600px] md:w-[1000px] flex justify-center items-center overflow-hidden rounded-lg shadow-lg shadow-gray-400">
-              <Image src={'/blog.png'} alt={'blog'} fill objectFit="cover" />
+            <div className="relative h-full w-[350px] sm:w-[600px] md:w-[760px] flex justify-center items-center overflow-hidden rounded-lg shadow-lg shadow-gray-400">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_DIRECTUS_API_URL + '/assets/' + blog?.banner_image}`}
+                alt={'blog'}
+                fill
+                objectFit="cover"
+                objectPosition="top"
+                loading="lazy"
+              />
             </div>
           </div>
           <MarkdownContent content={blog[descKey] as string} />

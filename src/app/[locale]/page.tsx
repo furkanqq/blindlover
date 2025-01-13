@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
+import AdSection from '@/components/AdSection';
 import AppLayout from '@/components/AppLayout';
 import Banner from '@/components/Banner';
 import { CardSection } from '@/components/CardSection';
@@ -37,9 +38,12 @@ export default function Home() {
     <AppLayout type="landing">
       <Banner />
       <CardSection />
+      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
       <HeaderSection />
+      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
+      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
       <MovieSeriesSlider mirror title={t('slider_title_two')} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>

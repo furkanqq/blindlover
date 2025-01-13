@@ -42,7 +42,7 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   return (
     <div
       id="crud-modal"
-      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50 select-none backdrop-blur-md"
+      className="fixed h-screen inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50 select-none backdrop-blur-md"
       aria-hidden={!isOpen}
     >
       <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
@@ -167,7 +167,7 @@ export default function Header({
   return (
     <div
       className={cn(
-        'fixed top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white bg-transparent py-9',
+        'fixed animate-fade-down animate-delay-500 top-0 flex items-center justify-center w-full h-[92px] transition-all z-50 bg-white bg-transparent py-9',
         {
           'shadow bg-backgroundColor': scrollHeight,
         },

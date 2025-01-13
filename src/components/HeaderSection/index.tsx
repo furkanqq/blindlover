@@ -7,7 +7,7 @@ const HeaderSection = () => {
   const t = useTranslations('LandingPage');
 
   return (
-    <div className="relative isolate overflow-hidden bg-primaryColor py-20 sm:pt-32">
+    <div className={'relative isolate overflow-hidden bg-primaryColor py-20 sm:pt-32'}>
       <Image src={'/pattern.webp'} alt="pattern" fill className="absolute object-cover opacity-20" />
       <Container>
         <div className="flex flex-col gap-10 mx-auto max-w-7xl px-6 lg:px-8">
