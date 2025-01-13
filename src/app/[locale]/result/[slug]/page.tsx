@@ -2,6 +2,7 @@
 
 import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -20,7 +21,6 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
   const observer = useRef<IntersectionObserver | null>(null); // IntersectionObserver türünü belirt
 
   useEffect(() => {
-    // Observer'ı oluştur
     observer.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -43,6 +43,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
       observer.current = null; // Bellek sızıntısını önlemek için sıfırla
     };
   }, []);
+
   const localKey = `${country}` as keyof AiResultResponseLanguages;
 
   return (
@@ -54,7 +55,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           content: (
             <>
               <h2 className="relative z-[1] text-5xl md:text-[80px] font-extrabold">
-                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
+                {(result.aiResultResponse[localKey] as AiResultResponse)?.lovePercentage}
               </h2>
             </>
           ),
@@ -64,9 +65,10 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           title: 'GENERAL_RELATION_STATUS',
           content: (
             <h2 className="text-[14px] md:text-[18px] font-semibold text-center">
-              {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.generalRelationStatus}
+              {(result.aiResultResponse[localKey] as AiResultResponse)?.answerCategoryAnalysis?.generalRelationStatus}
             </h2>
           ),
+          image: '/general.png',
         },
         {
           id: 'emotionalAttachment',
@@ -76,6 +78,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.emotionalAttachment}
             </h2>
           ),
+          image: '/emotional.png',
         },
         {
           id: 'loyaltyAndTrust',
@@ -85,6 +88,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.loyaltyAndTrust}
             </h2>
           ),
+          image: '/trust.png',
         },
         {
           id: 'romanticBehavior',
@@ -94,6 +98,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.romanticBehavior}
             </h2>
           ),
+          image: '/romantic.png',
         },
         {
           id: 'funAndDailyHabits',
@@ -103,6 +108,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               {(result.aiResultResponse[localKey] as AiResultResponse).answerCategoryAnalysis.funAndDailyHabits}
             </h2>
           ),
+          image: '/fun.png',
         },
         {
           id: 'aiComment',
@@ -112,8 +118,9 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               {(result.aiResultResponse[localKey] as AiResultResponse).comment}
             </h2>
           ),
+          image: '/comment.png',
         },
-      ].map(({ id, title, content }) => (
+      ].map(({ id, title, content, image }) => (
         <div
           key={id}
           data-id={id}
@@ -144,7 +151,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           )}
           <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{t(title)}</h1>
           {content}
-          <hr />
+          {id !== 'compatibility' && <Image src={image as string} alt={'image'} width={80} height={100} />}
         </div>
       ))}
     </Container>
@@ -212,7 +219,7 @@ export default function ResultPage() {
               <h1 className="md:text-[40px] text-center">{t('rate')}</h1>
               <h2 className="text-7xl md:text-[200px] font-extrabold">
                 {' '}
-                {(result.aiResultResponse[localKey] as AiResultResponse).lovePercentage}
+                {(result.aiResultResponse[localKey] as AiResultResponse)?.lovePercentage}
               </h2>
             </div>
           )}

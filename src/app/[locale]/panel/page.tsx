@@ -91,10 +91,6 @@ export default function PanelPage() {
       window.location.href = `/${locale}/panel/questions`;
     }
   };
-
-  if (resultList) {
-    console.log(resultList[0]);
-  }
   return (
     <AppLayout>
       <Container className="pt-32 h-fit">
