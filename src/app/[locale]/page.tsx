@@ -38,9 +38,11 @@ export default function Home() {
     <AppLayout type="landing">
       <Banner />
       <CardSection />
-      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      <div className="bg-black">
+        <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      </div>
       <HeaderSection />
-      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      <AdSection dataAdSlot={'fluid'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
       <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />

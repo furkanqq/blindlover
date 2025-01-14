@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { IconApple } from '@/assets/IconApple';
@@ -17,6 +18,7 @@ export default function LoginPage() {
     email: '',
     password: '',
   });
+  const router = useRouter();
   const locale = useLocale();
   const t = useTranslations('LoginPage');
 
@@ -24,6 +26,10 @@ export default function LoginPage() {
     const { name, value } = e.target;
     setLoginForm({ ...loginForm, [name]: value });
   };
+
+  function handleGoogleLogin() {
+    router.push('/api/auth/google');
+  }
 
   function handleLogin() {
     // e.preventDefault();
@@ -82,7 +88,14 @@ export default function LoginPage() {
                   </div>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <Button size="md" variant={'light'} type="button" title="" className="w-56 border-foreground">
+                  <Button
+                    onClick={() => handleGoogleLogin()}
+                    size="md"
+                    variant={'light'}
+                    type="button"
+                    title=""
+                    className="w-56 border-foreground"
+                  >
                     <IconGoogle width={20} height={20} />
                     <span>{t('google')}</span>
                   </Button>

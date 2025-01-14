@@ -123,6 +123,10 @@ export default function RegisterPage() {
     setFormData({ ...formData, mailLanguage: value });
   };
 
+  function handleGoogleRegister() {
+    router.push('/api/auth/google');
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
@@ -167,6 +171,7 @@ export default function RegisterPage() {
                 type="button"
                 className="w-full px-6 py-3 flex items-center justify-center rounded-md text-gray-800 text-sm tracking-wider font-semibold border-none outline-none bg-gray-100 hover:bg-gray-200"
                 title={'Google'}
+                onClick={handleGoogleRegister}
               >
                 <IconGoogle />
                 <span>{t('google')}</span>

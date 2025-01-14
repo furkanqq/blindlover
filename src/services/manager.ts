@@ -49,6 +49,20 @@ const AuthLogin = async ({ password, email }: LoginRequest) => {
   }
 };
 
+const GoogleLogin = async (token: string) => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    setAuthTokenToHeader(token);
+    BlindStore.set(authAtom, token);
+    return { status: 200, token };
+  } catch (err) {
+    console.log('BlindServices->UserLogin', err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 const RegisterUser = async ({ password, name, age, gender, email, mailLanguage }: RegisterRequest) => {
   BlindStore.set(loaderAtom, true);
   const requestBody: RegisterRequest = { password, email, name, age, gender, mailLanguage };
@@ -336,6 +350,7 @@ export const BlindServices = {
   QuestionResultList,
   QuestionResult,
   ProfileDelete,
+  GoogleLogin,
 };
 
 const BlogList = async () => {

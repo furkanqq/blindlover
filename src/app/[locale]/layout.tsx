@@ -51,6 +51,11 @@ export default async function LocaleLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9281616897705500"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body className={inter.className}>
         <Providers>
