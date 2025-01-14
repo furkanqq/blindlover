@@ -445,6 +445,13 @@ interface FormInfo {
   image: string;
 }
 
+interface updateForm {
+  name: string;
+  age: string;
+  base64Photo?: string;
+  gender: string;
+}
+
 export default function ProfilePage() {
   const t = useTranslations('ProfilePage');
   const router = useRouter();
@@ -488,20 +495,40 @@ export default function ProfilePage() {
     }
   }, [info]);
 
+  const handleGenderChange = (value: string) => {
+    setFormInfo({ ...formInfo, gender: value });
+  };
+
   function handleLogOut() {
     deleteAuthTokenToHeader();
     window.location.href = `/${locale}/`;
   }
 
   function handleSave() {
+    if (!info) return;
     if (info?.emailVerified === false) {
       router.push(`/${locale}/not-approved`);
     }
-    const updateForm = {
-      name: formInfo.fullName,
-      age: formInfo.age,
-      base64Photo: image,
+    let updateForm: updateForm = {
+      name: '',
+      age: '',
+      gender: '',
     };
+
+    if (image) {
+      updateForm = {
+        name: formInfo.fullName,
+        age: formInfo.age,
+        base64Photo: image,
+        gender: formInfo.gender,
+      };
+    } else {
+      updateForm = {
+        name: formInfo.fullName,
+        age: formInfo.age,
+        gender: formInfo.gender,
+      };
+    }
 
     BlindServices.ProfileUpdate(updateForm).then((result) => {
       if (result.status === 200) {
@@ -624,7 +651,7 @@ export default function ProfilePage() {
               </div>
               <div>
                 <label className="text-gray-800 text-sm mb-2 block">{t('gender_label')}</label>
-                <Select disabled value={formInfo.gender}>
+                <Select disabled={isDisabled} value={formInfo.gender} onValueChange={handleGenderChange}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a gender" />
                   </SelectTrigger>

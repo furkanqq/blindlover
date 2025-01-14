@@ -42,9 +42,10 @@ export interface ProfileInfoResponse {
 }
 
 export interface ProfileUpdateRequest {
-  name: string;
-  age: string;
-  base64Photo: string;
+  name?: string;
+  age?: string;
+  base64Photo?: string;
+  gender?: string;
 }
 
 export interface UpdatePasswordRequest {
