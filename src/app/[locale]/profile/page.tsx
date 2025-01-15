@@ -36,9 +36,10 @@ import { formatDate } from '@/utils/formatDate';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  info?: RelationInfoRequest | null;
 }
 
-const FillNow: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const FillNow: React.FC<ModalProps> = ({ isOpen, onClose, info }) => {
   const [fillForm, setFillForm] = useState<RelationInfoRequest>({
     isInRelation: '',
     hasCrush: '',
@@ -47,6 +48,20 @@ const FillNow: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     loveAspectToAnalyze: '',
     perceivedImportance: '',
   });
+
+  useEffect(() => {
+    if (info) {
+      setFillForm({
+        isInRelation: info.isInRelation,
+        hasCrush: info.hasCrush,
+        relationDuration: info.relationDuration,
+        desiredPartnerFocus: info.desiredPartnerFocus,
+        loveAspectToAnalyze: info.loveAspectToAnalyze,
+        perceivedImportance: info.perceivedImportance,
+      });
+    }
+  }, [info]);
+
   const t = useTranslations('ProfilePage');
   if (!isOpen) return null;
 
@@ -488,7 +503,7 @@ export default function ProfilePage() {
       setFormInfo({
         fullName: info?.name || '',
         email: info?.email || '',
-        age: info.age.toString() || '',
+        age: info.age?.toString() || '',
         gender: info?.gender || '',
         image: info.profileImageUrl || '',
       });
@@ -502,6 +517,18 @@ export default function ProfilePage() {
   function handleLogOut() {
     deleteAuthTokenToHeader();
     window.location.href = `/${locale}/`;
+  }
+
+  function handleCancel() {
+    setFormInfo({
+      fullName: info?.name || '',
+      email: info?.email || '',
+      age: info?.age?.toString() || '',
+      image: info?.profileImageUrl || '',
+      gender: info?.gender || '',
+    });
+
+    setIsDisabled(true);
   }
 
   function handleSave() {
@@ -605,7 +632,7 @@ export default function ProfilePage() {
                     title={'Cancel'}
                     variant={'primary'}
                     className="hidden md:flex w-full md:w-1/2 h-12"
-                    onClick={() => setIsDisabled(!isDisabled)}
+                    onClick={handleCancel}
                   >
                     <IconClose width={16} height={16} />
                   </Button>
@@ -660,7 +687,7 @@ export default function ProfilePage() {
                       <SelectLabel>Gender</SelectLabel>
                       <SelectItem value="MALE">{t('male')}</SelectItem>
                       <SelectItem value="FEMALE">{t('female')}</SelectItem>
-                      <SelectItem value="OTHER">{t('OTHER')}</SelectItem>
+                      <SelectItem value="PREFER_NOT_TO_SAY">{t('OTHER')}</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -681,7 +708,19 @@ export default function ProfilePage() {
           <hr />
           {info?.relationInfo ? (
             <div className="grid gap-6">
-              <h1 className="font-semibold text-lg">{t('relationship_info')}</h1>
+              <div className="w-full flex justify-between items-center">
+                <h1 className="font-semibold text-lg">{t('relationship_info')}</h1>
+                <Button
+                  type={'button'}
+                  title={'Update'}
+                  variant={'green'}
+                  className="hidden md:flex w-full md:w-52 h-12"
+                  onClick={handleFillNow}
+                >
+                  {t('update_info')}
+                  <IconEdit width={16} height={16} />
+                </Button>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <p className="border border-solid p-4 rounded-md bg-backgroundColor text-[14px]">
                   <span className="font-semibold">{t('relationship_status')}</span>
@@ -734,7 +773,7 @@ export default function ProfilePage() {
             isOpen={isDeleteModalOpen}
             onClose={closeDeleteModal}
           />
-          <FillNow isOpen={isModalOpen} onClose={closeModal} />
+          <FillNow isOpen={isModalOpen} onClose={closeModal} info={info?.relationInfo} />
         </div>
       </Container>
     </AppLayout>

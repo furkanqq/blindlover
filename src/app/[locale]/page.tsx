@@ -38,14 +38,20 @@ export default function Home() {
     <AppLayout type="landing">
       <Banner />
       <CardSection />
-      <div className="bg-black">
+      <div className="bg-white w-full h-fit">
         <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
       </div>
       <HeaderSection />
-      <AdSection dataAdSlot={'fluid'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      <div className="bg-white w-full h-fit">
+        <AdSection dataAdSlot={'fluid'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      </div>
+
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
-      <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      <div className="bg-white w-full h-fit">
+        <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+      </div>
+
       <MovieSeriesSlider mirror title={t('slider_title_two')} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>

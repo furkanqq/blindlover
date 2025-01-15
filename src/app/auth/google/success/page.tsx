@@ -14,7 +14,9 @@ const AuthSuccess = () => {
     if (token) {
       BlindServices.GoogleLogin(token).then((status) => {
         if (status?.status === 200) {
-          window.location.href = '/';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 600);
         }
       });
     }

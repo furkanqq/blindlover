@@ -2,7 +2,7 @@
 
 import { CameraIcon, PlusCircleIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { BlindStore } from '@/provider';
 import { base64ImageAtom } from '@/stores';
@@ -22,6 +22,12 @@ const ProfileImageUpdater = ({ isDisabled, image }: { isDisabled: boolean; image
       reader.readAsDataURL(file); // Base64'e çevirir
     }
   };
+
+  useEffect(() => {
+    if (isDisabled) {
+      setSelectedImage(image ? image : null);
+    }
+  }, [isDisabled]);
 
   return (
     <div className="flex items-center justify-center">
