@@ -39,17 +39,17 @@ export default function Home() {
       <Banner />
       <CardSection />
       <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
       <HeaderSection />
       <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'fluid'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
 
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
       <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'auto'} dataAdFormat={'3323246493'} dataFullWidthResponsive={true} />
+        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
 
       <MovieSeriesSlider mirror title={t('slider_title_two')} />

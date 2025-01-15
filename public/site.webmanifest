@@ -1,5 +1,6 @@
 {
   "background_color": "#ffffff",
+  "description": "BlindLover is a platform for quiz",
   "display": "standalone",
   "icons": [
     {
@@ -15,7 +16,10 @@
       "purpose": "maskable"
     }
   ],
+  "lang": "en",
   "name": "BlindLover",
+  "orientation": "portrait",
   "short_name": "Blind",
+  "start_url": "/index.html",
   "theme_color": "#ffadbc"
 }
