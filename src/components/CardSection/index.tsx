@@ -1,13 +1,14 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import { Container } from '../Container';
+import { AdVerticalLanding } from '../Ads';
 
 const CardSection = () => {
   const t = useTranslations('LandingPage');
 
   return (
-    <Container>
+    <div className="flex justify-between">
+      <AdVerticalLanding dataAdSlot={'6275447546'} />
       <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <h2 className="flex justify-center items-center text-base/7 font-semibold text-primaryColor">
@@ -92,7 +93,8 @@ const CardSection = () => {
           </div>
         </div>
       </div>
-    </Container>
+      <AdVerticalLanding dataAdSlot={'6275447546'} />
+    </div>
   );
 };
 

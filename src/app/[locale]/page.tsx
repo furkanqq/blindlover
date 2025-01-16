@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-import AdSection from '@/components/AdSection';
+import { AdSection } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Banner from '@/components/Banner';
 import { CardSection } from '@/components/CardSection';
@@ -38,20 +38,12 @@ export default function Home() {
     <AppLayout type="landing">
       <Banner />
       <CardSection />
-      <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
-      </div>
+      <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <HeaderSection />
-      <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
-      </div>
-
+      <AdSection dataAdSlot={'4347288207'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
-      <div className="bg-white w-full h-fit">
-        <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
-      </div>
-
+      <AdSection dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <MovieSeriesSlider mirror title={t('slider_title_two')} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>
