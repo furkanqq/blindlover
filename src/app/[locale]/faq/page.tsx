@@ -34,17 +34,14 @@ export default function FAQsPage() {
         <h1 className="text-4xl font-bold">{t('faq')}</h1>
         <p className="text-md text-gray-500 mt-4">{t('faq_long')}</p>
       </div>
-      <div className="">
-        <AdSectionFaq dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
-      </div>
 
-      <div className="flex w-full">
-        <div className="hidden md:flex w-76">
+      <div className="flex w-full justify-between">
+        <div className="hidden md:flex !w-96">
           <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
         </div>
 
         <FAQ FAQuestions={FAQConfig} type={'faqs'} />
-        <div className="hidden md:flex w-76">
+        <div className="hidden md:flex !w-80">
           <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
         </div>
       </div>

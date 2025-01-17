@@ -49,7 +49,7 @@ export default function BlogPage() {
           <p className="text-md text-gray-500 mt-4">{t('subtitle')}</p>
         </div>
 
-        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+        {/* <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} /> */}
 
         {/* Blog Cards */}
         <Container className="mt-6">

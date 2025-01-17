@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
+import { AdSectionBlog } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
@@ -104,7 +105,23 @@ export default function MoviesPage() {
                   <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
                 </div>
               </article>
-              {currentMovies.map((movies, index) => {
+              {currentMovies.slice(0, 3).map((movies, index) => {
+                const descKey = `content_${locale.split('-')[0]}` as keyof typeof movies;
+                return (
+                  <MovieCard
+                    key={index}
+                    title={movies.movie_name}
+                    desc={movies[descKey] as string}
+                    link={movies.link}
+                  />
+                );
+              })}
+            </div>
+
+            <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {currentMovies.slice(3).map((movies, index) => {
                 const descKey = `content_${locale.split('-')[0]}` as keyof typeof movies;
                 return (
                   <MovieCard

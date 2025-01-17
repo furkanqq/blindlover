@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
+import { AdSectionBlog, AdVerticalFaq } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
@@ -97,26 +98,48 @@ export default function MoviesPage() {
           </Container>
         )}
         {category !== '' && (
-          <Container className="mt-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
-                <div className="relative h-full w-full hidden md:flex">
-                  <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
-                </div>
-              </article>
-              {currentSeries.map((series, index) => {
-                const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
-                return (
-                  <MovieCard
-                    key={index}
-                    title={series.series_name}
-                    desc={series[descKey] as string}
-                    link={series.link}
-                  />
-                );
-              })}
+          <div className="flex md:flex-row flex-col justify-between">
+            <div className="hidden md:flex !w-96">
+              <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
             </div>
-          </Container>
+            <div className="mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <article className="relative w-full bg-white border border-gray-200 flex rounded-lg shadow-lg overflow-hidden hover:scale-[1.03] transition-transform">
+                  <div className="relative h-full w-full hidden md:flex">
+                    <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
+                  </div>
+                </article>
+                {currentSeries.slice(0, 3).map((series, index) => {
+                  const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
+                  return (
+                    <MovieCard
+                      key={index}
+                      title={series.series_name}
+                      desc={series[descKey] as string}
+                      link={series.link}
+                    />
+                  );
+                })}
+              </div>
+              <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {currentSeries.slice(3).map((series, index) => {
+                  const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
+                  return (
+                    <MovieCard
+                      key={index}
+                      title={series.series_name}
+                      desc={series[descKey] as string}
+                      link={series.link}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <div className="hidden md:flex !w-96">
+              <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
+            </div>
+          </div>
         )}
 
         {totalPages > 1 && (
@@ -134,6 +157,7 @@ export default function MoviesPage() {
             ))}
           </div>
         )}
+        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
     </AppLayout>
   );

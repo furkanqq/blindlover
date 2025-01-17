@@ -7,6 +7,7 @@ import { AdSectionLanding } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Banner from '@/components/Banner';
 import { CardSection } from '@/components/CardSection';
+import { Container } from '@/components/Container';
 import { CTASection } from '@/components/CTASection';
 import { FAQ } from '@/components/FAQ';
 import { HeaderSection } from '@/components/HeaderSection';
@@ -46,7 +47,9 @@ export default function Home() {
       <AdSectionLanding dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <MovieSeriesSlider mirror title={t('slider_title_two')} />
       <AdSectionLanding dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
-      <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
+      <Container>
+        <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
+      </Container>
     </AppLayout>
   );
 }
