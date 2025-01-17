@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { IconArrowRight } from '@/assets/IconArrowRight';
+import { cn } from '@/utils/cn';
 import Button from '../Button';
 
 const slidesData = [
@@ -98,6 +99,16 @@ function Slider({ slides }: SliderProps) {
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden">
+      <div className="absolute flex gap-4 z-10 bottom-12 right-20">
+        {slides.map((slide, index) => (
+          <div
+            className={cn('w-7 h-3 rounded-full border-2 border-solid border-white bg-white', {
+              'bg-transparent scale-[1.2]': index === currentSlide,
+            })}
+            key={slide.title}
+          ></div>
+        ))}
+      </div>
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}

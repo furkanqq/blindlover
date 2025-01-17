@@ -7,7 +7,7 @@ const CardSection = () => {
   const t = useTranslations('LandingPage');
 
   return (
-    <div className="flex justify-between">
+    <div className="flex md:flex-row flex-col justify-between">
       <AdVerticalLanding dataAdSlot={'6275447546'} />
       <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
