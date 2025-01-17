@@ -22,7 +22,7 @@ export const AdSectionLanding = ({ dataAdSlot, dataAdFormat, dataFullWidthRespon
       <div className="w-[80%] h-full">
         <ins
           className="adsbygoogle block"
-          data-ad-client={`ca-pub-${process.env.NEXT_ADSENSE_KEY}`}
+          data-ad-client={`ca-pub-9281616897705500`}
           data-ad-slot={dataAdSlot}
           data-ad-format={dataAdFormat}
           data-full-width-responsive={dataFullWidthResponsive.toString()}
@@ -46,7 +46,7 @@ export const AdSectionFaq = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive
       <div className="w-[80%] h-full">
         <ins
           className="adsbygoogle block"
-          data-ad-client={`ca-pub-${process.env.NEXT_ADSENSE_KEY}`}
+          data-ad-client={`ca-pub-9281616897705500`}
           data-ad-slot={dataAdSlot}
           data-ad-format={dataAdFormat}
           data-full-width-responsive={dataFullWidthResponsive.toString()}
@@ -73,7 +73,7 @@ export const AdVerticalLanding = ({ dataAdSlot }: AdVerticalLandingType) => {
     <div className="flex items-center">
       <ins
         className="adsbygoogle block w-[200px] h-[660px]"
-        data-ad-client={`ca-pub-${process.env.NEXT_ADSENSE_KEY}`}
+        data-ad-client={`ca-pub-9281616897705500`}
         data-ad-slot={dataAdSlot}
       />
     </div>
@@ -91,10 +91,10 @@ export const AdVerticalFaq = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsiv
 
   return (
     <div className="flex w-full h-[800px] justify-center items-center">
-      <div className="w-[20%] h-full">
+      <div className="w-[30%] h-full">
         <ins
           className="adsbygoogle block"
-          data-ad-client={`ca-pub-${process.env.NEXT_ADSENSE_KEY}`}
+          data-ad-client={`ca-pub-9281616897705500`}
           data-ad-slot={dataAdSlot}
           data-ad-format={dataAdFormat}
           data-full-width-responsive={dataFullWidthResponsive.toString()}
