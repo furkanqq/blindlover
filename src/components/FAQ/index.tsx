@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/routing';
 import { FAQTypes } from '@/types/types';
+import { cn } from '@/utils/cn';
 import Button from '../Button';
 import { Container } from '../Container';
 
@@ -10,7 +11,12 @@ const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) =
   const t = useTranslations('FAQPage');
   return (
     <Container>
-      <div className="relative w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:mx-auto sm:max-w-full sm:rounded-lg sm:px-10">
+      <div
+        className={cn(
+          'relative w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:mx-auto sm:max-w-full sm:rounded-lg sm:px-10',
+          { 'md:mt-4': type === 'faqs' },
+        )}
+      >
         <div className="mx-auto px-5">
           {type !== 'faqs' && (
             <div className="flex flex-col items-center">

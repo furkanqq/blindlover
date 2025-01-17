@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
+import { AdSectionFaq, AdVerticalFaq } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import { FAQ } from '@/components/FAQ';
 import { FAQConfig_en, FAQConfig_es, FAQConfig_fr, FAQConfig_pt, FAQConfig_ru, FAQConfig_tr } from '@/config/FAQConfig';
@@ -29,13 +30,21 @@ export default function FAQsPage() {
 
   return (
     <AppLayout type="detail" className="">
-      <div className="">
-        <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
-          <h1 className="text-4xl font-bold">{t('faq')}</h1>
-          <p className="text-md text-gray-500 mt-4">{t('faq_long')}</p>
+      <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
+        <h1 className="text-4xl font-bold">{t('faq')}</h1>
+        <p className="text-md text-gray-500 mt-4">{t('faq_long')}</p>
+      </div>
+      <div className="border border-solid border-black">
+        <AdSectionFaq dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+      </div>
+      <div className="flex">
+        <div className="border border-solid border-black">
+          <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
         </div>
-
         <FAQ FAQuestions={FAQConfig} type={'faqs'} />
+        <div className="border border-solid border-black">
+          <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
+        </div>
       </div>
     </AppLayout>
   );

@@ -42,7 +42,7 @@ export const routing = defineRouting({
     },
     '/faq': {
       en: '/faq',
-      tr: '/ssk',
+      tr: '/sss',
       fr: '/faq',
       es: '/faq',
       ru: '/faq',
