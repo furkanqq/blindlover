@@ -17,7 +17,7 @@ const slidesData = [
     link: '/register',
   },
   {
-    image: '/banner3.webp',
+    image: '/banner1.png',
     title: 'banner.title',
     subtitle: 'banner.subtitle',
     buttonText: 'banner.button',
@@ -99,10 +99,11 @@ function Slider({ slides }: SliderProps) {
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden">
-      <div className="absolute flex gap-4 z-10 bottom-12 right-20">
+      <div className="absolute flex gap-4 z-10 bottom-12 right-20 bg-primaryColor shadow-xl shadow-red-900 border border-solid border-white py-4 px-8 rounded-full">
         {slides.map((slide, index) => (
           <div
-            className={cn('w-7 h-3 rounded-full border-2 border-solid border-white bg-white', {
+            onClick={() => setCurrentSlide(index)}
+            className={cn('cursor-pointer w-7 h-3 rounded-full border-2 border-solid border-white bg-white', {
               'bg-transparent scale-[1.2]': index === currentSlide,
             })}
             key={slide.title}
@@ -139,9 +140,22 @@ function Slider({ slides }: SliderProps) {
               <div className="relative h-[80%] w-full z-[1] animate-fade animate-delay-500">
                 <Image className="object-contain" src={slide.image} alt={slide.title} fill />
               </div>
-              <div className="absolute w-full h-full z-[0] animate-fade animate-delay-300">
-                <Image className="object-cover !opacity-30" src="/pattern.webp" alt="Pattern" fill />
-              </div>
+              {index === 0 && (
+                <div className="absolute w-full h-full z-[0] animate-fade animate-delay-300">
+                  <Image className="object-cover !opacity-30" src="/pattern.webp" alt="Pattern" fill />
+                </div>
+              )}
+              {index === 2 && (
+                <div className="absolute w-full h-full z-[0] animate-fade animate-delay-300">
+                  <Image
+                    className="object-cover !opacity-50"
+                    objectPosition="right"
+                    src="/heartPattern.png"
+                    alt="Pattern"
+                    fill
+                  />
+                </div>
+              )}
             </div>
           </div>
         ))}
