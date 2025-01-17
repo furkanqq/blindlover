@@ -38,13 +38,13 @@ export default function Home() {
     <AppLayout type="landing">
       <Banner />
       <CardSection />
-      <AdSection dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <HeaderSection />
       <AdSection dataAdSlot={'4347288207'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <CTASection />
       <Slider startIndex={0} endIndex={5} mirror={false} title={t('slider_title')} />
       <AdSection dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <MovieSeriesSlider mirror title={t('slider_title_two')} />
+      <AdSection dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <FAQ FAQuestions={FAQConfig.slice(0, 4)} type={'landing'} />
     </AppLayout>
   );
