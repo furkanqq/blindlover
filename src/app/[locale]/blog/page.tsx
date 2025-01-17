@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 
+import { AdSectionBlog } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
@@ -27,6 +28,8 @@ export default function BlogPage() {
           </h1>
           <p className="text-md text-gray-500 mt-4">{t('subtitle')}</p>
         </div>
+
+        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
 
         {/* Blog Cards */}
         <Container className="mt-6">
@@ -57,6 +60,7 @@ export default function BlogPage() {
             />
           </div>
         </Container>
+        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
     </AppLayout>
   );

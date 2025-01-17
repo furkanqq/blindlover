@@ -39,14 +39,17 @@ export default function FAQsPage() {
       </div>
 
       <div className="flex w-full">
-        <div className="w-[30%]">
+        <div className="hidden md:flex w-76">
           <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
         </div>
 
         <FAQ FAQuestions={FAQConfig} type={'faqs'} />
-        <div className="w-[30%]">
+        <div className="hidden md:flex w-76">
           <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
         </div>
+      </div>
+      <div className="">
+        <AdSectionFaq dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
     </AppLayout>
   );

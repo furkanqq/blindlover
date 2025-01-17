@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
+import { AdSectionBlog } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import { BlogCard } from '@/components/BlogCard';
 import { Container } from '@/components/Container';
@@ -34,7 +35,7 @@ export default function BlogPage() {
     setCurrentPage(page);
   };
 
-  console.log(blogs, 'blogs');
+  console.log(currentBlogs, 'currentBlogs');
 
   return (
     <AppLayout type="detail" className="">
@@ -48,10 +49,12 @@ export default function BlogPage() {
           <p className="text-md text-gray-500 mt-4">{t('subtitle')}</p>
         </div>
 
+        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+
         {/* Blog Cards */}
         <Container className="mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {currentBlogs.map((blog, index) => {
+            {currentBlogs.slice(0, 3).map((blog, index) => {
               const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
               const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
 
@@ -69,6 +72,55 @@ export default function BlogPage() {
           </div>
         </Container>
 
+        {currentBlogs.length > 3 && (
+          <>
+            <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+            <Container className="mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {currentBlogs.slice(3, 9).map((blog, index) => {
+                  const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
+                  const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
+
+                  return (
+                    <BlogCard
+                      key={index}
+                      title={blog[titleKey] as string}
+                      desc={blog[descKey].toString().slice(0, 120)}
+                      image={`${process.env.NEXT_PUBLIC_DIRECTUS_API_URL + '/assets/' + blog?.small_image}`}
+                      link={blog.slug}
+                      buttonText={t('read_more')}
+                    />
+                  );
+                })}
+              </div>
+            </Container>
+
+            <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+          </>
+        )}
+
+        {currentBlogs.length > 9 && (
+          <Container className="mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {currentBlogs.slice(9).map((blog, index) => {
+                const titleKey = `title_${locale.split('-')[0]}` as keyof typeof blog;
+                const descKey = `content_${locale.split('-')[0]}` as keyof typeof blog;
+
+                return (
+                  <BlogCard
+                    key={index}
+                    title={blog[titleKey] as string}
+                    desc={blog[descKey].toString().slice(0, 120)}
+                    image={`${process.env.NEXT_PUBLIC_DIRECTUS_API_URL + '/assets/' + blog?.small_image}`}
+                    link={blog.slug}
+                    buttonText={t('read_more')}
+                  />
+                );
+              })}
+            </div>
+          </Container>
+        )}
+
         {/* Pagination */}
         <div className="flex justify-center items-center mt-8 space-x-2">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -83,6 +135,7 @@ export default function BlogPage() {
             </button>
           ))}
         </div>
+        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
     </AppLayout>
   );

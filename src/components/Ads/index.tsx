@@ -56,6 +56,30 @@ export const AdSectionFaq = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive
   );
 };
 
+export const AdSectionBlog = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive }: AdSectionType) => {
+  useEffect(() => {
+    try {
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }, []);
+
+  return (
+    <div className="flex w-full h-[200px] justify-center items-center pt-6">
+      <div className="w-[80%] h-full">
+        <ins
+          className="adsbygoogle block"
+          data-ad-client={`ca-pub-9281616897705500`}
+          data-ad-slot={dataAdSlot}
+          data-ad-format={dataAdFormat}
+          data-full-width-responsive={dataFullWidthResponsive.toString()}
+        />
+      </div>
+    </div>
+  );
+};
+
 type AdVerticalLandingType = {
   dataAdSlot: string;
 };
