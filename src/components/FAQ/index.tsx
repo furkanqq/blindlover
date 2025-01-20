@@ -11,8 +11,8 @@ const FAQ = ({ FAQuestions, type }: { FAQuestions: FAQTypes[]; type: string }) =
   return (
     <div
       className={cn(
-        ' w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:mx-auto sm:max-w-full sm:rounded-lg sm:px-10',
-        { 'md:mt-4': type === 'faqs' },
+        ' w-full border border-solid bg-backgroundColor px-6 md:mt-32 pt-10 pb-8 mt-8 sm:rounded-lg sm:px-10',
+        { 'md:mt-4 md:w-[60%]': type === 'faqs' },
       )}
     >
       <div className="mx-auto px-5">

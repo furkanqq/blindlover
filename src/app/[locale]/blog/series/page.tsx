@@ -99,7 +99,7 @@ export default function MoviesPage() {
         )}
         {category !== '' && (
           <div className="flex md:flex-row flex-col justify-between">
-            <div className="hidden md:flex !w-96">
+            <div className="hidden md:flex justify-center items-center">
               <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
             </div>
             <div className="mt-6">
@@ -136,7 +136,7 @@ export default function MoviesPage() {
                 })}
               </div>
             </div>
-            <div className="hidden md:flex !w-96">
+            <div className="hidden md:flex justify-center items-center">
               <AdVerticalFaq dataAdSlot={'1590128892'} dataAdFormat="auto" dataFullWidthResponsive={true} />
             </div>
           </div>

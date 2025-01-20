@@ -115,7 +115,7 @@ export const AdVerticalFaq = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsiv
 
   return (
     <div className="flex w-full h-[800px] justify-center items-center">
-      <div className="w-[30%] h-full">
+      <div className="h-full">
         <ins
           className="adsbygoogle block w-[240px] h-[700px]"
           data-ad-client={`ca-pub-9281616897705500`}
