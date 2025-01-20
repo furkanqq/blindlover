@@ -126,6 +126,16 @@
       "subtitle": "İlişkinizin ne kadar güçlü olduğunu öğrenmek ya da hoşlandığın kişinin sana ilgisini ölçmek ister misin? Eğlenceli sorularla dolu testimizi hemen keşfet ve aşk yüzdesini öğren!",
       "title": "Aşkı Keşfetmenin En Eğlenceli Yolunu Senin İçin Tasarladık!"
     },
+    "banner1": {
+      "button": "HEMEN DENE",
+      "subtitle": "RIASEC, MBTI, KOLB bilimsel model temelinde AI (yapay zeka) destekli analizlerle, Kişiliğini keşfet ve hayallerindeki mesleğe ulaş.",
+      "title": "Kariyerindeki İlk Adımı At!"
+    },
+    "banner2": {
+      "button": "BLOGU KEŞFET",
+      "subtitle": "İlişkine renk katacak öneriler, aşk dolu film ve dizi listeleri, eğlenceli içerikler seni bekliyor! Yeni yazıları keşfet ve aşkını daha eğlenceli hale getir!",
+      "title": "Blindlover Blog: Aşk ve Eğlence Buluşuyor!"
+    },
     "header": {
       "profile": "Profil",
       "login": "Giriş Yap",
@@ -192,7 +202,10 @@
     "register": "Hesabınız yok mu? Hemen Kaydolun",
     "or": "Ya da",
     "google": "Google ile Devam Et",
-    "apple": "Apple ile Devam Et"
+    "apple": "Apple ile Devam Et",
+    "forgot": "Şifrenizi mi unuttunuz?",
+    "back_to_login": "Giriş Sayfasına Dön",
+    "submit": "Gönder"
   },
   "NotApprovedPage": {
     "title": "Lütfen Doğrulayın",

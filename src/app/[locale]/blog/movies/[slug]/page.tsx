@@ -14,37 +14,35 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { MovieCard } from '@/components/MovieCard';
 import { Link } from '@/i18n/routing';
 import { DirectusServices } from '@/services/manager';
-import { categoryImageAtom, seriesListAtom } from '@/stores';
+import { categoryImageAtom, movieListAtom } from '@/stores';
 
 const ITEMS_PER_PAGE = 10;
 
 export default function MoviesPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [series] = useAtom(seriesListAtom);
+  const [movies] = useAtom(movieListAtom);
   const locale = useLocale();
   const t = useTranslations('BlogPage');
   const [categoryImage] = useAtom(categoryImageAtom);
   const { slug } = useParams();
 
-  console.log(slug, ' params');
-
   useEffect(() => {
-    DirectusServices.SeriesList();
+    DirectusServices.MovieList();
   }, []);
 
-  if (!series || !locale) {
+  if (!movies || !locale) {
     return <LoadingScreen />;
   }
 
-  const categoryKeyPrefix = `category_${locale.split('-')[0]}` as keyof (typeof series)[0];
-  const filteredSeries = series.filter(
+  const categoryKeyPrefix = `category_${locale.split('-')[0]}` as keyof (typeof movies)[0];
+  const filteredMovies = movies.filter(
     (item) =>
       (item[categoryKeyPrefix] as string).toLowerCase() === decodeURIComponent((slug as string).replace(/_/g, ' ')),
   );
 
-  const currentSeries = filteredSeries.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const currentMovies = filteredMovies.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
-  const totalPages = Math.ceil(filteredSeries.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredMovies.length / ITEMS_PER_PAGE);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -60,9 +58,8 @@ export default function MoviesPage() {
           </h1>
           <p className="text-md text-gray-500 mt-4">{t('subtitle')}</p>
         </div>
-
         <Container>
-          <Link href="/blog/series">
+          <Link href="/blog/movies">
             <div className="pt-6 cursor-pointer flex gap-3">
               <ArrowLeftIcon width={24} height={24} />
               <span>{t('all_categories')}</span>
@@ -81,28 +78,30 @@ export default function MoviesPage() {
                   <Image className="" src={categoryImage} alt="Blog Image" fill objectFit="cover" />
                 </div>
               </article>
-              {currentSeries.slice(0, 3).map((series, index) => {
-                const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
+              {currentMovies.slice(0, 3).map((movies, index) => {
+                const descKey = `content_${locale.split('-')[0]}` as keyof typeof movies;
                 return (
                   <MovieCard
                     key={index}
-                    title={series.series_name}
-                    desc={series[descKey] as string}
-                    link={series.link}
+                    title={movies.movie_name}
+                    desc={movies[descKey] as string}
+                    link={movies.link}
                   />
                 );
               })}
             </div>
+
             <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {currentSeries.slice(3).map((series, index) => {
-                const descKey = `series_content_${locale.split('-')[0]}` as keyof typeof series;
+              {currentMovies.slice(3).map((movies, index) => {
+                const descKey = `content_${locale.split('-')[0]}` as keyof typeof movies;
                 return (
                   <MovieCard
                     key={index}
-                    title={series.series_name}
-                    desc={series[descKey] as string}
-                    link={series.link}
+                    title={movies.movie_name}
+                    desc={movies[descKey] as string}
+                    link={movies.link}
                   />
                 );
               })}
@@ -128,7 +127,6 @@ export default function MoviesPage() {
             ))}
           </div>
         )}
-        <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
     </AppLayout>
   );

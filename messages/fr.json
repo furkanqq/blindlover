@@ -125,6 +125,16 @@
       "subtitle": "Voulez-vous savoir à quel point votre relation est forte ou mesurer l'intérêt de la personne qui vous plaît ? Découvrez notre test plein de fun et apprenez votre pourcentage d'amour !",
       "title": "Nous avons conçu la manière la plus amusante de découvrir l'amour pour vous !"
     },
+    "banner1": {
+      "button": "ESSAİE MAİNTENANT",
+      "subtitle": "Grâce aux analyses basées sur l'IA et les modèles scientifiques RIASEC, MBTI et KOLB, Découvre ta personnalité et accède à ton métier de rêve.",
+      "title": "Fais le Premier Pas dans ta Carrière !"
+    },
+    "banner2": {
+      "button": "DÉCOUVRIR LE BLOG",
+      "subtitle": "Retrouve des conseils pour pimenter ta relation, des listes de films et séries romantiques, ainsi que du contenu amusant ! Découvre de nouveaux articles et rends ton amour encore plus amusant !",
+      "title": "Blindlover Blog : Là où l’amour et le plaisir se rencontrent!"
+    },
     "header": {
       "profile": "Profil",
       "login": "Se Connecter",
@@ -191,7 +201,10 @@
     "register": "Vous n'avez pas de compte? Inscrivez-vous maintenant",
     "or": "Ou",
     "google": "Continuer avec Google",
-    "apple": "Continuer avec Apple"
+    "apple": "Continuer avec Apple",
+    "forgot": "Vous avez oublié votre mot de passe ?",
+    "back_to_login": "Retour à la page de connexion",
+    "submit": "Soumettre"
   },
   "NotApprovedPage": {
     "title": "Veuillez Vérifier",

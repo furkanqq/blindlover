@@ -79,6 +79,9 @@ export const BlindApiUrl = {
   Activate: () => {
     return BlindHttp.post('/verification/send/EMAIL_VERIFY');
   },
+  ForgotSend: () => {
+    return BlindHttp.post('/verification/send/FORGOT_PASSWORD');
+  },
   ProfileInfo: () => {
     return BlindHttp.get('/profile/info');
   },
@@ -102,6 +105,9 @@ export const BlindApiUrl = {
   },
   QuestionResult: (id: string) => {
     return BlindHttp.get('/answer/' + id);
+  },
+  ForgotPassword: (email: string) => {
+    return BlindHttp.post('/auth/forgot-password', { email });
   },
   ProfileDelete: (password: string) => {
     return BlindHttp.delete('/profile', { data: { password } });

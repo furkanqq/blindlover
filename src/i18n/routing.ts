@@ -56,6 +56,14 @@ export const routing = defineRouting({
       ru: '/вход',
       pt: '/login',
     },
+    '/forgot-password': {
+      en: '/forgot-password',
+      tr: '/sifremi-unuttum',
+      fr: '/mot-de-passe-oublie',
+      es: '/olvide-contrasena',
+      ru: '/забыли-пароль',
+      pt: '/esqueci-a-senha',
+    },
     '/register': {
       en: '/register',
       tr: '/kayit',
@@ -168,6 +176,14 @@ export const routing = defineRouting({
       ru: '/blog/фильмы',
       pt: '/blog/filmes',
     },
+    '/blog/movies/[slug]': {
+      en: '/blog/movies/[slug]',
+      tr: '/blog/filmler/[slug]',
+      fr: '/blog/films/[slug]',
+      es: '/blog/peliculas/[slug]',
+      ru: '/blog/фильмы/[slug]',
+      pt: '/blog/filmes/[slug]',
+    },
     '/blog/series': {
       en: '/blog/series',
       tr: '/blog/diziler',
@@ -175,6 +191,14 @@ export const routing = defineRouting({
       es: '/blog/series',
       ru: '/blog/сериалы',
       pt: '/blog/series',
+    },
+    '/blog/series/[slug]': {
+      en: '/blog/series/[slug]',
+      tr: '/blog/diziler/[slug]',
+      fr: '/blog/series/[slug]',
+      es: '/blog/series/[slug]',
+      ru: '/blog/сериалы/[slug]',
+      pt: '/blog/series/[slug]',
     },
   },
 });

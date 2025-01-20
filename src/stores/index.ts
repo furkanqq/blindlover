@@ -34,3 +34,5 @@ export const questionListAtom = atom<QuestionListResponse['data'] | undefined>()
 export const resultListAtom = atom<QuestionResultList['data'] | undefined>();
 
 export const resultAtom = atom<QuestionResult['data'] | undefined>();
+
+export const categoryImageAtom = atom<string>('');

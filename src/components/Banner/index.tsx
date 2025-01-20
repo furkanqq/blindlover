@@ -2,10 +2,10 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { IconArrowRight } from '@/assets/IconArrowRight';
-import { Link } from '@/i18n/routing';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
 
@@ -19,21 +19,21 @@ export default function Banner() {
       title: 'banner.title',
       subtitle: 'banner.subtitle',
       buttonText: 'banner.button',
-      link: '/panel',
+      link: `/${locale}/panel`,
     },
     {
       image: imageKey,
-      title: 'banner.title',
-      subtitle: 'banner.subtitle',
-      buttonText: 'banner.button',
-      link: '/panel',
+      title: 'banner1.title',
+      subtitle: 'banner1.subtitle',
+      buttonText: 'banner1.button',
+      link: 'https://articareer.com/',
     },
     {
       image: image2Key,
-      title: 'banner.title',
-      subtitle: 'banner.subtitle',
-      buttonText: 'banner.button',
-      link: '/panel',
+      title: 'banner2.title',
+      subtitle: 'banner2.subtitle',
+      buttonText: 'banner2.button',
+      link: `/${locale}/blog`,
     },
   ];
 
@@ -93,7 +93,7 @@ function Slider({ slides }: SliderProps) {
                   {t(slide.title)}
                 </h1>
                 <p className="text-[14px] hidden sm:flex text-foreground/50">{t(slide.subtitle)}</p>
-                <Link href={slide.link as '/panel'}>
+                <Link href={slide.link}>
                   <Button
                     className="flex justify-center items-center gap-4 w-full"
                     variant="primary"

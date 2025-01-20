@@ -114,6 +114,30 @@ const Activate = async () => {
   }
 };
 
+const ForgotSend = async () => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.ForgotSend();
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      return resData;
+    } else {
+      console.log('Aktivasyon başarısız:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->Activate Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 const ProfileInfo = async () => {
   BlindStore.set(loaderAtom, true);
 
@@ -337,6 +361,31 @@ const ProfileDelete = async (request: string) => {
   }
 };
 
+const ForgotPassword = async (email: string) => {
+  BlindStore.set(loaderAtom, true);
+
+  try {
+    const res = await BlindApiUrl.ForgotPassword(email);
+
+    if (!res || !res.data) {
+      throw new Error('API yanıtı alınamadı.');
+    }
+
+    const resData = res.data;
+
+    if (resData?.status === 200) {
+      BlindStore.set(authAtom, resData?.data?.token);
+      return resData;
+    } else {
+      console.log('Şifre sıfırlama maili gönderilemedi:', resData.message || 'Hata oluştu.');
+    }
+  } catch (err: any) {
+    console.log('BlindServices->ForgotPassword Hatası:', err.message || err);
+  } finally {
+    BlindStore.set(loaderAtom, false);
+  }
+};
+
 export const BlindServices = {
   AuthLogin,
   RegisterUser,
@@ -351,6 +400,8 @@ export const BlindServices = {
   QuestionResult,
   ProfileDelete,
   GoogleLogin,
+  ForgotPassword,
+  ForgotSend,
 };
 
 const BlogList = async () => {

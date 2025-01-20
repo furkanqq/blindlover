@@ -4,7 +4,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { IconApple } from '@/assets/IconApple';
 import { IconGoogle } from '@/assets/IconGoogle';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
@@ -165,7 +164,7 @@ export default function RegisterPage() {
             onSubmit={handleSubmit}
             className="max-w-4xl mx-auto bg-backgroundColor shadow-[0_2px_13px_-6px_rgba(0,0,0,0.4)] sm:p-8 p-4 rounded-md"
           >
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid">
               <Button
                 variant={'light'}
                 type="button"
@@ -176,7 +175,7 @@ export default function RegisterPage() {
                 <IconGoogle />
                 <span>{t('google')}</span>
               </Button>
-              <Button
+              {/* <Button
                 variant={'dark'}
                 title="Apple"
                 type="button"
@@ -184,7 +183,7 @@ export default function RegisterPage() {
               >
                 <IconApple width={20} height={20} />
                 <span>{t('apple')}</span>
-              </Button>
+              </Button> */}
             </div>
 
             <div className="my-8 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">

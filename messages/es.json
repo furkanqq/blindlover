@@ -125,6 +125,16 @@
       "subtitle": "¿Quieres saber qué tan fuerte es tu relación o medir el interés de la persona que te gusta? ¡Descubre ahora nuestro test lleno de diversión y averigua tu porcentaje de amor!",
       "title": "¡Hemos diseñado la forma más divertida de descubrir el amor para ti!"
     },
+    "banner1": {
+      "button": "PRUEBA AHORA",
+      "subtitle": "Con análisis impulsados por IA basados en los modelos científicos RIASEC, MBTI y KOLB, Descubre tu personalidad y alcanza la profesión de tus sueños.",
+      "title": "¡Da el Primer Paso en tu Carrera!"
+    },
+    "banner2": {
+      "button": "EXPLORAR EL BLOG",
+      "subtitle": "Descubre consejos para tu relación, listas de películas y series románticas, y contenido divertido para hacer tu amor más especial. Explora nuevos artículos y haz que tu amor sea aún más emocionante.",
+      "title": "Blindlover Blog: ¡Donde el amor y la diversión se encuentran!"
+    },
     "header": {
       "profile": "Perfil",
       "login": "Iniciar Sesión",
@@ -191,7 +201,10 @@
     "register": "¿No tienes una cuenta? Regístrate ahora",
     "or": "O",
     "google": "Continuar con Google",
-    "apple": "Continuar con Apple"
+    "apple": "Continuar con Apple",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "back_to_login": "Volver a Iniciar Sesión",
+    "submit": "Enviar"
   },
   "NotApprovedPage": {
     "title": "Por Favor Verifique",

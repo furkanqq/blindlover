@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { IconApple } from '@/assets/IconApple';
 import { IconGoogle } from '@/assets/IconGoogle';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
@@ -75,6 +74,9 @@ export default function LoginPage() {
                       onChange={handleInputChange}
                     />
                   </div>
+                  <div className="text-[12px] mt-1 hover:underline">
+                    <Link href={'/forgot-password'}>{t('forgot')}</Link>
+                  </div>
                   <Button variant={'primary'} type="button" className="mt-5" title={''} onClick={handleLogin}>
                     <span>{t('button')}</span>
                   </Button>
@@ -94,16 +96,16 @@ export default function LoginPage() {
                     variant={'light'}
                     type="button"
                     title=""
-                    className="w-56 border-foreground"
+                    className="w-full border-foreground"
                   >
                     <IconGoogle width={20} height={20} />
                     <span>{t('google')}</span>
                   </Button>
 
-                  <Button size="md" variant={'dark'} type="button" title="" className="w-56">
+                  {/* <Button size="md" variant={'dark'} type="button" title="" className="w-56">
                     <IconApple width={20} height={20} />
                     <span>{t('apple')}</span>
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
