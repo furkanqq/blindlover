@@ -204,7 +204,14 @@
     "apple": "Continuar com a Apple",
     "forgot": "Esqueceu sua senha?",
     "back_to_login": "Voltar para o login",
-    "submit": "Enviar"
+    "submit": "Enviar",
+    "TwoFA": "Autenticação de Dois Fatores",
+    "enter_code": "Digite o código de autenticação de dois fatores",
+    "confirm": "Confirmar",
+    "chooseNewPassword": "Escolha uma nova senha",
+    "password_placeholder": "Digite sua nova senha",
+    "confirm_password": "Confirmar senha",
+    "confirm_password_placeholder": "Digite sua nova senha novamente"
   },
   "NotApprovedPage": {
     "title": "Por Favor Verifique",

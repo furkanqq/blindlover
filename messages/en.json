@@ -204,7 +204,14 @@
     "apple": "Continue with Apple",
     "forgot": "Forgot your password?",
     "back_to_login": "Back to Login",
-    "submit": "Submit"
+    "submit": "Submit",
+    "TwoFA": "Two Factor Authentication",
+    "enter_code": "Please enter the code",
+    "confirm": "Confirm",
+    "chooseNewPassword": "Set Your New Password",
+    "password_placeholder": "Enter your password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Re-enter your password"
   },
   "NotApprovedPage": {
     "title": "Please Verify",

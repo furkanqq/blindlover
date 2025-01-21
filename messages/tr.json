@@ -205,7 +205,14 @@
     "apple": "Apple ile Devam Et",
     "forgot": "Şifrenizi mi unuttunuz?",
     "back_to_login": "Giriş Sayfasına Dön",
-    "submit": "Gönder"
+    "submit": "Gönder",
+    "TwoFA": "İki Faktörlü Kimlik Doğrulama",
+    "enter_code": "Lütfen e-posta adresinize gönderilen doğrulama kodunu girin.",
+    "confirm": "Onayla",
+    "chooseNewPassword": "Yeni Şifre Belirle",
+    "password_placeholder": "Şifrenizi girin",
+    "confirm_password": "Şifreyi Onayla",
+    "confirm_password_placeholder": "Şifrenizi tekrar girin"
   },
   "NotApprovedPage": {
     "title": "Lütfen Doğrulayın",

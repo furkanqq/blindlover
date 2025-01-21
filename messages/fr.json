@@ -204,7 +204,14 @@
     "apple": "Continuer avec Apple",
     "forgot": "Vous avez oublié votre mot de passe ?",
     "back_to_login": "Retour à la page de connexion",
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "TwoFA": "Vérification en deux étapes",
+    "enter_code": "Entrez le code à 6 chiffres que nous avons envoyé à votre adresse e-mail.",
+    "confirm": "Confirmer",
+    "chooseNewPassword": "Choisissez un nouveau mot de passe",
+    "password_placeholder": "Entrez votre nouveau mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "confirm_password_placeholder": "Re-entrez votre nouveau mot de passe"
   },
   "NotApprovedPage": {
     "title": "Veuillez Vérifier",
