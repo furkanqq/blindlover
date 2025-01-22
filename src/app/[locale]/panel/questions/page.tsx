@@ -111,16 +111,16 @@ export default function QuestionsPage() {
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
-      <div className="absolute left-0 top-[50%] translate-y-[-50%] border border-solid border-white">
+      <div className="absolute left-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute right-0 top-[50%] translate-y-[-50%] border border-solid border-white">
+      <div className="absolute right-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute left-[50%] top-0 translate-x-[-50%] border border-solid border-white">
+      <div className="absolute left-[50%] top-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
-      <div className="absolute left-[50%] bottom-0 translate-x-[-50%] border border-solid border-white">
+      <div className="absolute left-[50%] bottom-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
 
