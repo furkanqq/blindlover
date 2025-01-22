@@ -9,6 +9,7 @@ import { IconGoogle } from '@/assets/IconGoogle';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Input } from '@/components/Input';
+import { showToast } from '@/helpers/toastHelper';
 import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 
@@ -32,16 +33,15 @@ export default function LoginPage() {
 
   function handleLogin() {
     // e.preventDefault();
-    BlindServices.AuthLogin(loginForm)
-      .then((result) => {
-        if (result.status === 200) {
-          window.location.href = `/${locale}/`;
-        }
-      })
-      .catch((err) => {
-        //toast gelecek
-        console.log(err, 'err');
-      });
+    BlindServices.AuthLogin(loginForm).then((result) => {
+      if (result.status === 200) {
+        showToast({
+          message: 'Successfully',
+          type: 'success',
+        });
+        window.location.href = `/${locale}/`;
+      }
+    });
   }
 
   return (

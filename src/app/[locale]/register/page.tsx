@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/Select';
+import { showToast } from '@/helpers/toastHelper';
 import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 
@@ -37,75 +38,79 @@ export default function RegisterPage() {
     mailLanguage: '',
   });
 
-  const [errors, setErrors] = useState({
-    email: '',
-    name: '',
-    password: '',
-    confirmPassword: '',
-    age: '',
-    gender: '',
-    termsAccepted: '',
-  });
-
-  console.log(errors, 'errors');
-
   const validateForm = () => {
     let valid = true;
-    const newErrors: typeof errors = {
-      email: '',
-      name: '',
-      password: '',
-      confirmPassword: '',
-      age: '',
-      gender: '',
-      termsAccepted: '',
-    };
 
     if (!formData.email || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email.';
+      showToast({
+        message: 'Please enter a valid email.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.name) {
-      newErrors.name = 'Name is required.';
+      showToast({
+        message: 'Name is required.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required.';
+      showToast({
+        message: 'Password is required.',
+        type: 'error',
+      });
       valid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters.';
+      showToast({
+        message: 'Password must be at least 6 characters.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match.';
+      showToast({
+        message: 'Passwords do not match.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.mailLanguage) {
-      newErrors.confirmPassword = 'Language is required.';
+      showToast({
+        message: 'Language is required.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.age || isNaN(Number(formData.age))) {
-      console.log(formData.age, 'age1');
-      newErrors.age = 'Please enter a valid age.';
+      showToast({
+        message: 'Please enter a valid age.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.gender) {
-      newErrors.gender = 'Gender is required.';
+      showToast({
+        message: 'Gender is required.',
+        type: 'error',
+      });
       valid = false;
     }
 
     if (!formData.termsAccepted) {
-      newErrors.termsAccepted = 'You must accept the terms and conditions.';
+      showToast({
+        message: 'You must accept the terms and conditions.',
+        type: 'error',
+      });
       valid = false;
     }
 
-    setErrors(newErrors);
     return valid;
   };
 
@@ -137,15 +142,11 @@ export default function RegisterPage() {
         gender: formData.gender,
         mailLanguage: formData.mailLanguage,
       };
-      BlindServices.RegisterUser(request)
-        .then((result) => {
-          if (result.status === 200) {
-            router.push(`/${locale}/activate`);
-          }
-        })
-        .catch((err) => {
-          console.log(err, 'error');
-        });
+      BlindServices.RegisterUser(request).then((result) => {
+        if (result.status === 200) {
+          router.push(`/${locale}/activate`);
+        }
+      });
     } else {
       //showToast
     }

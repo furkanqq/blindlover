@@ -1,5 +1,6 @@
 'use client';
 
+import { showToast } from '@/helpers/toastHelper';
 import { BlindStore } from '@/provider';
 import {
   authAtom,
@@ -40,10 +41,17 @@ const AuthLogin = async ({ password, email }: LoginRequest) => {
       BlindStore.set(authAtom, resData?.data?.token);
       return resData;
     } else {
-      console.log('Giriş başarısız:', resData.message || 'Hata oluştu.');
+      showToast({
+        message: `Giriş başarısız: ${resData.message || 'Hata oluştu.'}`,
+        type: 'error',
+      });
     }
-  } catch (err) {
-    console.log('BlindServices->UserLogin', err);
+  } catch (err: any) {
+    showToast({
+      message: `${err.response.data.message || 'Error'}`,
+      type: 'error',
+    });
+    console.log('BlindServices->UserLogin', err.response.data.message || err);
   } finally {
     BlindStore.set(loaderAtom, false);
   }
@@ -81,10 +89,16 @@ const RegisterUser = async ({ password, name, age, gender, email, mailLanguage }
       BlindStore.set(authAtom, resData?.data?.token);
       return resData;
     } else {
-      console.log('Kayıt başarısız:', resData.message || 'Hata oluştu.');
+      showToast({
+        message: resData.message || 'Error',
+        type: 'error',
+      });
     }
   } catch (err: any) {
-    console.log('BlindServices->RegisterUser Hatası:', err.message || err);
+    showToast({
+      message: err.response.data.message || 'Error',
+      type: 'error',
+    });
   } finally {
     BlindStore.set(loaderAtom, false);
   }

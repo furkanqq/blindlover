@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
 import { IconChevronRight } from '@/assets/IconChevronRight';
+import { AdSectionQuestion, AdVerticalQuestion } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
@@ -110,6 +111,19 @@ export default function QuestionsPage() {
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
+      <div className="absolute left-0 top-[50%] translate-y-[-50%] border border-solid border-white">
+        <AdVerticalQuestion dataAdSlot={'1950728146'} />
+      </div>
+      <div className="absolute right-0 top-[50%] translate-y-[-50%] border border-solid border-white">
+        <AdVerticalQuestion dataAdSlot={'1950728146'} />
+      </div>
+      <div className="absolute left-[50%] top-0 translate-x-[-50%] border border-solid border-white">
+        <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+      </div>
+      <div className="absolute left-[50%] bottom-0 translate-x-[-50%] border border-solid border-white">
+        <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+      </div>
+
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
       <Container className="relative z-1 h-[100vh] flex justify-center items-center">
         {currentQuestionIndex >= questions.length ? (

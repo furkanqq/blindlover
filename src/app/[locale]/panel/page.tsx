@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { IconClose } from '@/assets/IconClose';
+import { AdSectionBlog, AdVerticalPanel } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
-import { Container } from '@/components/Container';
 import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
 import { profileInfoAtom, resultListAtom } from '@/stores';
@@ -93,7 +93,8 @@ export default function PanelPage() {
   };
   return (
     <AppLayout>
-      <Container className="pt-32 h-fit">
+      <div className="flex items-end pt-32">
+        <AdVerticalPanel dataAdSlot={'9070670265'} />
         <div className="flex justify-center items-center flex-col  h-fit w-full gap-4 md:gap-12">
           <div
             className={cn(
@@ -179,7 +180,9 @@ export default function PanelPage() {
             </div>
           </div>
         </div>
-      </Container>
+        <AdVerticalPanel dataAdSlot={'9070670265'} />
+      </div>
+      <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
     </AppLayout>
   );
 }
