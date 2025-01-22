@@ -90,8 +90,8 @@ export const AdSectionQuestion = ({ dataAdSlot, dataAdFormat, dataFullWidthRespo
   }, []);
 
   return (
-    <div className="flex w-full max-h-[150px] justify-center items-center pt-24 sm:pt-32">
-      <div className="max-w-[1000px] h-full">
+    <div className="flex w-fit max-h-[150px] justify-center items-center pt-24 sm:pt-32">
+      <div className="w-[800px] h-full">
         <ins
           className="adsbygoogle block"
           data-ad-client={`ca-pub-9281616897705500`}
