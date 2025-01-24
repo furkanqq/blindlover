@@ -80,7 +80,7 @@ export const AdSectionBlog = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsiv
   );
 };
 
-export const AdSectionQuestion = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive }: AdSectionType) => {
+export const AdSectionQuestion = ({ dataAdSlot }: AdVerticalLandingType) => {
   useEffect(() => {
     try {
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
@@ -90,14 +90,12 @@ export const AdSectionQuestion = ({ dataAdSlot, dataAdFormat, dataFullWidthRespo
   }, []);
 
   return (
-    <div className="flex w-fit max-h-[150px] justify-center items-center pt-24 sm:pt-32">
+    <div className="flex w-fit h-[150px] justify-center items-center pt-24 sm:pt-32">
       <div className="w-[800px] h-full">
         <ins
-          className="adsbygoogle block"
+          className="adsbygoogle inline-block h-[150px] w-[800px]"
           data-ad-client={`ca-pub-9281616897705500`}
           data-ad-slot={dataAdSlot}
-          data-ad-format={dataAdFormat}
-          data-full-width-responsive={dataFullWidthResponsive.toString()}
         />
       </div>
     </div>

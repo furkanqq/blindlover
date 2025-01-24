@@ -329,7 +329,7 @@
     "info_desc": "Testlere başlamak için gerekli tüm alanları boşluk bırakmadan doldurmanız gerekmektedir. Lütfen tüm bölümleri dikkatlice inceleyin ve devam etmeden önce eksik bilgileri doldurun. Formun doğru bir şekilde doldurulması, test sonuçlarının güvenilirliğini ve doğruluğunu sağlamak için çok önemlidir.",
     "fill_now": "Şimdi Doldur",
     "delete_account": "Hesabı Sil",
-    "is_there_relationship": ">Şu anda bir ilişki içinde misiniz?",
+    "is_there_relationship": "Şu anda bir ilişki içinde misiniz?",
     "against": "Şu anda birine karşı duygusal bir ilgi duyuyor musunuz?",
     "relationship_duration": "İlişkinizin süresi ne kadar?",
     "focus_on_partner": "Partnerinizde hangi konulara daha çok odaklanmasını isterdiniz?",

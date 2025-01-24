@@ -117,11 +117,11 @@ export default function QuestionsPage() {
       <div className="absolute right-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute left-[50%] top-0 translate-x-[-50%]">
-        <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+      <div className="absolute left-[50%] top-0 translate-x-[-50%] border border-solid border-blue-500">
+        <AdSectionQuestion dataAdSlot={'3251104045'} />
       </div>
       <div className="absolute left-[50%] bottom-0 translate-x-[-50%]">
-        <AdSectionQuestion dataAdSlot={'3251104045'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+        <AdSectionQuestion dataAdSlot={'3251104045'} />
       </div>
 
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
@@ -139,8 +139,8 @@ export default function QuestionsPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-backgroundColor w-[90%] h-[95%] md:h-[70%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
-            <div className="h-[20%] flex flex-col md:flex-row items-center justify-between">
+          <div className="bg-backgroundColor w-[90%] h-[95%] md:h-[60%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
+            <div className="h-[25%] flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center justify-center w-20">
                 <span className="text-[32px] mr-1">{`${currentQuestionIndex + 1 >= 10 ? '' : '0'}${currentQuestionIndex + 1}`}</span>
                 <span>/ {questions.length}</span>
@@ -155,22 +155,22 @@ export default function QuestionsPage() {
                 <CircularProgressBar percentage={(currentQuestionIndex + 1) * (100 / questions.length)} />
               </div>
             </div>
-            <div className="h-[70%] flex flex-col justify-start pt-12 items-center gap-12">
+            <div className="h-[60%] flex flex-col justify-start pt-10 items-center gap-10">
               <div
-                className={`h-full flex flex-col items-center gap-14 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
+                className={`h-full flex flex-col items-center gap-6 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
                 key={questions[currentQuestionIndex]._id}
               >
-                <h1 className="text-xl md:text-[38px] h-28 md:leading-[56px] text-center font-semibold px-4 md:px-28">
+                <h1 className="text-xl md:text-[30px] h-24 md:leading-[40px] text-center font-semibold px-4 md:px-28">
                   {(questions[currentQuestionIndex][localKey] as string) || ''}
                 </h1>
                 <div className="flex gap-4 md:gap-20">
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-52 md:h-24 rounded-md active:scale-[0.98] cursor-pointer"
+                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-36 md:h-20 rounded-md active:scale-[0.98] cursor-pointer"
                       onClick={() => handleAnswer(option.label)}
                     >
-                      <span className="md:text-[28px] text-white">{t(option.value.toUpperCase())}</span>
+                      <span className="md:text-[20px] text-white">{t(option.value.toUpperCase())}</span>
                     </div>
                   ))}
                 </div>
