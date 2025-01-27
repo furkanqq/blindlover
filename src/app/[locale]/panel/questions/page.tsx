@@ -104,6 +104,12 @@ export default function QuestionsPage() {
     }
   }, [currentQuestionIndex, questions, allAnswer]);
 
+  useEffect(() => {
+    if (currentQuestionIndex % 10 === 0) {
+      setIsOpen(true);
+    }
+  }, [currentQuestionIndex]);
+
   if (!questions) {
     return <LoadingScreen />;
   }

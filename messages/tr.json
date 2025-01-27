@@ -228,8 +228,8 @@
     "last_test": "Test Geçmişi",
     "test_result": "Test Sonucu",
     "no_found": "Test Geçmişi Bulunmamaktadır.",
-    "info_title": "İlişki Bilgilerini Doldur",
-    "info_desc": "Teste başlayabilmeniz için, profilinizdeki İlişki bilgileri bölümündeki soruları doldurmanız gerekmektedir. Lütfen önce bu bilgileri tamamlayın.",
+    "info_title": "Kişisel Bilgilerini Doldur",
+    "info_desc": "Teste başlayabilmeniz için, profilinizdeki Kişisel bilgileri doldurmanız gerekmektedir. Lütfen önce bu bilgileri tamamlayın.",
     "info_nav": "Profile Git"
   },
   "PrivacyPage": {

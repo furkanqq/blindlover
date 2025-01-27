@@ -226,8 +226,8 @@
     "last_test": "Test History",
     "test_result": "Test Result",
     "no_found": "No Test History Found.",
-    "info_title": "Fill Out Relationship Details",
-    "info_desc": "To start the test, you need to fill out the questions in the Relationship Details section of your profile. Please complete this information first.",
+    "info_title": "Fill in Your Personal Information",
+    "info_desc": "To start the test, you need to fill in the personal information on your profile. Please complete this information first.",
     "info_nav": "Go to Profile"
   },
   "PrivacyPage": {

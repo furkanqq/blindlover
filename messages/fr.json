@@ -226,8 +226,8 @@
     "last_test": "Historique des Tests",
     "test_result": "Résultat du Test",
     "no_found": "Aucun Historique de Test Trouvé.",
-    "info_title": "Remplissez les Détails de la Relation",
-    "info_desc": "Pour commencer le test, vous devez remplir les questions dans la section Détails de la Relation de votre profil. Veuillez d'abord compléter ces informations.",
+    "info_title": "Remplissez Vos Informations Personnelles",
+    "info_desc": "Pour commencer le test, vous devez remplir les informations personnelles dans votre profil. Veuillez d'abord compléter ces informations.",
     "info_nav": "Aller au Profil"
   },
   "PrivacyPage": {

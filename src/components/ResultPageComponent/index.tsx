@@ -55,7 +55,7 @@ export default function ResultPageComponent({
             <Button
               onClick={() => sendEmail()}
               variant={'primary'}
-              className="w-32"
+              className="w-36"
               type={'button'}
               size="md"
               title={''}
@@ -68,7 +68,7 @@ export default function ResultPageComponent({
             <Button
               onClick={() => sendEmail()}
               variant={'primary'}
-              className="w-32"
+              className="w-36"
               type={'button'}
               size="md"
               title={''}
@@ -84,7 +84,7 @@ export default function ResultPageComponent({
                 router.push(`/${locale}/login`);
               }}
               variant={'light'}
-              className="w-32"
+              className="w-36"
               type={'button'}
               size="md"
               title={''}

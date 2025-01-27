@@ -121,8 +121,8 @@ export const AdPopupQuestion = ({ dataAdSlot, dataAdFormat, dataFullWidthRespons
   }, []);
 
   return (
-    <div className="fixed flex justify-center items-center z-40 bottom-0 top-0 w-screen bg-black/50 !h-[100vh] backdrop-blur-sm">
-      <div className="absolute w-[340px] sm:w-[440px] md:w-[600px] lg:w-[800px] max-h-[80vh] p-4 bg-white rounded-md">
+    <div className="fixed z-40 bottom-0 top-0 w-screen bg-black/50 !h-[100vh] backdrop-blur-sm">
+      <div className="absolute left-1/2 translate-x-[-50%] top-1/2 translate-y-[-50%] w-[340px] sm:w-[440px] md:w-[600px] lg:w-[800px] !h-[500px] md:!h-[800px] border border-solid border-red-500 p-4 bg-white rounded-md">
         <div
           className="absolute right-4 z-50 text-white p-4 rounded-full bg-primaryColor w-fit cursor-pointer"
           onClick={() => setIsOpen(false)}

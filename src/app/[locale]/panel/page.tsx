@@ -10,18 +10,21 @@ import { AdSectionBlog, AdVerticalPanel } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/Select';
 import { Link } from '@/i18n/routing';
 import { BlindServices } from '@/services/manager';
+import { RelationInfoRequest } from '@/services/type';
 import { profileInfoAtom, resultListAtom } from '@/stores';
+import { DesiredPartnerFocus, LoveAspectToAnalyze, PerceivedImportance, RelationDuration } from '@/types/enum';
 import { cn } from '@/utils/cn';
 import { formatDate } from '@/utils/formatDate';
 
-interface ModalProps {
+interface NavModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const NavModal: React.FC<NavModalProps> = ({ isOpen, onClose }) => {
   const t = useTranslations('PanelPage');
   if (!isOpen) return null;
 
@@ -45,7 +48,7 @@ const NavModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           <div className="p-4 md:p-5">
             <p className="mb-5">{t('info_desc')}</p>
             <Link href="/profile">
-              <Button type="submit" title={''} variant={'blue'} size="md" className="w-full">
+              <Button type="submit" title={''} variant={'primary'} size="md" className="w-full">
                 {t('info_nav')}
               </Button>
             </Link>
@@ -64,6 +67,9 @@ export default function PanelPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [isFillModalOpen, setIsFillModalOpen] = useState(false);
+  const openFillModal = () => setIsFillModalOpen(true);
+  const closeFillModal = () => setIsFillModalOpen(false);
   const t = useTranslations('PanelPage');
   const locale = useLocale();
 
@@ -83,16 +89,18 @@ export default function PanelPage() {
   const handleStartTest = () => {
     if (info?.emailVerified === false) {
       router.push(`/${locale}/not-approved`);
-    } else if (info?.relationInfo === null) {
-      openModal();
     } else if (!info?.age || !info.gender || !info.name || info.age === '' || info.gender === '' || info.name === '') {
-      router.push(`/${locale}/profile`);
+      openModal();
+    } else if (info?.relationInfo === null) {
+      openFillModal();
     } else {
       window.location.href = `/${locale}/panel/questions`;
     }
   };
   return (
     <AppLayout>
+      <FillNow isOpen={isFillModalOpen} onClose={closeFillModal} info={info?.relationInfo} locale={locale} />
+
       <div className="flex items-end pt-32">
         <AdVerticalPanel dataAdSlot={'9070670265'} />
         <div className="flex justify-center items-center flex-col  h-fit w-full gap-4 md:gap-12">
@@ -186,3 +194,208 @@ export default function PanelPage() {
     </AppLayout>
   );
 }
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  info?: RelationInfoRequest | null;
+  locale: string;
+}
+
+const FillNow: React.FC<ModalProps> = ({ isOpen, onClose, info, locale }) => {
+  const router = useRouter();
+  const [fillForm, setFillForm] = useState<RelationInfoRequest>({
+    isInRelation: '',
+    hasCrush: '',
+    relationDuration: '',
+    desiredPartnerFocus: '',
+    loveAspectToAnalyze: '',
+    perceivedImportance: '',
+  });
+
+  useEffect(() => {
+    if (info) {
+      setFillForm({
+        isInRelation: info.isInRelation,
+        hasCrush: info.hasCrush,
+        relationDuration: info.relationDuration,
+        desiredPartnerFocus: info.desiredPartnerFocus,
+        loveAspectToAnalyze: info.loveAspectToAnalyze,
+        perceivedImportance: info.perceivedImportance,
+      });
+    }
+  }, [info]);
+
+  const t = useTranslations('ProfilePage');
+  if (!isOpen) return null;
+
+  const handleIsInRelationChange = (value: string) => {
+    setFillForm({ ...fillForm, isInRelation: value === 'true' ? true : false });
+  };
+
+  const handleHasCrushChange = (value: string) => {
+    setFillForm({ ...fillForm, hasCrush: value === 'true' ? true : false });
+  };
+
+  const handleRelationDurationChange = (value: RelationDuration) => {
+    setFillForm({ ...fillForm, relationDuration: value });
+  };
+
+  const handleDesiredPartnerFocusChange = (value: DesiredPartnerFocus) => {
+    setFillForm({ ...fillForm, desiredPartnerFocus: value });
+  };
+
+  const handleLoveAspectToAnalyzeChange = (value: LoveAspectToAnalyze) => {
+    setFillForm({ ...fillForm, loveAspectToAnalyze: value });
+  };
+
+  const handlePerceivedImportanceChange = (value: PerceivedImportance) => {
+    setFillForm({ ...fillForm, perceivedImportance: value });
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    BlindServices.RelationInfo(fillForm).then((result) => {
+      if (result.status === 200) {
+        onClose();
+        router.push(`/${locale}/panel/questions`);
+      }
+    });
+  };
+
+  return (
+    <div
+      id="crud-modal"
+      className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50"
+      aria-hidden={!isOpen}
+    >
+      <div className="relative p-4 w-full max-w-md max-h-[90vh] overflow-auto">
+        {/* Modal content */}
+        <div className="bg-white rounded-lg shadow dark:bg-gray-700">
+          {/* Modal header */}
+          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('relationship_info')}</h3>
+            <Button onClick={onClose} type={'button'} variant={'dark'} title={''}>
+              <IconClose />
+            </Button>
+          </div>
+          {/* Modal body */}
+          <form onSubmit={onSubmit} className="p-4 md:p-5">
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('is_there_relationship')}</label>
+              <Select value={fillForm.isInRelation ? 'true' : 'false'} onValueChange={handleIsInRelationChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('relationship_status_without')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value="true">{t('yes')}</SelectItem>
+                    <SelectItem value="false">{t('no')}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('against')}</label>
+              <Select value={fillForm.hasCrush ? 'true' : 'false'} onValueChange={handleHasCrushChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('love_status')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value="true">{t('yes')}</SelectItem>
+                    <SelectItem value="false">{t('no')}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('relationship_duration')}</label>
+              <Select value={fillForm.relationDuration} onValueChange={handleRelationDurationChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('time_without')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={RelationDuration.NOT_YET}>{t(RelationDuration.NOT_YET)}</SelectItem>
+                    <SelectItem value={RelationDuration.ONE_THREE_MONTHS}>
+                      {t(RelationDuration.ONE_THREE_MONTHS)}
+                    </SelectItem>
+                    <SelectItem value={RelationDuration.THREE_TWELVE_MONTHS}>
+                      {t(RelationDuration.THREE_TWELVE_MONTHS)}
+                    </SelectItem>
+                    <SelectItem value={RelationDuration.ONE_YEAR_ABOVE}>
+                      {t(RelationDuration.ONE_YEAR_ABOVE)}
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('focus_on_partner')}</label>
+              <Select value={fillForm.desiredPartnerFocus} onValueChange={handleDesiredPartnerFocusChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('preview_focus')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={DesiredPartnerFocus.EMOTIONAL_SUPPORT}>
+                      {t(DesiredPartnerFocus.EMOTIONAL_SUPPORT)}
+                    </SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.ROMANTIC_GESTURE}>
+                      {t(DesiredPartnerFocus.ROMANTIC_GESTURE)}
+                    </SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.TIME_SEPARATION}>
+                      {t(DesiredPartnerFocus.TIME_SEPARATION)}
+                    </SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.FINANCIAL_SUPPORT}>
+                      {t(DesiredPartnerFocus.FINANCIAL_SUPPORT)}
+                    </SelectItem>
+                    <SelectItem value={DesiredPartnerFocus.OTHER}>{t(DesiredPartnerFocus.OTHER)}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('love_direction_question')}</label>
+              <Select value={fillForm.loveAspectToAnalyze} onValueChange={handleLoveAspectToAnalyzeChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('love_analyze')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={LoveAspectToAnalyze.EMOTIONAL_ATTACHMENT}>
+                      {t(LoveAspectToAnalyze.EMOTIONAL_ATTACHMENT)}
+                    </SelectItem>
+                    <SelectItem value={LoveAspectToAnalyze.LOYALTY}>{t(LoveAspectToAnalyze.LOYALTY)}</SelectItem>
+                    <SelectItem value={LoveAspectToAnalyze.ATTENTIVE_BEHAVIOR}>
+                      {t(LoveAspectToAnalyze.ATTENTIVE_BEHAVIOR)}
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid mb-4">
+              <label className="text-gray-800 text-sm mb-2 block">{t('importance')}</label>
+              <Select value={fillForm.perceivedImportance} onValueChange={handlePerceivedImportanceChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('relationship_status_without')} />
+                </SelectTrigger>
+                <SelectContent className="bg-backgroundColor">
+                  <SelectGroup>
+                    <SelectItem value={PerceivedImportance.VERY_MUCH}>{t(PerceivedImportance.VERY_MUCH)}</SelectItem>
+                    <SelectItem value={PerceivedImportance.MODERATE}>{t(PerceivedImportance.MODERATE)}</SelectItem>
+                    <SelectItem value={PerceivedImportance.UNSURE}>{t(PerceivedImportance.UNSURE)}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button type="submit" title={''} variant={'green'} size="md" className="w-full">
+              {t('save')}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};

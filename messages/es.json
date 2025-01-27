@@ -226,8 +226,8 @@
     "last_test": "Historial de Test",
     "test_result": "Resultado del Test",
     "no_found": "No se Encontró Historial de Test.",
-    "info_title": "Complete los Detalles de la Relación",
-    "info_desc": "Para comenzar el test, debe completar las preguntas en la sección de Detalles de la Relación en su perfil. Por favor, complete esta información primero.",
+    "info_title": "Complete su Información Personal",
+    "info_desc": "Para poder comenzar la prueba, debe completar la información personal en su perfil. Por favor, complete esta información primero.",
     "info_nav": "Ir al Perfil"
   },
   "PrivacyPage": {

@@ -226,8 +226,8 @@
     "last_test": "Histórico de Testes",
     "test_result": "Resultado do Teste",
     "no_found": "Nenhum Histórico de Teste Encontrado.",
-    "info_title": "Preencha os Detalhes do Relacionamento",
-    "info_desc": "Para iniciar o teste, você precisa preencher as perguntas na seção Detalhes do Relacionamento do seu perfil. Por favor, complete estas informações primeiro.",
+    "info_title": "Preencha suas Informações Pessoais",
+    "info_desc": "Para começar o teste, você precisa preencher as informações pessoais no seu perfil. Por favor, complete essas informações primeiro.",
     "info_nav": "Ir para o Perfil"
   },
   "PrivacyPage": {
