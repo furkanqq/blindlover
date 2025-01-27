@@ -2,10 +2,19 @@
 
 import { useEffect } from 'react';
 
+import { IconClose } from '@/assets/IconClose';
+
 type AdSectionType = {
   dataAdSlot: string;
   dataAdFormat: string;
   dataFullWidthResponsive: boolean;
+};
+
+type AdPopupType = {
+  dataAdSlot: string;
+  dataAdFormat: string;
+  dataFullWidthResponsive: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 };
 
 export const AdSectionLanding = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive }: AdSectionType) => {
@@ -90,12 +99,42 @@ export const AdSectionQuestion = ({ dataAdSlot }: AdVerticalLandingType) => {
   }, []);
 
   return (
-    <div className="flex w-fit h-[150px] justify-center items-center pt-24 sm:pt-32">
+    <div className="flex w-fit h-[150px] justify-center items-center">
       <div className="w-[800px] h-full">
         <ins
           className="adsbygoogle inline-block h-[150px] w-[800px]"
           data-ad-client={`ca-pub-9281616897705500`}
           data-ad-slot={dataAdSlot}
+        />
+      </div>
+    </div>
+  );
+};
+
+export const AdPopupQuestion = ({ dataAdSlot, dataAdFormat, dataFullWidthResponsive, setIsOpen }: AdPopupType) => {
+  useEffect(() => {
+    try {
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }, []);
+
+  return (
+    <div className="fixed flex justify-center items-center z-40 bottom-0 top-0 w-screen bg-black/50 !h-[100vh] backdrop-blur-sm">
+      <div className="absolute w-[340px] sm:w-[440px] md:w-[600px] lg:w-[800px] max-h-[80vh] p-4 bg-white rounded-md">
+        <div
+          className="absolute right-4 z-50 text-white p-4 rounded-full bg-primaryColor w-fit cursor-pointer"
+          onClick={() => setIsOpen(false)}
+        >
+          <IconClose />
+        </div>
+        <ins
+          className="adsbygoogle block"
+          data-ad-client={`ca-pub-9281616897705500`}
+          data-ad-slot={dataAdSlot}
+          data-ad-format={dataAdFormat}
+          data-full-width-responsive={dataFullWidthResponsive.toString()}
         />
       </div>
     </div>

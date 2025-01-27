@@ -144,6 +144,7 @@ export default function RegisterPage() {
       };
       BlindServices.RegisterUser(request).then((result) => {
         if (result.status === 200) {
+          BlindServices.Activate();
           router.push(`/${locale}/activate`);
         }
       });

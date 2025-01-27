@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
 import { IconChevronRight } from '@/assets/IconChevronRight';
-import { AdSectionQuestion, AdVerticalQuestion } from '@/components/Ads';
+import { AdPopupQuestion, AdSectionQuestion, AdVerticalQuestion } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
@@ -31,6 +31,7 @@ interface TypeOptions {
 export default function QuestionsPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
+  const [isOpen, setIsOpen] = useState(true);
   const [allAnswer, setAllAnswer] = useState<TypeAnswer[]>([]);
   const [questions] = useAtom(questionListAtom);
   const t = useTranslations('ResultPage');
@@ -117,12 +118,21 @@ export default function QuestionsPage() {
       <div className="absolute right-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute left-[50%] top-0 translate-x-[-50%] border border-solid border-blue-500">
+      <div className="absolute left-[50%] top-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} />
       </div>
       <div className="absolute left-[50%] bottom-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} />
       </div>
+
+      {isOpen && (
+        <AdPopupQuestion
+          dataAdSlot={'7786181204'}
+          dataAdFormat={'auto'}
+          dataFullWidthResponsive={true}
+          setIsOpen={setIsOpen}
+        />
+      )}
 
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
       <Container className="relative z-1 h-[100vh] flex justify-center items-center">

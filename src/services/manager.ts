@@ -191,12 +191,22 @@ const ProfileUpdate = async (request: ProfileUpdateRequest) => {
 
     if (resData?.status === 200) {
       BlindServices.ProfileInfo();
+      showToast({
+        message: resData.message || 'Success',
+        type: 'success',
+      });
       return resData;
     } else {
-      console.log('Profil güncellenemedi:', resData.message || 'Hata oluştu.');
+      showToast({
+        message: resData.message || 'Error',
+        type: 'error',
+      });
     }
   } catch (err: any) {
-    console.log('BlindServices->ProfileUpdate Hatası:', err.message || err);
+    showToast({
+      message: err.response.data.message || 'Error',
+      type: 'error',
+    });
   } finally {
     BlindStore.set(loaderAtom, false);
   }
