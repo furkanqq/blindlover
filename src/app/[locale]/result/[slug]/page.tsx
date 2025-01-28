@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { AdPopupQuestion, AdSectionResult } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import { Container } from '@/components/Container';
 import LoadingScreen from '@/components/LoadingScreen';
@@ -32,7 +33,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           }
         });
       },
-      { threshold: 0.2 }, // Eleman %20 görünür olduğunda tetiklenir
+      { threshold: 0.3 }, // Eleman %30 görünür olduğunda tetiklenir
     );
 
     const sections = document.querySelectorAll('.fade-section');
@@ -51,6 +52,17 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
       {[
         {
           id: 'compatibility',
+          title: 'rate',
+          content: (
+            <>
+              <h2 className="relative z-[1] text-5xl md:text-[80px] font-extrabold">
+                {(result.aiResultResponse[localKey] as AiResultResponse)?.lovePercentage}
+              </h2>
+            </>
+          ),
+        },
+        {
+          id: 'ads',
           title: 'rate',
           content: (
             <>
@@ -130,6 +142,7 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
               'animate-flip-up animate-duration-500': visibleSections.includes(id),
               'opacity-0': !visibleSections.includes(id),
               'md:col-span-2 bg-primaryColor text-white': id === 'compatibility',
+              'md:col-span-2 bg-primaryColor': id === 'ads',
               'animate-delay-100': id === 'compatibility',
               'animate-delay-200':
                 id === 'generalRelationStatus' || id === 'loyaltyAndTrust' || id === 'funAndDailyHabits',
@@ -143,15 +156,21 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
             },
           )}
         >
-          {id === 'compatibility' && (
-            <div className="absolute w-full h-full bg-[url(/heartPattern.png)] bg-cover bg-opacity-35 animate-card-custom-pulse"></div>
+          {id === 'ads' ? (
+            <AdSectionResult dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+          ) : (
+            <>
+              {id === 'compatibility' && (
+                <div className="absolute w-full h-full bg-[url(/heartPattern.png)] bg-cover bg-opacity-35 animate-card-custom-pulse"></div>
+              )}
+              {id !== 'compatibility' && (
+                <div className="absolute w-full h-full bg-[url(/heartPattern1.png)] bg-cover opacity-40"></div>
+              )}
+              <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{t(title)}</h1>
+              {content}
+              {id !== 'compatibility' && <Image src={image as string} alt={'image'} width={80} height={100} />}
+            </>
           )}
-          {id !== 'compatibility' && (
-            <div className="absolute w-full h-full bg-[url(/heartPattern1.png)] bg-cover opacity-40"></div>
-          )}
-          <h1 className="relative z-[1] text-base md:text-[28px] font-bold">{t(title)}</h1>
-          {content}
-          {id !== 'compatibility' && <Image src={image as string} alt={'image'} width={80} height={100} />}
         </div>
       ))}
     </Container>
@@ -163,6 +182,7 @@ export default function ResultPage() {
   const { slug } = useParams();
   const t = useTranslations('ResultPage');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(true);
   const locale = useLocale();
   const [country, setCountry] = useState<string>('');
 
@@ -186,6 +206,12 @@ export default function ResultPage() {
     BlindServices.QuestionResult(slug as string);
   }, [slug]);
 
+  useEffect(() => {
+    if (currentIndex === 7) {
+      setIsOpen(true);
+    }
+  }, [currentIndex]);
+
   if (!result) {
     return <LoadingScreen />;
   }
@@ -193,6 +219,14 @@ export default function ResultPage() {
   const localKey = `${country}` as keyof AiResultResponseLanguages;
   return (
     <React.Fragment>
+      {isOpen && (
+        <AdPopupQuestion
+          dataAdSlot={'7786181204'}
+          dataAdFormat={'auto'}
+          dataFullWidthResponsive={true}
+          setIsOpen={setIsOpen}
+        />
+      )}
       {currentIndex === 7 ? (
         <AppLayout type="detail" slug>
           <ResultContainer result={result} country={country} />
