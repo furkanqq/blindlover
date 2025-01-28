@@ -51,16 +51,14 @@ export const AdSectionResult = ({ dataAdSlot, dataAdFormat, dataFullWidthRespons
   }, []);
 
   return (
-    <div className="flex w-full justify-center items-center pt-24 sm:pt-32 border border-solid border-white">
-      <div className="w-[80%] h-full">
-        <ins
-          className="adsbygoogle block"
-          data-ad-client={`ca-pub-9281616897705500`}
-          data-ad-slot={dataAdSlot}
-          data-ad-format={dataAdFormat}
-          data-full-width-responsive={dataFullWidthResponsive.toString()}
-        />
-      </div>
+    <div className="w-[100%] h-full">
+      <ins
+        className="adsbygoogle block"
+        data-ad-client={`ca-pub-9281616897705500`}
+        data-ad-slot={dataAdSlot}
+        data-ad-format={dataAdFormat}
+        data-full-width-responsive={dataFullWidthResponsive.toString()}
+      />
     </div>
   );
 };

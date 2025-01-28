@@ -157,7 +157,9 @@ const ResultContainer = ({ result, country }: { result: QuestionResult['data']; 
           )}
         >
           {id === 'ads' ? (
-            <AdSectionResult dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+            <div className="h-[240px] w-full">
+              <AdSectionResult dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+            </div>
           ) : (
             <>
               {id === 'compatibility' && (
