@@ -257,7 +257,7 @@ export default function RegisterPage() {
                       <SelectLabel>Gender</SelectLabel>
                       <SelectItem value="MALE">{t('male')}</SelectItem>
                       <SelectItem value="FEMALE">{t('female')}</SelectItem>
-                      <SelectItem value="OTHER">{t('other')}</SelectItem>
+                      <SelectItem value="PREFER_NOT_TO_SAY">{t('other')}</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>

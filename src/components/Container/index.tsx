@@ -13,10 +13,11 @@ type ContainerProps = {
   px?: number;
   ps?: number;
   pe?: number;
+  ref?: React.RefObject<HTMLDivElement | null>;
 };
 
 export const Container = (props: ContainerProps) => {
-  const { type = 'web', className, children, title, right, mt, mb, py, px, ps, pe } = props;
+  const { type = 'web', className, children, title, right, mt, mb, py, px, ps, pe, ref } = props;
 
   const dynamicStyle: React.CSSProperties = {
     paddingRight: pe ?? px,
@@ -30,6 +31,7 @@ export const Container = (props: ContainerProps) => {
   if (type === 'web') {
     return (
       <div
+        ref={ref}
         className={classNames(
           'w-full max-w-full mx-auto px-4 sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl',
           className,

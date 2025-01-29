@@ -74,8 +74,8 @@ function Slider({ slides }: SliderProps) {
         {slides.map((slide, index) => (
           <div
             onClick={() => setCurrentSlide(index)}
-            className={cn('cursor-pointer w-5 h-2 rounded-full border-2 border-solid border-white bg-white', {
-              'bg-transparent scale-[1.2]': index === currentSlide,
+            className={cn('cursor-pointer w-5 h-2 rounded-full border-2 border-solid border-white bg-transparent', {
+              'bg-white scale-[1.2]': index === currentSlide,
             })}
             key={slide.title}
           ></div>
@@ -128,11 +128,11 @@ function Slider({ slides }: SliderProps) {
       </div>
       <button
         onClick={handlePrev}
-        className="absolute text-4xl top-1/2 left-4 transform -translate-y-1/2 text-primaryColor"
+        className="absolute text-6xl top-1/2 left-4 transform -translate-y-1/2 text-primaryColor"
       >
         ‹
       </button>
-      <button onClick={handleNext} className="absolute text-4xl top-1/2 right-4 transform -translate-y-1/2 text-white">
+      <button onClick={handleNext} className="absolute text-6xl top-1/2 right-4 transform -translate-y-1/2 text-white">
         ›
       </button>
     </div>

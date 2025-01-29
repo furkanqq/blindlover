@@ -78,7 +78,7 @@ export default function PanelPage() {
   }, []);
 
   useEffect(() => {
-    if (resultList && resultList.length > 0) {
+    if (resultList && resultList.length >= 0) {
       return;
     }
     if (move) {
@@ -172,7 +172,7 @@ export default function PanelPage() {
                     key={index}
                   >
                     <div className="border border-solid rounded-md py-4 px-2 md:px-6 gap-2 flex flex-col md:flex-row justify-between items-center bg-white">
-                      <CircularProgressBar percentage={+result.aiResultResponse.turkish.lovePercentage.split('%')[0]} />
+                      <CircularProgressBar percentage={+result.aiResultResponse.result.lovePercentage.split('%')[0]} />
                       <div className="text-xs md:text-base text-center">{t('test_result')}</div>
                       <div className="text-xs md:text-base text-center">
                         {formatDate(result.createdAt, { locale: `${locale}-${locale.toUpperCase()}` })}

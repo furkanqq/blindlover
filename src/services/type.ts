@@ -190,13 +190,8 @@ export interface AiResultResponse {
 }
 
 export interface AiResultResponseLanguages {
-  turkish: AiResultResponse;
-  english: AiResultResponse;
-  spanish: AiResultResponse;
-  portuguese: AiResultResponse;
-  french: AiResultResponse;
-  russian: AiResultResponse;
   _id: string;
+  result: AiResultResponse;
 }
 export interface QuestionResult {
   data: {

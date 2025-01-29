@@ -42,6 +42,9 @@ dependencies:
   clsx:
     specifier: 2.1.1
     version: 2.1.1
+  html-to-image:
+    specifier: 1.11.11
+    version: 1.11.11
   input-otp:
     specifier: 1.4.2
     version: 1.4.2(react-dom@19.0.0)(react@19.0.0)
@@ -3350,6 +3353,10 @@ packages:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
     dependencies:
       '@types/hast': 3.0.4
+    dev: false
+
+  /html-to-image@1.11.11:
+    resolution: {integrity: sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==}
     dev: false
 
   /html-url-attributes@3.0.1:

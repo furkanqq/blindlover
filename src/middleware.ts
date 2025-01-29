@@ -29,6 +29,12 @@ export async function middleware(req: NextRequest) {
   if (url.pathname.includes(PageLink.Result) && !authToken) {
     return NextResponse.redirect(new URL(`/${locale}${PageLink.Login}`, req.url));
   }
+  if (url.pathname.includes(PageLink.Register) && authToken) {
+    return NextResponse.redirect(new URL(`/${locale}${PageLink.Profile}`, req.url));
+  }
+  if (url.pathname.includes(PageLink.Login) && authToken) {
+    return NextResponse.redirect(new URL(`/${locale}${PageLink.Profile}`, req.url));
+  }
 
   // Eğer bir redirect yapılmazsa, intl middleware'in yanıtını döndürüyoruz
   return response || NextResponse.next();
