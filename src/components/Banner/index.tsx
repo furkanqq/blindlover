@@ -70,13 +70,16 @@ function Slider({ slides }: SliderProps) {
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden">
-      <div className="absolute flex gap-4 z-10 bottom-8 right-16 bg-primaryColor shadow-xl shadow-red-900 border border-solid border-white py-3 px-6 rounded-full">
+      <div className="absolute flex gap-2 md:gap-4 z-10 bottom-4 md:bottom-8 right-4 md:right-16 bg-primaryColor shadow-xl shadow-red-900 border border-solid border-white py-2 md:py-3 px-4 md:px-6 rounded-full">
         {slides.map((slide, index) => (
           <div
             onClick={() => setCurrentSlide(index)}
-            className={cn('cursor-pointer w-5 h-2 rounded-full border-2 border-solid border-white bg-transparent', {
-              'bg-white scale-[1.2]': index === currentSlide,
-            })}
+            className={cn(
+              'cursor-pointer w-3 md:w-5 h-1 md:h-2 rounded-full border md:border-2 border-solid border-white bg-transparent',
+              {
+                'bg-white scale-[1.2]': index === currentSlide,
+              },
+            )}
             key={slide.title}
           ></div>
         ))}
@@ -128,11 +131,14 @@ function Slider({ slides }: SliderProps) {
       </div>
       <button
         onClick={handlePrev}
-        className="absolute text-6xl top-1/2 left-4 transform -translate-y-1/2 text-primaryColor"
+        className="absolute text-4xl md:text-6xl top-[52%] md:top-1/2 left-4 transform -translate-y-1/2 text-white md:text-primaryColor"
       >
         ‹
       </button>
-      <button onClick={handleNext} className="absolute text-6xl top-1/2 right-4 transform -translate-y-1/2 text-white">
+      <button
+        onClick={handleNext}
+        className="absolute text-4xl md:text-6xl top-[52%] md:top-1/2 right-4 transform -translate-y-1/2 text-white"
+      >
         ›
       </button>
     </div>

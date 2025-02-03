@@ -140,7 +140,8 @@
       "login": "Entrar",
       "test": "Começar o Teste",
       "lang": "Idioma",
-      "register": "Registrar"
+      "register": "Registrar",
+      "choose_lang": "Escolha seu idioma"
     },
     "cardSection": {
       "main_title": "Por que escolher a nós?",

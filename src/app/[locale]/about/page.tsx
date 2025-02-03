@@ -2,8 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
+import { AdPopupQuestion, AdSectionLanding } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
@@ -14,8 +15,18 @@ import { AuthContext } from '@/provider/Auth';
 export default function AboutPage() {
   const { token } = useContext(AuthContext);
   const t = useTranslations('AboutPage');
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <AppLayout type="detail" className="">
+      {isOpen && (
+        <AdPopupQuestion
+          dataAdSlot={'7786181204'}
+          dataAdFormat={'auto'}
+          dataFullWidthResponsive={true}
+          setIsOpen={setIsOpen}
+        />
+      )}
       <div className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[50vh] w-full">
@@ -39,6 +50,10 @@ export default function AboutPage() {
               </Button>
             </Link>
           </div>
+        </Container>
+
+        <Container>
+          <AdSectionLanding dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
         </Container>
 
         <Container className="mt-24 sm-mt-32">
@@ -75,7 +90,15 @@ export default function AboutPage() {
           </div>
         </Container>
 
+        <Container>
+          <AdSectionLanding dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+        </Container>
+
         <CTASection />
+
+        <Container>
+          <AdSectionLanding dataAdSlot={'7840612986'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+        </Container>
 
         <Container className="mt-24 sm:mt-32 hidden md:flex">
           <div className="relative border border-solid  gap-6 rounded-lg overflow-hidden flex flex-col justify-center items-end bg-transparent text-foreground text-center h-[50vh] w-full shadow">

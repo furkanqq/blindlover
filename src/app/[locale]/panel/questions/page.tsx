@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { IconChevronLeft } from '@/assets/IconChevronLeft';
 import { IconChevronRight } from '@/assets/IconChevronRight';
-import { AdPopupQuestion, AdSectionQuestion, AdVerticalQuestion } from '@/components/Ads';
+import { AdPopupQuestion, AdSectionQuestion, AdSectionQuestionMobile, AdVerticalQuestion } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import CircularProgressBar from '@/components/CircularProgressBar';
@@ -118,17 +118,23 @@ export default function QuestionsPage() {
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
-      <div className="absolute left-0 top-[50%] translate-y-[-50%]">
+      <div className="absolute hidden md:flex left-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute right-0 top-[50%] translate-y-[-50%]">
+      <div className="absolute hidden md:flex right-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>
-      <div className="absolute left-[50%] top-0 translate-x-[-50%]">
+      <div className="absolute hidden md:flex  left-[50%] top-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} />
       </div>
-      <div className="absolute left-[50%] bottom-0 translate-x-[-50%]">
+      <div className="absolute hidden md:flex left-[50%] bottom-0 translate-x-[-50%]">
         <AdSectionQuestion dataAdSlot={'3251104045'} />
+      </div>
+      <div className="absolute md:hidden flex left-[50%] top-0 translate-x-[-50%]">
+        <AdSectionQuestionMobile dataAdSlot={'4539580076'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
+      </div>
+      <div className="absolute md:hidden flex left-[50%] bottom-0 translate-x-[-50%]">
+        <AdSectionQuestionMobile dataAdSlot={'4539580076'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       </div>
 
       {isOpen && (
@@ -141,12 +147,12 @@ export default function QuestionsPage() {
       )}
 
       <div className="absolute bg-fixed bg-[url('/pattern.webp')] bg-repeat bg-contain opacity-35 w-full h-full top-0 left-0"></div>
-      <Container className="relative z-1 h-[100vh] flex justify-center items-center">
+      <Container className="relative z-1 h-[100vh] flex justify-center items-center px-0 md:px-4">
         {currentQuestionIndex >= questions.length ? (
-          <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-full h-[80%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
+          <div className="bg-backgroundColor bg-[url(/heartPattern1.png)] bg-cover w-[90%] h-[60%] rounded-xl overflow-hidden px-12 flex flex-col justify-center items-center gap-12">
             <div className="flex flex-col justify-center items-center gap-4">
               <Image src={'/blindlover.png'} alt="Blind Lover" width={200} height={120} />
-              <div className="md:text-4xl w-full md:w-[40%] text-center font-semibold">{t('thanks')}</div>
+              <div className="md:text-3xl w-full md:w-[40%] text-center font-semibold">{t('thanks')}</div>
               <Link href={'/'} className="text-white">
                 <Button variant={'primary'} type={'button'} title={t('back_to_home')}>
                   {t('back_to_home')}
@@ -155,7 +161,7 @@ export default function QuestionsPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-backgroundColor w-[90%] h-[95%] md:h-[60%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
+          <div className="bg-backgroundColor w-[90%] h-[60%] rounded-xl overflow-hidden pt-4 md:py-0 px-3 md:px-12">
             <div className="h-[25%] flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center justify-center w-20">
                 <span className="text-[32px] mr-1">{`${currentQuestionIndex + 1 >= 10 ? '' : '0'}${currentQuestionIndex + 1}`}</span>
@@ -163,7 +169,7 @@ export default function QuestionsPage() {
               </div>
               <div className="flex flex-col justify-center items-center gap-4">
                 <QuizStepper currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} steps={5} />
-                <div className="p-2 bg-primaryColor text-white rounded-md text-[12px]">
+                <div className="p-2 bg-primaryColor text-white rounded-md text-[10px] md:text-[12px]">
                   {t(questions[currentQuestionIndex].category)}
                 </div>
               </div>
@@ -171,7 +177,7 @@ export default function QuestionsPage() {
                 <CircularProgressBar percentage={(currentQuestionIndex + 1) * (100 / questions.length)} />
               </div>
             </div>
-            <div className="h-[60%] flex flex-col justify-start pt-10 items-center gap-10">
+            <div className="h-[60%] flex flex-col justify-start pt-10 items-center gap-6 md:gap-10">
               <div
                 className={`h-full flex flex-col items-center gap-6 transition-transform duration-300 ease-in-out w-full ${animationClass}`}
                 key={questions[currentQuestionIndex]._id}
@@ -179,14 +185,14 @@ export default function QuestionsPage() {
                 <h1 className="text-xl md:text-[30px] h-24 md:leading-[40px] text-center font-semibold px-4 md:px-28">
                   {(questions[currentQuestionIndex][localKey] as string) || ''}
                 </h1>
-                <div className="flex gap-4 md:gap-20">
+                <div className="flex gap-3 md:gap-20">
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-center items-center bg-primaryColor w-20 h-16 md:w-36 md:h-20 rounded-md active:scale-[0.98] cursor-pointer"
+                      className="flex justify-center items-center bg-primaryColor w-20 h-14 md:w-36 md:h-20 rounded-md active:scale-[0.98] cursor-pointer"
                       onClick={() => handleAnswer(option.label)}
                     >
-                      <span className="md:text-[20px] text-white">{t(option.value.toUpperCase())}</span>
+                      <span className="text-xs md:text-[20px] text-white">{t(option.value.toUpperCase())}</span>
                     </div>
                   ))}
                 </div>
@@ -214,7 +220,7 @@ export default function QuestionsPage() {
                 </Button>
               </div>
             </div>
-            <div className="h-[10%] flex justify-center items-center">
+            <div className="h-[10%] hidden md:flex justify-center items-center">
               <div className="text-[12px] flex justify-center items-center h-10 text-slate-700 border-r border-r-slate-800/30 pr-6 mr-1">
                 {t('created')}
               </div>

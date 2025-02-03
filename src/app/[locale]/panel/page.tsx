@@ -101,7 +101,7 @@ export default function PanelPage() {
     <AppLayout>
       <FillNow isOpen={isFillModalOpen} onClose={closeFillModal} info={info?.relationInfo} locale={locale} />
 
-      <div className="flex items-end pt-32">
+      <div className="flex items-end pt-32 px-10 md:px-0">
         <AdVerticalPanel dataAdSlot={'9070670265'} />
         <div className="flex justify-center items-center flex-col  h-fit w-full gap-4 md:gap-12">
           <div

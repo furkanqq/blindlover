@@ -156,7 +156,7 @@ export default function RegisterPage() {
   return (
     <AppLayout type="detail">
       <div className="">
-        <div className="relative text-center bg-white min-h-[200px] sm:p-12 p-10">
+        <div className="relative flex justify-center items-center md:block min-h-[240px] md:min-h-[200px] sm:p-12 p-10 text-center bg-white">
           <div className="absolute top-0 left-0 w-full h-full bg-fixed bg-[url('/heartPattern1.png')] bg-repeat bg-contain opacity-35"></div>
           <h4 className="sm:text-3xl text-2xl font-bold text-primaryColor">{t('title')}</h4>
         </div>
@@ -254,7 +254,7 @@ export default function RegisterPage() {
                   </SelectTrigger>
                   <SelectContent className="bg-backgroundColor">
                     <SelectGroup>
-                      <SelectLabel>Gender</SelectLabel>
+                      <SelectLabel>{t('gender')}</SelectLabel>
                       <SelectItem value="MALE">{t('male')}</SelectItem>
                       <SelectItem value="FEMALE">{t('female')}</SelectItem>
                       <SelectItem value="PREFER_NOT_TO_SAY">{t('other')}</SelectItem>

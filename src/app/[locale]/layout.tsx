@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 
 import AdSense from '@/components/AdSense';
 import { Locale, routing } from '@/i18n/routing';
@@ -45,17 +46,28 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <AdSense pId={'9281616897705500'} />
+        <meta name="google-site-verification" content="a51BCfh96cOiDsgfL5PGNg3GiiodbnrXK8-h35NcTns" />
         <meta name="google-adsense-account" content="ca-pub-9281616897705500" />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9281616897705500"
           crossOrigin="anonymous"
-        ></script>
+        ></Script>
+        {/* Google Analytics */}
+        <Script async src={`https://www.googletagmanager.com/gtag/js?id=G-RVT4BMK62W`} />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RVT4BMK62W');
+          `}
+        </Script>
       </head>
       <body className={inter.className}>
         <Providers>

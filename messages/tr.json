@@ -141,7 +141,8 @@
       "login": "Giriş Yap",
       "test": "Teste Başla",
       "lang": "Dil",
-      "register": "Kayıt Ol"
+      "register": "Kayıt Ol",
+      "choose_lang": "Dil Seçiminizi Yapın"
     },
     "cardSection": {
       "main_title": "Neden Bizi Tercih Etmelisin?",

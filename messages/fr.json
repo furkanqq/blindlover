@@ -140,7 +140,8 @@
       "login": "Se Connecter",
       "test": "Commencer le Test",
       "lang": "Langue",
-      "register": "S'inscrire"
+      "register": "S'inscrire",
+      "choose_lang": "Choisissez votre langue"
     },
     "cardSection": {
       "main_title": "Pourquoi Nous Choisir ?",

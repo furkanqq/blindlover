@@ -12,6 +12,7 @@ import { IconClose } from '@/assets/IconClose';
 import { IconEdit } from '@/assets/IconEdit';
 import { IconKey } from '@/assets/IconKey';
 import { IconLogin } from '@/assets/IconLogin';
+import { AdPopupQuestion, AdSectionBlog } from '@/components/Ads';
 import AppLayout from '@/components/AppLayout';
 import Button from '@/components/Button';
 import { Container } from '@/components/Container';
@@ -473,6 +474,7 @@ export default function ProfilePage() {
   const locale = useLocale();
   const [isDisabled, setIsDisabled] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [formInfo, setFormInfo] = useState<FormInfo>({
@@ -576,6 +578,14 @@ export default function ProfilePage() {
 
   return (
     <AppLayout>
+      {isOpen && (
+        <AdPopupQuestion
+          dataAdSlot={'7786181204'}
+          dataAdFormat={'auto'}
+          dataFullWidthResponsive={true}
+          setIsOpen={setIsOpen}
+        />
+      )}
       <Container className="pb-0 md:pb-20 pt-16 md:pt-24">
         <div className="flex flex-col gap-4 md:gap-12 md:px-16 py-12 rounded-lg">
           <div className="flex gap-5 justify-between items-center">
@@ -684,7 +694,7 @@ export default function ProfilePage() {
                   </SelectTrigger>
                   <SelectContent className="bg-backgroundColor">
                     <SelectGroup>
-                      <SelectLabel>Gender</SelectLabel>
+                      <SelectLabel>{t('gender_label')}</SelectLabel>
                       <SelectItem value="MALE">{t('male')}</SelectItem>
                       <SelectItem value="FEMALE">{t('female')}</SelectItem>
                       <SelectItem value="PREFER_NOT_TO_SAY">{t('OTHER')}</SelectItem>
@@ -705,6 +715,8 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
+          <hr />
+          <AdSectionBlog dataAdSlot={'7963670409'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
           <hr />
           {info?.relationInfo ? (
             <div className="grid gap-6">

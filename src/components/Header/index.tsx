@@ -27,6 +27,8 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
+  const t = useTranslations('LandingPage');
+
   if (!isOpen) return null;
 
   function onSelect(nextLocale: string) {
@@ -50,7 +52,7 @@ const LanguageModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <div className="bg-primaryColor rounded-lg shadow">
           {/* Modal header */}
           <div className="flex items-center justify-between p-4 md:p-5 border-b border-solid border-primaryDisabled rounded-t">
-            <h3 className="text-lg font-semibold text-white ">Dil Seçiminizi Yapın</h3>
+            <h3 className="text-lg font-semibold text-white ">{t('header.choose_lang')}</h3>
             <Button onClick={onClose} type={'button'} variant={'border'} title={''}>
               <IconClose />
             </Button>
@@ -174,7 +176,7 @@ export default function Header({
       )}
     >
       <div
-        className={cn('container h-[92px] flex items-center justify-between', {
+        className={cn('container h-[92px] flex items-center pr-4 md:pr-0 justify-between', {
           'pr-4 md:pr-20': type === 'landing',
         })}
       >

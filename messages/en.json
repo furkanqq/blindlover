@@ -140,7 +140,8 @@
       "login": "Log In",
       "test": "Start the Test",
       "lang": "Language",
-      "register": "Sign Up"
+      "register": "Sign Up",
+      "choose_lang": "Choose Your Language"
     },
     "cardSection": {
       "main_title": "Why Should You Choose Us?",
