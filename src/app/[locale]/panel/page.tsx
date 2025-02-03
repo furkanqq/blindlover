@@ -2,6 +2,7 @@
 
 import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -99,6 +100,16 @@ export default function PanelPage() {
   };
   return (
     <AppLayout>
+      <NextSeo
+        title="Relationship Compatibility Test | Blind Lover"
+        description="Take our AI-powered relationship compatibility test and get insights into your relationship."
+        canonical={`https://blindlover.com/${locale}/panel`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/panel`,
+          title: 'Relationship Compatibility Test | Blind Lover',
+          description: 'Take our AI-powered relationship compatibility test and get insights into your relationship.',
+        }}
+      />
       <FillNow isOpen={isFillModalOpen} onClose={closeFillModal} info={info?.relationInfo} locale={locale} />
 
       <div className="flex items-end pt-32 px-10 md:px-0">

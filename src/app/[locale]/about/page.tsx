@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import React, { useContext, useState } from 'react';
 
@@ -16,9 +17,21 @@ export default function AboutPage() {
   const { token } = useContext(AuthContext);
   const t = useTranslations('AboutPage');
   const [isOpen, setIsOpen] = useState(true);
+  const locale = useLocale();
 
   return (
     <AppLayout type="detail" className="">
+      <NextSeo
+        title="About Us | Blind Lover"
+        description="Learn more about Blind Lover, our mission, and how our AI-powered relationship analysis helps couples understand their compatibility."
+        canonical={`https://blindlover.com/${locale}/about`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/about`,
+          title: 'About Us | Blind Lover',
+          description:
+            'Learn more about Blind Lover, our mission, and how our AI-powered relationship analysis helps couples understand their compatibility.',
+        }}
+      />
       {isOpen && (
         <AdPopupQuestion
           dataAdSlot={'7786181204'}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -9,11 +10,22 @@ import AppLayout from '@/components/AppLayout';
 import { Container } from '@/components/Container';
 
 export default function PrivacyPage() {
+  const locale = useLocale();
   const t = useTranslations('PrivacyPage');
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <AppLayout type="detail" className=" bg-[url(/heartPattern1.png)]">
+      <NextSeo
+        title="Privacy Policy | Blind Lover"
+        description="Read our privacy policy to learn how we protect your personal data and ensure your privacy while using Blind Lover."
+        canonical={`https://blindlover.com/${locale}/privacy-policy`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/privacy-policy`,
+          title: 'Privacy Policy | Blind Lover',
+          description: 'Read our privacy policy to learn how we protect your personal data.',
+        }}
+      />
       {isOpen && (
         <AdPopupQuestion
           dataAdSlot={'7786181204'}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import { useEffect, useState } from 'react';
 
 import { AdSectionLanding } from '@/components/Ads';
@@ -37,6 +38,18 @@ export default function Home() {
 
   return (
     <AppLayout type="landing">
+      <NextSeo
+        title="Blind Lover | AI-Powered Relationship Compatibility Analysis"
+        description="Blind Lover analyzes your relationship compatibility with a 50-question AI-generated test and provides a personalized evaluation."
+        canonical={`https://blindlover.com/${locale}`}
+        openGraph={{
+          title: 'Blind Lover | Relationship Compatibility Test',
+          description:
+            'Blind Lover analyzes your relationship compatibility with a 50-question AI-generated test and provides a personalized evaluation.',
+          type: 'website',
+          url: `https://blindlover.com/${locale}`,
+        }}
+      />
       <Banner />
       <AdSectionLanding dataAdSlot={'3323246493'} dataAdFormat={'auto'} dataFullWidthResponsive={true} />
       <CardSection />

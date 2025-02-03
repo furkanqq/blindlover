@@ -1,6 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import React, { useEffect, useState } from 'react';
 
 import { AdSectionFaq, AdVerticalFaq } from '@/components/Ads';
@@ -30,6 +31,16 @@ export default function FAQsPage() {
 
   return (
     <AppLayout type="detail" className="">
+      <NextSeo
+        title="FAQ | Blind Lover"
+        description="Find answers to the most frequently asked questions about Blind Lover's AI-powered relationship analysis."
+        canonical={`https://blindlover.com/${locale}/faq`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/faq`,
+          title: 'FAQ | Blind Lover',
+          description: 'Find answers to the most frequently asked questions about Blind Lover.',
+        }}
+      />
       <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[400px] w-full">
         <h1 className="text-4xl font-bold">{t('faq')}</h1>
         <p className="text-md text-gray-500 mt-4">{t('faq_long')}</p>

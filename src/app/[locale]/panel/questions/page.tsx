@@ -2,6 +2,7 @@
 
 import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -118,6 +119,16 @@ export default function QuestionsPage() {
 
   return (
     <AppLayout className="relative bg-primaryColor w-full" type="auth">
+      <NextSeo
+        title="Relationship Compatibility Test | Blind Lover"
+        description="Take our AI-powered relationship compatibility test and get insights into your relationship."
+        canonical={`https://blindlover.com/${locale}/panel/questions`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/panel/questions`,
+          title: 'Relationship Compatibility Test | Blind Lover',
+          description: 'Take our AI-powered relationship compatibility test and get insights into your relationship.',
+        }}
+      />
       <div className="absolute hidden md:flex left-0 top-[50%] translate-y-[-50%]">
         <AdVerticalQuestion dataAdSlot={'1950728146'} />
       </div>

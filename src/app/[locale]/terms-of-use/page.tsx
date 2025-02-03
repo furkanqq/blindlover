@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -10,10 +11,21 @@ import { Container } from '@/components/Container';
 
 export default function TermsOfUsePage() {
   const t = useTranslations('TermsPage');
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <AppLayout type="detail" className="bg-[url(/heartPattern1.png)]">
+      <NextSeo
+        title="Terms & Conditions | Blind Lover"
+        description="Review our terms and conditions before using Blind Lover. Understand your rights and responsibilities."
+        canonical={`https://blindlover.com/${locale}/terms`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/terms`,
+          title: 'Terms & Conditions | Blind Lover',
+          description: 'Review our terms and conditions before using Blind Lover.',
+        }}
+      />
       {isOpen && (
         <AdPopupQuestion
           dataAdSlot={'7786181204'}

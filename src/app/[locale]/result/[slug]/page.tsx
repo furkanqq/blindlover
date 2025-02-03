@@ -1,7 +1,8 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -17,6 +18,7 @@ import { cn } from '@/utils/cn';
 
 const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
   const [removeAds, setRemoveAds] = useState(false);
+  const locale = useLocale();
   const divRef = useRef<HTMLDivElement>(null);
 
   // const downloadImage = async () => {
@@ -118,6 +120,16 @@ const ResultContainer = ({ result }: { result: QuestionResult['data'] }) => {
       <button onClick={downloadImage} className="mt-52 bg-blue-500 text-white px-4 py-2 rounded-md">
         Görseli İndir
       </button> */}
+      <NextSeo
+        title="Relationship Compatibility Test | Blind Lover"
+        description="Take our AI-powered relationship compatibility test and get insights into your relationship."
+        canonical={`https://blindlover.com/${locale}/result`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/result`,
+          title: 'Relationship Compatibility Test | Blind Lover',
+          description: 'Take our AI-powered relationship compatibility test and get insights into your relationship.',
+        }}
+      />
       <Container ref={divRef} className="pt-24 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6">
         {[
           {

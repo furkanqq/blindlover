@@ -2,6 +2,7 @@
 
 import { useAtom } from 'jotai';
 import { useLocale } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -30,6 +31,16 @@ export default function BlogDetail() {
   const descKey = `content_${locale}` as keyof typeof blog;
   return (
     <AppLayout type="detail" className="" slug>
+      <NextSeo
+        title="Blog | Blind Lover"
+        description="Read insightful articles about love, relationships, and compatibility with AI-powered analysis."
+        canonical={`https://blindlover.com/${locale}/blog/contents`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/blog/contents`,
+          title: 'Blog | Blind Lover',
+          description: 'Read insightful articles about love, relationships, and compatibility.',
+        }}
+      />
       <article className="">
         {/* Banner */}
         <div className="bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center bg-transparent text-foreground text-center h-[300px] w-full">

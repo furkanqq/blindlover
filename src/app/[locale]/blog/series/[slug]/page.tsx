@@ -3,6 +3,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/16/solid';
 import { useAtom } from 'jotai';
 import { useLocale, useTranslations } from 'next-intl';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -52,6 +53,16 @@ export default function MoviesPage() {
 
   return (
     <AppLayout type="detail">
+      <NextSeo
+        title="Series | Blind Lover"
+        description="Discover romantic series that match your relationship dynamics, curated by AI."
+        canonical={`https://blindlover.com/${locale}/blog/series`}
+        openGraph={{
+          url: `https://blindlover.com/${locale}/blog/series`,
+          title: 'Series | Blind Lover',
+          description: 'Discover romantic series that match your relationship dynamics.',
+        }}
+      />
       <div className="">
         <div className="shadow-lg bg-[url(/heartPattern.png)] bg-cover flex flex-col justify-center items-center text-foreground text-center h-[300px] w-full">
           <h1 className="text-4xl font-bold">
