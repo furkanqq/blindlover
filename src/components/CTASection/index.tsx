@@ -1,8 +1,8 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useContext } from 'react';
 
-import { Link } from '@/i18n/routing';
 import { AuthContext } from '@/provider/Auth';
 import Button from '../Button';
 import { Container } from '../Container';
@@ -10,6 +10,7 @@ import { Container } from '../Container';
 const CTASection = () => {
   const { token } = useContext(AuthContext);
   const t = useTranslations('LandingPage');
+  const locale = useLocale();
 
   return (
     <Container>
@@ -22,7 +23,7 @@ const CTASection = () => {
               </h2>
               <p className="mt-6 text-pretty text-lg/8 text-gray-500">{t('ctaSection.desc')}</p>
               <div className="mt-10 flex flex-col gap-3 justify-center items-center lg:items-start lg:justify-start">
-                <Link href={token ? '/panel' : '/register'}>
+                <Link href={token ? `/${locale}/panel` : `/${locale}/register`}>
                   <Button variant={'primary'} type={'button'} title={'Lets Start'}>
                     {t('ctaSection.button')}
                   </Button>
@@ -32,7 +33,10 @@ const CTASection = () => {
                   <Link href={'/'} className="relative h-[50px] w-[120px]">
                     <Image src="/gplaybadge.png" alt="Google Play" fill objectFit="cover" />
                   </Link>
-                  <Link href={'/'} className="relative h-[50px] w-[120px]">
+                  <Link
+                    href={`https://apps.apple.com/tr/app/blind-lover/id6740008681?l=${locale}`}
+                    className="relative h-[50px] w-[120px]"
+                  >
                     <Image src="/appstore.png" alt="App Store" fill objectFit="cover" />
                   </Link>
                 </div>

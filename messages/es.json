@@ -373,7 +373,17 @@
     "button": "Regístrate",
     "login": "¿Ya tienes una cuenta? Iniciar sesión",
     "lang": "Idioma",
-    "lang_placeholder": "Selecciona tu idioma"
+    "lang_placeholder": "Selecciona tu idioma",
+    "error_message_mail": "Por favor, introduce un correo electrónico válido.",
+    "error_message_name": "El nombre es obligatorio.",
+    "error_message_password": "La contraseña es obligatoria.",
+    "error_message_password_length": "La contraseña debe tener al menos 6 caracteres.",
+    "error_message_password_match": "Las contraseñas no coinciden.",
+    "error_message_language": "El idioma es obligatorio.",
+    "error_message_age": "Por favor, introduce una edad válida.",
+    "error_message_gender": "El género es obligatorio.",
+    "error_message_terms": "Debes aceptar los términos y condiciones.",
+    "error_message_exists": "Este cuenta ya existe."
   },
   "ResultPage": {
     "rate": "Tu Tasa de Compatibilidad",

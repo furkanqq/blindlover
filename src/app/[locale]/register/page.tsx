@@ -43,7 +43,7 @@ export default function RegisterPage() {
 
     if (!formData.email || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
       showToast({
-        message: 'Please enter a valid email.',
+        message: t('error_message_mail'),
         type: 'error',
       });
       valid = false;
@@ -51,7 +51,7 @@ export default function RegisterPage() {
 
     if (!formData.name) {
       showToast({
-        message: 'Name is required.',
+        message: t('error_message_name'),
         type: 'error',
       });
       valid = false;
@@ -59,13 +59,13 @@ export default function RegisterPage() {
 
     if (!formData.password) {
       showToast({
-        message: 'Password is required.',
+        message: t('error_message_password'),
         type: 'error',
       });
       valid = false;
     } else if (formData.password.length < 6) {
       showToast({
-        message: 'Password must be at least 6 characters.',
+        message: t('error_message_password_length'),
         type: 'error',
       });
       valid = false;
@@ -73,7 +73,7 @@ export default function RegisterPage() {
 
     if (formData.password !== formData.confirmPassword) {
       showToast({
-        message: 'Passwords do not match.',
+        message: t('error_message_password_match'),
         type: 'error',
       });
       valid = false;
@@ -81,7 +81,7 @@ export default function RegisterPage() {
 
     if (!formData.mailLanguage) {
       showToast({
-        message: 'Language is required.',
+        message: t('error_message_language'),
         type: 'error',
       });
       valid = false;
@@ -89,7 +89,7 @@ export default function RegisterPage() {
 
     if (!formData.age || isNaN(Number(formData.age))) {
       showToast({
-        message: 'Please enter a valid age.',
+        message: t('error_message_age'),
         type: 'error',
       });
       valid = false;
@@ -97,7 +97,7 @@ export default function RegisterPage() {
 
     if (!formData.gender) {
       showToast({
-        message: 'Gender is required.',
+        message: t('error_message_gender'),
         type: 'error',
       });
       valid = false;
@@ -105,7 +105,7 @@ export default function RegisterPage() {
 
     if (!formData.termsAccepted) {
       showToast({
-        message: 'You must accept the terms and conditions.',
+        message: t('error_message_terms'),
         type: 'error',
       });
       valid = false;

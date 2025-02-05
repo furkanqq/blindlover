@@ -371,7 +371,17 @@
     "button": "S'inscrire",
     "login": "Vous avez déjà un compte ? Connectez-vous",
     "lang": "Langue",
-    "lang_placeholder": "Sélectionnez votre langue"
+    "lang_placeholder": "Sélectionnez votre langue",
+    "error_message_mail": "Veuillez entrer une adresse e-mail valide.",
+    "error_message_name": "Le nom est requis.",
+    "error_message_password": "Le mot de passe est requis.",
+    "error_message_password_length": "Le mot de passe doit comporter au moins 6 caractères.",
+    "error_message_password_match": "Les mots de passe ne correspondent pas.",
+    "error_message_language": "La langue est requise.",
+    "error_message_age": "Veuillez entrer un âge valide.",
+    "error_message_gender": "Le genre est requis.",
+    "error_message_terms": "Vous devez accepter les termes et conditions.",
+    "error_message_exists": "Ce compte existe déjà."
   },
   "ResultPage": {
     "rate": "Votre Taux de Compatibilité",

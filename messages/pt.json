@@ -371,7 +371,17 @@
     "button": "Inscrever-se",
     "login": "Já tem uma conta? Entrar",
     "lang": "Idioma",
-    "lang_placeholder": "Selecione seu idioma"
+    "lang_placeholder": "Selecione seu idioma",
+    "error_message_mail": "Por favor, insira um e-mail válido.",
+    "error_message_name": "O nome é obrigatório.",
+    "error_message_password": "A senha é obrigatória.",
+    "error_message_password_length": "A senha deve ter pelo menos 6 caracteres.",
+    "error_message_password_match": "As senhas não coincidem.",
+    "error_message_language": "O idioma é obrigatório.",
+    "error_message_age": "Por favor, insira uma idade válida.",
+    "error_message_gender": "O gênero é obrigatório.",
+    "error_message_terms": "Você deve aceitar os termos e condições.",
+    "error_message_exists": "Esta conta já existe."
   },
   "ResultPage": {
     "rate": "Sua Taxa de Compatibilidade",

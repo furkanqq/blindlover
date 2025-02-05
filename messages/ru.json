@@ -372,7 +372,17 @@
     "button": "Зарегистрироваться",
     "login": "Уже есть аккаунт? Войти",
     "lang": "Язык",
-    "lang_placeholder": "Выберите язык"
+    "lang_placeholder": "Выберите язык",
+    "error_message_mail": "Пожалуйста, введите действительный адрес электронной почты.",
+    "error_message_name": "Имя обязательно.",
+    "error_message_password": "Пароль обязателен.",
+    "error_message_password_length": "Пароль должен содержать не менее 6 символов.",
+    "error_message_password_match": "Пароли не совпадают.",
+    "error_message_language": "Требуется указать язык.",
+    "error_message_age": "Пожалуйста, введите корректный возраст.",
+    "error_message_gender": "Пол обязателен.",
+    "error_message_terms": "Вы должны принять условия и положения.",
+    "error_message_exists": "Этот аккаунт уже существует."
   },
 
   "ResultPage": {

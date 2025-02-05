@@ -372,7 +372,17 @@
     "button": "Kayıt Ol",
     "login": "Zaten bir hesabınız var mı? Oturum aç",
     "lang": "Dil",
-    "lang_placeholder": "Dil seçin"
+    "lang_placeholder": "Dil seçin",
+    "error_message_mail": "Lütfen geçerli bir e-posta adresi girin.",
+    "error_message_name": "İsim gereklidir.",
+    "error_message_password": "Şifre gereklidir.",
+    "error_message_password_length": "Şifre en az 6 karakter olmalıdır.",
+    "error_message_password_match": "Şifreler eşleşmiyor.",
+    "error_message_language": "Dil gereklidir.",
+    "error_message_age": "Lütfen geçerli bir yaş girin.",
+    "error_message_gender": "Cinsiyet gereklidir.",
+    "error_message_terms": "Şartları ve koşulları kabul etmelisiniz.",
+    "error_message_exists": "Bu hesap zaten mevcut."
   },
   "ResultPage": {
     "rate": "Uyumluluk Oranınız",
