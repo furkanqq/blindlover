@@ -59,6 +59,7 @@ interface SliderProps {
 function Slider({ slides }: SliderProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const t = useTranslations('LandingPage');
+  const locale = useLocale();
 
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -90,9 +91,9 @@ function Slider({ slides }: SliderProps) {
       >
         {slides.map((slide, index) => (
           <div key={index} className="min-w-full h-screen flex flex-col md:flex-row">
-            <div className="flex justify-center items-end pb-12 md:pb-0 md:items-center h-1/2 md:h-full w-full md:w-1/2">
-              <div className="w-[65%] flex flex-col gap-4 md:gap-10 animate-fade animate-delay-300">
-                <h1 className="text-[20px] leading-10 md:text-[44px]  md:leading-[60px] font-semibold">
+            <div className="flex justify-center items-end pb-2 md:pb-0 md:items-center h-1/2 md:h-full w-full md:w-1/2">
+              <div className="w-[65%] flex flex-col gap-1 md:gap-10 animate-fade animate-delay-300">
+                <h1 className="text-[20px] leading-8 md:text-[44px]  md:leading-[60px] font-semibold">
                   {t(slide.title)}
                 </h1>
                 <p className="text-[14px] hidden sm:flex text-foreground/50">{t(slide.subtitle)}</p>
@@ -108,6 +109,17 @@ function Slider({ slides }: SliderProps) {
                     <IconArrowRight />
                   </Button>
                 </Link>
+                <div className="flex gap-2 relative">
+                  <Link href={'/'} className="relative h-[32px] md:h-[50px] w-1/3 p-10">
+                    <Image src="/gplaybadge.png" alt="Google Play" fill objectFit="cover" />
+                  </Link>
+                  <Link
+                    href={`https://apps.apple.com/tr/app/blind-lover/id6740008681?l=${locale}`}
+                    className="relative  h-[32px] md:h-[50px] w-1/3 p-10"
+                  >
+                    <Image src="/appstore.png" alt="App Store" fill objectFit="cover" />
+                  </Link>
+                </div>
               </div>
             </div>
             {index === 0 ? (

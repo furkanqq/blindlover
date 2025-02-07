@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   title: 'Blind Lover | AI-Powered Relationship Compatibility Analysis',
   description:
     'Blind Lover analyzes your relationship compatibility with a 50-question AI-generated test and provides a personalized evaluation.',
-  keywords: 'relationship test, compatibility analysis, AI, love test, couple test, relationship evaluation',
+  keywords:
+    'blind lover, relationship test, compatibility analysis, AI, love test, couple test, relationship evaluation, blindlover, blind lover, Blind Lover Test, blind lover ai',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
