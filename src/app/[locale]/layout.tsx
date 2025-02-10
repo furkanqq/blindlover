@@ -58,6 +58,7 @@ export default async function LocaleLayout({
         <AdSense pId={'9281616897705500'} />
         <meta name="google-site-verification" content="d6IQFMe5paQrbgxb2ue5kUcGypBWSMkEleWjoTAqnbc" />
         <meta name="google-adsense-account" content="ca-pub-9281616897705500" />
+        <meta name="facebook-domain-verification" content="ovrp4r1fo4tr92nupgyk3u0nzzppia" />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -113,6 +114,30 @@ export default async function LocaleLayout({
           snaptr('track', 'PAGE_VIEW');
           `}
         </Script>
+
+        {/* Meta (Facebook) Pixel */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '638932325382541');
+          fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=638932325382541&ev=PageView&noscript=1"
+          />
+        </noscript>
       </head>
       <body className={inter.className}>
         <Providers>

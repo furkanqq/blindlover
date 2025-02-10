@@ -9,6 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={'en'} suppressHydrationWarning>
       <head>
         <meta name="google-adsense-account" content="ca-pub-9281616897705500" />
+        <meta name="facebook-domain-verification" content="ovrp4r1fo4tr92nupgyk3u0nzzppia" />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
