@@ -43,12 +43,7 @@ body {
 body {
   /* background: rgb(var(--background-color)); */
   /* background: linear-gradient(180deg, rgb(var(--background-color)), rgb(var(--primary-color)) 100%); */
-  background: linear-gradient(
-    180deg,
-    rgb(var(--background-color)) 0%,
-    rgb(var(--background-color)) 26%,
-    /* rgb(var(--background-color)) 42%, */ rgba(255, 7, 60, 0.2) 100%
-  );
+
   color: rgb(var(--foreground-color));
   transition:
     background 0.3s ease,
